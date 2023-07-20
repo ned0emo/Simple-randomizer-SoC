@@ -66,6 +66,7 @@
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedGulagCheckBox = new System.Windows.Forms.CheckBox();
             this.shuffleTextCheckBox = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -88,7 +89,6 @@
             this.weaponCheckBox = new System.Windows.Forms.CheckBox();
             this.armorCheckBox = new System.Windows.Forms.CheckBox();
             this.npcCheckBox = new System.Windows.Forms.CheckBox();
-            this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -528,6 +528,16 @@
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // gScriptCheckBox
+            // 
+            this.gScriptCheckBox.AutoSize = true;
+            this.gScriptCheckBox.Location = new System.Drawing.Point(6, 219);
+            this.gScriptCheckBox.Name = "gScriptCheckBox";
+            this.gScriptCheckBox.Size = new System.Drawing.Size(422, 17);
+            this.gScriptCheckBox.TabIndex = 18;
+            this.gScriptCheckBox.Text = "Фикс (возможных, но не всех) вылетов при долгой игре на поздних локациях";
+            this.gScriptCheckBox.UseVisualStyleBackColor = true;
+            // 
             // advancedGulagCheckBox
             // 
             this.advancedGulagCheckBox.AutoSize = true;
@@ -557,7 +567,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(314, 20);
             this.textBox1.TabIndex = 15;
-            this.textBox1.Text = "https://github.com/ned0emo/simple_randomizer_soc";
+            this.textBox1.Text = "https://github.com/ned0emo/Simple-randomizer-SoC";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // translateCheckBox
@@ -754,16 +764,6 @@
             this.npcCheckBox.Text = "НПС";
             this.npcCheckBox.UseVisualStyleBackColor = true;
             this.npcCheckBox.CheckedChanged += new System.EventHandler(this.npcCheckBox_CheckedChanged);
-            // 
-            // gScriptCheckBox
-            // 
-            this.gScriptCheckBox.AutoSize = true;
-            this.gScriptCheckBox.Location = new System.Drawing.Point(6, 219);
-            this.gScriptCheckBox.Name = "gScriptCheckBox";
-            this.gScriptCheckBox.Size = new System.Drawing.Size(422, 17);
-            this.gScriptCheckBox.TabIndex = 18;
-            this.gScriptCheckBox.Text = "Фикс (возможных, но не всех) вылетов при долгой игре на поздних локациях";
-            this.gScriptCheckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
