@@ -65,6 +65,16 @@
             this.soundTextBox = new System.Windows.Forms.TextBox();
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.thunderNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.rainNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.thunderTextBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedGulagCheckBox = new System.Windows.Forms.CheckBox();
@@ -89,16 +99,29 @@
             this.weaponCheckBox = new System.Windows.Forms.CheckBox();
             this.armorCheckBox = new System.Windows.Forms.CheckBox();
             this.npcCheckBox = new System.Windows.Forms.CheckBox();
+            this.suppliesCheckBox = new System.Windows.Forms.CheckBox();
+            this.rankCheckBox = new System.Windows.Forms.CheckBox();
+            this.reputationCheckBox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.weatherCheckBox = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.reloadSoundsTextBox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.shootSoundsTextBox = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1041, 202);
+            this.saveButton.Location = new System.Drawing.Point(1041, 362);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 23);
             this.saveButton.TabIndex = 0;
@@ -108,7 +131,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(1041, 231);
+            this.loadButton.Location = new System.Drawing.Point(1041, 391);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(131, 23);
             this.loadButton.TabIndex = 1;
@@ -118,7 +141,8 @@
             // 
             // generateButton
             // 
-            this.generateButton.Location = new System.Drawing.Point(1041, 12);
+            this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.generateButton.Location = new System.Drawing.Point(1041, 309);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(131, 23);
             this.generateButton.TabIndex = 2;
@@ -128,7 +152,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 260);
+            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 420);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(131, 23);
             this.loadDefaultButton.TabIndex = 3;
@@ -141,6 +165,7 @@
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage6);
             this.tabControl.Controls.Add(this.tabPage9);
+            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Multiline = true;
@@ -151,6 +176,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.shootSoundsTextBox);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.reloadSoundsTextBox);
             this.tabPage1.Controls.Add(this.weaponGuideButton);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.ammoTextBox);
@@ -178,22 +207,22 @@
             // 
             // label10
             // 
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label10.Location = new System.Drawing.Point(509, 9);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(500, 23);
             this.label10.TabIndex = 8;
-            this.label10.Text = "Патроны и количество их в одной пачке";
+            this.label10.Text = "Патроны и количество их в пачке";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ammoTextBox
             // 
             this.ammoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ammoTextBox.Location = new System.Drawing.Point(509, 35);
+            this.ammoTextBox.Location = new System.Drawing.Point(513, 35);
             this.ammoTextBox.Multiline = true;
             this.ammoTextBox.Name = "ammoTextBox";
             this.ammoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ammoTextBox.Size = new System.Drawing.Size(500, 450);
+            this.ammoTextBox.Size = new System.Drawing.Size(496, 210);
             this.ammoTextBox.TabIndex = 7;
             // 
             // label1
@@ -213,7 +242,7 @@
             this.weaponTextBox.Multiline = true;
             this.weaponTextBox.Name = "weaponTextBox";
             this.weaponTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.weaponTextBox.Size = new System.Drawing.Size(500, 450);
+            this.weaponTextBox.Size = new System.Drawing.Size(496, 450);
             this.weaponTextBox.TabIndex = 0;
             // 
             // tabPage6
@@ -501,6 +530,107 @@
             this.label3.Text = "Исключения";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.thunderNumericUpDown);
+            this.tabPage2.Controls.Add(this.rainNumericUpDown);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.thunderTextBox);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.skyTextBox);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage2.TabIndex = 10;
+            this.tabPage2.Text = "Погода";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // thunderNumericUpDown
+            // 
+            this.thunderNumericUpDown.Location = new System.Drawing.Point(511, 195);
+            this.thunderNumericUpDown.Name = "thunderNumericUpDown";
+            this.thunderNumericUpDown.Size = new System.Drawing.Size(56, 20);
+            this.thunderNumericUpDown.TabIndex = 24;
+            // 
+            // rainNumericUpDown
+            // 
+            this.rainNumericUpDown.Location = new System.Drawing.Point(511, 169);
+            this.rainNumericUpDown.Name = "rainNumericUpDown";
+            this.rainNumericUpDown.Size = new System.Drawing.Size(56, 20);
+            this.rainNumericUpDown.TabIndex = 23;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(573, 197);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(408, 13);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Вероятность грозы для каждого класса погоды (0 - остается как в оригинале)";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(573, 171);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(409, 13);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "Вероятность дождя для каждого класса погоды (0 - остается как в оригинале)";
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(508, 35);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(501, 131);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Изменение погоды в основном затрагивает цвет окружения, потому может быть не очен" +
+    "ь приятным.\r\nЗато игра будет хорошо дополнять RGB геймерские клавиатуру и мышь";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(257, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(245, 23);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Эффекты грозы";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // thunderTextBox
+            // 
+            this.thunderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.thunderTextBox.Location = new System.Drawing.Point(257, 35);
+            this.thunderTextBox.Multiline = true;
+            this.thunderTextBox.Name = "thunderTextBox";
+            this.thunderTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.thunderTextBox.Size = new System.Drawing.Size(245, 450);
+            this.thunderTextBox.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(6, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(245, 23);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Небо";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // skyTextBox
+            // 
+            this.skyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.skyTextBox.Location = new System.Drawing.Point(6, 35);
+            this.skyTextBox.Multiline = true;
+            this.skyTextBox.Name = "skyTextBox";
+            this.skyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.skyTextBox.Size = new System.Drawing.Size(245, 450);
+            this.skyTextBox.TabIndex = 14;
+            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.gScriptCheckBox);
@@ -531,7 +661,7 @@
             // gScriptCheckBox
             // 
             this.gScriptCheckBox.AutoSize = true;
-            this.gScriptCheckBox.Location = new System.Drawing.Point(6, 219);
+            this.gScriptCheckBox.Location = new System.Drawing.Point(6, 258);
             this.gScriptCheckBox.Name = "gScriptCheckBox";
             this.gScriptCheckBox.Size = new System.Drawing.Size(422, 17);
             this.gScriptCheckBox.TabIndex = 18;
@@ -541,18 +671,19 @@
             // advancedGulagCheckBox
             // 
             this.advancedGulagCheckBox.AutoSize = true;
-            this.advancedGulagCheckBox.Location = new System.Drawing.Point(6, 360);
+            this.advancedGulagCheckBox.Location = new System.Drawing.Point(6, 373);
             this.advancedGulagCheckBox.Name = "advancedGulagCheckBox";
-            this.advancedGulagCheckBox.Size = new System.Drawing.Size(244, 17);
+            this.advancedGulagCheckBox.Size = new System.Drawing.Size(518, 17);
             this.advancedGulagCheckBox.TabIndex = 17;
-            this.advancedGulagCheckBox.Text = "Расширить присоединение НПС к лагерям";
+            this.advancedGulagCheckBox.Text = "Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка прохо" +
+    "дима)";
             this.advancedGulagCheckBox.UseVisualStyleBackColor = true;
             // 
             // shuffleTextCheckBox
             // 
             this.shuffleTextCheckBox.AutoSize = true;
             this.shuffleTextCheckBox.Enabled = false;
-            this.shuffleTextCheckBox.Location = new System.Drawing.Point(6, 301);
+            this.shuffleTextCheckBox.Location = new System.Drawing.Point(6, 327);
             this.shuffleTextCheckBox.Name = "shuffleTextCheckBox";
             this.shuffleTextCheckBox.Size = new System.Drawing.Size(230, 17);
             this.shuffleTextCheckBox.TabIndex = 16;
@@ -573,7 +704,7 @@
             // translateCheckBox
             // 
             this.translateCheckBox.AutoSize = true;
-            this.translateCheckBox.Location = new System.Drawing.Point(6, 278);
+            this.translateCheckBox.Location = new System.Drawing.Point(6, 304);
             this.translateCheckBox.Name = "translateCheckBox";
             this.translateCheckBox.Size = new System.Drawing.Size(194, 17);
             this.translateCheckBox.TabIndex = 12;
@@ -586,14 +717,14 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(6, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1003, 207);
+            this.label6.Size = new System.Drawing.Size(1003, 198);
             this.label6.TabIndex = 11;
             this.label6.Text = resources.GetString("label6.Text");
             // 
             // disableFreedomAngryCheckBox
             // 
             this.disableFreedomAngryCheckBox.AutoSize = true;
-            this.disableFreedomAngryCheckBox.Location = new System.Drawing.Point(6, 466);
+            this.disableFreedomAngryCheckBox.Location = new System.Drawing.Point(6, 465);
             this.disableFreedomAngryCheckBox.Name = "disableFreedomAngryCheckBox";
             this.disableFreedomAngryCheckBox.Size = new System.Drawing.Size(454, 17);
             this.disableFreedomAngryCheckBox.TabIndex = 10;
@@ -603,7 +734,7 @@
             // recommendLabel4
             // 
             this.recommendLabel4.AutoSize = true;
-            this.recommendLabel4.Location = new System.Drawing.Point(466, 447);
+            this.recommendLabel4.Location = new System.Drawing.Point(466, 444);
             this.recommendLabel4.Name = "recommendLabel4";
             this.recommendLabel4.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel4.TabIndex = 9;
@@ -613,7 +744,7 @@
             // recommendLabel2
             // 
             this.recommendLabel2.AutoSize = true;
-            this.recommendLabel2.Location = new System.Drawing.Point(466, 400);
+            this.recommendLabel2.Location = new System.Drawing.Point(466, 398);
             this.recommendLabel2.Name = "recommendLabel2";
             this.recommendLabel2.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel2.TabIndex = 8;
@@ -623,7 +754,7 @@
             // recommendLabel3
             // 
             this.recommendLabel3.AutoSize = true;
-            this.recommendLabel3.Location = new System.Drawing.Point(466, 423);
+            this.recommendLabel3.Location = new System.Drawing.Point(466, 421);
             this.recommendLabel3.Name = "recommendLabel3";
             this.recommendLabel3.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel3.TabIndex = 7;
@@ -633,7 +764,7 @@
             // recommendLabel1
             // 
             this.recommendLabel1.AutoSize = true;
-            this.recommendLabel1.Location = new System.Drawing.Point(466, 466);
+            this.recommendLabel1.Location = new System.Drawing.Point(466, 467);
             this.recommendLabel1.Name = "recommendLabel1";
             this.recommendLabel1.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel1.TabIndex = 6;
@@ -643,7 +774,7 @@
             // giveKnifeCheckBox
             // 
             this.giveKnifeCheckBox.AutoSize = true;
-            this.giveKnifeCheckBox.Location = new System.Drawing.Point(6, 443);
+            this.giveKnifeCheckBox.Location = new System.Drawing.Point(6, 442);
             this.giveKnifeCheckBox.Name = "giveKnifeCheckBox";
             this.giveKnifeCheckBox.Size = new System.Drawing.Size(165, 17);
             this.giveKnifeCheckBox.TabIndex = 5;
@@ -653,11 +784,11 @@
             // respawnCheckBox
             // 
             this.respawnCheckBox.AutoSize = true;
-            this.respawnCheckBox.Location = new System.Drawing.Point(6, 255);
+            this.respawnCheckBox.Location = new System.Drawing.Point(6, 281);
             this.respawnCheckBox.Name = "respawnCheckBox";
-            this.respawnCheckBox.Size = new System.Drawing.Size(198, 17);
+            this.respawnCheckBox.Size = new System.Drawing.Size(340, 17);
             this.respawnCheckBox.TabIndex = 4;
-            this.respawnCheckBox.Text = "Увеличить частоту респавна НПС";
+            this.respawnCheckBox.Text = "Увеличить частоту респавна НПС (Может быть не стабильно)";
             this.respawnCheckBox.UseVisualStyleBackColor = true;
             // 
             // barAlarmCheckBox
@@ -684,7 +815,7 @@
             // 
             this.communityCheckBox.AutoSize = true;
             this.communityCheckBox.Enabled = false;
-            this.communityCheckBox.Location = new System.Drawing.Point(6, 337);
+            this.communityCheckBox.Location = new System.Drawing.Point(6, 350);
             this.communityCheckBox.Name = "communityCheckBox";
             this.communityCheckBox.Size = new System.Drawing.Size(169, 17);
             this.communityCheckBox.TabIndex = 0;
@@ -701,12 +832,12 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 15);
             this.label8.TabIndex = 13;
-            this.label8.Text = "©ned0emo, ver 1.3";
+            this.label8.Text = "©ned0emo, ver 1.4";
             // 
             // allCheckBox
             // 
             this.allCheckBox.AutoSize = true;
-            this.allCheckBox.Location = new System.Drawing.Point(1042, 42);
+            this.allCheckBox.Location = new System.Drawing.Point(1042, 34);
             this.allCheckBox.Name = "allCheckBox";
             this.allCheckBox.Size = new System.Drawing.Size(45, 17);
             this.allCheckBox.TabIndex = 7;
@@ -717,7 +848,7 @@
             // treasureCheckBox
             // 
             this.treasureCheckBox.AutoSize = true;
-            this.treasureCheckBox.Location = new System.Drawing.Point(1042, 66);
+            this.treasureCheckBox.Location = new System.Drawing.Point(1042, 58);
             this.treasureCheckBox.Name = "treasureCheckBox";
             this.treasureCheckBox.Size = new System.Drawing.Size(69, 17);
             this.treasureCheckBox.TabIndex = 8;
@@ -727,7 +858,7 @@
             // afCheckBox
             // 
             this.afCheckBox.AutoSize = true;
-            this.afCheckBox.Location = new System.Drawing.Point(1042, 90);
+            this.afCheckBox.Location = new System.Drawing.Point(1042, 82);
             this.afCheckBox.Name = "afCheckBox";
             this.afCheckBox.Size = new System.Drawing.Size(83, 17);
             this.afCheckBox.TabIndex = 9;
@@ -737,7 +868,7 @@
             // weaponCheckBox
             // 
             this.weaponCheckBox.AutoSize = true;
-            this.weaponCheckBox.Location = new System.Drawing.Point(1042, 114);
+            this.weaponCheckBox.Location = new System.Drawing.Point(1042, 106);
             this.weaponCheckBox.Name = "weaponCheckBox";
             this.weaponCheckBox.Size = new System.Drawing.Size(65, 17);
             this.weaponCheckBox.TabIndex = 10;
@@ -747,7 +878,7 @@
             // armorCheckBox
             // 
             this.armorCheckBox.AutoSize = true;
-            this.armorCheckBox.Location = new System.Drawing.Point(1042, 138);
+            this.armorCheckBox.Location = new System.Drawing.Point(1042, 130);
             this.armorCheckBox.Name = "armorCheckBox";
             this.armorCheckBox.Size = new System.Drawing.Size(57, 17);
             this.armorCheckBox.TabIndex = 11;
@@ -757,7 +888,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 162);
+            this.npcCheckBox.Location = new System.Drawing.Point(1041, 176);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -765,11 +896,121 @@
             this.npcCheckBox.UseVisualStyleBackColor = true;
             this.npcCheckBox.CheckedChanged += new System.EventHandler(this.npcCheckBox_CheckedChanged);
             // 
+            // suppliesCheckBox
+            // 
+            this.suppliesCheckBox.AutoSize = true;
+            this.suppliesCheckBox.Enabled = false;
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1047, 200);
+            this.suppliesCheckBox.Name = "suppliesCheckBox";
+            this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
+            this.suppliesCheckBox.TabIndex = 14;
+            this.suppliesCheckBox.Text = "Оружие";
+            this.suppliesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // rankCheckBox
+            // 
+            this.rankCheckBox.AutoSize = true;
+            this.rankCheckBox.Enabled = false;
+            this.rankCheckBox.Location = new System.Drawing.Point(1047, 224);
+            this.rankCheckBox.Name = "rankCheckBox";
+            this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
+            this.rankCheckBox.TabIndex = 15;
+            this.rankCheckBox.Text = "Ранг";
+            this.rankCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // reputationCheckBox
+            // 
+            this.reputationCheckBox.AutoSize = true;
+            this.reputationCheckBox.Enabled = false;
+            this.reputationCheckBox.Location = new System.Drawing.Point(1047, 248);
+            this.reputationCheckBox.Name = "reputationCheckBox";
+            this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
+            this.reputationCheckBox.TabIndex = 16;
+            this.reputationCheckBox.Text = "Репутация";
+            this.reputationCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1039, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Что генерировать:";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Enabled = false;
+            this.linkLabel1.Location = new System.Drawing.Point(1044, 268);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(53, 13);
+            this.linkLabel1.TabIndex = 18;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Другое...";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // weatherCheckBox
+            // 
+            this.weatherCheckBox.AutoSize = true;
+            this.weatherCheckBox.Location = new System.Drawing.Point(1041, 153);
+            this.weatherCheckBox.Name = "weatherCheckBox";
+            this.weatherCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.weatherCheckBox.TabIndex = 19;
+            this.weatherCheckBox.Text = "Погода";
+            this.weatherCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(764, 249);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(245, 23);
+            this.label17.TabIndex = 30;
+            this.label17.Text = "Звуки перезарядки";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // reloadSoundsTextBox
+            // 
+            this.reloadSoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reloadSoundsTextBox.Location = new System.Drawing.Point(764, 275);
+            this.reloadSoundsTextBox.Multiline = true;
+            this.reloadSoundsTextBox.Name = "reloadSoundsTextBox";
+            this.reloadSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.reloadSoundsTextBox.Size = new System.Drawing.Size(245, 210);
+            this.reloadSoundsTextBox.TabIndex = 29;
+            // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(513, 249);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(245, 23);
+            this.label19.TabIndex = 33;
+            this.label19.Text = "Звуки стрельбы";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // shootSoundsTextBox
+            // 
+            this.shootSoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.shootSoundsTextBox.Location = new System.Drawing.Point(513, 275);
+            this.shootSoundsTextBox.Multiline = true;
+            this.shootSoundsTextBox.Name = "shootSoundsTextBox";
+            this.shootSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.shootSoundsTextBox.Size = new System.Drawing.Size(245, 210);
+            this.shootSoundsTextBox.TabIndex = 32;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.weatherCheckBox);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.reputationCheckBox);
+            this.Controls.Add(this.rankCheckBox);
+            this.Controls.Add(this.suppliesCheckBox);
             this.Controls.Add(this.npcCheckBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.armorCheckBox);
@@ -794,6 +1035,10 @@
             this.tabPage6.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.ResumeLayout(false);
@@ -863,6 +1108,26 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox advancedGulagCheckBox;
         private System.Windows.Forms.CheckBox gScriptCheckBox;
+        private System.Windows.Forms.CheckBox suppliesCheckBox;
+        private System.Windows.Forms.CheckBox rankCheckBox;
+        private System.Windows.Forms.CheckBox reputationCheckBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox thunderTextBox;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox skyTextBox;
+        private System.Windows.Forms.CheckBox weatherCheckBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown thunderNumericUpDown;
+        private System.Windows.Forms.NumericUpDown rainNumericUpDown;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox reloadSoundsTextBox;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox shootSoundsTextBox;
     }
 }
 

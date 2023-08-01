@@ -25,13 +25,16 @@ namespace TreasuresSoC
 
         //список имен файлов
         //дублировать в textBoxList, сохраняя порядок
+        //также прописать в функции загрузки списков loadLists()
         readonly string[] nameList = {"other", "af", "ammo", "item", "model",
-            "outfit", "sound", "weapon", "npcexception", "community", "icons", "names"};
+            "outfit", "sound", "weapon", "npcexception", "community", "icons",
+            "names", "skybox", "thunderbolt", "weapon_snd_reload", "weapon_snd_shoot"};
         readonly List<string> errList;
         readonly List<string> loadedDataList;
         readonly List<TextBox> textBoxList;
         readonly List<CheckBox> generateTypeCheckBoxList;
         readonly List<CheckBox> npcCheckBoxList;
+        readonly List<CheckBox> npcCheckBoxWithoutTextBoxList;
         readonly List<Label> recommendLabelList;
         readonly Random rnd;
 
@@ -50,16 +53,17 @@ namespace TreasuresSoC
 
             textBoxList = new List<TextBox>() { otherTextBox, afTextBox, ammoTextBox, itemTextBox,
                 modelTextBox, armorTextBox, soundTextBox, weaponTextBox,
-                npcExecptTextBox, communityTextBox, iconsTextBox, namesTextBox};
+                npcExecptTextBox, communityTextBox, iconsTextBox, namesTextBox, skyTextBox, 
+                thunderTextBox, reloadSoundsTextBox, shootSoundsTextBox};
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox };
+                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox };
 
-            recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3,
-                recommendLabel4};
+            recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
             npcCheckBoxList = new List<CheckBox>() { modelsCheckBox, soundsCheckBox, iconsCheckBox, namesCheckBox };
-            foreach(CheckBox cb in npcCheckBoxList)
+            npcCheckBoxWithoutTextBoxList = new List<CheckBox>() { suppliesCheckBox, rankCheckBox, reputationCheckBox };
+            foreach (CheckBox cb in npcCheckBoxList)
             {
                 cb.Checked = true;
             }
@@ -118,10 +122,7 @@ namespace TreasuresSoC
                 }
             }
 
-            if (!isNeedCreate)
-            {
-                return;
-            }
+            if (!isNeedCreate) return;
 
             string newGamedataPath = $"./gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
             string confDir;
@@ -310,10 +311,13 @@ namespace TreasuresSoC
                     string[] weapons = Directory.GetFiles("./rndata/default/gamedata/config/weapons");
                     Directory.CreateDirectory($"{confDir}/weapons");
 
+                    var reloadSoundsList = createCleanList(reloadSoundsTextBox.Text, true);
+                    var shootSoundsList = createCleanList(shootSoundsTextBox.Text, true);
+
                     foreach (string it in weapons)
                     {
                         StreamReader weaponReader = new StreamReader(it);
-                        string currWeapon = weaponReader.ReadToEnd();
+                        string currWeapon = weaponReader.ReadToEnd().Replace(";snd", ";");
                         weaponReader.Close();
                         int magSize = rnd.Next(50) + 1;
 
@@ -347,6 +351,19 @@ namespace TreasuresSoC
                             replaceStat(currWeapon, "silencer_fire_distance", rnd.Next(1000) + 10);
                         currWeapon =
                             replaceStat(currWeapon, "silencer_bullet_speed", rnd.Next(1000) + 10);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_shoot", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_shoot1", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_shoot2", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_shoot3", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_empty", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                        currWeapon =
+                            replaceStat(currWeapon, "snd_reload", $"{reloadSoundsList[rnd.Next(reloadSoundsList.Length)]}, " +
+                            $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
 
                         byte[] buffer = Encoding.Default.GetBytes(currWeapon);
 
@@ -478,14 +495,14 @@ namespace TreasuresSoC
                                 npcDescList[i] = npcDescList[i].Replace(tmp.Substring(0, tmp.IndexOf("</comm") + 12), $"<community>{community}</community>");
                             }
 
-                            if (npcDescList[i].Contains("<rank>"))
+                            if (npcDescList[i].Contains("<rank>") && rankCheckBox.Checked)
                             {
                                 string tmp = npcDescList[i].Substring(npcDescList[i].IndexOf("<rank>"));
 
                                 npcDescList[i] = npcDescList[i].Replace(tmp.Substring(0, tmp.IndexOf("</rank>") + 7), $"<rank>{rnd.Next(1000)}</rank>");
                             }
 
-                            if (npcDescList[i].Contains("<reputation>"))
+                            if (npcDescList[i].Contains("<reputation>") && reputationCheckBox.Checked)
                             {
                                 string tmp = npcDescList[i].Substring(npcDescList[i].IndexOf("<reputation>"));
 
@@ -506,7 +523,7 @@ namespace TreasuresSoC
                                 npcDescList[i] = npcDescList[i].Replace(tmp.Substring(0, tmp.IndexOf('\n')), $"<icon>{icon}</icon>");
                             }
 
-                            if (npcDescList[i].Contains("<name>") && namesCheckBox.Checked 
+                            if (npcDescList[i].Contains("<name>") && namesCheckBox.Checked
                                 && (!onlyGenerateCheckBox.Checked || npcDescList[i].Contains("GENERATE_NAME")) && icons.Length > 0)
                             {
                                 string name = names[rnd.Next(names.Count)];
@@ -521,7 +538,7 @@ namespace TreasuresSoC
                                 npcDescList[i] = npcDescList[i].Replace(tmp.Substring(0, tmp.IndexOf('\n')), $"<snd_config>{sound}</snd_config>");
                             }
 
-                            if (npcDescList[i].Contains("[spawn]") && npcWeaponList.Count > 0)
+                            if (npcDescList[i].Contains("[spawn]") && npcWeaponList.Count > 0 && suppliesCheckBox.Checked)
                             {
                                 string supplies = npcDescList[i].Substring(npcDescList[i].IndexOf("[spawn]"), npcDescList[i].IndexOf("</supplies>") - npcDescList[i].IndexOf("[spawn]"));
                                 List<string> suppList = new List<string>(supplies.Split('\n'));
@@ -573,7 +590,76 @@ namespace TreasuresSoC
                 new InfoForm("Ошибка генераци НПС. Операция прервана.").ShowDialog();
                 return;
             }
+            //погода
+            try
+            {
+                if (weatherCheckBox.Checked)
+                {
+                    Directory.CreateDirectory($"{confDir}/weathers");
 
+                    var thunderList = createCleanList(thunderTextBox.Text);
+                    var skyTextureList = createCleanList(skyTextBox.Text);
+                    var weathers = Directory.GetFiles("./rndata/default/gamedata/config/weathers");
+
+                    foreach (string weatherPath in weathers)
+                    {
+                        StreamReader sr = new StreamReader(weatherPath);
+                        List<string> weatherList = new List<string>(sr.ReadToEnd().Split(']'));
+                        sr.Close();
+
+                        string newWeather = weatherList[0] + "]" + weatherList[1];
+                        for (int i = 2; i < weatherList.Count; i++)
+                        {
+                            string currentWeather = weatherList[i];
+
+                            if ((int)thunderNumericUpDown.Value > rnd.Next(100))
+                            {
+                                currentWeather = replaceStat(currentWeather, "thunderbolt", thunderList[rnd.Next(thunderList.Length)]);
+                            }
+                            if ((int)rainNumericUpDown.Value > rnd.Next(100))
+                            {
+                                currentWeather = replaceStat(currentWeather, "rain_density", Math.Round(rnd.NextDouble(), 2));
+                            }
+
+                            currentWeather = replaceStat(currentWeather, "sky_rotation", rnd.Next(360));
+                            currentWeather = replaceStat(currentWeather, "far_plane", rnd.Next(100, 3001));
+                            currentWeather = replaceStat(currentWeather, "fog_distance", rnd.Next(100, 3001));
+                            currentWeather = replaceStat(currentWeather, "fog_density", Math.Round(rnd.NextDouble(), 2));
+                            currentWeather = replaceStat(currentWeather, "bolt_period", $"{Math.Round(rnd.NextDouble() * 10 + 2, 1)}f");
+                            currentWeather = replaceStat(currentWeather, "bolt_duration", $"{Math.Round(rnd.NextDouble() * 3.9 + 0.1, 2)}f");
+                            currentWeather = replaceStat(currentWeather, "wind_velocity", Math.Round(rnd.NextDouble() * 100, 1));
+                            currentWeather
+                                = replaceStat(currentWeather, "sky_color", $"{Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "clouds_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}, {Math.Round(rnd.NextDouble() + 1, 1)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "fog_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "rain_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "ambient", $"{Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "hemi_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}");
+                            currentWeather
+                                = replaceStat(currentWeather, "sun_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                            currentWeather = replaceStat(currentWeather, "sun_dir", $"{Math.Round(rnd.NextDouble() * 39 - 40, 1)}, {rnd.Next(200, 301)}");
+                            currentWeather = replaceStat(currentWeather, "sky_texture", skyTextureList[rnd.Next(skyTextureList.Length)]);
+
+                            newWeather += "]" + currentWeather;
+                        }
+
+                        FileStream outputFile = new FileStream(weatherPath.Replace("./rndata/default/gamedata", newGamedataPath), FileMode.Create);
+                        byte[] buffer = Encoding.Default.GetBytes(newWeather);
+                        outputFile.Write(buffer, 0, buffer.Length);
+                        outputFile.Close();
+                    }
+                }
+            }
+            catch
+            {
+                new InfoForm("Ошибка генерации погоды. Операция прервана.").ShowDialog();
+                return;
+            }
             //доп функции
             string message = "";
             try
@@ -697,6 +783,10 @@ namespace TreasuresSoC
                 fillTextBox("default/npcexception", npcExecptTextBox);
                 fillTextBox("default/icons", iconsTextBox);
                 fillTextBox("default/names", namesTextBox);
+                fillTextBox("default/skybox", skyTextBox);
+                fillTextBox("default/thunderbolt", thunderTextBox);
+                fillTextBox("default/weapon_snd_reload", reloadSoundsTextBox);
+                fillTextBox("default/weapon_snd_shoot", shootSoundsTextBox);
             }
             else
             {
@@ -714,6 +804,10 @@ namespace TreasuresSoC
                 fillTextBox("npcexception", npcExecptTextBox);
                 fillTextBox("icons", iconsTextBox);
                 fillTextBox("names", namesTextBox);
+                fillTextBox("skybox", skyTextBox);
+                fillTextBox("thunderbolt", thunderTextBox);
+                fillTextBox("weapon_snd_reload", reloadSoundsTextBox);
+                fillTextBox("weapon_snd_shoot", shootSoundsTextBox);
 
                 foreach (TextBox tb in textBoxList)
                 {
@@ -791,6 +885,18 @@ namespace TreasuresSoC
 
         //замена дробного стата файла
         string replaceStat(string item, string statName, double statValue)
+        {
+            if (item.Contains(statName))
+            {
+                string tmp = item.Substring(item.IndexOf(statName));
+                return item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue);
+            }
+
+            return item;
+        }
+
+        //замена строкового стата файла
+        string replaceStat(string item, string statName, string statValue)
         {
             if (item.Contains(statName))
             {
@@ -938,12 +1044,12 @@ namespace TreasuresSoC
                 string newTextData = textData[0];
                 textData.RemoveAt(0);
 
-                foreach(string textSection in textData)
+                foreach (string textSection in textData)
                 {
                     string text = textSection.Substring(0, textSection.IndexOf("</text>"));
                     string roundedLength = (text.Length / 5 * 5).ToString();
                     newTextData += "\a" + textSection.Replace(text + "</text>", roundedLength + "</text>");
-                    
+
                     if (!classifiedTextByLengthMap.Keys.Contains(roundedLength))
                     {
                         classifiedTextByLengthMap[roundedLength] = new List<string>();
@@ -955,13 +1061,13 @@ namespace TreasuresSoC
             }
 
             //Замена текста в игровых файлах
-            foreach(string file in tmpFilesDataMap.Keys)
+            foreach (string file in tmpFilesDataMap.Keys)
             {
                 var textData = new List<string>(tmpFilesDataMap[file].Split('\a'));
                 string newTextData = textData[0];
                 textData.RemoveAt(0);
 
-                foreach(string textSection in textData)
+                foreach (string textSection in textData)
                 {
                     string roundedLength = textSection.Substring(0, textSection.IndexOf("</text>"));
                     int index = rnd.Next(classifiedTextByLengthMap[roundedLength].Count);
@@ -1010,6 +1116,19 @@ namespace TreasuresSoC
             {
                 communityCheckBox.Checked = false;
             }
+
+            foreach (CheckBox cb in npcCheckBoxWithoutTextBoxList)
+            {
+                cb.Enabled = npcCheckBox.Checked;
+                cb.Checked = npcCheckBox.Checked;
+            }
+
+            linkLabel1.Enabled = npcCheckBox.Checked;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl.SelectedTab = tabPage9;
         }
     }
 }
