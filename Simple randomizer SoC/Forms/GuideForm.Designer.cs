@@ -1,5 +1,5 @@
 ﻿
-namespace TreasuresSoC
+namespace RandomizerSoC
 {
     partial class GuideForm
     {

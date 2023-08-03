@@ -9,19 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TreasuresSoC
+namespace RandomizerSoC
 {
     public partial class SaveForm : Form
     {
         List<string> files;
         List<string> info;
-        Form1 parent;
 
-        public SaveForm(List<string> files, List<string> info, Form1 parent)
+        public SaveForm(List<string> files, List<string> info)
         {
             this.files = files;
             this.info = info;
-            this.parent = parent;
 
             InitializeComponent();
             infoMessageLabel.Text = "Следующие файлы будут перезаписаны:\n";
@@ -34,8 +32,8 @@ namespace TreasuresSoC
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            parent.isSaved = false;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -49,8 +47,8 @@ namespace TreasuresSoC
                 }
             }
 
-            parent.isSaved = true;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

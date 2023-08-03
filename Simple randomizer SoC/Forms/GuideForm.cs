@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TreasuresSoC
+namespace RandomizerSoC
 {
     public partial class GuideForm : Form
     {

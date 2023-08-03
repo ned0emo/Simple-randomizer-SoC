@@ -1,4 +1,4 @@
-﻿namespace TreasuresSoC
+﻿namespace RandomizerSoC
 {
     partial class SaveForm
     {
