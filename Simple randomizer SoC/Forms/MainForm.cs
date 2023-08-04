@@ -14,18 +14,19 @@ namespace RandomizerSoC
 {
     public partial class MainForm : Form
     {
-        readonly string configPath = "./rndata/default/gamedata/config";
-        readonly string scriptsPath = "./rndata/default/gamedata/scripts";
-        readonly string spawnsPath = "./rndata/default/gamedata/spawns";
+        readonly string configPath = "./rndata/gamedata/config";
+        readonly string scriptsPath = "./rndata/gamedata/scripts";
+        readonly string spawnsPath = "./rndata/gamedata/spawns";
 
         readonly int progressBarStep = 12; // 100/8
 
-        //список текстбоксов и их имен файлов
-        readonly List<Tuple<TextBox, string>> textBoxFilePairList;
-        //список проблемных файлов
-        readonly List<string> errList;
-        //текст для поиска отличий при сохранении
-        readonly List<string> cachedDataList;
+        //обработчик данных тектбоксов
+        readonly TextBoxesHandler textBoxesHandler;
+        //словарь текстбоксов и их имен файлов
+        readonly Dictionary<string, TextBox> fileTextBoxDictionary;
+        //словарь имен файлов и кэша
+        readonly Dictionary<string, string> cacheDictionary;
+
         //для чекбокса "Все"
         readonly List<CheckBox> generateTypeCheckBoxList;
 
@@ -49,27 +50,29 @@ namespace RandomizerSoC
         {
             InitializeComponent();
 
-            errList = new List<string>();
-            cachedDataList = new List<string>();
+            cacheDictionary = new Dictionary<string, string>();
+
             rnd = new Random();
 
-            textBoxFilePairList = new List<Tuple<TextBox, string>>() {
-                new Tuple<TextBox, string>(otherTextBox, "other"),
-                new Tuple<TextBox, string>(afTextBox, "af"),
-                new Tuple<TextBox, string>(ammoTextBox, "ammo"),
-                new Tuple<TextBox, string>(itemTextBox, "item"),
-                new Tuple<TextBox, string>(modelTextBox, "model"),
-                new Tuple<TextBox, string>(armorTextBox, "outfit"),
-                new Tuple<TextBox, string>(soundTextBox, "sound"),
-                new Tuple<TextBox, string>(weaponTextBox, "weapon"),
-                new Tuple<TextBox, string>(npcExecptTextBox, "npcexception"),
-                new Tuple<TextBox, string>(communityTextBox, "community"),
-                new Tuple<TextBox, string>(iconsTextBox, "icons"),
-                new Tuple<TextBox, string>(namesTextBox, "names"),
-                new Tuple<TextBox, string>(skyTextBox, "skybox"),
-                new Tuple<TextBox, string>(thunderTextBox, "thunderbolt"),
-                new Tuple<TextBox, string>(reloadSoundsTextBox, "weapon_snd_reload"),
-                new Tuple<TextBox, string>(shootSoundsTextBox, "weapon_snd_shoot")
+            fileTextBoxDictionary = new Dictionary<string, TextBox>
+            {
+                ["other"] = otherTextBox,
+                ["af"] = afTextBox,
+                ["ammo"] = ammoTextBox,
+                ["item"] = itemTextBox,
+                ["model"] = modelTextBox,
+                ["other"] = otherTextBox,
+                ["outfit"] = outfitTextBox,
+                ["sound"] = soundTextBox,
+                ["weapon"] = weaponTextBox,
+                ["npcexception"] = npcExecptTextBox,
+                ["community"] = communityTextBox,
+                ["names"] = namesTextBox,
+                ["icons"] = iconsTextBox,
+                ["skybox"] = skyTextBox,
+                ["thunderbolt"] = thunderTextBox,
+                ["weapon_snd_reload"] = reloadSoundsTextBox,
+                ["weapon_snd_shoot"] = shootSoundsTextBox
             };
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
@@ -92,46 +95,79 @@ namespace RandomizerSoC
             weatherGenerator = new WeatherGenerator();
             deathItemsGenerator = new DeathItemsGenerator();
 
-            loadLists(false);
+            textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        //кнопка сохранения
+        private async void saveButton_Click(object sender, EventArgs e)
         {
             string changedLists = "";
-            List<string> files = new List<string>();
-            List<string> info = new List<string>();
-            List<int> indexes = new List<int>();
+            var fileNameContentDictionary = new Dictionary<string, string>();
 
             //проходим по всем спискам и ищем отличия от кешированных данных
-            for (int i = 0; i < cachedDataList.Count; i++)
+            foreach (string key in cacheDictionary.Keys)
             {
-                if (cachedDataList[i] != textBoxFilePairList[i].Item1.Text)
+                if (cacheDictionary[key] != fileTextBoxDictionary[key].Text)
                 {
-                    changedLists += textBoxFilePairList[i].Item2 + ", ";
-                    files.Add(textBoxFilePairList[i].Item2);
-                    info.Add(textBoxFilePairList[i].Item1.Text);
-                    indexes.Add(i);
+                    changedLists += key + ", ";
+                    fileNameContentDictionary.Add(key, fileTextBoxDictionary[key].Text);
                 }
             }
 
-            if (files.Count < 1) return;
+            if (fileNameContentDictionary.Count < 1) return;
 
 
-            if (new SaveForm(files, info).ShowDialog() == DialogResult.OK)
+            if (new SaveForm(changedLists).ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < indexes.Count; i++)
+                await textBoxesHandler.saveData(fileNameContentDictionary);
+
+                foreach (string key in fileNameContentDictionary.Keys)
                 {
-                    cachedDataList[indexes[i]] = textBoxFilePairList[indexes[i]].Item1.Text;
+                    cacheDictionary[key] = fileNameContentDictionary[key];
+                }
+
+                if (textBoxesHandler.errorMessage.Length > 0)
+                {
+                    new InfoForm($"Не удалось сохранить следующие файлы:\n\n{textBoxesHandler.errorMessage}").ShowDialog();
                 }
             }
         }
 
-        private void loadButton_Click(object sender, EventArgs e)
+        //кнопка загрузки
+        private void loadButton_Click(object sender, EventArgs e) => loadLists();
+
+        //загрузка списков по умолчанию
+        private void loadDefaultButton_Click(object sender, EventArgs e) => loadLists(true);
+
+        //отображение формы
+        private void MainForm_Shown(object sender, EventArgs e) => loadLists();
+
+        //загрузка списков редактируемых или дефолтных
+        private async void loadLists(bool isDefault = false)
         {
-            //false потому что файлы НЕ с папки default
-            loadLists(false);
+            var textBoxesData = await textBoxesHandler.loadData(isDefault);
+
+            foreach (string key in textBoxesData.Keys)
+            {
+                fileTextBoxDictionary[key].Text = textBoxesData[key];
+            }
+
+            if (!isDefault)
+            {
+                cacheDictionary.Clear();
+                foreach (string key in fileTextBoxDictionary.Keys)
+                {
+                    cacheDictionary.Add(key, textBoxesData.Keys.Contains(key) ? textBoxesData[key] : "");
+                }
+            }
+
+            if (textBoxesHandler.errorMessage.Length > 0)
+            {
+                new InfoForm($"Не удалось загрузить следующие файлы:\n\n{textBoxesHandler.errorMessage}").ShowDialog();
+            }
         }
 
+        //генерация всего
         private async void generateButton_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
@@ -147,6 +183,21 @@ namespace RandomizerSoC
             }
 
             if (!isNeedCreate) return;
+
+            void incrementProgressBar()
+            {
+                progressBar1.Value = Math.Min(progressBar1.Value + progressBarStep, 100);
+            }
+
+            void changeButtonsStatus(bool enabled)
+            {
+                generateButton.Enabled = enabled;
+                saveButton.Enabled = enabled;
+                loadButton.Enabled = enabled;
+                loadDefaultButton.Enabled = enabled;
+            }
+
+            changeButtonsStatus(false);
 
             string newGamedataPath = $"./gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
             string newConfigPath;
@@ -170,17 +221,18 @@ namespace RandomizerSoC
             //тайники
             if (treasureCheckBox.Checked)
             {
-                treasuresGenerator.updateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: armorTextBox.Text,
+                treasuresGenerator.updateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
                 var result = await treasuresGenerator.generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", treasuresGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //артефакты
             if (afCheckBox.Checked)
             {
@@ -190,10 +242,11 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", artefactsGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //оружие
             if (weaponCheckBox.Checked)
             {
@@ -203,10 +256,11 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", weaponsGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //бронь
             if (armorCheckBox.Checked)
             {
@@ -216,10 +270,11 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", outfitsGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //нпс
             if (npcCheckBox.Checked)
             {
@@ -235,10 +290,11 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", npcGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //погода
             if (weatherCheckBox.Checked)
             {
@@ -249,23 +305,25 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", weatherGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
             //трупы
             if (deathItemsCheckBox.Checked)
             {
                 deathItemsGenerator.updateData(newConfigPath: newConfigPath);
                 var result = await deathItemsGenerator.generate();
 
-                if(result == BaseGenerator.STATUS_ERROR)
+                if (result == BaseGenerator.STATUS_ERROR)
                 {
                     new InfoForm("Ошибка", deathItemsGenerator.errorMessage).ShowDialog();
+                    changeButtonsStatus(true);
                     return;
                 }
             }
-            progressBar1.Value += progressBarStep;
+            incrementProgressBar();
 
             //доп функции
             //TODO: в отдельный класс
@@ -337,71 +395,13 @@ namespace RandomizerSoC
             catch (Exception ex)
             {
                 new InfoForm("Ошибка", $"Ошибка при применении дополнителных настроек. Операция прервана\r\n({message})\r\n{ex.Message}").ShowDialog();
+                changeButtonsStatus(true);
                 return;
             }
             progressBar1.Value = 100;
 
             new InfoForm($"Сохранено в папку \"{newGamedataPath}\" рядом с программой").ShowDialog();
-        }
-
-        //загрузка списков по умолчанию
-        private void loadDefaultButton_Click(object sender, EventArgs e)
-        {
-            loadLists(true);
-        }
-
-        //загрузка списков редактируемых или дефолтных
-        private async void loadLists(bool isDefault)
-        {
-            generateButton.Enabled = false;
-            generateButton.Text = "Загрузка...";
-            //заполнения текстовых полей
-            async Task fillTextBox(string fileName, TextBox textBox)
-            {
-                try
-                {
-                    StreamReader sr = new StreamReader($"./rndata/{fileName}.txt");
-                    textBox.Text = await sr.ReadToEndAsync();
-                    sr.Close();
-                }
-                catch
-                {
-                    errList.Add(fileName);
-                }
-            }
-
-            //чистка не ломает фиксацию ошибок, потому что добавление из функции выше вызывается позже
-            errList.Clear();
-            string prefix = isDefault ? "default/" : "";
-
-            foreach (Tuple<TextBox, string> tuple in textBoxFilePairList)
-            {
-                await fillTextBox(prefix + tuple.Item2, tuple.Item1);
-            }
-
-            if (!isDefault)
-            {
-                cachedDataList.Clear();
-                foreach (Tuple<TextBox, string> tuple in textBoxFilePairList)
-                {
-                    cachedDataList.Add(tuple.Item1.Text);
-                }
-            }
-
-            if (errList.Count > 0)
-            {
-                string errMessage = "Не удалось загрузить следующие файлы:\n\n";
-
-                foreach (string file in errList)
-                {
-                    errMessage += file + ".txt, ";
-                }
-
-                new InfoForm(errMessage).ShowDialog();
-            }
-
-            generateButton.Enabled = true;
-            generateButton.Text = "Сгенерировать";
+            changeButtonsStatus(true);
         }
 
         private void allCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -437,20 +437,11 @@ namespace RandomizerSoC
         }
 
         //Справка
-        private void weaponGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(0).ShowDialog();
-        }
+        private void weaponGuideButton_Click(object sender, EventArgs e) => new GuideForm(0).ShowDialog();
 
-        private void itemGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(1).ShowDialog();
-        }
+        private void itemGuideButton_Click(object sender, EventArgs e) => new GuideForm(1).ShowDialog();
 
-        private void npcGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(2).ShowDialog();
-        }
+        private void npcGuideButton_Click(object sender, EventArgs e) => new GuideForm(2).ShowDialog();
 
         //Отключение перемешивания текста при отключении перевода
         private void translateCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -566,6 +557,7 @@ namespace RandomizerSoC
             linkLabel1.Enabled = npcCheckBox.Checked;
         }
 
+        //ссылка другое под НПС
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl.SelectedTab = tabPage9;

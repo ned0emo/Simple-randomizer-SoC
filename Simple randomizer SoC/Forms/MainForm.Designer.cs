@@ -47,7 +47,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.itemGuideButton = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.armorTextBox = new System.Windows.Forms.TextBox();
+            this.outfitTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.afTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -292,7 +292,7 @@
             // 
             this.tabPage6.Controls.Add(this.itemGuideButton);
             this.tabPage6.Controls.Add(this.label12);
-            this.tabPage6.Controls.Add(this.armorTextBox);
+            this.tabPage6.Controls.Add(this.outfitTextBox);
             this.tabPage6.Controls.Add(this.label11);
             this.tabPage6.Controls.Add(this.afTextBox);
             this.tabPage6.Controls.Add(this.label9);
@@ -329,15 +329,15 @@
             this.label12.Text = "Броня";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // armorTextBox
+            // outfitTextBox
             // 
-            this.armorTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.armorTextBox.Location = new System.Drawing.Point(513, 35);
-            this.armorTextBox.Multiline = true;
-            this.armorTextBox.Name = "armorTextBox";
-            this.armorTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.armorTextBox.Size = new System.Drawing.Size(245, 450);
-            this.armorTextBox.TabIndex = 14;
+            this.outfitTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outfitTextBox.Location = new System.Drawing.Point(513, 35);
+            this.outfitTextBox.Multiline = true;
+            this.outfitTextBox.Name = "outfitTextBox";
+            this.outfitTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.outfitTextBox.Size = new System.Drawing.Size(245, 450);
+            this.outfitTextBox.TabIndex = 14;
             // 
             // label11
             // 
@@ -1050,6 +1050,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Рандомайзер Тень Чернобыля";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1113,7 +1114,7 @@
         private System.Windows.Forms.TextBox afTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox armorTextBox;
+        private System.Windows.Forms.TextBox outfitTextBox;
         private System.Windows.Forms.Button weaponGuideButton;
         private System.Windows.Forms.Button itemGuideButton;
         private System.Windows.Forms.Button npcGuideButton;

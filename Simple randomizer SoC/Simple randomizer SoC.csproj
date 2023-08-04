@@ -81,6 +81,7 @@
     <Compile Include="Forms\SaveForm.Designer.cs">
       <DependentUpon>SaveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxesHandler.cs" />
     <EmbeddedResource Include="Forms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
