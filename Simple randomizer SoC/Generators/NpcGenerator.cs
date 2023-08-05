@@ -82,13 +82,19 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Данные для генерации НПС не были получены. Требуется вызов \"updateData\"";
+                //errorMessage = "Данные для генерации НПС не были получены. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("npcDataError")
+                    ? localizeDictionary["npcDataError"]
+                    : "Ошибка данных НПС/NPC data error";
                 return STATUS_ERROR;
             }
 
             if (!isRulesLoaded)
             {
-                errorMessage = "Правила для генерации НПС не были получены. Требуется вызов \"updateRules\"";
+                //errorMessage = "Правила для генерации НПС не были получены. Требуется вызов \"updateRules\"";
+                errorMessage = localizeDictionary.ContainsKey("npcRulesError")
+                    ? localizeDictionary["npcRulesError"]
+                    : "Ошибка правил НПС/NPC rules error";
                 return STATUS_ERROR;
             }
 
@@ -102,7 +108,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 var weaponList = new List<string>(createCleanList(weapons, true));
                 var brokenWeaponsCount = weaponList.RemoveAll(el => !el.Contains(' '));
-                if(brokenWeaponsCount > 0)
+                if (brokenWeaponsCount > 0)
                 {
                     warningMessage = $"Некоторые строки с оружием имеют неправильное форматирование. Количесвто - {brokenWeaponsCount}";
                 }
@@ -214,7 +220,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации НПС. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации НПС. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("npcError")
+                    ? localizeDictionary["npcError"]
+                    : "Ошибка НПС/NPC error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

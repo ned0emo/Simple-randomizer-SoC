@@ -48,6 +48,16 @@
   <ItemGroup>
     <Compile Include="AdditionalParams.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="Language\en_local.Designer.cs">
+      <DependentUpon>en_local.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Language\ru_local.Designer.cs">
+      <DependentUpon>ru_local.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="FileHandler.cs" />
     <Compile Include="Generators\ArtefactsGenerator.cs" />
     <Compile Include="Generators\BaseGenerator.cs" />
@@ -84,6 +94,14 @@
       <DependentUpon>SaveForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TextBoxesHandler.cs" />
+    <EmbeddedResource Include="Language\en_local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\ru_local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ru_local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>

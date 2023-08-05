@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -27,6 +28,8 @@ namespace Simple_randomizer_SoC
 
         protected FileHandler file;
 
+        protected Dictionary<string, string> localizeDictionary;
+
         /// <summary>
         /// Базовый класс для генерации. Методы "replaceStat" для *.ltx файлов,
         /// метод "replaceXmlValue" для *.xml,
@@ -37,9 +40,12 @@ namespace Simple_randomizer_SoC
         {
             rnd = new Random();
             isDataLoaded = false;
+            localizeDictionary = new Dictionary<string, string>();
 
             this.file = file;
         }
+
+        public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         //замена целочисленного стата файла
         protected string replaceStat(string item, string statName, int statValue)
@@ -89,7 +95,7 @@ namespace Simple_randomizer_SoC
 
             if (text.Contains(openTag))
             {
-                var g =  Regex.Replace(text, openTag + ".*" + closeTag, openTag + newValue + closeTag);
+                var g = Regex.Replace(text, openTag + ".*" + closeTag, openTag + newValue + closeTag);
                 return g;
             }
 

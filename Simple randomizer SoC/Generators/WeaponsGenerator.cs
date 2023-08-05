@@ -37,7 +37,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Данные для генерации оружия не были получены. Требуется вызов \"updateData\"";
+                //errorMessage = "Данные для генерации оружия не были получены. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("weaponsDataError")
+                    ? localizeDictionary["weaponsDataError"]
+                    : "Ошибка данных оружия/Weapon data error";
                 return STATUS_ERROR;
             }
 
@@ -112,7 +115,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации оружия. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации оружия. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("weaponsError")
+                    ? localizeDictionary["weaponsError"]
+                    : "Ошибка оружия/Weapon error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

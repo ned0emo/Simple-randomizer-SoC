@@ -111,6 +111,8 @@
             this.weatherCheckBox = new System.Windows.Forms.CheckBox();
             this.deathItemsCheckBox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.rusRadioButton = new System.Windows.Forms.RadioButton();
+            this.engRadioButton = new System.Windows.Forms.RadioButton();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -123,7 +125,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1041, 413);
+            this.saveButton.Location = new System.Drawing.Point(1041, 392);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 23);
             this.saveButton.TabIndex = 0;
@@ -133,7 +135,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(1041, 442);
+            this.loadButton.Location = new System.Drawing.Point(1041, 421);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(131, 23);
             this.loadButton.TabIndex = 1;
@@ -154,7 +156,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 471);
+            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 450);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(131, 23);
             this.loadDefaultButton.TabIndex = 3;
@@ -1021,11 +1023,37 @@
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 21;
             // 
+            // rusRadioButton
+            // 
+            this.rusRadioButton.AutoSize = true;
+            this.rusRadioButton.Location = new System.Drawing.Point(1056, 479);
+            this.rusRadioButton.Name = "rusRadioButton";
+            this.rusRadioButton.Size = new System.Drawing.Size(48, 17);
+            this.rusRadioButton.TabIndex = 22;
+            this.rusRadioButton.TabStop = true;
+            this.rusRadioButton.Text = "RUS";
+            this.rusRadioButton.UseVisualStyleBackColor = true;
+            this.rusRadioButton.CheckedChanged += new System.EventHandler(this.rusRadioButton_CheckedChanged);
+            // 
+            // engRadioButton
+            // 
+            this.engRadioButton.AutoSize = true;
+            this.engRadioButton.Location = new System.Drawing.Point(1110, 479);
+            this.engRadioButton.Name = "engRadioButton";
+            this.engRadioButton.Size = new System.Drawing.Size(48, 17);
+            this.engRadioButton.TabIndex = 23;
+            this.engRadioButton.TabStop = true;
+            this.engRadioButton.Text = "ENG";
+            this.engRadioButton.UseVisualStyleBackColor = true;
+            this.engRadioButton.CheckedChanged += new System.EventHandler(this.engRadioButton_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.engRadioButton);
+            this.Controls.Add(this.rusRadioButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.deathItemsCheckBox);
             this.Controls.Add(this.weatherCheckBox);
@@ -1153,6 +1181,8 @@
         private System.Windows.Forms.TextBox shootSoundsTextBox;
         private System.Windows.Forms.CheckBox deathItemsCheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.RadioButton rusRadioButton;
+        private System.Windows.Forms.RadioButton engRadioButton;
     }
 }
 

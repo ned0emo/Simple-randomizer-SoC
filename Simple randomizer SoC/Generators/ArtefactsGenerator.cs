@@ -17,7 +17,7 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public ArtefactsGenerator(FileHandler file): base(file) { }
+        public ArtefactsGenerator(FileHandler file) : base(file) { }
 
         public void updateData(string newConfigPath)
         {
@@ -33,7 +33,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Путь для сохранения артефактов не указан. Требуется вызов \"updateNewPath\"";
+                //errorMessage = "Путь для сохранения артефактов не указан. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("artefactsDataError") 
+                    ? localizeDictionary["artefactsDataError"] 
+                    : "Ошибка данных артефактов/Artefacts data error";
                 return STATUS_ERROR;
             }
 
@@ -51,7 +54,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     artefactsStringList[i] = replaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
                     artefactsStringList[i] = replaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
-                    
+
                     //Замена статов на пустые для последующего добавления новых
                     foreach (string stat in mainAfStats)
                     {
@@ -80,7 +83,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации артефактов. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации артефактов. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("artefactsError") 
+                    ? localizeDictionary["artefactsError"] 
+                    : "Ошибка артефактов/Artefacts error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

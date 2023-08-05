@@ -34,7 +34,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Путь для сохранения брони не указан. Требуется вызов \"updateNewPath\"";
+                //errorMessage = "Путь для сохранения брони не указан. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("outfitsDataError")
+                    ? localizeDictionary["outfitsDataError"]
+                    : "Ошибка данных брони/Armor data error";
                 return STATUS_ERROR;
             }
 
@@ -42,7 +45,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 var outfits = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
                 var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
-                
+
                 string newOutfits = "";
 
                 //Начало с тройки, потому что помимо непосредственно outfit_base есть еще наследование в виде остутсвия костюма
@@ -94,7 +97,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации брони. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации брони. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("outfitsError")
+                    ? localizeDictionary["outfitsError"]
+                    : "Ошибка брони/Armor error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

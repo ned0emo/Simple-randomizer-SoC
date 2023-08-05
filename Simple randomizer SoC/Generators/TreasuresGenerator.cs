@@ -58,7 +58,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Данные для генерации тайников не были получены. Требуется вызов \"updateData\"";
+                //errorMessage = "Данные для генерации тайников не были получены. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("cachesDataError")
+                    ? localizeDictionary["cachesDataError"]
+                    : "Ошибка данных тайников/Caches data error";
                 return STATUS_ERROR;
             }
 
@@ -113,7 +116,6 @@ namespace Simple_randomizer_SoC.Generators
 
                     treasureStringList[j] = treasureStringList[j]
                         .Replace(treasureStringList[j].Substring(0, treasureStringList[j].IndexOf('\n')), $" = {newItems}");
-
                 }
 
                 string treasureString = treasureStringList[0];
@@ -129,7 +131,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации тайников. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации тайников. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("cachesError")
+                    ? localizeDictionary["cachesError"]
+                    : "Ошибка тайников/Caches error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }
@@ -137,7 +143,7 @@ namespace Simple_randomizer_SoC.Generators
         //Предмет и количество для добавления в тайник
         private string generateItem(string[] itemList, int maxItemCount)
         {
-            if(itemList.Length < 1)
+            if (itemList.Length < 1)
             {
                 return "bandage, 1";
             }
@@ -154,7 +160,7 @@ namespace Simple_randomizer_SoC.Generators
                 }
                 catch
                 {
-                    warningMessage += $"Ошибка преобразования количества предметов для [{item}]\n";
+                    warningMessage += $"Ошибка определения количества предметов для [{item}]\n";
                 }
                 item = item.Split(' ')[0];
             }

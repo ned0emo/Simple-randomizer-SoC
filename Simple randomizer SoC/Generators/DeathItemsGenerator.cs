@@ -10,7 +10,7 @@ namespace Simple_randomizer_SoC.Generators
     {
         private string newConfigPath;
 
-        public DeathItemsGenerator(FileHandler file): base(file) { }
+        public DeathItemsGenerator(FileHandler file) : base(file) { }
 
         public void updateData(string newConfigPath)
         {
@@ -26,7 +26,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Путь для сохранения файлов вещей убитых не был получен. Требуется вызов \"updateData\"";
+                //errorMessage = "Путь для сохранения файлов вещей убитых не был получен. Требуется вызов \"updateData\"";
+                errorMessage = localizeDictionary.ContainsKey("deathItemsDataError")
+                    ? localizeDictionary["deathItemsDataError"]
+                    : "Ошибка данных вещей убитых/Killed NPC items data error";
                 return STATUS_ERROR;
             }
 
@@ -130,7 +133,11 @@ namespace Simple_randomizer_SoC.Generators
             }
             catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации вещей убитых. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации вещей убитых. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("deathItemsError")
+                    ? localizeDictionary["deathItemsError"]
+                    : "Ошибка вещей убитых/Death items error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

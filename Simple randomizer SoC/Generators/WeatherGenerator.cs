@@ -16,7 +16,7 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public WeatherGenerator(FileHandler file): base(file) { }
+        public WeatherGenerator(FileHandler file) : base(file) { }
 
         public void updateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
         {
@@ -36,7 +36,10 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = "Данные для генерации погоды не были получены. Операция прервана";
+                //errorMessage = "Данные для генерации погоды не были получены. Операция прервана";
+                errorMessage = localizeDictionary.ContainsKey("weatherDataError")
+                    ? localizeDictionary["weatherDataError"]
+                    : "Ошибка данных погоды/Weather data error";
                 return STATUS_ERROR;
             }
 
@@ -67,7 +70,7 @@ namespace Simple_randomizer_SoC.Generators
                             currentWeather = replaceStat(currentWeather, "rain_density", Math.Round(rnd.NextDouble(), 2));
                         }
 
-                        if(skyTextureList.Length > 0)
+                        if (skyTextureList.Length > 0)
                         {
                             currentWeather = replaceStat(currentWeather, "sky_texture", skyTextureList[rnd.Next(skyTextureList.Length)]);
                         }
@@ -101,9 +104,13 @@ namespace Simple_randomizer_SoC.Generators
 
                 return STATUS_OK;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                errorMessage = $"Ошибка генерации погоды. Операция прервана\r\n{ex.Message}\n{ex.StackTrace}";
+                //errorMessage = $"Ошибка генерации погоды. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = (localizeDictionary.ContainsKey("weatherError")
+                    ? localizeDictionary["weatherError"]
+                    : "Ошибка погоды/Weather error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

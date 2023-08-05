@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="advancedParamsError" xml:space="preserve">
+    <value>Error applying additional parameters</value>
+  </data>
+  <data name="advancedTab" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="advancedText" xml:space="preserve">
+    <value>The program can theoretically be used with many mods (if the mod does not violate the logic of the original game files).
+
+To work with the mod , you need to in the folder ./rndata/default/gamedata/config in the "gameplay", "misc", "weathers" and "weapons" directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should correct the lists in accordance with the content of the mod.
+
+If there are additional models and NPC voice acting in the modification, you just need to write the paths to them in the lists by analogy with how the original models / voice acting are written. You don't need to copy the files themselves anywhere
+
+The parameters on this tab will most likely not work with other mods. When activating these parameters, pre-edited game files are copied, which can break the mod.</value>
+  </data>
+  <data name="ammoListTitle" xml:space="preserve">
+    <value>Cartridges and its num. in a pack</value>
+  </data>
+  <data name="artefacts" xml:space="preserve">
+    <value>Artefacts</value>
+    <comment>также для имени списка</comment>
+  </data>
+  <data name="artefactsDataError" xml:space="preserve">
+    <value>The path for saving artifacts is not specified. An "updateData" call is required</value>
+  </data>
+  <data name="artefactsError" xml:space="preserve">
+    <value>Artifact generation error. Operation aborted</value>
+  </data>
+  <data name="barAlarm" xml:space="preserve">
+    <value>Disable the alarm in the Bar when a player kills someone</value>
+  </data>
+  <data name="caches" xml:space="preserve">
+    <value>Caches</value>
+  </data>
+  <data name="cachesDataError" xml:space="preserve">
+    <value>Data for generating caches was not received. An "updateData" call is required</value>
+  </data>
+  <data name="cachesError" xml:space="preserve">
+    <value>Error generating caches. Operation aborted</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="changeCommunity" xml:space="preserve">
+    <value>Change the grouping of NPCs</value>
+  </data>
+  <data name="communityListTitle" xml:space="preserve">
+    <value>Groupings</value>
+  </data>
+  <data name="consumableListTitle" xml:space="preserve">
+    <value>Consumables</value>
+  </data>
+  <data name="copyError" xml:space="preserve">
+    <value>Copy error</value>
+  </data>
+  <data name="deathItems" xml:space="preserve">
+    <value>Items of killed NPCs</value>
+  </data>
+  <data name="deathItemsDataError" xml:space="preserve">
+    <value>The path to save the files of the items of the killed NPCs was not obtained. An "updateData" call is required</value>
+  </data>
+  <data name="deathItemsError" xml:space="preserve">
+    <value>Error generating items of killed NPCs. Operation aborted</value>
+  </data>
+  <data name="defaultLists" xml:space="preserve">
+    <value>Default lists</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="exceptionListTitle" xml:space="preserve">
+    <value>Exceptions</value>
+  </data>
+  <data name="freedomAgression" xml:space="preserve">
+    <value>Disable the hostility of the Freedom base if there are NPCs hostile to the player on it</value>
+  </data>
+  <data name="funnyTranslate" xml:space="preserve">
+    <value>Funny russian translation</value>
+  </data>
+  <data name="generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="generateNameOnlyCheckBox" xml:space="preserve">
+    <value>Use only GENERATE_NAME</value>
+  </data>
+  <data name="gScriptFix" xml:space="preserve">
+    <value>Fix (possible, but not all) crashes during a long game at late locations</value>
+  </data>
+  <data name="guideFormName" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="iconListTitle" xml:space="preserve">
+    <value>Miniatures</value>
+  </data>
+  <data name="infoFornName" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="ItemsGuide" xml:space="preserve">
+    <value>All lists on this tab are used only for adding items to caches.
+
+Armor and artifact stats are generated in the files "outfit.ltx" and "artefacts.ltx"
+(directory ./rndata/gamedata/config/misc) and does not depend on these lists
+
+Rules for generating items in caches.
+Number of items from 1 to 7 (Each item is selected randomly and can be repeated)
+Probability of generating an item by type:
+Armor - 5%, 1 pc.
+Weapons - 10%, 1 pc.
+Artifact - 5%, 1-2 pcs.
+Consumables - 50%, 1-8 pcs.
+Cartridges - 25%, 1-6 packs
+Other - 5%, 1-2 pcs.</value>
+  </data>
+  <data name="ItemsTab" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="knifeAtStart" xml:space="preserve">
+    <value>Give the player a knife at the beginning of the game</value>
+  </data>
+  <data name="loadError" xml:space="preserve">
+    <value>The following files could not be loaded:</value>
+  </data>
+  <data name="loadLists" xml:space="preserve">
+    <value>Load lists</value>
+  </data>
+  <data name="mainFormName" xml:space="preserve">
+    <value>Simple randomizer for "S.T.A.L.K.E.R.: Shadow of Chernobyl"</value>
+  </data>
+  <data name="modelListTitle" xml:space="preserve">
+    <value>Models</value>
+  </data>
+  <data name="moreGulag" xml:space="preserve">
+    <value>Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable)</value>
+  </data>
+  <data name="moreRespawn" xml:space="preserve">
+    <value>Increase the frequency of NPC respawn (May be unstable)</value>
+  </data>
+  <data name="nameListTitle" xml:space="preserve">
+    <value>Names</value>
+    <comment>также для чекбокса</comment>
+  </data>
+  <data name="npcDataError" xml:space="preserve">
+    <value>Data for the generation of NPCs were not received. An "updateData" call is required</value>
+  </data>
+  <data name="npcError" xml:space="preserve">
+    <value>NPC generation error. Operation aborted</value>
+  </data>
+  <data name="npcGuide" xml:space="preserve">
+    <value>Manipulations with NPCs (especially when changing groupings) can increase the probability of a crash
+Also, when NPC generation is enabled, it is not recommended to go to the rating tab in the PDA
+
+List of models:
+Used to issue a random NPC model. The paths to the models are written from the "gamedata/meshes" folder.
+There is no need to read and edit the models themselves. To change the available NPC models, it is enough
+to change the list without copying the model files themselves anywhere
+
+Voice acting list:
+It is used to issue random NPC voice acting. The paths to the voiceover are written from the "gamedata/sounds" folder.
+Similarly to models, the voice files themselves are not needed for the program to work, just edit the list
+(if the program is used on top of the mod with additional voice acting). Unlike the paths to the models,
+here you need to add a backslash to the end of the lines.
+
+List of groupings:
+The names of the groupings can be taken from the file "game_relations.ltx" (not used in this program)
+or from the files "character_desc_*.xml"
+
+List of thumbnails:
+"Photos" of NPCs shown during dialogues, viewing contacts or searching corpses
+
+List of names:
+Actually, the names of the NPCs. Random names are generated when GENERATE_NAME_[something] is used
+Checkbox "Use only GENERATE_NAME" disables the use and replacement of special names (quest, etc.)
+
+List of exceptions:
+Not all NPCs can have their properties changed. This list was created for such cases. In the original, for example,
+you can't touch the Barman and Sidorovich. The main character can be edited, but only
+the grouping can change there, which is not very convenient, because he is also excluded by default.
+To add NPCs to exceptions, use the "id" parameter of the "specific_character" tag
+in the "character_desc_*.xml" files located in ./rndata/gamedata/config/gameplay.
+
+Checkboxes near the names of the lists allow you to enable/disable some items in the generation of NPCs</value>
+  </data>
+  <data name="npcRulesError" xml:space="preserve">
+    <value>Rules for generating NPCs have not been received. A call to "updateRules" is required</value>
+  </data>
+  <data name="npcTab" xml:space="preserve">
+    <value>NPC</value>
+    <comment>Также для чекбокса</comment>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="otherListTitle" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="outfits" xml:space="preserve">
+    <value>Armor</value>
+    <comment>также для имени списка</comment>
+  </data>
+  <data name="outfitsDataError" xml:space="preserve">
+    <value>The path to save the armor is not specified. An "updateData" call is required</value>
+  </data>
+  <data name="outfitsError" xml:space="preserve">
+    <value>Armor generation error. Operation aborted</value>
+  </data>
+  <data name="overwritingFiles" xml:space="preserve">
+    <value>The following files will be overwritten:</value>
+  </data>
+  <data name="rainProbability" xml:space="preserve">
+    <value>The probability of rain for each weather class (0 - remains as in the original)</value>
+  </data>
+  <data name="rank" xml:space="preserve">
+    <value>Rank</value>
+  </data>
+  <data name="readHandleError" xml:space="preserve">
+    <value>Read or process error</value>
+  </data>
+  <data name="recommended" xml:space="preserve">
+    <value>(Recommended)</value>
+  </data>
+  <data name="reloadSoundListTitle" xml:space="preserve">
+    <value>Sounds of reloading</value>
+  </data>
+  <data name="reputation" xml:space="preserve">
+    <value>Reputation</value>
+  </data>
+  <data name="savedIn" xml:space="preserve">
+    <value>Saved to the folder:</value>
+  </data>
+  <data name="saveError" xml:space="preserve">
+    <value>The following files could not be saved:</value>
+  </data>
+  <data name="saveFormName" xml:space="preserve">
+    <value>Saving</value>
+  </data>
+  <data name="saveLists" xml:space="preserve">
+    <value>Save lists</value>
+  </data>
+  <data name="selectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="shootSoundListTitle" xml:space="preserve">
+    <value>Sounds of shooting</value>
+  </data>
+  <data name="shuffleText" xml:space="preserve">
+    <value>Additionally shuffle the entire text</value>
+  </data>
+  <data name="skyboxListTitle" xml:space="preserve">
+    <value>Sky</value>
+  </data>
+  <data name="soundListTitle" xml:space="preserve">
+    <value>Voice acting</value>
+  </data>
+  <data name="textDataReadError" xml:space="preserve">
+    <value>Error reading game text files</value>
+  </data>
+  <data name="thunderListTitle" xml:space="preserve">
+    <value>Thunderstorm Effects</value>
+  </data>
+  <data name="thunderProbability" xml:space="preserve">
+    <value>The probability of a thunderstorm for each weather class (0 - remains as in the original)</value>
+  </data>
+  <data name="weaponEverywhere" xml:space="preserve">
+    <value>The opportunity to get weapons in the bar, in the scientists' bunker and at Sidorovich's</value>
+  </data>
+  <data name="weaponGuide" xml:space="preserve">
+    <value>List of weapons and cartridges used:
+
+It is used to add weapons to caches and issue weapons to NPCs. The type of cartridges is necessary
+to add to the NPCs so that the people have ammunition to recharge.
+
+List of cartridges and quantities in one pack:
+It is used to add cartridges to caches. The number of cartridges in a pack is necessary
+to eliminate the imbalance between the generations of different types of cartridges
+So, if you generate cleanly in the range from 1 to 100, you can get 80 RPG rockets and 3 9x18 cartridges
+Generation by bundles (1 for rocket, 20 for 9x18, etc.) fixes this problem.
+
+It is necessary to separate cartridges with a quantity by a single space.
+
+Lists of sounds of shooting and reloading - everything is clear
+
+Lists from this tab are NOT used to generate weapon stats. Weapon stats are read and
+changed in their *.ltx files in the directory ./data/gamedata/config/weapons</value>
+  </data>
+  <data name="weaponListTitle" xml:space="preserve">
+    <value>Weapons and cartridges used by them</value>
+  </data>
+  <data name="weaponsDataError" xml:space="preserve">
+    <value>The data for generating weapons were not received. An "updateData" call is required</value>
+  </data>
+  <data name="weaponsError" xml:space="preserve">
+    <value>Weapon generation error. Operation aborted</value>
+  </data>
+  <data name="weaponsTab" xml:space="preserve">
+    <value>Weapon</value>
+    <comment>Также для чекбокса</comment>
+  </data>
+  <data name="weatherDataError" xml:space="preserve">
+    <value>Data for weather generation was not received. Operation aborted</value>
+  </data>
+  <data name="weatherError" xml:space="preserve">
+    <value>Weather generation error. Operation aborted</value>
+  </data>
+  <data name="weatherHelp" xml:space="preserve">
+    <value>A change in the weather mainly affects the color of the environment, therefore it may not be very pleasant.
+But the game will complement the RGB gaming keyboard and mouse well</value>
+  </data>
+  <data name="weatherTab" xml:space="preserve">
+    <value>Weather</value>
+    <comment>Также для чекбокса</comment>
+  </data>
+  <data name="whatGenerate" xml:space="preserve">
+    <value>What to generate:</value>
+  </data>
+  <data name="writeHandleError" xml:space="preserve">
+    <value>Writing or processing error</value>
+  </data>
+</root>

@@ -18,11 +18,15 @@ namespace Simple_randomizer_SoC
         /// Словарь по типу доп параметра и паре "префикс - путь",
         /// где префикс будет меняться при копировании на новый путь
         /// </summary>
-        Dictionary<string, Tuple<string, string>> paramTypeToPrefixAndPathDictionary;
+        readonly Dictionary<string, Tuple<string, string>> paramTypeToPrefixAndPathDictionary;
+
+        private Dictionary<string, string> localizeDictionary;
 
         public AdditionalParams(FileHandler fileHandler)
         {
             rnd = new Random();
+            localizeDictionary = new Dictionary<string, string>();
+
             this.fileHandler = fileHandler;
 
             //advancedGulag, equipWeaponEverywhere, barAlarm,
@@ -40,6 +44,8 @@ namespace Simple_randomizer_SoC
                 ["gScript"] = new Tuple<string, string>(Environment.scriptsPath, "/_g.script"),
             };
         }
+
+        public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         /// <summary>
         /// Копирование всех доп параметров, кроме текста игры.
@@ -62,7 +68,11 @@ namespace Simple_randomizer_SoC
                 }
                 catch
                 {
-                    errorMessage += $"Ошибка копирования {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
+                    //errorMessage += $"Ошибка копирования {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
+                    errorMessage += (localizeDictionary.ContainsKey("copyError")
+                        ? localizeDictionary["copyError"]
+                        : $"Ошибка копирования/Copy error")
+                        + $" {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
                 }
             }
         }
@@ -80,7 +90,11 @@ namespace Simple_randomizer_SoC
             }
             catch (Exception ex)
             {
-                errorMessage += $"Ошибка чтения файлов с игровым текстом\r\n{ex.Message}\r\n";
+                //errorMessage += $"Ошибка чтения файлов с игровым текстом\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage += (localizeDictionary.ContainsKey("textDataReadError")
+                    ? localizeDictionary["textDataReadError"]
+                    : $"Ошибка чтения/Read error")
+                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return;
             }
 
@@ -112,7 +126,11 @@ namespace Simple_randomizer_SoC
                 }
                 catch
                 {
-                    errorMessage += $"Ошибка чтения или обработки {file}\r\n";
+                    //errorMessage += $"Ошибка чтения или обработки {file}\r\n";
+                    errorMessage += (localizeDictionary.ContainsKey("readHandleError")
+                        ? localizeDictionary["readHandleError"]
+                        : $"Ошибка чтения или обработки/Read or process error")
+                        + $" {file}\r\n";
                 }
             }
 
@@ -137,7 +155,11 @@ namespace Simple_randomizer_SoC
                 }
                 catch
                 {
-                    errorMessage += $"Ошибка записи или обработки {file}\r\n";
+                    //errorMessage += $"Ошибка записи или обработки {file}\r\n";
+                    errorMessage += (localizeDictionary.ContainsKey("writeHandleError")
+                        ? localizeDictionary["writeHandleError"]
+                        : $"Ошибка записи или обработки/Write or process error")
+                        + $" {file}\r\n";
                 }
             }
         }
@@ -152,7 +174,10 @@ namespace Simple_randomizer_SoC
                 }
                 catch
                 {
-                    errorMessage += $"Ошибка копирования {file}\r\n";
+                    errorMessage += (localizeDictionary.ContainsKey("copyError")
+                        ? localizeDictionary["copyError"]
+                        : $"Ошибка копирования/Copy error")
+                        + $" {file}\r\n";
                 }
             }
         }
