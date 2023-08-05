@@ -526,6 +526,8 @@ namespace RandomizerSoC
                 {
                     new InfoForm(rm, "", $"{ex.Message}\r\n{ex.StackTrace}", "Ошибка смены языка").ShowDialog();
                 }
+
+                translateCheckBox.Enabled = true;
             }
         }
 
@@ -542,6 +544,9 @@ namespace RandomizerSoC
                 {
                     new InfoForm(rm, "", $"{ex.Message}\r\n{ex.StackTrace}", "Language change error").ShowDialog();
                 }
+
+                translateCheckBox.Checked = false;
+                translateCheckBox.Enabled = false;
             }
         }
 

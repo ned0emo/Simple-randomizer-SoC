@@ -17,6 +17,7 @@ namespace RandomizerSoC
             InitializeComponent();
 
             guideLabel.Text = text;
+            this.Text = "Справка/Help";
 
             this.Height = guideLabel.Height + 70;
             this.Width = guideLabel.Width + 70;
