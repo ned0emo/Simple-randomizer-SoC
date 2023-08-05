@@ -17,6 +17,8 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
+        public ArtefactsGenerator(FileHandler file): base(file) { }
+
         public void updateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
@@ -37,7 +39,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var artefacts = Regex.Replace(await readFile($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
+                var artefacts = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
                 var artefactsStringList = artefacts.Replace("af_base", "\a").Split('\a');
 
                 string newArtefacts = "";
@@ -72,7 +74,7 @@ namespace Simple_randomizer_SoC.Generators
                     newArtefacts += it + "af_base";
                 }
 
-                await writeFile($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
+                await file.writeFile($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
 
                 return STATUS_OK;
             }

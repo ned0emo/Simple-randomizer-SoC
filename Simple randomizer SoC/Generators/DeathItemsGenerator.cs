@@ -10,6 +10,8 @@ namespace Simple_randomizer_SoC.Generators
     {
         private string newConfigPath;
 
+        public DeathItemsGenerator(FileHandler file): base(file) { }
+
         public void updateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
@@ -30,7 +32,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var communitiesDeathGeneric = await readFile($"{Environment.configPath}/misc/death_items_by_communities.ltx");
+                var communitiesDeathGeneric = await file.readFile($"{Environment.configPath}/misc/death_items_by_communities.ltx");
                 var communitiesDeathGenericData = communitiesDeathGeneric.Split('[').Skip(1).ToList();
 
                 var communityClasses = new List<string>();
@@ -53,11 +55,11 @@ namespace Simple_randomizer_SoC.Generators
                     newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
                 }
 
-                await writeFile($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
+                await file.writeFile($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
 
                 //---------
 
-                var levelsDeathGeneric = await readFile($"{Environment.configPath}/misc/death_items_by_levels.ltx");
+                var levelsDeathGeneric = await file.readFile($"{Environment.configPath}/misc/death_items_by_levels.ltx");
                 var levelsDeathGenericData = levelsDeathGeneric.Split('[').Skip(1).ToList();
 
                 var levelClasses = new List<string>();
@@ -87,11 +89,11 @@ namespace Simple_randomizer_SoC.Generators
                     newLevelsDeathGenericData += $"\n[{levelClass}]\n{newData}";
                 }
 
-                await writeFile($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
+                await file.writeFile($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
 
                 //--------
 
-                var countDeathItems = await readFile($"{Environment.configPath}/misc/death_items_count.ltx");
+                var countDeathItems = await file.readFile($"{Environment.configPath}/misc/death_items_count.ltx");
                 var countDeathItemsData = countDeathItems.Split('[').Skip(1).ToList();
 
                 var countClasses = new List<string>();
@@ -122,7 +124,7 @@ namespace Simple_randomizer_SoC.Generators
                     newCountDeathGenericData += $"\n[{countClass}]\n{newData}";
                 }
 
-                await writeFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
+                await file.writeFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
 
                 return STATUS_OK;
             }

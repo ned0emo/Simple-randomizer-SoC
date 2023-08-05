@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC
 {
-    class TextBoxesHandler
+    class TextBoxesHandler : FileHandler
     {
         private string[] fileNames;
 
@@ -41,8 +41,6 @@ namespace Simple_randomizer_SoC
             return filesContentDictionary;
         }
 
-
-
         public async Task saveData(Dictionary<string, string> fileNameContentDictionary)
         {
             errorMessage = "";
@@ -56,25 +54,6 @@ namespace Simple_randomizer_SoC
                     errorMessage += $"{file}.txt, ";
                 }
             }
-        }
-
-        private async Task<string> readFile(string path)
-        {
-            StreamReader sr = new StreamReader(path);
-            var value = await sr.ReadToEndAsync();
-            sr.Close();
-
-            return value;
-        }
-
-        private async Task writeFile(string path, string content)
-        {
-            string rightPath = path.Replace('\\', '/');
-
-            FileStream fs = new FileStream(rightPath, FileMode.Create);
-            byte[] buffer = Encoding.Default.GetBytes(content);
-            await fs.WriteAsync(buffer, 0, buffer.Length);
-            fs.Close();
         }
     }
 }

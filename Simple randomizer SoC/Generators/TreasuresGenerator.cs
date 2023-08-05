@@ -26,6 +26,8 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
+        public TreasuresGenerator(FileHandler file) : base(file) { }
+
         /// <summary>
         /// Обновление списков предметов
         /// </summary>
@@ -62,7 +64,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var treasures = Regex.Replace(await readFile($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
+                var treasures = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
                 var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
 
                 var weaponList = createCleanList(weapons);
@@ -121,7 +123,7 @@ namespace Simple_randomizer_SoC.Generators
                     treasureString += "items" + treasureStringList[i];
                 }
 
-                await writeFile($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
+                await file.writeFile($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
 
                 return STATUS_OK;
             }

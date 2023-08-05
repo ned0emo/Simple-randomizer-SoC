@@ -16,6 +16,8 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
+        public WeatherGenerator(FileHandler file): base(file) { }
+
         public void updateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
         {
             this.skyboxes = skyboxes;
@@ -42,11 +44,11 @@ namespace Simple_randomizer_SoC.Generators
             {
                 var thunderList = createCleanList(thunders);
                 var skyTextureList = createCleanList(skyboxes);
-                var weathers = getFiles($"{Environment.configPath}/weathers");
+                var weathers = file.getFiles($"{Environment.configPath}/weathers");
 
                 foreach (string weatherPath in weathers)
                 {
-                    List<string> weatherList = new List<string>((await readFile(weatherPath)).Split(']'));
+                    List<string> weatherList = new List<string>((await file.readFile(weatherPath)).Split(']'));
 
                     string newWeather = weatherList[0] + "]" + weatherList[1];
                     for (int i = 2; i < weatherList.Count; i++)
@@ -94,7 +96,7 @@ namespace Simple_randomizer_SoC.Generators
                         newWeather += "]" + currentWeather;
                     }
 
-                    await writeFile(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
+                    await file.writeFile(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
                 }
 
                 return STATUS_OK;

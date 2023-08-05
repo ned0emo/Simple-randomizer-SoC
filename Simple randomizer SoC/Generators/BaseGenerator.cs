@@ -25,16 +25,20 @@ namespace Simple_randomizer_SoC
 
         protected bool isDataLoaded;
 
+        protected FileHandler file;
+
         /// <summary>
         /// Базовый класс для генерации. Методы "replaceStat" для *.ltx файлов,
         /// метод "replaceXmlValue" для *.xml,
         /// "loadFile" и "saveFile" для загрузки и сохранения файлов соответственно.
         /// Переменная errorMessage будет хранить в себе ошибки
         /// </summary>
-        protected BaseGenerator()
+        protected BaseGenerator(FileHandler file)
         {
             rnd = new Random();
             isDataLoaded = false;
+
+            this.file = file;
         }
 
         //замена целочисленного стата файла
@@ -125,41 +129,5 @@ namespace Simple_randomizer_SoC
 
             return tmpList;
         }
-
-        //дополнительный множитель
-        /*int multiplier(int probability, int multValue)
-        {
-            if (rnd.Next(100) < probability)
-            {
-                return multValue;
-            }
-
-            return 1;
-        }*/
-
-        //---------------------
-        //Работа с файлами
-        //---------------------
-        protected async Task<string> readFile(string path)
-        {
-            StreamReader sr = new StreamReader(path);
-            var value = await sr.ReadToEndAsync();
-            sr.Close();
-
-            return value;
-        }
-
-        protected async Task writeFile(string path, string content)
-        {
-            string rightPath = path.Replace('\\', '/');
-            Directory.CreateDirectory(rightPath.Substring(0, rightPath.LastIndexOf('/')));
-
-            FileStream fs = new FileStream(rightPath, FileMode.Create);
-            byte[] buffer = Encoding.Default.GetBytes(content);
-            await fs.WriteAsync(buffer, 0, buffer.Length);
-            fs.Close();
-        }
-
-        protected string[] getFiles(string path) => Directory.GetFiles(path);
     }
 }

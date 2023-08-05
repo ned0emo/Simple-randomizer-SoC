@@ -25,6 +25,8 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
+        public OutfitsGenerator(FileHandler file) : base(file) { }
+
         public async Task<int> generate()
         {
             errorMessage = "";
@@ -38,7 +40,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var outfits = Regex.Replace(await readFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
+                var outfits = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
                 var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
                 
                 string newOutfits = "";
@@ -86,7 +88,7 @@ namespace Simple_randomizer_SoC.Generators
                     newOutfits += it + "outfit_base";
                 }
 
-                await writeFile($"{newConfigPath}/misc/outfit.ltx", newOutfits);
+                await file.writeFile($"{newConfigPath}/misc/outfit.ltx", newOutfits);
 
                 return STATUS_OK;
             }

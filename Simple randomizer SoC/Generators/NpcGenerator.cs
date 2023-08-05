@@ -35,7 +35,7 @@ namespace Simple_randomizer_SoC.Generators
         /// Для работы с неписями после инициализации класса необходимо вызвать не только
         /// updateData, но и updateRules. Для получения инфы с чекбоксов
         /// </summary>
-        public NpcGenerator()
+        public NpcGenerator(FileHandler file) : base(file)
         {
             isRulesLoaded = false;
         }
@@ -113,9 +113,9 @@ namespace Simple_randomizer_SoC.Generators
                     nameList.RemoveAll(el => !el.Contains("GENERATE_NAME"));
                 }
 
-                foreach (string it in getFiles($"{Environment.configPath}/gameplay"))
+                foreach (string it in file.getFiles($"{Environment.configPath}/gameplay"))
                 {
-                    var npcDescList = (await readFile(it)).Replace("<specific_character", "\a").Split('\a');
+                    var npcDescList = (await file.readFile(it)).Replace("<specific_character", "\a").Split('\a');
 
                     for (int i = 1; i < npcDescList.Length; i++)
                     {
@@ -207,7 +207,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     outStr += npcDescList.Last();
 
-                    await writeFile(it.Replace(Environment.configPath, newConfigPath), outStr);
+                    await file.writeFile(it.Replace(Environment.configPath, newConfigPath), outStr);
                 }
 
                 return STATUS_OK;

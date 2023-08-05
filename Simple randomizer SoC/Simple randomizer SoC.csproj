@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalParams.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="FileHandler.cs" />
     <Compile Include="Generators\ArtefactsGenerator.cs" />
     <Compile Include="Generators\BaseGenerator.cs" />
     <Compile Include="Forms\InfoForm.cs">

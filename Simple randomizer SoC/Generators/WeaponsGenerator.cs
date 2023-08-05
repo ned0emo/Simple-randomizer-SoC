@@ -14,6 +14,8 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
+        public WeaponsGenerator(FileHandler file) : base(file) { }
+
         /// <summary>
         /// Обновление списков звуков
         /// </summary>
@@ -41,14 +43,14 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var weapons = getFiles($"{Environment.configPath}/weapons");
+                var weapons = file.getFiles($"{Environment.configPath}/weapons");
 
                 var reloadSoundsList = createCleanList(reloadSounds);
                 var shootSoundsList = createCleanList(shootSounds);
 
                 foreach (string it in weapons)
                 {
-                    string currWeapon = Regex.Replace(await readFile(it), "\\s+;.+", "");
+                    string currWeapon = Regex.Replace(await file.readFile(it), "\\s+;.+", "");
                     int magSize = rnd.Next(50) + 1;
 
                     currWeapon =
@@ -103,7 +105,7 @@ namespace Simple_randomizer_SoC.Generators
                         $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
                     }
 
-                    await writeFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
+                    await file.writeFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
                 }
 
                 return STATUS_OK;
