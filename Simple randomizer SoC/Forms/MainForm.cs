@@ -26,6 +26,8 @@ namespace RandomizerSoC
         //словарь имен файлов и кэша
         readonly Dictionary<string, string> cacheDictionary;
 
+        Dictionary<string, string> infoFormLocalize;
+
         //для чекбокса "Все"
         readonly List<CheckBox> generateTypeCheckBoxList;
 
@@ -54,6 +56,7 @@ namespace RandomizerSoC
             FileHandler fileHandler = new FileHandler();
 
             cacheDictionary = new Dictionary<string, string>();
+            infoFormLocalize = new Dictionary<string, string>();
 
             fileTextBoxDictionary = new Dictionary<string, TextBox>
             {
@@ -136,7 +139,15 @@ namespace RandomizerSoC
 
                 if (textBoxesHandler.errorMessage.Length > 0)
                 {
-                    new InfoForm(rm, "saveError", textBoxesHandler.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("saveError")
+                            ? infoFormLocalize["saveError"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, textBoxesHandler.errorMessage).ShowDialog();
                 }
             }
         }
@@ -171,7 +182,15 @@ namespace RandomizerSoC
 
             if (textBoxesHandler.errorMessage.Length > 0)
             {
-                new InfoForm(rm, "loadError", textBoxesHandler.errorMessage).ShowDialog();
+                new InfoForm(new Dictionary<string, string>()
+                {
+                    ["message"] = infoFormLocalize.ContainsKey("loadError")
+                        ? infoFormLocalize["loadError"]
+                        : "Ошибка/Error",
+                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                        ? infoFormLocalize["infoFornName"]
+                        : "Внимание/Warning"
+                }, textBoxesHandler.errorMessage).ShowDialog();
             }
         }
 
@@ -217,7 +236,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", treasuresGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", treasuresGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, treasuresGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -231,7 +260,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", artefactsGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", artefactsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, artefactsGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -245,7 +284,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", weaponsGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", weaponsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, weaponsGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -259,7 +308,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", outfitsGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", outfitsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, outfitsGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -279,7 +338,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", npcGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", npcGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, npcGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -294,7 +363,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", weatherGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", weatherGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, weatherGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -308,7 +387,17 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(rm, "error", deathItemsGenerator.errorMessage).ShowDialog();
+                    //new InfoForm(rm, "error", deathItemsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, deathItemsGenerator.errorMessage).ShowDialog();
+
                     changeButtonsStatus(true);
                     return;
                 }
@@ -370,7 +459,17 @@ namespace RandomizerSoC
 
             if (additionalParams.errorMessage.Length > 0)
             {
-                new InfoForm(rm, "advancedParamsError", additionalParams.errorMessage).ShowDialog();
+                //new InfoForm(rm, "advancedParamsError", additionalParams.errorMessage).ShowDialog();
+                new InfoForm(new Dictionary<string, string>()
+                {
+                    ["message"] = infoFormLocalize.ContainsKey("advancedParamsError")
+                            ? infoFormLocalize["advancedParamsError"]
+                            : "Ошибка/Error",
+                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                }, additionalParams.errorMessage).ShowDialog();
+
                 additionalParams.errorMessage = "";
                 changeButtonsStatus(true);
                 return;
@@ -379,7 +478,18 @@ namespace RandomizerSoC
             progressBar1.Value = 100;
 
             //new InfoForm($"Сохранено в папку \"{newGamedataPath}\" рядом с программой").ShowDialog();
-            new InfoForm(rm, "savedIn", postfix: newGamedataPath).ShowDialog();
+            //new InfoForm(rm, "savedIn", postfix: newGamedataPath).ShowDialog();
+            new InfoForm(new Dictionary<string, string>()
+            {
+                ["message"] = (infoFormLocalize.ContainsKey("savedIn")
+                    ? infoFormLocalize["savedIn"]
+                    : "Сохранено в/Saved in")
+                     + " " + newGamedataPath,
+                ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                    ? infoFormLocalize["infoFornName"]
+                    : "Внимание/Warning"
+            }).ShowDialog();
+
             changeButtonsStatus(true);
         }
 
@@ -425,7 +535,17 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(new Dictionary<string, string>()
+                {
+                    ["message"] = infoFormLocalize.ContainsKey("error")
+                        ? infoFormLocalize["error"]
+                        : "Ошибка/Error",
+                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                        ? infoFormLocalize["infoFornName"]
+                        : "Внимание/Warning"
+                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+
                 return;
             }
             new GuideForm(text).ShowDialog();
@@ -440,7 +560,17 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(new Dictionary<string, string>()
+                {
+                    ["message"] = infoFormLocalize.ContainsKey("error")
+                        ? infoFormLocalize["error"]
+                        : "Ошибка/Error",
+                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                        ? infoFormLocalize["infoFornName"]
+                        : "Внимание/Warning"
+                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+
                 return;
             }
             new GuideForm(text).ShowDialog();
@@ -455,7 +585,17 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(new Dictionary<string, string>()
+                {
+                    ["message"] = infoFormLocalize.ContainsKey("error")
+                        ? infoFormLocalize["error"]
+                        : "Ошибка/Error",
+                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                        ? infoFormLocalize["infoFornName"]
+                        : "Внимание/Warning"
+                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+
                 return;
             }
             new GuideForm(text).ShowDialog();
@@ -520,11 +660,15 @@ namespace RandomizerSoC
                 try
                 {
                     rm = new ResourceManager("Simple_randomizer_SoC.Language.ru_local", Assembly.GetExecutingAssembly());
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru");
                     updateText();
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm(rm, "", $"{ex.Message}\r\n{ex.StackTrace}", "Ошибка смены языка").ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = "Ошибка смены языка"
+                    }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
                 }
 
                 translateCheckBox.Enabled = true;
@@ -538,11 +682,16 @@ namespace RandomizerSoC
                 try
                 {
                     rm = new ResourceManager("Simple_randomizer_SoC.Language.en_local", Assembly.GetExecutingAssembly());
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+
                     updateText();
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm(rm, "", $"{ex.Message}\r\n{ex.StackTrace}", "Language change error").ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = "Language change error"
+                    }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
                 }
 
                 translateCheckBox.Checked = false;
@@ -661,6 +810,16 @@ namespace RandomizerSoC
                 ["readHandleError"] = rm.GetString("readHandleError"),
                 ["writeHandleError"] = rm.GetString("writeHandleError")
             });
+
+            infoFormLocalize = new Dictionary<string, string>()
+            {
+                ["infoFornName"] = rm.GetString("infoFornName"),
+                ["error"] = rm.GetString("error"),
+                ["savedIn"] = rm.GetString("savedIn"),
+                ["advancedParamsError"] = rm.GetString("advancedParamsError"),
+                ["loadError"] = rm.GetString("loadError"),
+                ["saveError"] = rm.GetString("saveError"),
+            };
         }
     }
 }

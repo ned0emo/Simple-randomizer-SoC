@@ -13,25 +13,18 @@ namespace RandomizerSoC
 {
     public partial class InfoForm : Form
     {
-        public InfoForm(ResourceManager rm, string rmInfoId = "", string errMessage = "", string postfix = "")
+        public InfoForm(Dictionary<string, string> localizeDictionary, string errMessage = "")
         {
             InitializeComponent();
-            string infoMessage;
 
-            try
-            {
-                this.Text = rm.GetString("infoFornName");
-                infoMessage = rm.GetString(rmInfoId);
-            }
-            catch
-            {
-                this.Text = "Внимание/Warning";
-                infoMessage = "Ошибка/Error";
-            }
+            this.Text = localizeDictionary.ContainsKey("infoFornName")
+                ? localizeDictionary["infoFornName"]
+                : "Внимание/Warning";
 
-            if (rmInfoId.Length < 1) infoMessage = "";
+            label1.Text = localizeDictionary.ContainsKey("message")
+                ? localizeDictionary["message"]
+                : "Ошибка/Error";
 
-            label1.Text = infoMessage + $" {postfix}";
             if(errMessage.Length > 0)
             {
                 textBox1.Visible = true;
