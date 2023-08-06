@@ -14,8 +14,8 @@
 
 # Скриншоты
 
-![Снимок экрана 2023-08-01 211021](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/41ccb979-fcf4-4032-94f5-f7af7034138e)
-![Снимок экрана 2023-08-01 211030](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/c5af0900-177e-417b-b2d6-5f7ecbabc992)
-![Снимок экрана 2023-08-01 211037](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/56195571-313f-46af-982f-97a4bc6f3c9e)
-![Снимок экрана 2023-08-01 211047](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/8010559c-3326-4376-a274-daa125c725cb)
-![Снимок экрана 2023-08-01 211055](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/b52c41d7-f9f7-4947-821c-9842a7e7c375)
+![Снимок экрана 2023-08-06 164543](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/0af4439f-88c1-49ec-a164-51450c397cd8)
+![Снимок экрана 2023-08-06 164505](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/82ec5d34-fe4d-474a-abf3-6452fd5ce3de)
+![Снимок экрана 2023-08-06 164516](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/7245afb5-9280-46aa-a7f8-58aeb31e87ba)
+![Снимок экрана 2023-08-06 164525](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/ca3d3d17-c55f-44c8-9ba7-e8de50fe48bb)
+![Снимок экрана 2023-08-06 164535](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/24ca3cc1-6508-498d-9141-35dea1790fda)
