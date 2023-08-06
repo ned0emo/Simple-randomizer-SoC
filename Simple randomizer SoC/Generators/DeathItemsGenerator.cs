@@ -53,7 +53,7 @@ namespace Simple_randomizer_SoC.Generators
                     string newData = "";
                     foreach (string item in mainProbabilityData)
                     {
-                        newData += item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(rnd.NextDouble() * (item.StartsWith("af_") ? 0.05 : 0.6) + 0.001, 3)}\n");
+                        newData += item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(rnd.NextDouble() * (item.StartsWith("af_") ? 0.03 : 0.6) + 0.001, 3)}\n");
                     }
                     newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
                 }
@@ -109,12 +109,17 @@ namespace Simple_randomizer_SoC.Generators
                 mainCountData1.RemoveAll(el => !el.Contains('='));
 
                 string newCountDeathGenericData = "";
+                int i = 0;
+                int ammoMax = 30;
+                int itemMax = 3;
                 foreach (string countClass in countClasses)
                 {
+                    if (i > 1) itemMax = 2;
+
                     string newData = "";
                     foreach (string item in mainCountData1)
                     {
-                        int maxValue = item.StartsWith("ammo_") ? 30 : 3;
+                        int maxValue = item.StartsWith("ammo_") ? ammoMax : itemMax;
                         int firstValue = rnd.Next(maxValue);
                         int secondValue = rnd.Next(firstValue, maxValue);
                         newData += item.Replace(
@@ -125,6 +130,9 @@ namespace Simple_randomizer_SoC.Generators
                         );
                     }
                     newCountDeathGenericData += $"\n[{countClass}]\n{newData}";
+
+                    i++;
+                    ammoMax = Math.Max(ammoMax - 5, 10);
                 }
 
                 await file.writeFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
