@@ -326,7 +326,7 @@ Checkboxes near the names of the lists allow you to enable/disable some items in
     <value>The following files will be overwritten:</value>
   </data>
   <data name="rainProbability" xml:space="preserve">
-    <value>The probability of rain for each weather class (0 - remains as in the original)</value>
+    <value>The probability of rain for each weather class</value>
   </data>
   <data name="rank" xml:space="preserve">
     <value>Rank</value>
@@ -377,7 +377,7 @@ Checkboxes near the names of the lists allow you to enable/disable some items in
     <value>Thunderstorm Effects</value>
   </data>
   <data name="thunderProbability" xml:space="preserve">
-    <value>The probability of a thunderstorm for each weather class (0 - remains as in the original)</value>
+    <value>The probability of a thunderstorm for each weather class</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>The opportunity to get weapons in the bar, in the scientists' bunker and at Sidorovich's</value>

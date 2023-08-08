@@ -544,7 +544,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The probability of rain for each weather class (0 - remains as in the original).
+        ///   Ищет локализованную строку, похожую на The probability of rain for each weather class.
         /// </summary>
         internal static string rainProbability {
             get {
@@ -697,7 +697,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The probability of a thunderstorm for each weather class (0 - remains as in the original).
+        ///   Ищет локализованную строку, похожую на The probability of a thunderstorm for each weather class.
         /// </summary>
         internal static string thunderProbability {
             get {

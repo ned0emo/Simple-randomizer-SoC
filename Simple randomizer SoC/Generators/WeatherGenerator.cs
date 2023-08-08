@@ -64,10 +64,18 @@ namespace Simple_randomizer_SoC.Generators
                             currentWeather = replaceStat(currentWeather, "bolt_period", $"{Math.Round(rnd.NextDouble() * 10 + 2, 1)}f");
                             currentWeather = replaceStat(currentWeather, "bolt_duration", $"{Math.Round(rnd.NextDouble() * 3.9 + 0.1, 2)}f");
                         }
+                        else
+                        {
+                            currentWeather = replaceStat(currentWeather, "thunderbolt", "");
+                        }
 
                         if (rainProbability > rnd.Next(100))
                         {
                             currentWeather = replaceStat(currentWeather, "rain_density", Math.Round(rnd.NextDouble(), 2));
+                        }
+                        else
+                        {
+                            currentWeather = replaceStat(currentWeather, "rain_density", 0.0);
                         }
 
                         if (skyTextureList.Length > 0)

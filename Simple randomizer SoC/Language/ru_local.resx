@@ -325,7 +325,7 @@
     <value>Следующие файлы будут перезаписаны:</value>
   </data>
   <data name="rainProbability" xml:space="preserve">
-    <value>Вероятность дождя для каждого класса погоды (0 - остается как в оригинале)</value>
+    <value>Вероятность дождя для каждого класса погоды</value>
   </data>
   <data name="rank" xml:space="preserve">
     <value>Ранг</value>
@@ -376,7 +376,7 @@
     <value>Эффекты грозы</value>
   </data>
   <data name="thunderProbability" xml:space="preserve">
-    <value>Вероятность грозы для каждого класса погоды (0 - остается как в оригинале)</value>
+    <value>Вероятность грозы для каждого класса погоды</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>Возможность достать оружие в баре, в бункере ученых и у Сидоровича</value>

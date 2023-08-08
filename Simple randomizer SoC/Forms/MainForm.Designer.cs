@@ -613,18 +613,18 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(573, 197);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(408, 13);
+            this.label16.Size = new System.Drawing.Size(252, 13);
             this.label16.TabIndex = 22;
-            this.label16.Text = "Вероятность грозы для каждого класса погоды (0 - остается как в оригинале)";
+            this.label16.Text = "Вероятность грозы для каждого класса погоды";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(573, 171);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(409, 13);
+            this.label15.Size = new System.Drawing.Size(253, 13);
             this.label15.TabIndex = 21;
-            this.label15.Text = "Вероятность дождя для каждого класса погоды (0 - остается как в оригинале)";
+            this.label15.Text = "Вероятность дождя для каждого класса погоды";
             // 
             // label14
             // 
@@ -873,11 +873,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(1061, 510);
+            this.label8.Location = new System.Drawing.Point(1051, 510);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 15);
+            this.label8.Size = new System.Drawing.Size(121, 15);
             this.label8.TabIndex = 13;
-            this.label8.Text = "©ned0emo, ver 1.5";
+            this.label8.Text = "©ned0emo, ver 1.5.1";
             // 
             // allCheckBox
             // 
@@ -933,7 +933,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1041, 199);
+            this.npcCheckBox.Location = new System.Drawing.Point(1042, 199);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -945,7 +945,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1047, 223);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 223);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -956,7 +956,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1047, 247);
+            this.rankCheckBox.Location = new System.Drawing.Point(1048, 247);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -967,7 +967,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1047, 271);
+            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 271);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -987,7 +987,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1044, 291);
+            this.linkLabel1.Location = new System.Drawing.Point(1045, 291);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -998,7 +998,7 @@
             // weatherCheckBox
             // 
             this.weatherCheckBox.AutoSize = true;
-            this.weatherCheckBox.Location = new System.Drawing.Point(1041, 153);
+            this.weatherCheckBox.Location = new System.Drawing.Point(1042, 153);
             this.weatherCheckBox.Name = "weatherCheckBox";
             this.weatherCheckBox.Size = new System.Drawing.Size(63, 17);
             this.weatherCheckBox.TabIndex = 19;
@@ -1008,7 +1008,7 @@
             // deathItemsCheckBox
             // 
             this.deathItemsCheckBox.AutoSize = true;
-            this.deathItemsCheckBox.Location = new System.Drawing.Point(1041, 176);
+            this.deathItemsCheckBox.Location = new System.Drawing.Point(1042, 176);
             this.deathItemsCheckBox.Name = "deathItemsCheckBox";
             this.deathItemsCheckBox.Size = new System.Drawing.Size(92, 17);
             this.deathItemsCheckBox.TabIndex = 20;
