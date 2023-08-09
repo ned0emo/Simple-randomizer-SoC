@@ -13,6 +13,11 @@ namespace RandomizerSoC
 {
     public partial class InfoForm : Form
     {
+        /// <summary>
+        /// В localizeDictionary передавать как минимум значения infoFornName и message
+        /// </summary>
+        /// <param name="localizeDictionary"></param>
+        /// <param name="errMessage"></param>
         public InfoForm(Dictionary<string, string> localizeDictionary, string errMessage = "")
         {
             InitializeComponent();

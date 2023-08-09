@@ -249,10 +249,10 @@
     <value>Модели</value>
   </data>
   <data name="moreGulag" xml:space="preserve">
-    <value>Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка проходима)</value>
+    <value>Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка проходима. Нестабильно на 1.0006)</value>
   </data>
   <data name="moreRespawn" xml:space="preserve">
-    <value>Увеличить частоту респавна НПС (Может быть нестабильно)</value>
+    <value>Увеличить частоту респавна НПС (Нестабильно на 1.0006)</value>
   </data>
   <data name="nameListTitle" xml:space="preserve">
     <value>Имена</value>
@@ -304,6 +304,50 @@
   <data name="npcTab" xml:space="preserve">
     <value>НПС</value>
     <comment>Также для чекбокса</comment>
+  </data>
+  <data name="onePointFourAdvertise" xml:space="preserve">
+    <value>Если верить парням с Metacognix, то "в игровом движке версии 1.0006 внесены изменения в код, которые приводят к сбоям, когда оружие, боеприпасы или другие предметы уничтожаются во время их использования..."
+Также ошибка "может возникать в модах, которые изменяют боеприпасы и/или оружие"
+
+https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
+
+Сама ошибка выглядит так:
+
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21049][wpn_svu: wpn_svu21049][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21048][kolbasa: kolbasa21048][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21047][device_torch: device_torch21047][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21046][bread: bread21046][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21045][ammo_7.62x54_7h1: ammo_7.62x54_7h121045][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21044][device_pda: device_pda21044][137703]
+sv ownership id_parent[21043][NOTFOUND] id_entity[23538][wpn_eagle_m1: wpn_eagle_m123538][137703]
+
+FATAL ERROR
+
+[error]Expression: assertion failed
+[error]Function: xrServer::Process_event_ownership
+[error]File: E:\stalker\sources\trunk\xr_3da\xrGame\xrServer_process_event_ownership.cpp
+[error]Line: 23
+[error]Description: e_parent
+
+stack trace:
+Scheduler tried to update object mil_freedom_respawn_321043
+
+Так как ошибка на уровне движка, исправить я ее не смогу (да и в случае исправления, этот рандомайзер было бы сложнее запустить с модами).
+Я пытался найти в *.script файлах что-то связанное со словами parent, ownership, assert. Но все, что я находил в итоге ссылалось на нативный C++ код или выполняло другие функции.
+Но возникает вопрос, а правка циферок в файлах оружия считается достаточным изменением для вызова данной ошибки? Не знаю, но подозреваю, что нет.
+Скорее всего, проблема связана с генерацией НПС. И тут есть как несколько вариантов:
+1. Генерация оружия НПС. НПС в результате выдачи им случайного оружия гораздо чаще начинают подбирать оружие с земли. И в результате неудачного подбора другого оружия в офлайне, игра крашится при приближении игрока к этому неудачному НПС
+2. Увеличение частоты респавна НПС. Больше НПС - больше действий с оружием. Когда НПС становится слишком много, один из них решает все сломать
+3. Расширение присоединения НПС к лагерям. Данная опция также увеличивает частоту респавна (хоть и не так сильно), что вкупе с заселением неподходящих НПС в любые лагеря приводит к... К чему-то там, в общем, что чье-то оружие теряет id своего владельца (лол)
+4. Все вышеперечисленное
+
+Если у кого есть идеи, как это можно исправить, я открыт к предложениям
+
+А так рекомендую пользоваться версией игры 1.0004</value>
+  </data>
+  <data name="onePointFourLink" xml:space="preserve">
+    <value>Версия игры 1.0004 работает с этим рандомайзером НАМНОГО стабильнее, чем 1.0006. Но почему?</value>
   </data>
   <data name="other" xml:space="preserve">
     <value>Другое...</value>
@@ -377,6 +421,9 @@
   </data>
   <data name="thunderProbability" xml:space="preserve">
     <value>Вероятность грозы для каждого класса погоды</value>
+  </data>
+  <data name="twoWords" xml:space="preserve">
+    <value>В двух словах: я не знаю, но...</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>Возможность достать оружие в баре, в бункере ученых и у Сидоровича</value>

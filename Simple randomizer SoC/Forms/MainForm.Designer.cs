@@ -113,6 +113,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rusRadioButton = new System.Windows.Forms.RadioButton();
             this.engRadioButton = new System.Windows.Forms.RadioButton();
+            this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -678,6 +679,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.onePointFourLinkLabel);
             this.tabPage8.Controls.Add(this.gScriptCheckBox);
             this.tabPage8.Controls.Add(this.advancedGulagCheckBox);
             this.tabPage8.Controls.Add(this.shuffleTextCheckBox);
@@ -718,10 +720,10 @@
             this.advancedGulagCheckBox.AutoSize = true;
             this.advancedGulagCheckBox.Location = new System.Drawing.Point(6, 373);
             this.advancedGulagCheckBox.Name = "advancedGulagCheckBox";
-            this.advancedGulagCheckBox.Size = new System.Drawing.Size(518, 17);
+            this.advancedGulagCheckBox.Size = new System.Drawing.Size(644, 17);
             this.advancedGulagCheckBox.TabIndex = 17;
-            this.advancedGulagCheckBox.Text = "Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка прохо" +
-    "дима)";
+            this.advancedGulagCheckBox.Text = "Расширить присоединение НПС к лагерям (Ломает некоторые скрипты, но сюжетка прохо" +
+    "дима. Нестабильно на 1.0006)";
             this.advancedGulagCheckBox.UseVisualStyleBackColor = true;
             // 
             // shuffleTextCheckBox
@@ -831,9 +833,9 @@
             this.moreRespawnCheckBox.AutoSize = true;
             this.moreRespawnCheckBox.Location = new System.Drawing.Point(6, 281);
             this.moreRespawnCheckBox.Name = "moreRespawnCheckBox";
-            this.moreRespawnCheckBox.Size = new System.Drawing.Size(340, 17);
+            this.moreRespawnCheckBox.Size = new System.Drawing.Size(325, 17);
             this.moreRespawnCheckBox.TabIndex = 4;
-            this.moreRespawnCheckBox.Text = "Увеличить частоту респавна НПС (Может быть не стабильно)";
+            this.moreRespawnCheckBox.Text = "Увеличить частоту респавна НПС (Нестабильно на 1.0006)";
             this.moreRespawnCheckBox.UseVisualStyleBackColor = true;
             // 
             // barAlarmCheckBox
@@ -877,7 +879,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(121, 15);
             this.label8.TabIndex = 13;
-            this.label8.Text = "©ned0emo, ver 1.5.1";
+            this.label8.Text = "©ned0emo, ver 1.5.2";
             // 
             // allCheckBox
             // 
@@ -1047,6 +1049,18 @@
             this.engRadioButton.UseVisualStyleBackColor = true;
             this.engRadioButton.CheckedChanged += new System.EventHandler(this.engRadioButton_CheckedChanged);
             // 
+            // onePointFourLinkLabel
+            // 
+            this.onePointFourLinkLabel.AutoSize = true;
+            this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
+            this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
+            this.onePointFourLinkLabel.Size = new System.Drawing.Size(500, 16);
+            this.onePointFourLinkLabel.TabIndex = 19;
+            this.onePointFourLinkLabel.TabStop = true;
+            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
+            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1183,6 +1197,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.RadioButton rusRadioButton;
         private System.Windows.Forms.RadioButton engRadioButton;
+        private System.Windows.Forms.LinkLabel onePointFourLinkLabel;
     }
 }
 

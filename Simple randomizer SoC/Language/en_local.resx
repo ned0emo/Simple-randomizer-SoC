@@ -249,10 +249,10 @@ Other - 5%, 1-2 pcs.</value>
     <value>Models</value>
   </data>
   <data name="moreGulag" xml:space="preserve">
-    <value>Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable)</value>
+    <value>Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable. Unstable on 1.0006)</value>
   </data>
   <data name="moreRespawn" xml:space="preserve">
-    <value>Increase the frequency of NPC respawn (May be unstable)</value>
+    <value>Increase the frequency of NPC respawn (Unstable on 1.0006)</value>
   </data>
   <data name="nameListTitle" xml:space="preserve">
     <value>Names</value>
@@ -305,6 +305,50 @@ Checkboxes near the names of the lists allow you to enable/disable some items in
   <data name="npcTab" xml:space="preserve">
     <value>NPC</value>
     <comment>Также для чекбокса</comment>
+  </data>
+  <data name="onePointFourAdvertise" xml:space="preserve">
+    <value>The guys from Metacognix write: "The 1.0006 game engine has code changes that cause crashes when weapons, ammo or other items are destroyed while they are still being used..."
+And "This error can also happen in mods that change ammo and/or weapons"
+
+https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
+
+The error itself looks like this:
+
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21049][wpn_svu: wpn_svu21049][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21048][kolbasa: kolbasa21048][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21047][device_torch: device_torch21047][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21046][bread: bread21046][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21045][ammo_7.62x54_7h1: ammo_7.62x54_7h121045][137703]
+sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21044][device_pda: device_pda21044][137703]
+sv ownership id_parent[21043][NOTFOUND] id_entity[23538][wpn_eagle_m1: wpn_eagle_m123538][137703]
+
+FATAL ERROR
+
+[error]Expression: assertion failed
+[error]Function: xrServer::Process_event_ownership
+[error]File: E:\stalker\sources\trunk\xr_3da\xrGame\xrServer_process_event_ownership.cpp
+[error]Line: 23
+[error]Description: e_parent
+
+stack trace:
+Scheduler tried to update object mil_freedom_respawn_321043
+
+Since the error is at the engine level, I can't fix it (and in case of correction, this randomizer would be more difficult to run with mods).
+I tried to find in *.script files something related to the words "parent", "ownership", "assert". But everything I found eventually referred to native C++ code or performed other functions.
+But the question arises, is editing the numbers in the weapon files considered a sufficient change to cause this error? I suspect not.
+Most likely, the problem is related to the generation of NPCs. And there are several options here:
+1. Generation of NPC weapons. NPCs, as a result of giving them random weapons, much more often begin to pick up weapons from the ground. And as a result of an unsuccessful selection of other weapons offline, the game crashes when the player approaches this unsuccessful NPC
+2. Increase in the frequency of respawn of NPCs. More NPCs - more action with weapons. When there are too many NPCs, one of them decides to break everything
+3. Expansion of the NPC's joining to the camps. This option also increases the respawn frequency (though not so much), which, coupled with the settlement of unsuitable NPCs in any camps, leads to.. To something there. As a result, someone's weapon loses its owner's id (lol)
+4. All of the above
+
+If anyone has any ideas on how to fix this, I'm open to suggestions
+
+And so I recommend using the 1.0004 version of the game</value>
+  </data>
+  <data name="onePointFourLink" xml:space="preserve">
+    <value>The 1.0004 version of the game works with this randomizer MUCH more stable than 1.0006. But why?</value>
   </data>
   <data name="other" xml:space="preserve">
     <value>More...</value>
@@ -378,6 +422,9 @@ Checkboxes near the names of the lists allow you to enable/disable some items in
   </data>
   <data name="thunderProbability" xml:space="preserve">
     <value>The probability of a thunderstorm for each weather class</value>
+  </data>
+  <data name="twoWords" xml:space="preserve">
+    <value>In a nutshell: I do not know, but...</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>The opportunity to get weapons in the bar, in the scientists' bunker and at Sidorovich's</value>

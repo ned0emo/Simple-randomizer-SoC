@@ -49,6 +49,9 @@ namespace RandomizerSoC
 
         readonly AdditionalParams additionalParams;
 
+        string onePointFourAdvertise;
+        string twoWords;
+
         public MainForm()
         {
             InitializeComponent();
@@ -57,6 +60,9 @@ namespace RandomizerSoC
 
             cacheDictionary = new Dictionary<string, string>();
             infoFormLocalize = new Dictionary<string, string>();
+
+            onePointFourAdvertise = "";
+            twoWords = "";
 
             fileTextBoxDictionary = new Dictionary<string, TextBox>
             {
@@ -752,13 +758,17 @@ namespace RandomizerSoC
             weaponCheckBox.Text = rm.GetString("weaponsTab");
             armorCheckBox.Text = rm.GetString("outfits");
             npcCheckBox.Text = rm.GetString("npcTab");
-            suppliesCheckBox.Text = rm.GetString("npcTab");
+            suppliesCheckBox.Text = rm.GetString("weaponsTab");
             rankCheckBox.Text = rm.GetString("rank");
             reputationCheckBox.Text = rm.GetString("reputation");
             label4.Text = rm.GetString("whatGenerate");
             linkLabel1.Text = rm.GetString("other");
             weatherCheckBox.Text = rm.GetString("weatherTab");
             deathItemsCheckBox.Text = rm.GetString("deathItems");
+            onePointFourLinkLabel.Text = rm.GetString("onePointFourLink");
+
+            onePointFourAdvertise = rm.GetString("onePointFourAdvertise");
+            twoWords = rm.GetString("twoWords");
 
             artefactsGenerator.updateLocalize(new Dictionary<string, string>()
             {
@@ -820,6 +830,17 @@ namespace RandomizerSoC
                 ["loadError"] = rm.GetString("loadError"),
                 ["saveError"] = rm.GetString("saveError"),
             };
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new InfoForm(new Dictionary<string, string>()
+            {
+                ["message"] = twoWords,
+                ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                        ? infoFormLocalize["infoFornName"]
+                        : "Внимание/Warning"
+            }, onePointFourAdvertise).ShowDialog();
         }
     }
 }

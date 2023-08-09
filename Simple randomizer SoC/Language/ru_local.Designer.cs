@@ -409,7 +409,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка проходима).
+        ///   Ищет локализованную строку, похожую на Расширить присоединение НПС к лагерям (ломает некоторые скрипты, но сюжетка проходима. Нестабильно на 1.0006).
         /// </summary>
         internal static string moreGulag {
             get {
@@ -418,7 +418,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Увеличить частоту респавна НПС (Может быть нестабильно).
+        ///   Ищет локализованную строку, похожую на Увеличить частоту респавна НПС (Нестабильно на 1.0006).
         /// </summary>
         internal static string moreRespawn {
             get {
@@ -486,6 +486,32 @@ namespace Simple_randomizer_SoC.Language {
         internal static string npcTab {
             get {
                 return ResourceManager.GetString("npcTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Если верить парням с Metacognix, то &quot;в игровом движке версии 1.0006 внесены изменения в код, которые приводят к сбоям, когда оружие, боеприпасы или другие предметы уничтожаются во время их использования...&quot;
+        ///Также ошибка &quot;может возникать в модах, которые изменяют боеприпасы и/или оружие&quot;
+        ///
+        ///https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
+        ///
+        ///Сама ошибка выглядит так:
+        ///
+        ///sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
+        ///sv reject [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string onePointFourAdvertise {
+            get {
+                return ResourceManager.GetString("onePointFourAdvertise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Версия игры 1.0004 работает с этим рандомайзером НАМНОГО стабильнее, чем 1.0006. Но почему?.
+        /// </summary>
+        internal static string onePointFourLink {
+            get {
+                return ResourceManager.GetString("onePointFourLink", resourceCulture);
             }
         }
         
@@ -702,6 +728,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string thunderProbability {
             get {
                 return ResourceManager.GetString("thunderProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на В двух словах: я не знаю, но....
+        /// </summary>
+        internal static string twoWords {
+            get {
+                return ResourceManager.GetString("twoWords", resourceCulture);
             }
         }
         

@@ -410,7 +410,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable).
+        ///   Ищет локализованную строку, похожую на Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable. Unstable on 1.0006).
         /// </summary>
         internal static string moreGulag {
             get {
@@ -419,7 +419,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Increase the frequency of NPC respawn (May be unstable).
+        ///   Ищет локализованную строку, похожую на Increase the frequency of NPC respawn (Unstable on 1.0006).
         /// </summary>
         internal static string moreRespawn {
             get {
@@ -486,6 +486,32 @@ namespace Simple_randomizer_SoC.Language {
         internal static string npcTab {
             get {
                 return ResourceManager.GetString("npcTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The guys from Metacognix write: &quot;The 1.0006 game engine has code changes that cause crashes when weapons, ammo or other items are destroyed while they are still being used...&quot;
+        ///And &quot;This error can also happen in mods that change ammo and/or weapons&quot;
+        ///
+        ///https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
+        ///
+        ///The error itself looks like this:
+        ///
+        ///sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
+        ///sv reject.id_parent[21043][mil_freedom_r [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string onePointFourAdvertise {
+            get {
+                return ResourceManager.GetString("onePointFourAdvertise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The 1.0004 version of the game works with this randomizer MUCH more stable than 1.0006. But why?.
+        /// </summary>
+        internal static string onePointFourLink {
+            get {
+                return ResourceManager.GetString("onePointFourLink", resourceCulture);
             }
         }
         
@@ -702,6 +728,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string thunderProbability {
             get {
                 return ResourceManager.GetString("thunderProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на In a nutshell: I do not know, but....
+        /// </summary>
+        internal static string twoWords {
+            get {
+                return ResourceManager.GetString("twoWords", resourceCulture);
             }
         }
         
