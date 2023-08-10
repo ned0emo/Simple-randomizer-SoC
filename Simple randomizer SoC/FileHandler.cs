@@ -34,7 +34,9 @@ namespace Simple_randomizer_SoC
             string rightPath = newPath.Replace('\\', '/');
             Directory.CreateDirectory(rightPath.Substring(0, rightPath.LastIndexOf('/')));
 
-            await File.Open(oldPath, FileMode.Open).CopyToAsync(File.Create(newPath));
+            FileStream fs = File.Open(oldPath, FileMode.Open);
+            await fs.CopyToAsync(File.Create(newPath));
+            fs.Close();
         }
 
         public string[] getFiles(string path) => Directory.GetFiles(path);
