@@ -48,36 +48,14 @@ namespace Simple_randomizer_SoC
         public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         //замена целочисленного стата файла
-        protected string replaceStat(string item, string statName, int statValue)
+        protected string replaceStat(string item, string statName, object statValue)
         {
             if (item.Contains(statName))
             {
                 string tmp = item.Substring(item.IndexOf(statName));
-                return item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue);
-            }
-
-            return item;
-        }
-
-        //замена дробного стата файла
-        protected string replaceStat(string item, string statName, double statValue)
-        {
-            if (item.Contains(statName))
-            {
-                string tmp = item.Substring(item.IndexOf(statName));
-                return item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue);
-            }
-
-            return item;
-        }
-
-        //замена строкового стата файла
-        protected string replaceStat(string item, string statName, string statValue)
-        {
-            if (item.Contains(statName))
-            {
-                string tmp = item.Substring(item.IndexOf(statName));
-                return item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue);
+                return tmp.Contains('\n')
+                    ? item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue)
+                    : item.Replace(tmp, statName + " = " + statValue);
             }
 
             return item;
