@@ -17,7 +17,7 @@ namespace RandomizerSoC
     {
         ResourceManager rm;
 
-        readonly int progressBarStep = 12; // 100/8
+        readonly int progressBarStep = 11; // 100/9
 
         //обработчик данных тектбоксов
         readonly TextBoxesHandler textBoxesHandler;
@@ -46,6 +46,7 @@ namespace RandomizerSoC
         readonly OutfitsGenerator outfitsGenerator;
         readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
+        readonly AnomaliesGenerator anomaliesGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -82,11 +83,12 @@ namespace RandomizerSoC
                 ["skybox"] = skyTextBox,
                 ["thunderbolt"] = thunderTextBox,
                 ["weapon_snd_reload"] = reloadSoundsTextBox,
-                ["weapon_snd_shoot"] = shootSoundsTextBox
+                ["weapon_snd_shoot"] = shootSoundsTextBox,
+                ["anomaly_sounds"] = anomalySoundsTextBox
             };
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox };
+                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, anomalyCheckBox };
 
             additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
                 giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox};
@@ -107,6 +109,7 @@ namespace RandomizerSoC
             npcGenerator = new NpcGenerator(fileHandler);
             weatherGenerator = new WeatherGenerator(fileHandler);
             deathItemsGenerator = new DeathItemsGenerator(fileHandler);
+            anomaliesGenerator = new AnomaliesGenerator(fileHandler);
 
             additionalParams = new AdditionalParams(fileHandler);
 
@@ -403,6 +406,29 @@ namespace RandomizerSoC
                             ? infoFormLocalize["infoFornName"]
                             : "Внимание/Warning"
                     }, deathItemsGenerator.errorMessage).ShowDialog();
+
+                    changeButtonsStatus(true);
+                    return;
+                }
+            }
+            incrementProgressBar();
+            if (anomalyCheckBox.Checked)
+            {
+                anomaliesGenerator.updateData(anomalySounds: anomalySoundsTextBox.Text, artefacts: afTextBox.Text, newConfigPath: newConfigPath);
+                var result = await anomaliesGenerator.generate();
+
+                if (result == BaseGenerator.STATUS_ERROR)
+                {
+                    //new InfoForm(rm, "error", weatherGenerator.errorMessage).ShowDialog();
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, anomaliesGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;

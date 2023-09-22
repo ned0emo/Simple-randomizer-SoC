@@ -70,6 +70,8 @@
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.anomalySoundsTextBox = new System.Windows.Forms.TextBox();
             this.thunderNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.rainNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -80,6 +82,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
             this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedGulagCheckBox = new System.Windows.Forms.CheckBox();
             this.shuffleTextCheckBox = new System.Windows.Forms.CheckBox();
@@ -113,7 +116,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rusRadioButton = new System.Windows.Forms.RadioButton();
             this.engRadioButton = new System.Windows.Forms.RadioButton();
-            this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.anomalyCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -578,6 +581,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.anomalySoundsTextBox);
             this.tabPage2.Controls.Add(this.thunderNumericUpDown);
             this.tabPage2.Controls.Add(this.rainNumericUpDown);
             this.tabPage2.Controls.Add(this.label16);
@@ -595,16 +600,36 @@
             this.tabPage2.Text = "Погода";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(508, 9);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(245, 23);
+            this.label18.TabIndex = 26;
+            this.label18.Text = "Звуки аномалий";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // anomalySoundsTextBox
+            // 
+            this.anomalySoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.anomalySoundsTextBox.Location = new System.Drawing.Point(508, 35);
+            this.anomalySoundsTextBox.Multiline = true;
+            this.anomalySoundsTextBox.Name = "anomalySoundsTextBox";
+            this.anomalySoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.anomalySoundsTextBox.Size = new System.Drawing.Size(245, 450);
+            this.anomalySoundsTextBox.TabIndex = 25;
+            // 
             // thunderNumericUpDown
             // 
-            this.thunderNumericUpDown.Location = new System.Drawing.Point(511, 195);
+            this.thunderNumericUpDown.Location = new System.Drawing.Point(6, 465);
             this.thunderNumericUpDown.Name = "thunderNumericUpDown";
             this.thunderNumericUpDown.Size = new System.Drawing.Size(56, 20);
             this.thunderNumericUpDown.TabIndex = 24;
             // 
             // rainNumericUpDown
             // 
-            this.rainNumericUpDown.Location = new System.Drawing.Point(511, 169);
+            this.rainNumericUpDown.Location = new System.Drawing.Point(6, 439);
             this.rainNumericUpDown.Name = "rainNumericUpDown";
             this.rainNumericUpDown.Size = new System.Drawing.Size(56, 20);
             this.rainNumericUpDown.TabIndex = 23;
@@ -612,7 +637,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(573, 197);
+            this.label16.Location = new System.Drawing.Point(68, 467);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(252, 13);
             this.label16.TabIndex = 22;
@@ -621,7 +646,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(573, 171);
+            this.label15.Location = new System.Drawing.Point(68, 441);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(253, 13);
             this.label15.TabIndex = 21;
@@ -630,9 +655,9 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(508, 35);
+            this.label14.Location = new System.Drawing.Point(809, 64);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(501, 131);
+            this.label14.Size = new System.Drawing.Size(158, 142);
             this.label14.TabIndex = 18;
             this.label14.Text = "Изменение погоды в основном затрагивает цвет окружения, потому может быть не очен" +
     "ь приятным.\r\nЗато игра будет хорошо дополнять RGB геймерские клавиатуру и мышь";
@@ -654,7 +679,7 @@
             this.thunderTextBox.Multiline = true;
             this.thunderTextBox.Name = "thunderTextBox";
             this.thunderTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.thunderTextBox.Size = new System.Drawing.Size(245, 450);
+            this.thunderTextBox.Size = new System.Drawing.Size(245, 398);
             this.thunderTextBox.TabIndex = 16;
             // 
             // label13
@@ -674,7 +699,7 @@
             this.skyTextBox.Multiline = true;
             this.skyTextBox.Name = "skyTextBox";
             this.skyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.skyTextBox.Size = new System.Drawing.Size(245, 450);
+            this.skyTextBox.Size = new System.Drawing.Size(245, 398);
             this.skyTextBox.TabIndex = 14;
             // 
             // tabPage8
@@ -704,6 +729,18 @@
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // onePointFourLinkLabel
+            // 
+            this.onePointFourLinkLabel.AutoSize = true;
+            this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
+            this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
+            this.onePointFourLinkLabel.Size = new System.Drawing.Size(499, 16);
+            this.onePointFourLinkLabel.TabIndex = 19;
+            this.onePointFourLinkLabel.TabStop = true;
+            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
+            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // gScriptCheckBox
             // 
@@ -935,7 +972,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.npcCheckBox.Location = new System.Drawing.Point(1042, 222);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -947,7 +984,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 223);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 246);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -958,7 +995,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1048, 247);
+            this.rankCheckBox.Location = new System.Drawing.Point(1048, 270);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -969,7 +1006,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 271);
+            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 294);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -989,7 +1026,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1045, 291);
+            this.linkLabel1.Location = new System.Drawing.Point(1045, 314);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -1049,23 +1086,22 @@
             this.engRadioButton.UseVisualStyleBackColor = true;
             this.engRadioButton.CheckedChanged += new System.EventHandler(this.engRadioButton_CheckedChanged);
             // 
-            // onePointFourLinkLabel
+            // anomalyCheckBox
             // 
-            this.onePointFourLinkLabel.AutoSize = true;
-            this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
-            this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
-            this.onePointFourLinkLabel.Size = new System.Drawing.Size(500, 16);
-            this.onePointFourLinkLabel.TabIndex = 19;
-            this.onePointFourLinkLabel.TabStop = true;
-            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
-            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.anomalyCheckBox.AutoSize = true;
+            this.anomalyCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.anomalyCheckBox.Name = "anomalyCheckBox";
+            this.anomalyCheckBox.Size = new System.Drawing.Size(77, 17);
+            this.anomalyCheckBox.TabIndex = 24;
+            this.anomalyCheckBox.Text = "Аномалии";
+            this.anomalyCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.anomalyCheckBox);
             this.Controls.Add(this.engRadioButton);
             this.Controls.Add(this.rusRadioButton);
             this.Controls.Add(this.progressBar1);
@@ -1198,6 +1234,9 @@
         private System.Windows.Forms.RadioButton rusRadioButton;
         private System.Windows.Forms.RadioButton engRadioButton;
         private System.Windows.Forms.LinkLabel onePointFourLinkLabel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox anomalySoundsTextBox;
+        private System.Windows.Forms.CheckBox anomalyCheckBox;
     }
 }
 
