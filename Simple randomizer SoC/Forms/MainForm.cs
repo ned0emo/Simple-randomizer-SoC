@@ -388,7 +388,7 @@ namespace RandomizerSoC
             //трупы
             if (deathItemsCheckBox.Checked)
             {
-                deathItemsGenerator.updateData(newConfigPath: newConfigPath);
+                deathItemsGenerator.updateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
                 var result = await deathItemsGenerator.generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
