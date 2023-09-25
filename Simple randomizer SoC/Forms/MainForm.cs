@@ -17,7 +17,7 @@ namespace RandomizerSoC
     {
         ResourceManager rm;
 
-        readonly int progressBarStep = 12; // 100/8
+        readonly int progressBarStep = 11; // 100/9
 
         //обработчик данных тектбоксов
         readonly TextBoxesHandler textBoxesHandler;
@@ -46,6 +46,7 @@ namespace RandomizerSoC
         readonly OutfitsGenerator outfitsGenerator;
         readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
+        readonly TradeGenerator tradeGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -86,7 +87,7 @@ namespace RandomizerSoC
             };
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox };
+                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox };
 
             additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
                 giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox};
@@ -107,6 +108,7 @@ namespace RandomizerSoC
             npcGenerator = new NpcGenerator(fileHandler);
             weatherGenerator = new WeatherGenerator(fileHandler);
             deathItemsGenerator = new DeathItemsGenerator(fileHandler);
+            tradeGenerator = new TradeGenerator(fileHandler);
 
             additionalParams = new AdditionalParams(fileHandler);
 
@@ -403,6 +405,31 @@ namespace RandomizerSoC
                             ? infoFormLocalize["infoFornName"]
                             : "Внимание/Warning"
                     }, deathItemsGenerator.errorMessage).ShowDialog();
+
+                    changeButtonsStatus(true);
+                    return;
+                }
+            }
+            incrementProgressBar();
+            //торговцы
+            if (tradersCheckBox.Checked)
+            {
+                tradeGenerator.updateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
+                    artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
+                var result = await tradeGenerator.generate();
+
+                if (result == BaseGenerator.STATUS_ERROR)
+                {
+
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, tradeGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -766,6 +793,7 @@ namespace RandomizerSoC
             weatherCheckBox.Text = rm.GetString("weatherTab");
             deathItemsCheckBox.Text = rm.GetString("deathItems");
             onePointFourLinkLabel.Text = rm.GetString("onePointFourLink");
+            tradersCheckBox.Text = rm.GetString("traderItems");
 
             onePointFourAdvertise = rm.GetString("onePointFourAdvertise");
             twoWords = rm.GetString("twoWords");
@@ -811,6 +839,12 @@ namespace RandomizerSoC
             {
                 ["weatherDataError"] = rm.GetString("weatherDataError"),
                 ["weatherError"] = rm.GetString("weatherError")
+            });
+
+            tradeGenerator.updateLocalize(new Dictionary<string, string>()
+            {
+                ["tradersDataError"] = rm.GetString("tradersDataError"),
+                ["tradersError"] = rm.GetString("tradersError")
             });
 
             additionalParams.updateLocalize(new Dictionary<string, string>()

@@ -215,7 +215,7 @@
     <value>Внимание</value>
   </data>
   <data name="ItemsGuide" xml:space="preserve">
-    <value>Все списки на данной вкладке используются только для добавления предметов в тайники.
+    <value>Все списки на данной вкладке используются для добавления предметов в тайники и для редактирования ассортимента торговцев.
 
 Генерация статов брони и артефактов происходит в файлах outfit.ltx и artefacts.ltx соответственно
 (директория ./rndata/gamedata/config/misc) и не зависит от данных списков
@@ -422,6 +422,15 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="thunderProbability" xml:space="preserve">
     <value>Вероятность грозы для каждого класса погоды</value>
   </data>
+  <data name="traderItems" xml:space="preserve">
+    <value>Вещи торговцев</value>
+  </data>
+  <data name="tradersDataError" xml:space="preserve">
+    <value>Данные для генерации вещей торговцев не были получены. Требуется вызов "updateData"</value>
+  </data>
+  <data name="tradersError" xml:space="preserve">
+    <value>Ошибка генерации вещей торговцев. Операция прервана</value>
+  </data>
   <data name="twoWords" xml:space="preserve">
     <value>В двух словах: я не знаю, но...</value>
   </data>
@@ -431,8 +440,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="weaponGuide" xml:space="preserve">
     <value>Список оружия и используемых патронов:
 
-Используется для добавления в тайники оружия и выдаче оружия НПС. Тип патронов необходим
-для добавления к НПС, чтоб челы имели боеприпас для перезарядки.
+Используется для добавления оружия в тайники, выдаче оружия НПС и для
+генерации ассортимента торговцев. Тип патронов необходим для добавления
+к НПС, чтоб челы имели боеприпас для перезарядки.
 
 Список патронов и количества в одной пачке:
 Используется для добавления патронов в тайники. Количество патронов в пачке необходимо

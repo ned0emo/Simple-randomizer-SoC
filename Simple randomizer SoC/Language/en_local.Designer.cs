@@ -19,7 +19,7 @@ namespace Simple_randomizer_SoC.Language {
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class en_local {
@@ -335,7 +335,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на All lists on this tab are used only for adding items to caches.
+        ///   Ищет локализованную строку, похожую на All lists on this tab are used to add items to caches and to edit the assortment of merchants.
         ///
         ///Armor and artifact stats are generated in the files &quot;outfit.ltx&quot; and &quot;artefacts.ltx&quot;
         ///(directory ./rndata/gamedata/config/misc) and does not depend on these lists
@@ -346,8 +346,7 @@ namespace Simple_randomizer_SoC.Language {
         ///Armor - 5%, 1 pc.
         ///Weapons - 10%, 1 pc.
         ///Artifact - 5%, 1-2 pcs.
-        ///Consumables - 50%, 1-8 pcs.
-        ///Cartridges - 25%, 1 [остаток строки не уместился]&quot;;.
+        ///Consumables - 50% [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ItemsGuide {
             get {
@@ -732,6 +731,33 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Merchants&apos; belongings.
+        /// </summary>
+        internal static string traderItems {
+            get {
+                return ResourceManager.GetString("traderItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The data for generating merchant&apos;s belongings were not received. An &quot;updateData&quot; call is required.
+        /// </summary>
+        internal static string tradersDataError {
+            get {
+                return ResourceManager.GetString("tradersDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Merchants&apos; belongings generation error. Operation aborted.
+        /// </summary>
+        internal static string tradersError {
+            get {
+                return ResourceManager.GetString("tradersError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на In a nutshell: I do not know, but....
         /// </summary>
         internal static string twoWords {
@@ -752,13 +778,14 @@ namespace Simple_randomizer_SoC.Language {
         /// <summary>
         ///   Ищет локализованную строку, похожую на List of weapons and cartridges used:
         ///
-        ///It is used to add weapons to caches and issue weapons to NPCs. The type of cartridges is necessary
-        ///to add to the NPCs so that the people have ammunition to recharge.
+        ///It is used to add weapons to caches, issue weapons to NPCs and to generate
+        ///an assortment of merchants. The type of cartridges is necessary to add to the
+        ///NPCs so that the people have ammunition to recharge.
         ///
         ///List of cartridges and quantities in one pack:
         ///It is used to add cartridges to caches. The number of cartridges in a pack is necessary
         ///to eliminate the imbalance between the generations of different types of cartridges
-        ///So, if you generate cleanly in the range from 1 to 100, you can get 80 RPG rocke [остаток строки не уместился]&quot;;.
+        ///So, if you generate cleanly in the rang [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string weaponGuide {
             get {

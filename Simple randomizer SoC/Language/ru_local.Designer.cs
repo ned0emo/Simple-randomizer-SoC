@@ -19,7 +19,7 @@ namespace Simple_randomizer_SoC.Language {
     // с помощью такого средства, как ResGen или Visual Studio.
     // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
     // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ru_local {
@@ -335,7 +335,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Все списки на данной вкладке используются только для добавления предметов в тайники.
+        ///   Ищет локализованную строку, похожую на Все списки на данной вкладке используются для добавления предметов в тайники и для редактирования ассортимента торговцев.
         ///
         ///Генерация статов брони и артефактов происходит в файлах outfit.ltx и artefacts.ltx соответственно
         ///(директория ./rndata/gamedata/config/misc) и не зависит от данных списков
@@ -344,9 +344,7 @@ namespace Simple_randomizer_SoC.Language {
         ///Количество предметов от 1 до 7 (Каждый предмет выбирается случайно и может повторяться)
         ///Вероятность генерации предмета по типам:
         ///Броня - 5%, 1 шт.
-        ///Оружие - 10%, 1 шт.
-        ///Артефакт - 5%, 1-2 шт.
-        ///Расходник -  [остаток строки не уместился]&quot;;.
+        ///Оружие - 10%, 1 шт.        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ItemsGuide {
             get {
@@ -732,6 +730,33 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вещи торговцев.
+        /// </summary>
+        internal static string traderItems {
+            get {
+                return ResourceManager.GetString("traderItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Данные для генерации вещей торговцев не были получены. Требуется вызов &quot;updateData&quot;.
+        /// </summary>
+        internal static string tradersDataError {
+            get {
+                return ResourceManager.GetString("tradersDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка генерации вещей торговцев. Операция прервана.
+        /// </summary>
+        internal static string tradersError {
+            get {
+                return ResourceManager.GetString("tradersError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на В двух словах: я не знаю, но....
         /// </summary>
         internal static string twoWords {
@@ -752,14 +777,14 @@ namespace Simple_randomizer_SoC.Language {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Список оружия и используемых патронов:
         ///
-        ///Используется для добавления в тайники оружия и выдаче оружия НПС. Тип патронов необходим
-        ///для добавления к НПС, чтоб челы имели боеприпас для перезарядки.
+        ///Используется для добавления оружия в тайники, выдаче оружия НПС и для
+        ///генерации ассортимента торговцев. Тип патронов необходим для добавления
+        ///к НПС, чтоб челы имели боеприпас для перезарядки.
         ///
         ///Список патронов и количества в одной пачке:
         ///Используется для добавления патронов в тайники. Количество патронов в пачке необходимо
         ///для устранения дисбаланса между генераций разных типов патронов
-        ///Так, если генерировать чисто в диапазоне от 1 до 100, можно получить 80 ракет от РПГ и 3 патрона 9х18
-        ///Генерация п [остаток строки не уместился]&quot;;.
+        ///Так, если генерировать чисто в диапазоне от 1 до 100, можно получить 80 рак [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string weaponGuide {
             get {

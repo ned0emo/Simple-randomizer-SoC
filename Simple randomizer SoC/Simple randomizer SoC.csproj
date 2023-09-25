@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AdditionalParams.cs" />
     <Compile Include="Environment.cs" />
+    <Compile Include="Generators\TradeGenerator.cs" />
     <Compile Include="Language\en_local.Designer.cs">
       <DependentUpon>en_local.resx</DependentUpon>
       <AutoGen>True</AutoGen>

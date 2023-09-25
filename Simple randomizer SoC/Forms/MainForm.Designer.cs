@@ -80,6 +80,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
             this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedGulagCheckBox = new System.Windows.Forms.CheckBox();
             this.shuffleTextCheckBox = new System.Windows.Forms.CheckBox();
@@ -113,7 +114,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rusRadioButton = new System.Windows.Forms.RadioButton();
             this.engRadioButton = new System.Windows.Forms.RadioButton();
-            this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.tradersCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -705,6 +706,18 @@
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // onePointFourLinkLabel
+            // 
+            this.onePointFourLinkLabel.AutoSize = true;
+            this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
+            this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
+            this.onePointFourLinkLabel.Size = new System.Drawing.Size(499, 16);
+            this.onePointFourLinkLabel.TabIndex = 19;
+            this.onePointFourLinkLabel.TabStop = true;
+            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
+            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // gScriptCheckBox
             // 
             this.gScriptCheckBox.AutoSize = true;
@@ -877,9 +890,9 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label8.Location = new System.Drawing.Point(1051, 510);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(121, 15);
+            this.label8.Size = new System.Drawing.Size(111, 15);
             this.label8.TabIndex = 13;
-            this.label8.Text = "©ned0emo, ver 1.5.2";
+            this.label8.Text = "©ned0emo, ver 1.6";
             // 
             // allCheckBox
             // 
@@ -935,7 +948,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.npcCheckBox.Location = new System.Drawing.Point(1042, 222);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -947,7 +960,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 223);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 246);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -958,7 +971,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1048, 247);
+            this.rankCheckBox.Location = new System.Drawing.Point(1048, 270);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -969,7 +982,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 271);
+            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 294);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -989,7 +1002,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1045, 291);
+            this.linkLabel1.Location = new System.Drawing.Point(1045, 314);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -1049,23 +1062,22 @@
             this.engRadioButton.UseVisualStyleBackColor = true;
             this.engRadioButton.CheckedChanged += new System.EventHandler(this.engRadioButton_CheckedChanged);
             // 
-            // onePointFourLinkLabel
+            // tradersCheckBox
             // 
-            this.onePointFourLinkLabel.AutoSize = true;
-            this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
-            this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
-            this.onePointFourLinkLabel.Size = new System.Drawing.Size(500, 16);
-            this.onePointFourLinkLabel.TabIndex = 19;
-            this.onePointFourLinkLabel.TabStop = true;
-            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
-            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.tradersCheckBox.AutoSize = true;
+            this.tradersCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.tradersCheckBox.Name = "tradersCheckBox";
+            this.tradersCheckBox.Size = new System.Drawing.Size(109, 17);
+            this.tradersCheckBox.TabIndex = 24;
+            this.tradersCheckBox.Text = "Вещи торговцев";
+            this.tradersCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.tradersCheckBox);
             this.Controls.Add(this.engRadioButton);
             this.Controls.Add(this.rusRadioButton);
             this.Controls.Add(this.progressBar1);
@@ -1198,6 +1210,7 @@
         private System.Windows.Forms.RadioButton rusRadioButton;
         private System.Windows.Forms.RadioButton engRadioButton;
         private System.Windows.Forms.LinkLabel onePointFourLinkLabel;
+        private System.Windows.Forms.CheckBox tradersCheckBox;
     }
 }
 
