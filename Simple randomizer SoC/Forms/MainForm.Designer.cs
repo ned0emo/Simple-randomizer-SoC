@@ -97,7 +97,6 @@
             this.barAlarmCheckBox = new System.Windows.Forms.CheckBox();
             this.equipWeaponEverywhereCheckBox = new System.Windows.Forms.CheckBox();
             this.communityCheckBox = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.allCheckBox = new System.Windows.Forms.CheckBox();
             this.treasureCheckBox = new System.Windows.Forms.CheckBox();
             this.afCheckBox = new System.Windows.Forms.CheckBox();
@@ -115,6 +114,8 @@
             this.rusRadioButton = new System.Windows.Forms.RadioButton();
             this.engRadioButton = new System.Windows.Forms.RadioButton();
             this.tradersCheckBox = new System.Windows.Forms.CheckBox();
+            this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -127,7 +128,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1041, 392);
+            this.saveButton.Location = new System.Drawing.Point(1041, 415);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 23);
             this.saveButton.TabIndex = 0;
@@ -137,7 +138,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(1041, 421);
+            this.loadButton.Location = new System.Drawing.Point(1041, 444);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(131, 23);
             this.loadButton.TabIndex = 1;
@@ -148,7 +149,7 @@
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.generateButton.Location = new System.Drawing.Point(1041, 334);
+            this.generateButton.Location = new System.Drawing.Point(1041, 357);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(131, 23);
             this.generateButton.TabIndex = 2;
@@ -158,7 +159,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 450);
+            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 473);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(131, 23);
             this.loadDefaultButton.TabIndex = 3;
@@ -680,6 +681,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.label8);
             this.tabPage8.Controls.Add(this.onePointFourLinkLabel);
             this.tabPage8.Controls.Add(this.gScriptCheckBox);
             this.tabPage8.Controls.Add(this.advancedGulagCheckBox);
@@ -883,17 +885,6 @@
             this.communityCheckBox.UseVisualStyleBackColor = true;
             this.communityCheckBox.CheckedChanged += new System.EventHandler(this.communityCheckBox_CheckedChanged);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(1051, 510);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 15);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "©ned0emo, ver 1.6";
-            // 
             // allCheckBox
             // 
             this.allCheckBox.AutoSize = true;
@@ -948,7 +939,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 222);
+            this.npcCheckBox.Location = new System.Drawing.Point(1042, 245);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -960,7 +951,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 246);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 269);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -971,7 +962,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1048, 270);
+            this.rankCheckBox.Location = new System.Drawing.Point(1048, 293);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -982,7 +973,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 294);
+            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 317);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -1002,7 +993,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1045, 314);
+            this.linkLabel1.Location = new System.Drawing.Point(1045, 337);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -1032,7 +1023,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(1041, 363);
+            this.progressBar1.Location = new System.Drawing.Point(1041, 386);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(131, 23);
             this.progressBar1.Step = 1;
@@ -1041,7 +1032,7 @@
             // rusRadioButton
             // 
             this.rusRadioButton.AutoSize = true;
-            this.rusRadioButton.Location = new System.Drawing.Point(1056, 479);
+            this.rusRadioButton.Location = new System.Drawing.Point(1056, 502);
             this.rusRadioButton.Name = "rusRadioButton";
             this.rusRadioButton.Size = new System.Drawing.Size(48, 17);
             this.rusRadioButton.TabIndex = 22;
@@ -1053,7 +1044,7 @@
             // engRadioButton
             // 
             this.engRadioButton.AutoSize = true;
-            this.engRadioButton.Location = new System.Drawing.Point(1110, 479);
+            this.engRadioButton.Location = new System.Drawing.Point(1110, 502);
             this.engRadioButton.Name = "engRadioButton";
             this.engRadioButton.Size = new System.Drawing.Size(48, 17);
             this.engRadioButton.TabIndex = 23;
@@ -1072,11 +1063,33 @@
             this.tradersCheckBox.Text = "Вещи торговцев";
             this.tradersCheckBox.UseVisualStyleBackColor = true;
             // 
+            // consumablesCheckBox
+            // 
+            this.consumablesCheckBox.AutoSize = true;
+            this.consumablesCheckBox.Location = new System.Drawing.Point(1042, 222);
+            this.consumablesCheckBox.Name = "consumablesCheckBox";
+            this.consumablesCheckBox.Size = new System.Drawing.Size(86, 17);
+            this.consumablesCheckBox.TabIndex = 25;
+            this.consumablesCheckBox.Text = "Расходники";
+            this.consumablesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label8.Location = new System.Drawing.Point(898, 444);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "©ned0emo, ver 1.6";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.consumablesCheckBox);
             this.Controls.Add(this.tradersCheckBox);
             this.Controls.Add(this.engRadioButton);
             this.Controls.Add(this.rusRadioButton);
@@ -1089,7 +1102,6 @@
             this.Controls.Add(this.rankCheckBox);
             this.Controls.Add(this.suppliesCheckBox);
             this.Controls.Add(this.npcCheckBox);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.armorCheckBox);
             this.Controls.Add(this.weaponCheckBox);
             this.Controls.Add(this.afCheckBox);
@@ -1159,7 +1171,6 @@
         private System.Windows.Forms.Label recommendLabel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox translateCheckBox;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox ammoTextBox;
         private System.Windows.Forms.TextBox otherTextBox;
@@ -1211,6 +1222,8 @@
         private System.Windows.Forms.RadioButton engRadioButton;
         private System.Windows.Forms.LinkLabel onePointFourLinkLabel;
         private System.Windows.Forms.CheckBox tradersCheckBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox consumablesCheckBox;
     }
 }
 

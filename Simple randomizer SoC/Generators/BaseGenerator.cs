@@ -12,7 +12,7 @@ namespace Simple_randomizer_SoC
     /// <summary>
     /// Базовый класс для генерации. Методы "replaceStat" для *.ltx файлов,
     /// метод "replaceXmlValue" для *.xml,
-    /// "loadFile" и "saveFile" для загрузки и сохранения файлов соответственно
+    /// createCleanList для создания списков из переданных строк с текстбоксов
     /// </summary>
     class BaseGenerator
     {
@@ -47,8 +47,15 @@ namespace Simple_randomizer_SoC
 
         public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
-        //замена целочисленного стата файла
-        protected string replaceStat(string item, string statName, object statValue)
+        /// <summary>
+        /// Замена стата ltx файла
+        /// </summary>
+        /// <param name="item">Сегмент файла, в котором нужно заменить параметр</param>
+        /// <param name="statName">Имя параметра</param>
+        /// <param name="statValue">Новое значение</param>
+        /// <param name="createIfNotExist">Пытатсья создать параметр, если он не был найден</param>
+        /// <returns>Сегмент файла с измененным (по возможности) параметром</returns>
+        protected string replaceStat(string item, string statName, object statValue, bool createIfNotExist = false)
         {
             if (item.Contains(statName))
             {
@@ -56,6 +63,11 @@ namespace Simple_randomizer_SoC
                 return tmp.Contains('\n')
                     ? item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue)
                     : item.Replace(tmp, statName + " = " + statValue);
+            }
+            else if (createIfNotExist && item.Contains('\n'))
+            {
+                var tmp = item.Substring(item.LastIndexOf("\n"));
+                return item.Replace(tmp, $"\n{statName} = {statValue}{tmp}");
             }
 
             return item;

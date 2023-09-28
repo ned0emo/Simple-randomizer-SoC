@@ -200,6 +200,33 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Расходники.
+        /// </summary>
+        internal static string consumables {
+            get {
+                return ResourceManager.GetString("consumables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Данные для генерации расходников не были получены. Операция прервана.
+        /// </summary>
+        internal static string consumablesDataError {
+            get {
+                return ResourceManager.GetString("consumablesDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка генерации расходников. Операция прервана.
+        /// </summary>
+        internal static string consumablesError {
+            get {
+                return ResourceManager.GetString("consumablesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка копирования.
         /// </summary>
         internal static string copyError {

@@ -169,6 +169,15 @@ The parameters on this tab will most likely not work with other mods. When activ
   <data name="consumableListTitle" xml:space="preserve">
     <value>Consumables</value>
   </data>
+  <data name="consumables" xml:space="preserve">
+    <value>Consumables</value>
+  </data>
+  <data name="consumablesDataError" xml:space="preserve">
+    <value>Data for consumables generation was not received. Operation aborted</value>
+  </data>
+  <data name="consumablesError" xml:space="preserve">
+    <value>Consumables generation error. Operation aborted</value>
+  </data>
   <data name="copyError" xml:space="preserve">
     <value>Copy error</value>
   </data>

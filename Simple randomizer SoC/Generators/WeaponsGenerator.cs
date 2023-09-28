@@ -46,7 +46,9 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var weapons = file.getFiles($"{Environment.configPath}/weapons");
+                var weapons = file.getFiles($"{Environment.configPath}/weapons").ToList();
+                var weaponsLtxPath = weapons.Find(match => match.Contains("weapons.ltx"));
+                if (weaponsLtxPath != "") weapons.Remove(weaponsLtxPath);
 
                 var reloadSoundsList = createCleanList(reloadSounds);
                 var shootSoundsList = createCleanList(shootSounds);
@@ -90,13 +92,13 @@ namespace Simple_randomizer_SoC.Generators
                     if (shootSoundsList.Length > 0)
                     {
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                            replaceStat(currWeapon, "snd_shoot", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot1", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                            replaceStat(currWeapon, "snd_shoot1", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot2", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                            replaceStat(currWeapon, "snd_shoot2", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot3", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                            replaceStat(currWeapon, "snd_shoot3", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
                             replaceStat(currWeapon, "snd_empty", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
                     }
@@ -104,18 +106,39 @@ namespace Simple_randomizer_SoC.Generators
                     if (reloadSoundsList.Length > 0)
                     {
                         currWeapon =
-                        replaceStat(currWeapon, "snd_reload", $"{reloadSoundsList[rnd.Next(reloadSoundsList.Length)]}, " +
-                        $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
+                            replaceStat(currWeapon, "snd_reload", $"{reloadSoundsList[rnd.Next(reloadSoundsList.Length)]}, " +
+                            $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
                     }
 
                     await file.writeFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
+                }
+
+                if (weaponsLtxPath != "")
+                {
+                    var weaponsLtxText = Regex.Replace(await file.readFile(weaponsLtxPath), "\\s*;.+", "");
+                    var ammos = weaponsLtxText.Replace(":ammo_base", "\a").Split('\a');
+                    string newWeaponsLtx = ammos[0];
+                    for (int i = 1; i < ammos.Length; i++)
+                    {
+                        ammos[i] = replaceStat(ammos[i], "cost", rnd.Next(50, 1001));
+                        ammos[i] = replaceStat(ammos[i], "k_dist", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
+                        ammos[i] = replaceStat(ammos[i], "k_disp", Math.Round(rnd.NextDouble() * 5 + 0.3, 2));
+                        ammos[i] = replaceStat(ammos[i], "k_hit", Math.Round(rnd.NextDouble() * 1.5 + 0.1, 2));
+                        ammos[i] = replaceStat(ammos[i], "k_impulse", Math.Round(rnd.NextDouble() * 5 + 0.1, 2));
+                        ammos[i] = replaceStat(ammos[i], "k_pierce", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
+                        ammos[i] = replaceStat(ammos[i], "impair", Math.Round(rnd.NextDouble() * 2 + 0.3, 2));
+                        ammos[i] = replaceStat(ammos[i], "tracer", rnd.Next(2) > 0 ? "on" : "off");
+
+                        newWeaponsLtx += ":ammo_base" + ammos[i];
+                    }
+
+                    await file.writeFile(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), newWeaponsLtx);
                 }
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                //errorMessage = $"Ошибка генерации оружия. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
                 errorMessage = (localizeDictionary.ContainsKey("weaponsError")
                     ? localizeDictionary["weaponsError"]
                     : "Ошибка оружия/Weapon error")

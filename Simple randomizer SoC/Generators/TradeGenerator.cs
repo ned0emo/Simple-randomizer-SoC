@@ -41,7 +41,6 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                //TODO: локализация
                 errorMessage = localizeDictionary.ContainsKey("tradersDataError")
                     ? localizeDictionary["tradersDataError"]
                     : "Ошибка данных торговцев/Traders data error";
@@ -117,7 +116,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 foreach (var item in items)
                 {
-                    var maxValue = rnd.Next(2, 11);
+                    var maxValue = rnd.Next(2, 4);
 
                     newStr += item + $" = {rnd.Next(1, maxValue)}, {maxValue}\n";
                 }

@@ -17,7 +17,7 @@ namespace RandomizerSoC
     {
         ResourceManager rm;
 
-        readonly int progressBarStep = 11; // 100/9
+        readonly int progressBarStep = 10; // 100/10
 
         //обработчик данных тектбоксов
         readonly TextBoxesHandler textBoxesHandler;
@@ -47,6 +47,7 @@ namespace RandomizerSoC
         readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
+        readonly ConsumablesGenerator consumablesGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -87,7 +88,7 @@ namespace RandomizerSoC
             };
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox };
+                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox };
 
             additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
                 giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox};
@@ -109,6 +110,7 @@ namespace RandomizerSoC
             weatherGenerator = new WeatherGenerator(fileHandler);
             deathItemsGenerator = new DeathItemsGenerator(fileHandler);
             tradeGenerator = new TradeGenerator(fileHandler);
+            consumablesGenerator = new ConsumablesGenerator(fileHandler);
 
             additionalParams = new AdditionalParams(fileHandler);
 
@@ -436,6 +438,29 @@ namespace RandomizerSoC
                 }
             }
             incrementProgressBar();
+            //расходники
+            if (consumablesCheckBox.Checked)
+            {
+                consumablesGenerator.updateData(newConfigPath: newConfigPath);
+                var result = await consumablesGenerator.generate();
+
+                if (result == BaseGenerator.STATUS_ERROR)
+                {
+                    new InfoForm(new Dictionary<string, string>()
+                    {
+                        ["message"] = infoFormLocalize.ContainsKey("error")
+                            ? infoFormLocalize["error"]
+                            : "Ошибка/Error",
+                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
+                            ? infoFormLocalize["infoFornName"]
+                            : "Внимание/Warning"
+                    }, consumablesGenerator.errorMessage).ShowDialog();
+
+                    changeButtonsStatus(true);
+                    return;
+                }
+            }
+            incrementProgressBar();
 
             //доп функции
             #region additionalParams
@@ -510,8 +535,6 @@ namespace RandomizerSoC
             #endregion
             progressBar1.Value = 100;
 
-            //new InfoForm($"Сохранено в папку \"{newGamedataPath}\" рядом с программой").ShowDialog();
-            //new InfoForm(rm, "savedIn", postfix: newGamedataPath).ShowDialog();
             new InfoForm(new Dictionary<string, string>()
             {
                 ["message"] = (infoFormLocalize.ContainsKey("savedIn")
@@ -794,6 +817,7 @@ namespace RandomizerSoC
             deathItemsCheckBox.Text = rm.GetString("deathItems");
             onePointFourLinkLabel.Text = rm.GetString("onePointFourLink");
             tradersCheckBox.Text = rm.GetString("traderItems");
+            consumablesCheckBox.Text = rm.GetString("consumables");
 
             onePointFourAdvertise = rm.GetString("onePointFourAdvertise");
             twoWords = rm.GetString("twoWords");
@@ -845,6 +869,12 @@ namespace RandomizerSoC
             {
                 ["tradersDataError"] = rm.GetString("tradersDataError"),
                 ["tradersError"] = rm.GetString("tradersError")
+            });
+
+            consumablesGenerator.updateLocalize(new Dictionary<string, string>()
+            {
+                ["consumablesDataError"] = rm.GetString("consumablesDataError"),
+                ["consumablesError"] = rm.GetString("consumablesError")
             });
 
             additionalParams.updateLocalize(new Dictionary<string, string>()

@@ -169,6 +169,15 @@
   <data name="consumableListTitle" xml:space="preserve">
     <value>Расходники</value>
   </data>
+  <data name="consumables" xml:space="preserve">
+    <value>Расходники</value>
+  </data>
+  <data name="consumablesDataError" xml:space="preserve">
+    <value>Данные для генерации расходников не были получены. Операция прервана</value>
+  </data>
+  <data name="consumablesError" xml:space="preserve">
+    <value>Ошибка генерации расходников. Операция прервана</value>
+  </data>
   <data name="copyError" xml:space="preserve">
     <value>Ошибка копирования</value>
   </data>
