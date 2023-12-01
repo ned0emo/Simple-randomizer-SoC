@@ -14,8 +14,8 @@
 
 # Скриншоты
 
-![Снимок экрана 2023-08-06 164543](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/0af4439f-88c1-49ec-a164-51450c397cd8)
-![Снимок экрана 2023-08-06 164505](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/82ec5d34-fe4d-474a-abf3-6452fd5ce3de)
-![Снимок экрана 2023-08-06 164516](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/7245afb5-9280-46aa-a7f8-58aeb31e87ba)
-![Снимок экрана 2023-08-06 164525](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/ca3d3d17-c55f-44c8-9ba7-e8de50fe48bb)
-![Снимок экрана 2023-08-06 164535](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/24ca3cc1-6508-498d-9141-35dea1790fda)
+![weapon](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/aea0b904-ab9e-4ed5-83da-f39ddb929b17)
+![items](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/5999a890-de0d-42dc-8009-1cba8782595d)
+![npc](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/98c6b8b0-f4c4-4481-a4ed-8245e959907b)
+![weather](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/03a0f5cd-76ab-4c46-ac44-ae9d51a8c53b)
+![other](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/a54d852d-f04e-43d7-91a4-0b47969e7019)
