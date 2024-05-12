@@ -21,7 +21,7 @@ namespace Simple_randomizer_SoC.Generators
         /// </summary>
         /// <param name="reloadSounds">Список звуков перезарядки</param>
         /// <param name="shootSounds">Список звуков стрельбы</param>
-        public void updateData(string reloadSounds, string shootSounds, string newConfigPath)
+        public void UpdateData(string reloadSounds, string shootSounds, string newConfigPath)
         {
             this.reloadSounds = reloadSounds;
             this.shootSounds = shootSounds;
@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -46,93 +46,93 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var weapons = file.getFiles($"{Environment.configPath}/weapons").ToList();
+                var weapons = (await file.GetFiles($"{Environment.configPath}/weapons")).ToList();
                 var weaponsLtxPath = weapons.Find(match => match.Contains("weapons.ltx"));
-                if (weaponsLtxPath != "") weapons.Remove(weaponsLtxPath);
+                weapons.Remove(weaponsLtxPath);
 
-                var reloadSoundsList = createCleanList(reloadSounds);
-                var shootSoundsList = createCleanList(shootSounds);
+                var reloadSoundsList = CreateCleanList(reloadSounds);
+                var shootSoundsList = CreateCleanList(shootSounds);
 
                 foreach (string it in weapons)
                 {
-                    string currWeapon = Regex.Replace(await file.readFile(it), "\\s+;.+", "");
+                    string currWeapon = Regex.Replace(await file.ReadFile(it), "\\s+;.+", "");
                     int magSize = rnd.Next(50) + 1;
 
                     currWeapon =
-                        replaceStat(currWeapon, "cost", rnd.Next(10000) + 1);
+                        ReplaceStat(currWeapon, "cost", rnd.Next(10000) + 1);
                     currWeapon =
-                        replaceStat(currWeapon, "ammo_limit", magSize);
+                        ReplaceStat(currWeapon, "ammo_limit", magSize);
                     currWeapon =
-                        replaceStat(currWeapon, "ammo_elapsed", magSize);
+                        ReplaceStat(currWeapon, "ammo_elapsed", magSize);
                     currWeapon =
-                        replaceStat(currWeapon, "ammo_mag_size", magSize);
+                        ReplaceStat(currWeapon, "ammo_mag_size", magSize);
                     currWeapon =
-                        replaceStat(currWeapon, "inv_weight", Math.Round(rnd.NextDouble() * 7 + 0.2, 2));
+                        ReplaceStat(currWeapon, "inv_weight", Math.Round(rnd.NextDouble() * 7 + 0.2, 2));
                     currWeapon =
-                        replaceStat(currWeapon, "fire_dispersion_base", Math.Round(rnd.NextDouble() * 0.8, 3));
+                        ReplaceStat(currWeapon, "fire_dispersion_base", Math.Round(rnd.NextDouble() * 0.8, 3));
                     currWeapon =
-                        replaceStat(currWeapon, "hit_power", Math.Round(rnd.NextDouble() * 1.2 + 0.01, 2));
+                        ReplaceStat(currWeapon, "hit_power", Math.Round(rnd.NextDouble() * 1.2 + 0.01, 2));
                     currWeapon =
-                        replaceStat(currWeapon, "hit_impulse", rnd.Next(400) + 50);
+                        ReplaceStat(currWeapon, "hit_impulse", rnd.Next(400) + 50);
                     currWeapon =
-                        replaceStat(currWeapon, "fire_distance", rnd.Next(1000) + 10);
+                        ReplaceStat(currWeapon, "fire_distance", rnd.Next(1000) + 10);
                     currWeapon =
-                        replaceStat(currWeapon, "bullet_speed", rnd.Next(1000) + 10);
+                        ReplaceStat(currWeapon, "bullet_speed", rnd.Next(1000) + 10);
                     currWeapon =
-                        replaceStat(currWeapon, "rpm", rnd.Next(1000) + 10);
+                        ReplaceStat(currWeapon, "rpm", rnd.Next(1000) + 10);
                     currWeapon =
-                        replaceStat(currWeapon, "silencer_hit_power", Math.Round(rnd.NextDouble() * 1.2 + 0.01, 2));
+                        ReplaceStat(currWeapon, "silencer_hit_power", Math.Round(rnd.NextDouble() * 1.2 + 0.01, 2));
                     currWeapon =
-                        replaceStat(currWeapon, "silencer_hit_impulse", rnd.Next(400) + 50);
+                        ReplaceStat(currWeapon, "silencer_hit_impulse", rnd.Next(400) + 50);
                     currWeapon =
-                        replaceStat(currWeapon, "silencer_fire_distance", rnd.Next(1000) + 10);
+                        ReplaceStat(currWeapon, "silencer_fire_distance", rnd.Next(1000) + 10);
                     currWeapon =
-                        replaceStat(currWeapon, "silencer_bullet_speed", rnd.Next(1000) + 10);
+                        ReplaceStat(currWeapon, "silencer_bullet_speed", rnd.Next(1000) + 10);
 
                     if (shootSoundsList.Length > 0)
                     {
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
+                            ReplaceStat(currWeapon, "snd_shoot", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot1", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
+                            ReplaceStat(currWeapon, "snd_shoot1", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot2", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
+                            ReplaceStat(currWeapon, "snd_shoot2", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_shoot3", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
+                            ReplaceStat(currWeapon, "snd_shoot3", shootSoundsList[rnd.Next(shootSoundsList.Length)], true);
                         currWeapon =
-                            replaceStat(currWeapon, "snd_empty", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
+                            ReplaceStat(currWeapon, "snd_empty", shootSoundsList[rnd.Next(shootSoundsList.Length)]);
                     }
 
                     if (reloadSoundsList.Length > 0)
                     {
                         currWeapon =
-                            replaceStat(currWeapon, "snd_reload", $"{reloadSoundsList[rnd.Next(reloadSoundsList.Length)]}, " +
+                            ReplaceStat(currWeapon, "snd_reload", $"{reloadSoundsList[rnd.Next(reloadSoundsList.Length)]}, " +
                             $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
                     }
 
-                    await file.writeFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
+                    await file.WriteFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
                 }
 
                 if (weaponsLtxPath != "")
                 {
-                    var weaponsLtxText = Regex.Replace(await file.readFile(weaponsLtxPath), "\\s*;.+", "");
+                    var weaponsLtxText = Regex.Replace(await file.ReadFile(weaponsLtxPath), "\\s*;.+", "");
                     var ammos = weaponsLtxText.Replace(":ammo_base", "\a").Split('\a');
                     string newWeaponsLtx = ammos[0];
                     for (int i = 1; i < ammos.Length; i++)
                     {
-                        ammos[i] = replaceStat(ammos[i], "cost", rnd.Next(50, 1001));
-                        ammos[i] = replaceStat(ammos[i], "k_dist", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
-                        ammos[i] = replaceStat(ammos[i], "k_disp", Math.Round(rnd.NextDouble() * 5 + 0.3, 2));
-                        ammos[i] = replaceStat(ammos[i], "k_hit", Math.Round(rnd.NextDouble() * 1.5 + 0.1, 2));
-                        ammos[i] = replaceStat(ammos[i], "k_impulse", Math.Round(rnd.NextDouble() * 5 + 0.1, 2));
-                        ammos[i] = replaceStat(ammos[i], "k_pierce", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
-                        ammos[i] = replaceStat(ammos[i], "impair", Math.Round(rnd.NextDouble() * 2 + 0.3, 2));
-                        ammos[i] = replaceStat(ammos[i], "tracer", rnd.Next(2) > 0 ? "on" : "off");
+                        ammos[i] = ReplaceStat(ammos[i], "cost", rnd.Next(50, 1001));
+                        ammos[i] = ReplaceStat(ammos[i], "k_dist", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "k_disp", Math.Round(rnd.NextDouble() * 5 + 0.3, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "k_hit", Math.Round(rnd.NextDouble() * 1.5 + 0.1, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "k_impulse", Math.Round(rnd.NextDouble() * 5 + 0.1, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "k_pierce", Math.Round(rnd.NextDouble() * 3 + 0.3, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "impair", Math.Round(rnd.NextDouble() * 2 + 0.3, 2));
+                        ammos[i] = ReplaceStat(ammos[i], "tracer", rnd.Next(2) > 0 ? "on" : "off");
 
                         newWeaponsLtx += ":ammo_base" + ammos[i];
                     }
 
-                    await file.writeFile(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), newWeaponsLtx);
+                    await file.WriteFile(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), newWeaponsLtx);
                 }
 
                 return STATUS_OK;

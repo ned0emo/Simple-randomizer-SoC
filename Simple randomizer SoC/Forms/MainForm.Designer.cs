@@ -134,7 +134,7 @@
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Сохранить списки";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // loadButton
             // 
@@ -144,7 +144,7 @@
             this.loadButton.TabIndex = 1;
             this.loadButton.Text = "Загрузить списки";
             this.loadButton.UseVisualStyleBackColor = true;
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            this.loadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // generateButton
             // 
@@ -155,7 +155,7 @@
             this.generateButton.TabIndex = 2;
             this.generateButton.Text = "Сгенерировать";
             this.generateButton.UseVisualStyleBackColor = true;
-            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            this.generateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // loadDefaultButton
             // 
@@ -165,7 +165,7 @@
             this.loadDefaultButton.TabIndex = 3;
             this.loadDefaultButton.Text = "Списки по умолчанию";
             this.loadDefaultButton.UseVisualStyleBackColor = true;
-            this.loadDefaultButton.Click += new System.EventHandler(this.loadDefaultButton_Click);
+            this.loadDefaultButton.Click += new System.EventHandler(this.LoadDefaultButton_Click);
             // 
             // tabControl
             // 
@@ -240,7 +240,7 @@
             this.weaponGuideButton.TabIndex = 9;
             this.weaponGuideButton.Text = "?";
             this.weaponGuideButton.UseVisualStyleBackColor = true;
-            this.weaponGuideButton.Click += new System.EventHandler(this.weaponGuideButton_Click);
+            this.weaponGuideButton.Click += new System.EventHandler(this.WeaponGuideButton_Click);
             // 
             // label10
             // 
@@ -322,7 +322,7 @@
             this.itemGuideButton.TabIndex = 16;
             this.itemGuideButton.Text = "?";
             this.itemGuideButton.UseVisualStyleBackColor = true;
-            this.itemGuideButton.Click += new System.EventHandler(this.itemGuideButton_Click);
+            this.itemGuideButton.Click += new System.EventHandler(this.ItemGuideButton_Click);
             // 
             // label12
             // 
@@ -448,7 +448,7 @@
             this.namesCheckBox.TabIndex = 25;
             this.namesCheckBox.Text = "Имена";
             this.namesCheckBox.UseVisualStyleBackColor = true;
-            this.namesCheckBox.CheckedChanged += new System.EventHandler(this.namesCheckBox_CheckedChanged);
+            this.namesCheckBox.CheckedChanged += new System.EventHandler(this.NamesCheckBox_CheckedChanged);
             // 
             // iconsCheckBox
             // 
@@ -460,7 +460,7 @@
             this.iconsCheckBox.TabIndex = 23;
             this.iconsCheckBox.Text = "Миниатюры";
             this.iconsCheckBox.UseVisualStyleBackColor = true;
-            this.iconsCheckBox.CheckedChanged += new System.EventHandler(this.iconsCheckBox_CheckedChanged);
+            this.iconsCheckBox.CheckedChanged += new System.EventHandler(this.IconsCheckBox_CheckedChanged);
             // 
             // soundsCheckBox
             // 
@@ -472,7 +472,7 @@
             this.soundsCheckBox.TabIndex = 22;
             this.soundsCheckBox.Text = "Озвучка";
             this.soundsCheckBox.UseVisualStyleBackColor = true;
-            this.soundsCheckBox.CheckedChanged += new System.EventHandler(this.soundsCheckBox_CheckedChanged);
+            this.soundsCheckBox.CheckedChanged += new System.EventHandler(this.SoundsCheckBox_CheckedChanged);
             // 
             // modelsCheckBox
             // 
@@ -484,7 +484,7 @@
             this.modelsCheckBox.TabIndex = 21;
             this.modelsCheckBox.Text = "Модели";
             this.modelsCheckBox.UseVisualStyleBackColor = true;
-            this.modelsCheckBox.CheckedChanged += new System.EventHandler(this.modelsCheckBox_CheckedChanged);
+            this.modelsCheckBox.CheckedChanged += new System.EventHandler(this.ModelsCheckBox_CheckedChanged);
             // 
             // onlyGenerateCheckBox
             // 
@@ -526,7 +526,7 @@
             this.npcGuideButton.TabIndex = 15;
             this.npcGuideButton.Text = "?";
             this.npcGuideButton.UseVisualStyleBackColor = true;
-            this.npcGuideButton.Click += new System.EventHandler(this.npcGuideButton_Click);
+            this.npcGuideButton.Click += new System.EventHandler(this.NpcGuideButton_Click);
             // 
             // communityTextBox
             // 
@@ -718,7 +718,7 @@
             this.onePointFourLinkLabel.TabIndex = 19;
             this.onePointFourLinkLabel.TabStop = true;
             this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
-            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // gScriptCheckBox
             // 
@@ -772,7 +772,7 @@
             this.translateCheckBox.TabIndex = 12;
             this.translateCheckBox.Text = "Охлаждающий трахание перевод";
             this.translateCheckBox.UseVisualStyleBackColor = true;
-            this.translateCheckBox.CheckedChanged += new System.EventHandler(this.translateCheckBox_CheckedChanged);
+            this.translateCheckBox.CheckedChanged += new System.EventHandler(this.TranslateCheckBox_CheckedChanged);
             // 
             // label6
             // 
@@ -883,7 +883,7 @@
             this.communityCheckBox.TabIndex = 0;
             this.communityCheckBox.Text = "Изменять группировку НПС";
             this.communityCheckBox.UseVisualStyleBackColor = true;
-            this.communityCheckBox.CheckedChanged += new System.EventHandler(this.communityCheckBox_CheckedChanged);
+            this.communityCheckBox.CheckedChanged += new System.EventHandler(this.CommunityCheckBox_CheckedChanged);
             // 
             // allCheckBox
             // 
@@ -894,7 +894,7 @@
             this.allCheckBox.TabIndex = 7;
             this.allCheckBox.Text = "Все";
             this.allCheckBox.UseVisualStyleBackColor = true;
-            this.allCheckBox.CheckedChanged += new System.EventHandler(this.allCheckBox_CheckedChanged);
+            this.allCheckBox.CheckedChanged += new System.EventHandler(this.AllCheckBox_CheckedChanged);
             // 
             // treasureCheckBox
             // 
@@ -945,7 +945,7 @@
             this.npcCheckBox.TabIndex = 12;
             this.npcCheckBox.Text = "НПС";
             this.npcCheckBox.UseVisualStyleBackColor = true;
-            this.npcCheckBox.CheckedChanged += new System.EventHandler(this.npcCheckBox_CheckedChanged);
+            this.npcCheckBox.CheckedChanged += new System.EventHandler(this.NpcCheckBox_CheckedChanged);
             // 
             // suppliesCheckBox
             // 
@@ -999,7 +999,7 @@
             this.linkLabel1.TabIndex = 18;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Другое...";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // weatherCheckBox
             // 
@@ -1039,7 +1039,7 @@
             this.rusRadioButton.TabStop = true;
             this.rusRadioButton.Text = "RUS";
             this.rusRadioButton.UseVisualStyleBackColor = true;
-            this.rusRadioButton.CheckedChanged += new System.EventHandler(this.rusRadioButton_CheckedChanged);
+            this.rusRadioButton.CheckedChanged += new System.EventHandler(this.RusRadioButton_CheckedChanged);
             // 
             // engRadioButton
             // 
@@ -1051,7 +1051,7 @@
             this.engRadioButton.TabStop = true;
             this.engRadioButton.Text = "ENG";
             this.engRadioButton.UseVisualStyleBackColor = true;
-            this.engRadioButton.CheckedChanged += new System.EventHandler(this.engRadioButton_CheckedChanged);
+            this.engRadioButton.CheckedChanged += new System.EventHandler(this.EngRadioButton_CheckedChanged);
             // 
             // tradersCheckBox
             // 

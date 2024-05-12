@@ -39,10 +39,10 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var weaponsList = createCleanList(weapons);
+                var weaponsList = CreateCleanList(weapons);
 
                 //---------Вероятность по группировкам
-                var communitiesDeathGeneric = await file.readFile($"{Environment.configPath}/misc/death_items_by_communities.ltx");
+                var communitiesDeathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_items_by_communities.ltx");
                 var communitiesDeathGenericData = communitiesDeathGeneric.Split('[').Skip(1).ToList();
 
                 var communityClasses = new List<string>();
@@ -65,10 +65,10 @@ namespace Simple_randomizer_SoC.Generators
                     newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
+                await file.WriteFile($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
 
                 //---------Множитель количества по локациям
-                var levelsDeathGeneric = await file.readFile($"{Environment.configPath}/misc/death_items_by_levels.ltx");
+                var levelsDeathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_items_by_levels.ltx");
                 var levelsDeathGenericData = levelsDeathGeneric.Split('[').Skip(1).ToList();
 
                 var levelClasses = new List<string>();
@@ -98,10 +98,10 @@ namespace Simple_randomizer_SoC.Generators
                     newLevelsDeathGenericData += $"\n[{levelClass}]\n{newData}";
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
+                await file.WriteFile($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
 
                 //--------Количество по уровню сложности
-                var countDeathItems = await file.readFile($"{Environment.configPath}/misc/death_items_count.ltx");
+                var countDeathItems = await file.ReadFile($"{Environment.configPath}/misc/death_items_count.ltx");
                 var countDeathItemsData = countDeathItems.Split('[').Skip(1).ToList();
 
                 var countClasses = new List<string>();
@@ -140,12 +140,12 @@ namespace Simple_randomizer_SoC.Generators
                     ammoMax = Math.Max(ammoMax - 5, 10);
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
+                await file.WriteFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
 
                 //--------------Зависимость спавна от оружия
                 if(weaponsList.Length > 0)
                 {
-                    var deathGeneric = await file.readFile($"{Environment.configPath}/misc/death_generic.ltx");
+                    var deathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_generic.ltx");
                     var deathGenericSplitted = deathGeneric.Replace("[keep_items]", "\a").Split('\a');
                     var deathGenericParams = deathGenericSplitted[0].Split('\n');
                     for (int i = 0; i < deathGenericParams.Length; i++)
@@ -156,7 +156,7 @@ namespace Simple_randomizer_SoC.Generators
                         }
                     }
 
-                    await file.writeFile($"{newConfigPath}/misc/death_generic.ltx", deathGenericParams.Aggregate((a, b) => a + b) + "[keep_items]" + deathGenericSplitted[1]);
+                    await file.WriteFile($"{newConfigPath}/misc/death_generic.ltx", deathGenericParams.Aggregate((a, b) => a + b) + "[keep_items]" + deathGenericSplitted[1]);
                 }
 
                 return STATUS_OK;

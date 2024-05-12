@@ -66,15 +66,15 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var treasures = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
+                var treasures = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
                 var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
 
-                var weaponList = createCleanList(weapons);
-                var ammoList = createCleanList(ammos, true);
-                var outfitList = createCleanList(outfits);
-                var artefactList = createCleanList(artefacts);
-                var itemList = createCleanList(items);
-                var otherList = createCleanList(others);
+                var weaponList = CreateCleanList(weapons);
+                var ammoList = CreateCleanList(ammos, true);
+                var outfitList = CreateCleanList(outfits);
+                var artefactList = CreateCleanList(artefacts);
+                var itemList = CreateCleanList(items);
+                var otherList = CreateCleanList(others);
 
                 for (int j = 1; j < treasureStringList.Count; j++)
                 {
@@ -124,7 +124,7 @@ namespace Simple_randomizer_SoC.Generators
                     treasureString += "items" + treasureStringList[i];
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
+                await file.WriteFile($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
 
                 return STATUS_OK;
             }

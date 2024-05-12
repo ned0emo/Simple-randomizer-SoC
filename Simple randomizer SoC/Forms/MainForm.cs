@@ -120,7 +120,7 @@ namespace RandomizerSoC
         }
 
         //кнопка сохранения
-        private async void saveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
             string changedLists = "";
             var fileNameContentDictionary = new Dictionary<string, string>();
@@ -140,7 +140,7 @@ namespace RandomizerSoC
 
             if (new SaveForm(changedLists, rm).ShowDialog() == DialogResult.OK)
             {
-                await textBoxesHandler.saveData(fileNameContentDictionary);
+                await textBoxesHandler.SaveData(fileNameContentDictionary);
 
                 foreach (string key in fileNameContentDictionary.Keys)
                 {
@@ -163,18 +163,18 @@ namespace RandomizerSoC
         }
 
         //кнопка загрузки
-        private void loadButton_Click(object sender, EventArgs e) => loadLists();
+        private void LoadButton_Click(object sender, EventArgs e) => LoadLists();
 
         //загрузка списков по умолчанию
-        private void loadDefaultButton_Click(object sender, EventArgs e) => loadLists(true);
+        private void LoadDefaultButton_Click(object sender, EventArgs e) => LoadLists(true);
 
         //отображение формы
-        private void MainForm_Shown(object sender, EventArgs e) => loadLists();
+        private void MainForm_Shown(object sender, EventArgs e) => LoadLists();
 
         //загрузка списков редактируемых или дефолтных
-        private async void loadLists(bool isDefault = false)
+        private async void LoadLists(bool isDefault = false)
         {
-            var textBoxesData = await textBoxesHandler.loadData(isDefault);
+            var textBoxesData = await textBoxesHandler.LoadData(isDefault);
 
             foreach (string key in textBoxesData.Keys)
             {
@@ -205,7 +205,7 @@ namespace RandomizerSoC
         }
 
         //генерация всего
-        private async void generateButton_Click(object sender, EventArgs e)
+        private async void GenerateButton_Click(object sender, EventArgs e)
         {
             if (additionalParamsCheckBoxList.All(all => !all.Checked) && generateTypeCheckBoxList.All(all => !all.Checked))
             {
@@ -265,8 +265,8 @@ namespace RandomizerSoC
             //артефакты
             if (afCheckBox.Checked)
             {
-                artefactsGenerator.updateData(newConfigPath: newConfigPath);
-                var result = await artefactsGenerator.generate();
+                artefactsGenerator.UpdateData(newConfigPath: newConfigPath);
+                var result = await artefactsGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
@@ -289,8 +289,8 @@ namespace RandomizerSoC
             //оружие
             if (weaponCheckBox.Checked)
             {
-                weaponsGenerator.updateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
-                var result = await weaponsGenerator.generate();
+                weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
+                var result = await weaponsGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
@@ -337,14 +337,14 @@ namespace RandomizerSoC
             //нпс
             if (npcCheckBox.Checked)
             {
-                npcGenerator.updateData(communities: communityTextBox.Text, models: modelTextBox.Text, icons: iconsTextBox.Text, sounds: soundTextBox.Text,
+                npcGenerator.UpdateData(communities: communityTextBox.Text, models: modelTextBox.Text, icons: iconsTextBox.Text, sounds: soundTextBox.Text,
                     names: namesTextBox.Text, weapons: weaponTextBox.Text, exceptions: npcExecptTextBox.Text, newConfigPath: newConfigPath);
-                npcGenerator.updateRules(communitiesEnabled: communityCheckBox.Checked, modelsEnabled: modelsCheckBox.Checked,
+                npcGenerator.UpdateRules(communitiesEnabled: communityCheckBox.Checked, modelsEnabled: modelsCheckBox.Checked,
                     iconsEnabled: iconsCheckBox.Checked, soundsEnabled: soundsCheckBox.Checked, namesEnabled: namesCheckBox.Checked,
                     suppliesEnabled: suppliesCheckBox.Checked, ranksEnabled: rankCheckBox.Checked, reputationEnabled: reputationCheckBox.Checked,
                     onlyGenerateNames: onlyGenerateCheckBox.Checked
                 );
-                var result = await npcGenerator.generate();
+                var result = await npcGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
@@ -367,9 +367,9 @@ namespace RandomizerSoC
             //погода
             if (weatherCheckBox.Checked)
             {
-                weatherGenerator.updateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
+                weatherGenerator.UpdateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
                     thunderProbability: (int)thunderNumericUpDown.Value, newConfigPath: newConfigPath);
-                var result = await weatherGenerator.generate();
+                var result = await weatherGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
@@ -416,9 +416,9 @@ namespace RandomizerSoC
             //торговцы
             if (tradersCheckBox.Checked)
             {
-                tradeGenerator.updateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
+                tradeGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                var result = await tradeGenerator.generate();
+                var result = await tradeGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
@@ -501,17 +501,17 @@ namespace RandomizerSoC
                 paramTypeToNewPrefixDictionary.Add("gScript", newScriptsPath);
             }
 
-            await additionalParams.copyParams(paramTypeToNewPrefixDictionary);
+            await additionalParams.CopyParams(paramTypeToNewPrefixDictionary);
 
             if (translateCheckBox.Checked)
             {
                 if (shuffleTextCheckBox.Checked)
                 {
-                    await additionalParams.shuffleAndCopyText(newConfigPath);
+                    await additionalParams.ShuffleAndCopyText(newConfigPath);
                 }
                 else
                 {
-                    await additionalParams.copyText(newConfigPath);
+                    await additionalParams.CopyText(newConfigPath);
                 }
             }
 
@@ -549,7 +549,7 @@ namespace RandomizerSoC
             changeButtonsStatus(true);
         }
 
-        private void allCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void AllCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             foreach (CheckBox cb in generateTypeCheckBoxList)
             {
@@ -563,7 +563,7 @@ namespace RandomizerSoC
         }
 
         //надпись "рекомендуется" при активации рандома группировок
-        private void communityCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void CommunityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             foreach (Label label in recommendLabelList)
             {
@@ -582,7 +582,7 @@ namespace RandomizerSoC
         }
 
         //Справка
-        private void weaponGuideButton_Click(object sender, EventArgs e)
+        private void WeaponGuideButton_Click(object sender, EventArgs e)
         {
             string text;
             try
@@ -607,7 +607,7 @@ namespace RandomizerSoC
             new GuideForm(text).ShowDialog();
         }
 
-        private void itemGuideButton_Click(object sender, EventArgs e)
+        private void ItemGuideButton_Click(object sender, EventArgs e)
         {
             string text;
             try
@@ -632,7 +632,7 @@ namespace RandomizerSoC
             new GuideForm(text).ShowDialog();
         }
 
-        private void npcGuideButton_Click(object sender, EventArgs e)
+        private void NpcGuideButton_Click(object sender, EventArgs e)
         {
             string text;
             try
@@ -658,7 +658,7 @@ namespace RandomizerSoC
         }
 
         //Отключение перемешивания текста при отключении перевода
-        private void translateCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void TranslateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (translateCheckBox.Checked)
             {
@@ -672,14 +672,14 @@ namespace RandomizerSoC
         }
 
         //Чекбоксы вкладки неписей
-        private void modelsCheckBox_CheckedChanged(object sender, EventArgs e) => modelTextBox.Enabled = modelsCheckBox.Checked;
+        private void ModelsCheckBox_CheckedChanged(object sender, EventArgs e) => modelTextBox.Enabled = modelsCheckBox.Checked;
 
-        private void soundsCheckBox_CheckedChanged(object sender, EventArgs e) => soundTextBox.Enabled = soundsCheckBox.Checked;
+        private void SoundsCheckBox_CheckedChanged(object sender, EventArgs e) => soundTextBox.Enabled = soundsCheckBox.Checked;
 
-        private void iconsCheckBox_CheckedChanged(object sender, EventArgs e) => iconsTextBox.Enabled = iconsCheckBox.Checked;
+        private void IconsCheckBox_CheckedChanged(object sender, EventArgs e) => iconsTextBox.Enabled = iconsCheckBox.Checked;
 
 
-        private void namesCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void NamesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             namesTextBox.Enabled = namesCheckBox.Checked;
             onlyGenerateCheckBox.Enabled = namesCheckBox.Checked;
@@ -689,7 +689,7 @@ namespace RandomizerSoC
             }
         }
 
-        private void npcCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void NpcCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             communityCheckBox.Enabled = npcCheckBox.Checked;
             if (!npcCheckBox.Checked)
@@ -707,9 +707,9 @@ namespace RandomizerSoC
         }
 
         //ссылка другое под НПС
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
 
-        private void rusRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RusRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (rusRadioButton.Checked)
             {
@@ -717,7 +717,7 @@ namespace RandomizerSoC
                 {
                     rm = new ResourceManager("Simple_randomizer_SoC.Language.ru_local", Assembly.GetExecutingAssembly());
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru");
-                    updateText();
+                    UpdateText();
                 }
                 catch (Exception ex)
                 {
@@ -731,7 +731,7 @@ namespace RandomizerSoC
             }
         }
 
-        private void engRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void EngRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (engRadioButton.Checked)
             {
@@ -740,7 +740,7 @@ namespace RandomizerSoC
                     rm = new ResourceManager("Simple_randomizer_SoC.Language.en_local", Assembly.GetExecutingAssembly());
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
 
-                    updateText();
+                    UpdateText();
                 }
                 catch (Exception ex)
                 {
@@ -755,7 +755,7 @@ namespace RandomizerSoC
             }
         }
 
-        private void updateText()
+        private void UpdateText()
         {
             this.Text = rm.GetString("mainFormName");
             tabPage1.Text = rm.GetString("weaponsTab");
@@ -822,62 +822,62 @@ namespace RandomizerSoC
             onePointFourAdvertise = rm.GetString("onePointFourAdvertise");
             twoWords = rm.GetString("twoWords");
 
-            artefactsGenerator.updateLocalize(new Dictionary<string, string>()
+            artefactsGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["artefactsError"] = rm.GetString("artefactsError"),
                 ["artefactsDataError"] = rm.GetString("artefactsDataError")
             });
 
-            deathItemsGenerator.updateLocalize(new Dictionary<string, string>()
+            deathItemsGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["deathItemsDataError"] = rm.GetString("deathItemsDataError"),
                 ["deathItemsError"] = rm.GetString("deathItemsError")
             });
 
-            npcGenerator.updateLocalize(new Dictionary<string, string>()
+            npcGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["npcDataError"] = rm.GetString("npcDataError"),
                 ["npcError"] = rm.GetString("npcError"),
                 ["npcRulesError"] = rm.GetString("npcRulesError")
             });
 
-            outfitsGenerator.updateLocalize(new Dictionary<string, string>()
+            outfitsGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["outfitsDataError"] = rm.GetString("outfitsDataError"),
                 ["outfitsError"] = rm.GetString("outfitsError")
             });
 
-            treasuresGenerator.updateLocalize(new Dictionary<string, string>()
+            treasuresGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["cachesDataError"] = rm.GetString("cachesDataError"),
                 ["cachesError"] = rm.GetString("cachesError")
             });
 
-            weaponsGenerator.updateLocalize(new Dictionary<string, string>()
+            weaponsGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["weaponsDataError"] = rm.GetString("weaponsDataError"),
                 ["weaponsError"] = rm.GetString("weaponsError")
             });
 
-            weatherGenerator.updateLocalize(new Dictionary<string, string>()
+            weatherGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["weatherDataError"] = rm.GetString("weatherDataError"),
                 ["weatherError"] = rm.GetString("weatherError")
             });
 
-            tradeGenerator.updateLocalize(new Dictionary<string, string>()
+            tradeGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["tradersDataError"] = rm.GetString("tradersDataError"),
                 ["tradersError"] = rm.GetString("tradersError")
             });
 
-            consumablesGenerator.updateLocalize(new Dictionary<string, string>()
+            consumablesGenerator.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["consumablesDataError"] = rm.GetString("consumablesDataError"),
                 ["consumablesError"] = rm.GetString("consumablesError")
             });
 
-            additionalParams.updateLocalize(new Dictionary<string, string>()
+            additionalParams.UpdateLocalize(new Dictionary<string, string>()
             {
                 ["copyError"] = rm.GetString("copyError"),
                 ["textDataReadError"] = rm.GetString("textDataReadError"),
@@ -896,7 +896,7 @@ namespace RandomizerSoC
             };
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new InfoForm(new Dictionary<string, string>()
             {

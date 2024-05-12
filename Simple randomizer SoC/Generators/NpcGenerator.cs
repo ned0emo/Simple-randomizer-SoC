@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Generators
         /// <summary>
         /// Обновление списков
         /// </summary>
-        public void updateData(string communities, string models, string icons,
+        public void UpdateData(string communities, string models, string icons,
             string sounds, string names, string weapons, string exceptions, string newConfigPath)
         {
             this.communities = communities;
@@ -58,7 +58,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public void updateRules(bool communitiesEnabled, bool modelsEnabled, bool iconsEnabled,
+        public void UpdateRules(bool communitiesEnabled, bool modelsEnabled, bool iconsEnabled,
             bool soundsEnabled, bool namesEnabled, bool suppliesEnabled, bool ranksEnabled,
             bool reputationEnabled, bool onlyGenerateNames)
         {
@@ -75,7 +75,7 @@ namespace Simple_randomizer_SoC.Generators
             isRulesLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -100,28 +100,28 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var communityList = createCleanList(communities);
-                var modelList = createCleanList(models);
-                var iconList = createCleanList(icons);
-                var soundList = createCleanList(sounds);
-                var exceptionList = createCleanList(exceptions);
+                var communityList = CreateCleanList(communities);
+                var modelList = CreateCleanList(models);
+                var iconList = CreateCleanList(icons);
+                var soundList = CreateCleanList(sounds);
+                var exceptionList = CreateCleanList(exceptions);
 
-                var weaponList = new List<string>(createCleanList(weapons, true));
+                var weaponList = new List<string>(CreateCleanList(weapons, true));
                 var brokenWeaponsCount = weaponList.RemoveAll(el => !el.Contains(' '));
                 if (brokenWeaponsCount > 0)
                 {
                     warningMessage = $"Некоторые строки с оружием имеют неправильное форматирование. Количесвто - {brokenWeaponsCount}";
                 }
 
-                var nameList = new List<string>(createCleanList(names));
+                var nameList = new List<string>(CreateCleanList(names));
                 if (onlyGenerateNames)
                 {
                     nameList.RemoveAll(el => !el.Contains("GENERATE_NAME"));
                 }
 
-                foreach (string it in file.getFiles($"{Environment.configPath}/gameplay"))
+                foreach (string it in await file.GetFiles($"{Environment.configPath}/gameplay"))
                 {
-                    var npcDescList = (await file.readFile(it)).Replace("<specific_character", "\a").Split('\a');
+                    var npcDescList = (await file.ReadFile(it)).Replace("<specific_character", "\a").Split('\a');
 
                     for (int i = 1; i < npcDescList.Length; i++)
                     {
@@ -140,37 +140,37 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (communitiesEnabled && communityList.Length > 0)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "community", communityList[rnd.Next(communityList.Length)]);
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "community", communityList[rnd.Next(communityList.Length)]);
                         }
 
                         if (ranksEnabled)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "rank", rnd.Next(1000).ToString());
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "rank", rnd.Next(1000).ToString());
                         }
 
                         if (reputationEnabled)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "reputation", (rnd.Next(2001) - 1000).ToString());
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "reputation", (rnd.Next(2001) - 1000).ToString());
                         }
 
                         if (modelsEnabled && modelList.Length > 0)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "visual", modelList[rnd.Next(modelList.Length)]);
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "visual", modelList[rnd.Next(modelList.Length)]);
                         }
 
                         if (iconsEnabled && iconList.Length > 0)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "icon", iconList[rnd.Next(iconList.Length)]);
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "icon", iconList[rnd.Next(iconList.Length)]);
                         }
 
                         if (namesEnabled && (!onlyGenerateNames || npcDescList[i].Contains("GENERATE_NAME")) && nameList.Count > 0)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "name", nameList[rnd.Next(nameList.Count)]);
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "name", nameList[rnd.Next(nameList.Count)]);
                         }
 
                         if (soundsEnabled && soundList.Length > 0)
                         {
-                            npcDescList[i] = replaceXmlValue(npcDescList[i], "snd_config", soundList[rnd.Next(soundList.Length)]);
+                            npcDescList[i] = ReplaceXmlValue(npcDescList[i], "snd_config", soundList[rnd.Next(soundList.Length)]);
                         }
 
                         if (suppliesEnabled && npcDescList[i].Contains("[spawn]") && weaponList.Count > 0)
@@ -213,7 +213,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     outStr += npcDescList.Last();
 
-                    await file.writeFile(it.Replace(Environment.configPath, newConfigPath), outStr);
+                    await file.WriteFile(it.Replace(Environment.configPath, newConfigPath), outStr);
                 }
 
                 return STATUS_OK;

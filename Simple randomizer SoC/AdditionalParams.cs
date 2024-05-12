@@ -45,7 +45,7 @@ namespace Simple_randomizer_SoC
             };
         }
 
-        public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
+        public void UpdateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         /// <summary>
         /// Копирование всех доп параметров, кроме текста игры.
@@ -55,13 +55,13 @@ namespace Simple_randomizer_SoC
         /// </summary>
         /// <param name="paramTypeToNewPrefixDictionary"></param>
         /// <returns></returns>
-        public async Task copyParams(Dictionary<string, string> paramTypeToNewPrefixDictionary)
+        public async Task CopyParams(Dictionary<string, string> paramTypeToNewPrefixDictionary)
         {
             foreach (string key in paramTypeToNewPrefixDictionary.Keys)
             {
                 try
                 {
-                    await fileHandler.copyFile(
+                    await fileHandler.CopyFile(
                         paramTypeToPrefixAndPathDictionary[key].Item1 + paramTypeToPrefixAndPathDictionary[key].Item2,
                         paramTypeToNewPrefixDictionary[key] + paramTypeToPrefixAndPathDictionary[key].Item2
                     );
@@ -78,7 +78,7 @@ namespace Simple_randomizer_SoC
         }
 
         //Перемешивание текста
-        public async Task shuffleAndCopyText(string newConfigPath)
+        public async Task ShuffleAndCopyText(string newConfigPath)
         {
             Dictionary<string, string> tmpFilesDataMap = new Dictionary<string, string>();
             Dictionary<string, List<string>> classifiedTextByLengthMap = new Dictionary<string, List<string>>();
@@ -86,7 +86,7 @@ namespace Simple_randomizer_SoC
             string[] files;
             try
             {
-                files = fileHandler.getFiles($"{Environment.configPath}/text/rus");
+                files = await fileHandler.GetFiles($"{Environment.configPath}/text/rus");
             }
             catch (Exception ex)
             {
@@ -99,11 +99,11 @@ namespace Simple_randomizer_SoC
             }
 
             //Составление карты текста по длине
-            foreach (string file in fileHandler.getFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await fileHandler.GetFiles($"{Environment.configPath}/text/rus"))
             {
                 try
                 {
-                    var textData = await fileHandler.readFile(file);
+                    var textData = await fileHandler.ReadFile(file);
                     var textDataList = new List<string>(textData.Replace("<text>", "\a").Split('\a'));
 
                     string newTextData = textDataList[0];
@@ -151,7 +151,7 @@ namespace Simple_randomizer_SoC
                         classifiedTextByLengthMap[roundedLength].RemoveAt(index);
                     }
 
-                    await fileHandler.writeFile(file.Replace(Environment.configPath, newConfigPath), newTextData);
+                    await fileHandler.WriteFile(file.Replace(Environment.configPath, newConfigPath), newTextData);
                 }
                 catch
                 {
@@ -164,20 +164,17 @@ namespace Simple_randomizer_SoC
             }
         }
 
-        public async Task copyText(string newConfigPath)
+        public async Task CopyText(string newConfigPath)
         {
-            foreach (string file in fileHandler.getFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await fileHandler.GetFiles($"{Environment.configPath}/text/rus"))
             {
                 try
                 {
-                    await fileHandler.copyFile(file, file.Replace(Environment.configPath, newConfigPath));
+                    await fileHandler.CopyFile(file, file.Replace(Environment.configPath, newConfigPath));
                 }
                 catch
                 {
-                    errorMessage += (localizeDictionary.ContainsKey("copyError")
-                        ? localizeDictionary["copyError"]
-                        : $"Ошибка копирования/Copy error")
-                        + $" {file}\r\n";
+                    errorMessage += localizeDictionary["copyError"] + $" {file}\r\n";
                 }
             }
         }

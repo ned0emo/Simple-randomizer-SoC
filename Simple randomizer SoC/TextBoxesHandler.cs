@@ -10,7 +10,7 @@ namespace Simple_randomizer_SoC
 {
     class TextBoxesHandler : FileHandler
     {
-        private string[] fileNames;
+        private readonly string[] fileNames;
 
         public string errorMessage;
 
@@ -20,7 +20,7 @@ namespace Simple_randomizer_SoC
             errorMessage = "";
         }
 
-        public async Task<Dictionary<string, string>> loadData(bool isDefault = false)
+        public async Task<Dictionary<string, string>> LoadData(bool isDefault = false)
         {
             errorMessage = "";
             var filesContentDictionary = new Dictionary<string, string>();
@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC
             {
                 try
                 {
-                    filesContentDictionary.Add(file, await readFile($"{Environment.listsPath + postfix}/{file}.txt"));
+                    filesContentDictionary.Add(file, await ReadFile($"{Environment.listsPath + postfix}/{file}.txt"));
                 }
                 catch
                 {
@@ -41,13 +41,13 @@ namespace Simple_randomizer_SoC
             return filesContentDictionary;
         }
 
-        public async Task saveData(Dictionary<string, string> fileNameContentDictionary)
+        public async Task SaveData(Dictionary<string, string> fileNameContentDictionary)
         {
             errorMessage = "";
             foreach (string file in fileNameContentDictionary.Keys){
                 try
                 {
-                    await writeFile($"{Environment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
+                    await WriteFile($"{Environment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
                 }
                 catch
                 {

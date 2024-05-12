@@ -36,23 +36,23 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var items = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
+                var items = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
                 var itemsStringList = items.Replace("]:", "\a").Split('\a');
 
                 string newItems = "";
 
                 for (int i = 1; i < itemsStringList.Length; i++)
                 {
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "inv_weight", Math.Round(rnd.NextDouble(), 2));
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "eat_health", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "eat_satiety", Math.Round(rnd.NextDouble() - 0.3, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "inv_weight", Math.Round(rnd.NextDouble(), 2));
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_health", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_satiety", Math.Round(rnd.NextDouble() - 0.3, 2), true);
                     //радиация в минус лучше
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "eat_radiation", Math.Round(rnd.NextDouble() * 1.75 - 1, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_radiation", Math.Round(rnd.NextDouble() * 1.75 - 1, 2), true);
                     //--
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "eat_alcohol", Math.Round(rnd.NextDouble() * 0.6 - 0.3, 2), true);
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "eat_power", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "wounds_heal_perc", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                    itemsStringList[i] = replaceStat(itemsStringList[i], "cost", rnd.Next(1401) + 100);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_alcohol", Math.Round(rnd.NextDouble() * 0.6 - 0.3, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_power", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "wounds_heal_perc", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                    itemsStringList[i] = ReplaceStat(itemsStringList[i], "cost", rnd.Next(1401) + 100);
                 }
 
                 foreach (string it in itemsStringList)
@@ -60,7 +60,7 @@ namespace Simple_randomizer_SoC.Generators
                     newItems += it + "]:";
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/items.ltx", newItems);
+                await file.WriteFile($"{newConfigPath}/misc/items.ltx", newItems);
 
                 return STATUS_OK;
             }

@@ -18,7 +18,7 @@ namespace Simple_randomizer_SoC.Generators
 
         public WeatherGenerator(FileHandler file) : base(file) { }
 
-        public void updateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
+        public void UpdateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
         {
             this.skyboxes = skyboxes;
             this.thunders = thunders;
@@ -29,7 +29,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -45,13 +45,13 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var thunderList = createCleanList(thunders);
-                var skyTextureList = createCleanList(skyboxes);
-                var weathers = file.getFiles($"{Environment.configPath}/weathers");
+                var thunderList = CreateCleanList(thunders);
+                var skyTextureList = CreateCleanList(skyboxes);
+                var weathers = await file.GetFiles($"{Environment.configPath}/weathers");
 
                 foreach (string weatherPath in weathers)
                 {
-                    List<string> weatherList = new List<string>((await file.readFile(weatherPath)).Split(']'));
+                    List<string> weatherList = new List<string>((await file.ReadFile(weatherPath)).Split(']'));
 
                     string newWeather = weatherList[0] + "]" + weatherList[1];
                     for (int i = 2; i < weatherList.Count; i++)
@@ -60,54 +60,54 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (thunderProbability > rnd.Next(100) && thunderList.Length > 0)
                         {
-                            currentWeather = replaceStat(currentWeather, "thunderbolt", thunderList[rnd.Next(thunderList.Length)]);
-                            currentWeather = replaceStat(currentWeather, "bolt_period", $"{Math.Round(rnd.NextDouble() * 10 + 2, 1)}f");
-                            currentWeather = replaceStat(currentWeather, "bolt_duration", $"{Math.Round(rnd.NextDouble() * 3.9 + 0.1, 2)}f");
+                            currentWeather = ReplaceStat(currentWeather, "thunderbolt", thunderList[rnd.Next(thunderList.Length)]);
+                            currentWeather = ReplaceStat(currentWeather, "bolt_period", $"{Math.Round(rnd.NextDouble() * 10 + 2, 1)}f");
+                            currentWeather = ReplaceStat(currentWeather, "bolt_duration", $"{Math.Round(rnd.NextDouble() * 3.9 + 0.1, 2)}f");
                         }
                         else
                         {
-                            currentWeather = replaceStat(currentWeather, "thunderbolt", "");
+                            currentWeather = ReplaceStat(currentWeather, "thunderbolt", "");
                         }
 
                         if (rainProbability > rnd.Next(100))
                         {
-                            currentWeather = replaceStat(currentWeather, "rain_density", Math.Round(rnd.NextDouble(), 2));
+                            currentWeather = ReplaceStat(currentWeather, "rain_density", Math.Round(rnd.NextDouble(), 2));
                         }
                         else
                         {
-                            currentWeather = replaceStat(currentWeather, "rain_density", 0.0);
+                            currentWeather = ReplaceStat(currentWeather, "rain_density", 0.0);
                         }
 
                         if (skyTextureList.Length > 0)
                         {
-                            currentWeather = replaceStat(currentWeather, "sky_texture", skyTextureList[rnd.Next(skyTextureList.Length)]);
+                            currentWeather = ReplaceStat(currentWeather, "sky_texture", skyTextureList[rnd.Next(skyTextureList.Length)]);
                         }
 
-                        currentWeather = replaceStat(currentWeather, "sky_rotation", rnd.Next(360));
-                        currentWeather = replaceStat(currentWeather, "far_plane", rnd.Next(100, 3001));
-                        currentWeather = replaceStat(currentWeather, "fog_distance", rnd.Next(100, 3001));
-                        currentWeather = replaceStat(currentWeather, "fog_density", Math.Round(rnd.NextDouble(), 2));
-                        currentWeather = replaceStat(currentWeather, "wind_velocity", Math.Round(rnd.NextDouble() * 100, 1));
+                        currentWeather = ReplaceStat(currentWeather, "sky_rotation", rnd.Next(360));
+                        currentWeather = ReplaceStat(currentWeather, "far_plane", rnd.Next(100, 3001));
+                        currentWeather = ReplaceStat(currentWeather, "fog_distance", rnd.Next(100, 3001));
+                        currentWeather = ReplaceStat(currentWeather, "fog_density", Math.Round(rnd.NextDouble(), 2));
+                        currentWeather = ReplaceStat(currentWeather, "wind_velocity", Math.Round(rnd.NextDouble() * 100, 1));
                         currentWeather
-                            = replaceStat(currentWeather, "sky_color", $"{Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}");
+                            = ReplaceStat(currentWeather, "sky_color", $"{Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}, {Math.Round(rnd.NextDouble(), 2)}");
                         currentWeather
-                            = replaceStat(currentWeather, "clouds_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}, {Math.Round(rnd.NextDouble() + 1, 1)}");
+                            = ReplaceStat(currentWeather, "clouds_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}, {Math.Round(rnd.NextDouble() + 1, 1)}");
                         currentWeather
-                            = replaceStat(currentWeather, "fog_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                            = ReplaceStat(currentWeather, "fog_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
                         currentWeather
-                            = replaceStat(currentWeather, "rain_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                            = ReplaceStat(currentWeather, "rain_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
                         currentWeather
-                            = replaceStat(currentWeather, "ambient", $"{Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}");
+                            = ReplaceStat(currentWeather, "ambient", $"{Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(rnd.NextDouble() * 0.2 + 0.01, 4)}");
                         currentWeather
-                            = replaceStat(currentWeather, "hemi_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}");
+                            = ReplaceStat(currentWeather, "hemi_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 1)}");
                         currentWeather
-                            = replaceStat(currentWeather, "sun_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
-                        currentWeather = replaceStat(currentWeather, "sun_dir", $"{Math.Round(rnd.NextDouble() * 39 - 40, 1)}, {rnd.Next(200, 301)}");
+                            = ReplaceStat(currentWeather, "sun_color", $"{Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}, {Math.Round(rnd.NextDouble(), 3)}");
+                        currentWeather = ReplaceStat(currentWeather, "sun_dir", $"{Math.Round(rnd.NextDouble() * 39 - 40, 1)}, {rnd.Next(200, 301)}");
 
                         newWeather += "]" + currentWeather;
                     }
 
-                    await file.writeFile(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
+                    await file.WriteFile(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
                 }
 
                 return STATUS_OK;

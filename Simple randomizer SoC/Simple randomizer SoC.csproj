@@ -87,6 +87,7 @@
       <DependentUpon>GuideForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Generators\WeatherGenerator.cs" />
+    <Compile Include="Localization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\SaveForm.cs">

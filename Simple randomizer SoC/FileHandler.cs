@@ -9,36 +9,38 @@ namespace Simple_randomizer_SoC
 {
     class FileHandler
     {
-        public async Task<string> readFile(string path)
+        public async Task<string> ReadFile(string path)
         {
-            StreamReader sr = new StreamReader(path, Encoding.Default);
-            var value = await sr.ReadToEndAsync();
-            sr.Close();
+            using (StreamReader sr = new StreamReader(path, Encoding.Default))
+            {
+                var value = await sr.ReadToEndAsync();
+                sr.Close();
 
-            return value;
+                return value;
+            }
         }
 
-        public async Task writeFile(string path, string content)
+        public async Task WriteFile(string path, string content)
         {
-            string rightPath = path.Replace('\\', '/');
-            Directory.CreateDirectory(rightPath.Substring(0, rightPath.LastIndexOf('/')));
-
-            FileStream fs = new FileStream(rightPath, FileMode.Create);
-            byte[] buffer = Encoding.Default.GetBytes(content);
-            await fs.WriteAsync(buffer, 0, buffer.Length);
-            fs.Close();
+            Directory.CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                await sw.WriteAsync(content);
+                sw.Close();
+            }
         }
 
-        public async Task copyFile(string oldPath, string newPath)
+        public async Task CopyFile(string oldPath, string newPath)
         {
-            string rightPath = newPath.Replace('\\', '/');
-            Directory.CreateDirectory(rightPath.Substring(0, rightPath.LastIndexOf('/')));
-
-            FileStream fs = File.Open(oldPath, FileMode.Open);
-            await fs.CopyToAsync(File.Create(newPath));
-            fs.Close();
+            await Task.Yield();
+            Directory.CreateDirectory(newPath.Substring(0, newPath.LastIndexOf('\\')));
+            File.Copy(oldPath, newPath);
         }
 
-        public string[] getFiles(string path) => Directory.GetFiles(path);
+        public async Task<string[]> GetFiles(string path)
+        {
+            await Task.Yield();
+            return Directory.GetFiles(path);
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var outfits = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
+                var outfits = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
                 var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
 
                 string newOutfits = "";
@@ -53,22 +53,22 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     int plusMaxWeight = rnd.Next(-20, 26);
 
-                    outfitFullList[i] = replaceStat(outfitFullList[i], "inv_weight", rnd.Next(10) + 1);
-                    outfitFullList[i] = replaceStat(outfitFullList[i], "cost", rnd.Next(10000) + 1);
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "inv_weight", rnd.Next(10) + 1);
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "cost", rnd.Next(10000) + 1);
 
                     foreach (string stat in fullOutfitStats)
                     {
-                        outfitFullList[i] = replaceStat(outfitFullList[i], stat, Math.Round(rnd.NextDouble() * 1.4 - 0.7, 2));
+                        outfitFullList[i] = ReplaceStat(outfitFullList[i], stat, Math.Round(rnd.NextDouble() * 1.4 - 0.7, 2));
                     }
 
                     foreach (string immun in fullOutfitImmunities)
                     {
-                        outfitFullList[i] = replaceStat(outfitFullList[i], immun, Math.Round(rnd.NextDouble() / 20, 3));
+                        outfitFullList[i] = ReplaceStat(outfitFullList[i], immun, Math.Round(rnd.NextDouble() / 20, 3));
                     }
 
                     if (outfitFullList[i].Contains("additional_inventory_weight"))
                     {
-                        outfitFullList[i] = replaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight);
+                        outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight);
                     }
                     else
                     {
@@ -77,7 +77,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (outfitFullList[i].Contains("additional_inventory_weight2"))
                     {
-                        outfitFullList[i] = replaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10);
+                        outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10);
                     }
                     else
                     {
@@ -91,7 +91,7 @@ namespace Simple_randomizer_SoC.Generators
                     newOutfits += it + "outfit_base";
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/outfit.ltx", newOutfits);
+                await file.WriteFile($"{newConfigPath}/misc/outfit.ltx", newOutfits);
 
                 return STATUS_OK;
             }

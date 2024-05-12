@@ -20,7 +20,7 @@ namespace Simple_randomizer_SoC.Generators
 
         public TradeGenerator(FileHandler file) : base(file) { }
 
-        public void updateData(string weapons, string ammos, string outfits,
+        public void UpdateData(string weapons, string ammos, string outfits,
             string artefacts, string items, string others, string newConfigPath)
         {
             this.weapons = weapons;
@@ -34,7 +34,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -49,17 +49,17 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var tradeFilesList = file.getFiles($"{Environment.configPath}/misc").ToList();
+                var tradeFilesList = (await file.GetFiles($"{Environment.configPath}/misc")).ToList();
                 tradeFilesList.RemoveAll(el => !el.Contains("trade_"));
 
                 foreach (var tradeFile in tradeFilesList)
                 {
-                    var weaponList = createCleanList(weapons);
-                    var ammoList = createCleanList(ammos);
-                    var outfitList = createCleanList(outfits);
-                    var artefactList = createCleanList(artefacts);
-                    var itemList = createCleanList(items);
-                    var otherList = createCleanList(others);
+                    var weaponList = CreateCleanList(weapons);
+                    var ammoList = CreateCleanList(ammos);
+                    var outfitList = CreateCleanList(outfits);
+                    var artefactList = CreateCleanList(artefacts);
+                    var itemList = CreateCleanList(items);
+                    var otherList = CreateCleanList(others);
 
                     var allItemList = new string[][] { weaponList, ammoList, outfitList, artefactList, itemList, otherList };
                     var probabilitiesList = new int[] { 15, 30, 15, 5, 60, 15 };
@@ -70,13 +70,13 @@ namespace Simple_randomizer_SoC.Generators
                         $"sell_condition = trader_sell_0\n" +
                         $"buy_supplies = supplies_start_0\n\n" +
                         $"[trader_buy_0]\n" +
-                        $"{makeBuyCondition(allItemList)}\n" +
+                        $"{MakeBuyCondition(allItemList)}\n" +
                         $"[trader_sell_0]\n" +
-                        $"{makeSellCondition(allItemList)}\n" +
+                        $"{MakeSellCondition(allItemList)}\n" +
                         $"[supplies_start_0]\n" +
-                        $"{makeBuySupplies(allItemList, probabilitiesList, countList)}";
+                        $"{MakeBuySupplies(allItemList, probabilitiesList, countList)}";
 
-                    await file.writeFile(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
+                    await file.WriteFile(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
                 }
 
                 return STATUS_OK;
@@ -91,7 +91,7 @@ namespace Simple_randomizer_SoC.Generators
             }
         }
 
-        private string makeBuyCondition(string[][] allItems)
+        private string MakeBuyCondition(string[][] allItems)
         {
             string newStr = "";
 
@@ -108,7 +108,7 @@ namespace Simple_randomizer_SoC.Generators
             return newStr;
         }
 
-        private string makeSellCondition(string[][] allItems)
+        private string MakeSellCondition(string[][] allItems)
         {
             string newStr = "";
 
@@ -125,7 +125,7 @@ namespace Simple_randomizer_SoC.Generators
             return newStr;
         }
 
-        private string makeBuySupplies(string[][] allItems, int[] tradeProbabilities, int[] maxItemCounts)
+        private string MakeBuySupplies(string[][] allItems, int[] tradeProbabilities, int[] maxItemCounts)
         {
             string newStr = "";
 

@@ -45,7 +45,7 @@ namespace Simple_randomizer_SoC
             this.file = file;
         }
 
-        public void updateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
+        public void UpdateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         /// <summary>
         /// Замена стата ltx файла
@@ -55,7 +55,7 @@ namespace Simple_randomizer_SoC
         /// <param name="statValue">Новое значение</param>
         /// <param name="createIfNotExist">Пытатсья создать параметр, если он не был найден</param>
         /// <returns>Сегмент файла с измененным (по возможности) параметром</returns>
-        protected string replaceStat(string item, string statName, object statValue, bool createIfNotExist = false)
+        protected string ReplaceStat(string item, string statName, object statValue, bool createIfNotExist = false)
         {
             if (item.Contains(statName))
             {
@@ -78,7 +78,7 @@ namespace Simple_randomizer_SoC
         /// tag без открывающих/закрывающих уголков
         /// </summary>
         /// <returns>text с заменой тега (если возможно)</returns>
-        protected string replaceXmlValue(string text, string tag, string newValue)
+        protected string ReplaceXmlValue(string text, string tag, string newValue)
         {
             string openTag = $"<{tag}>";
             string closeTag = $"</{tag}>";
@@ -102,7 +102,7 @@ namespace Simple_randomizer_SoC
         /// <param name="keepTextAfterSpaces">Если true, то элемент массива, содержащий пробел, будет полностью сохранен,
         /// иначе данные после пробела включительно будут удалены</param>
         /// <returns>Возвращает массив строк</returns>
-        protected string[] createCleanList(string str, bool keepTextAfterSpaces = false)
+        protected string[] CreateCleanList(string str, bool keepTextAfterSpaces = false)
         {
             if (str.Length < 1) return new string[0];
 
@@ -111,8 +111,7 @@ namespace Simple_randomizer_SoC
             newStr = Regex.Replace(str, "[\\t\\v\\r\\f]", "");
             //Удаление повторяющихся подряд пробелов
             newStr = Regex.Replace(newStr, "\\ {2,}", " ");
-            //Перед сплитом удаление повторяющихся переносов строк
-            var tmpList = Regex.Replace(newStr, "\\n{2,}", "\n").Split('\n');
+            var tmpList = Regex.Split(newStr, "\\n{2,}");
 
             if (!keepTextAfterSpaces)
             {

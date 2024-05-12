@@ -19,14 +19,14 @@ namespace Simple_randomizer_SoC.Generators
 
         public ArtefactsGenerator(FileHandler file) : base(file) { }
 
-        public void updateData(string newConfigPath)
+        public void UpdateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
 
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -42,7 +42,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var artefacts = Regex.Replace(await file.readFile($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
+                var artefacts = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
                 var artefactsStringList = artefacts.Replace("af_base", "\a").Split('\a');
 
                 string newArtefacts = "";
@@ -50,25 +50,25 @@ namespace Simple_randomizer_SoC.Generators
                 for (int i = 2; i < artefactsStringList.Length; i++)
                 {
                     int statsNum = rnd.Next(5) + 1;
-                    List<Tuple<string, double>> generatedAfStats = generateAfStats(statsNum);
+                    List<Tuple<string, double>> generatedAfStats = GenerateAfStats(statsNum);
 
-                    artefactsStringList[i] = replaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
-                    artefactsStringList[i] = replaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
+                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
+                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
 
                     //Замена статов на пустые для последующего добавления новых
                     foreach (string stat in mainAfStats)
                     {
-                        artefactsStringList[i] = replaceStat(artefactsStringList[i], stat, 1.0);
+                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 1.0);
                     }
                     foreach (string stat in additionalAfStats)
                     {
-                        artefactsStringList[i] = replaceStat(artefactsStringList[i], stat, 0.0);
+                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 0.0);
                     }
 
                     //Применение модифицированных статов
                     foreach (Tuple<string, double> stat in generatedAfStats)
                     {
-                        artefactsStringList[i] = replaceStat(artefactsStringList[i], stat.Item1, stat.Item2);
+                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat.Item1, stat.Item2);
                     }
                 }
 
@@ -77,7 +77,7 @@ namespace Simple_randomizer_SoC.Generators
                     newArtefacts += it + "af_base";
                 }
 
-                await file.writeFile($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
+                await file.WriteFile($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
 
                 return STATUS_OK;
             }
@@ -93,7 +93,7 @@ namespace Simple_randomizer_SoC.Generators
         }
 
         //генерация статов арта
-        private List<Tuple<string, double>> generateAfStats(int statsNum)
+        private List<Tuple<string, double>> GenerateAfStats(int statsNum)
         {
             List<string> statsList = new List<string>(mainAfStats);
             statsList.AddRange(additionalAfStats);

@@ -33,13 +33,13 @@ namespace RandomizerSoC
             infoMessageLabel.Text = $"{info}\n{files}";
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
