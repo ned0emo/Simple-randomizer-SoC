@@ -1,5 +1,6 @@
 ﻿using Simple_randomizer_SoC;
 using Simple_randomizer_SoC.Generators;
+using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -47,6 +48,18 @@ namespace RandomizerSoC
 
         readonly AdditionalParams additionalParams;
 
+        readonly SoundRandomizer soundRandomizer;
+
+        //отображение формы
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            UpdateText();
+            LoadLists();
+
+            threadsNumeric.Value = Math.Max(1, Math.Min(threadsNumeric.Value, System.Environment.ProcessorCount));
+            threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -78,7 +91,8 @@ namespace RandomizerSoC
                 weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox };
 
             additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
-                giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox};
+                giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox,
+                gameSoundCheckBox, texturesCheckBox};
 
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
@@ -103,6 +117,8 @@ namespace RandomizerSoC
 
             textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
 
+            soundRandomizer = new SoundRandomizer();
+
             if (Localization.IsFirstLoadEnglish())
             {
                 engRadioButton.Checked = true;
@@ -115,7 +131,7 @@ namespace RandomizerSoC
             engRadioButton.Click += EngRadioButton_Click;
         }
 
-        //кнопка сохранения
+        #region списки
         private async void SaveButton_Click(object sender, EventArgs e)
         {
             string changedLists = "";
@@ -156,13 +172,6 @@ namespace RandomizerSoC
         //загрузка списков по умолчанию
         private void LoadDefaultButton_Click(object sender, EventArgs e) => LoadLists(true);
 
-        //отображение формы
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            UpdateText();
-            LoadLists();
-        }
-
         //загрузка списков редактируемых или дефолтных
         private async void LoadLists(bool isDefault = false)
         {
@@ -187,6 +196,7 @@ namespace RandomizerSoC
                 new InfoForm(Localization.Get("loadError"), textBoxesHandler.errorMessage).ShowDialog();
             }
         }
+        #endregion
 
         //генерация всего
         private async void GenerateButton_Click(object sender, EventArgs e)
@@ -211,15 +221,24 @@ namespace RandomizerSoC
                 saveButton.Enabled = enabled;
                 loadButton.Enabled = enabled;
                 loadDefaultButton.Enabled = enabled;
+
+                soundsPathButton.Enabled = enabled;
+                soundsPathText.Enabled = enabled;
+                stepRainCheckBox.Enabled = enabled;
+                roundDurationNumeric.Enabled = enabled;
+                texturesPathButton.Enabled = enabled;
+                texturesPathText.Enabled = enabled;
+                uiReplaceCheckBox.Enabled = enabled;
+
                 progressBar1.Value = 0;
             }
 
             changeButtonsStatus(false);
 
-            string newGamedataPath = $"./gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
-            string newConfigPath = $"{newGamedataPath}/config";
-            string newScriptsPath = $"{newGamedataPath}/scripts";
-            string newSpawnsPath = $"{newGamedataPath}/spawns";
+            string newGamedataPath = $".\\gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
+            string newConfigPath = $"{newGamedataPath}\\config";
+            string newScriptsPath = $"{newGamedataPath}\\scripts";
+            string newSpawnsPath = $"{newGamedataPath}\\spawns";
 
             //тайники
             if (treasureCheckBox.Checked)
@@ -432,7 +451,47 @@ namespace RandomizerSoC
                 return;
             }
             #endregion
-            progressBar1.Value = 100;
+
+            //звуки
+            if (gameSoundCheckBox.Checked)
+            {
+                if (!soundsPathText.Text.Contains("\\sounds"))
+                {
+                    new InfoForm("Путь к игровым звукам не содержит папку \"sounds\"").ShowDialog();
+                    changeButtonsStatus(true);
+                }
+                else
+                {
+                    try
+                    {
+                        soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath);
+                        do
+                        {
+                            soundsProgressLabel.Text = soundRandomizer.status;
+                            progressBar1.Value = Math.Min(progressBar1.Maximum, soundRandomizer.progress);
+                            progressBar1.Maximum = soundRandomizer.maxProgress;
+                            await Task.Delay(100);
+                        } while (soundRandomizer.isProcessing && !soundRandomizer.stopProcessing);
+
+                        if(soundRandomizer.errorMessage.Length > 0)
+                        {
+                            throw new Exception(soundRandomizer.errorMessage);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await soundRandomizer.Abort();
+                        new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                        changeButtonsStatus(true);
+                        progressBar1.Value = 0;
+                        progressBar1.Maximum = 100;
+                        return;
+                    }
+                }
+            }            
+
+            progressBar1.Value = 0;
+            progressBar1.Maximum = 100;
 
             new InfoForm(Localization.Get("savedIn") + " " + newGamedataPath).ShowDialog();
 
@@ -452,13 +511,8 @@ namespace RandomizerSoC
             }
         }
 
-        //надпись "рекомендуется" при активации рандома группировок
         private void CommunityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            foreach (Label label in recommendLabelList)
-            {
-                label.Visible = communityCheckBox.Checked;
-            }
             if (communityCheckBox.Checked)
             {
                 advancedGulagCheckBox.Checked = true;
@@ -471,7 +525,7 @@ namespace RandomizerSoC
             }
         }
 
-        //Справка
+        #region справка
         private void WeaponGuideButton_Click(object sender, EventArgs e)
         {
             string text;
@@ -520,6 +574,7 @@ namespace RandomizerSoC
             }
             new GuideForm(text).ShowDialog();
         }
+        #endregion
 
         //Отключение перемешивания текста при отключении перевода
         private void TranslateCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -573,6 +628,7 @@ namespace RandomizerSoC
         //ссылка другое под НПС
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
 
+        #region локализация
         private async void RusRadioButton_Click(object sender, EventArgs e)
         {
             Localization.ChangeLanguage(false);
@@ -656,10 +712,56 @@ namespace RandomizerSoC
             tradersCheckBox.Text = Localization.Get("traderItems");
             consumablesCheckBox.Text = Localization.Get("consumables");
         }
+        #endregion
 
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new InfoForm(Localization.Get("twoWords"), Localization.Get("onePointFourAdvertise")).ShowDialog();
+        }
+
+        private void AdvancedGulagCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (Label label in recommendLabelList)
+            {
+                label.Visible = advancedGulagCheckBox.Checked;
+            }
+        }
+
+        private void GameSoundCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var value = gameSoundCheckBox.Checked;
+            soundsPathButton.Enabled = value;
+            soundsPathText.Enabled = value;
+            stepRainCheckBox.Enabled = value;
+            roundDurationNumeric.Enabled = value;
+        }
+
+        private void TexturesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var value = texturesCheckBox.Checked;
+            texturesPathButton.Enabled = value;
+            texturesPathText.Enabled = value;
+            uiReplaceCheckBox.Enabled = value;
+        }
+
+        private void SoundsPathButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog
+            {
+                SelectedPath = soundsPathText.Text
+            };
+            if (fbd.ShowDialog() == DialogResult.OK) soundsPathText.Text = fbd.SelectedPath;
+            soundRandomizer.path = soundsPathText.Text;
+        }
+
+        private void TexturesPathButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            soundRandomizer.stopProcessing = true;
         }
     }
 }

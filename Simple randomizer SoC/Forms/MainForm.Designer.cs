@@ -80,6 +80,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
             this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedGulagCheckBox = new System.Windows.Forms.CheckBox();
@@ -97,6 +98,24 @@
             this.barAlarmCheckBox = new System.Windows.Forms.CheckBox();
             this.equipWeaponEverywhereCheckBox = new System.Windows.Forms.CheckBox();
             this.communityCheckBox = new System.Windows.Forms.CheckBox();
+            this.advancedTab2 = new System.Windows.Forms.TabPage();
+            this.advanced2Label = new System.Windows.Forms.Label();
+            this.texturesCheckBox = new System.Windows.Forms.CheckBox();
+            this.gameSoundCheckBox = new System.Windows.Forms.CheckBox();
+            this.texturesProgressLabel = new System.Windows.Forms.Label();
+            this.uiReplaceCheckBox = new System.Windows.Forms.CheckBox();
+            this.texturesPathButton = new System.Windows.Forms.Button();
+            this.texturesPathText = new System.Windows.Forms.TextBox();
+            this.texturesPathLabel = new System.Windows.Forms.Label();
+            this.soundsProgressLabel = new System.Windows.Forms.Label();
+            this.threadsLabel = new System.Windows.Forms.Label();
+            this.roundDurationLabel = new System.Windows.Forms.Label();
+            this.threadsNumeric = new System.Windows.Forms.NumericUpDown();
+            this.roundDurationNumeric = new System.Windows.Forms.NumericUpDown();
+            this.stepRainCheckBox = new System.Windows.Forms.CheckBox();
+            this.soundsPathButton = new System.Windows.Forms.Button();
+            this.soundsPathText = new System.Windows.Forms.TextBox();
+            this.soundsPathLabel = new System.Windows.Forms.Label();
             this.allCheckBox = new System.Windows.Forms.CheckBox();
             this.treasureCheckBox = new System.Windows.Forms.CheckBox();
             this.afCheckBox = new System.Windows.Forms.CheckBox();
@@ -115,7 +134,6 @@
             this.engRadioButton = new System.Windows.Forms.RadioButton();
             this.tradersCheckBox = new System.Windows.Forms.CheckBox();
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -124,6 +142,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).BeginInit();
             this.tabPage8.SuspendLayout();
+            this.advancedTab2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
@@ -174,6 +195,7 @@
             this.tabControl.Controls.Add(this.tabPage9);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage8);
+            this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
@@ -708,6 +730,17 @@
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label8.Location = new System.Drawing.Point(898, 444);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "©ned0emo, ver 1.7";
+            // 
             // onePointFourLinkLabel
             // 
             this.onePointFourLinkLabel.AutoSize = true;
@@ -740,6 +773,7 @@
             this.advancedGulagCheckBox.Text = "Расширить присоединение НПС к лагерям (Ломает некоторые скрипты, но сюжетка прохо" +
     "дима. Нестабильно на 1.0006)";
             this.advancedGulagCheckBox.UseVisualStyleBackColor = true;
+            this.advancedGulagCheckBox.CheckedChanged += new System.EventHandler(this.AdvancedGulagCheckBox_CheckedChanged);
             // 
             // shuffleTextCheckBox
             // 
@@ -884,6 +918,217 @@
             this.communityCheckBox.Text = "Изменять группировку НПС";
             this.communityCheckBox.UseVisualStyleBackColor = true;
             this.communityCheckBox.CheckedChanged += new System.EventHandler(this.CommunityCheckBox_CheckedChanged);
+            // 
+            // advancedTab2
+            // 
+            this.advancedTab2.Controls.Add(this.advanced2Label);
+            this.advancedTab2.Controls.Add(this.texturesCheckBox);
+            this.advancedTab2.Controls.Add(this.gameSoundCheckBox);
+            this.advancedTab2.Controls.Add(this.texturesProgressLabel);
+            this.advancedTab2.Controls.Add(this.uiReplaceCheckBox);
+            this.advancedTab2.Controls.Add(this.texturesPathButton);
+            this.advancedTab2.Controls.Add(this.texturesPathText);
+            this.advancedTab2.Controls.Add(this.texturesPathLabel);
+            this.advancedTab2.Controls.Add(this.soundsProgressLabel);
+            this.advancedTab2.Controls.Add(this.threadsLabel);
+            this.advancedTab2.Controls.Add(this.roundDurationLabel);
+            this.advancedTab2.Controls.Add(this.threadsNumeric);
+            this.advancedTab2.Controls.Add(this.roundDurationNumeric);
+            this.advancedTab2.Controls.Add(this.stepRainCheckBox);
+            this.advancedTab2.Controls.Add(this.soundsPathButton);
+            this.advancedTab2.Controls.Add(this.soundsPathText);
+            this.advancedTab2.Controls.Add(this.soundsPathLabel);
+            this.advancedTab2.Location = new System.Drawing.Point(4, 22);
+            this.advancedTab2.Name = "advancedTab2";
+            this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
+            this.advancedTab2.Size = new System.Drawing.Size(1015, 491);
+            this.advancedTab2.TabIndex = 11;
+            this.advancedTab2.Text = "Дополнительно2";
+            this.advancedTab2.UseVisualStyleBackColor = true;
+            // 
+            // advanced2Label
+            // 
+            this.advanced2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.advanced2Label.Location = new System.Drawing.Point(6, 3);
+            this.advanced2Label.Name = "advanced2Label";
+            this.advanced2Label.Size = new System.Drawing.Size(1003, 156);
+            this.advanced2Label.TabIndex = 37;
+            this.advanced2Label.Text = resources.GetString("advanced2Label.Text");
+            // 
+            // texturesCheckBox
+            // 
+            this.texturesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.texturesCheckBox.Location = new System.Drawing.Point(9, 318);
+            this.texturesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.texturesCheckBox.Name = "texturesCheckBox";
+            this.texturesCheckBox.Size = new System.Drawing.Size(245, 33);
+            this.texturesCheckBox.TabIndex = 36;
+            this.texturesCheckBox.Text = "Текстуры";
+            this.texturesCheckBox.UseVisualStyleBackColor = true;
+            this.texturesCheckBox.CheckedChanged += new System.EventHandler(this.TexturesCheckBox_CheckedChanged);
+            // 
+            // gameSoundCheckBox
+            // 
+            this.gameSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 195);
+            this.gameSoundCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.gameSoundCheckBox.Name = "gameSoundCheckBox";
+            this.gameSoundCheckBox.Size = new System.Drawing.Size(245, 33);
+            this.gameSoundCheckBox.TabIndex = 35;
+            this.gameSoundCheckBox.Text = "Звуки";
+            this.gameSoundCheckBox.UseVisualStyleBackColor = true;
+            this.gameSoundCheckBox.CheckedChanged += new System.EventHandler(this.GameSoundCheckBox_CheckedChanged);
+            // 
+            // texturesProgressLabel
+            // 
+            this.texturesProgressLabel.AutoSize = true;
+            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 397);
+            this.texturesProgressLabel.Name = "texturesProgressLabel";
+            this.texturesProgressLabel.Size = new System.Drawing.Size(16, 13);
+            this.texturesProgressLabel.TabIndex = 33;
+            this.texturesProgressLabel.Text = "...";
+            // 
+            // uiReplaceCheckBox
+            // 
+            this.uiReplaceCheckBox.AutoSize = true;
+            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 374);
+            this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
+            this.uiReplaceCheckBox.Size = new System.Drawing.Size(296, 17);
+            this.uiReplaceCheckBox.TabIndex = 32;
+            this.uiReplaceCheckBox.Text = "Заменять элементы интерфейса (не рекомендуется)";
+            this.uiReplaceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // texturesPathButton
+            // 
+            this.texturesPathButton.Location = new System.Drawing.Point(488, 346);
+            this.texturesPathButton.Name = "texturesPathButton";
+            this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
+            this.texturesPathButton.TabIndex = 31;
+            this.texturesPathButton.Text = "Открыть";
+            this.texturesPathButton.UseVisualStyleBackColor = true;
+            this.texturesPathButton.Click += new System.EventHandler(this.TexturesPathButton_Click);
+            // 
+            // texturesPathText
+            // 
+            this.texturesPathText.Location = new System.Drawing.Point(142, 348);
+            this.texturesPathText.Name = "texturesPathText";
+            this.texturesPathText.Size = new System.Drawing.Size(340, 20);
+            this.texturesPathText.TabIndex = 30;
+            // 
+            // texturesPathLabel
+            // 
+            this.texturesPathLabel.Location = new System.Drawing.Point(6, 351);
+            this.texturesPathLabel.Name = "texturesPathLabel";
+            this.texturesPathLabel.Size = new System.Drawing.Size(130, 15);
+            this.texturesPathLabel.TabIndex = 29;
+            this.texturesPathLabel.Text = "Путь к папке textures";
+            // 
+            // soundsProgressLabel
+            // 
+            this.soundsProgressLabel.AutoSize = true;
+            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 297);
+            this.soundsProgressLabel.Name = "soundsProgressLabel";
+            this.soundsProgressLabel.Size = new System.Drawing.Size(16, 13);
+            this.soundsProgressLabel.TabIndex = 28;
+            this.soundsProgressLabel.Text = "...";
+            // 
+            // threadsLabel
+            // 
+            this.threadsLabel.AutoSize = true;
+            this.threadsLabel.Location = new System.Drawing.Point(70, 175);
+            this.threadsLabel.Name = "threadsLabel";
+            this.threadsLabel.Size = new System.Drawing.Size(266, 13);
+            this.threadsLabel.TabIndex = 27;
+            this.threadsLabel.Text = "Максимальное количетсво потоков для обработки";
+            // 
+            // roundDurationLabel
+            // 
+            this.roundDurationLabel.AutoSize = true;
+            this.roundDurationLabel.Location = new System.Drawing.Point(70, 276);
+            this.roundDurationLabel.Name = "roundDurationLabel";
+            this.roundDurationLabel.Size = new System.Drawing.Size(569, 13);
+            this.roundDurationLabel.TabIndex = 26;
+            this.roundDurationLabel.Text = "Шаг округления длительности звуковых файлов, сек (использование больших значений " +
+    "на свой страх и риск)";
+            // 
+            // threadsNumeric
+            // 
+            this.threadsNumeric.Location = new System.Drawing.Point(9, 172);
+            this.threadsNumeric.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.threadsNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.threadsNumeric.Name = "threadsNumeric";
+            this.threadsNumeric.Size = new System.Drawing.Size(55, 20);
+            this.threadsNumeric.TabIndex = 25;
+            this.threadsNumeric.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // roundDurationNumeric
+            // 
+            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 274);
+            this.roundDurationNumeric.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.roundDurationNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.roundDurationNumeric.Name = "roundDurationNumeric";
+            this.roundDurationNumeric.Size = new System.Drawing.Size(55, 20);
+            this.roundDurationNumeric.TabIndex = 24;
+            this.roundDurationNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // stepRainCheckBox
+            // 
+            this.stepRainCheckBox.AutoSize = true;
+            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 251);
+            this.stepRainCheckBox.Name = "stepRainCheckBox";
+            this.stepRainCheckBox.Size = new System.Drawing.Size(288, 17);
+            this.stepRainCheckBox.TabIndex = 23;
+            this.stepRainCheckBox.Text = "Заменять звуки шагов и дождя (не рекомендуется)";
+            this.stepRainCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // soundsPathButton
+            // 
+            this.soundsPathButton.Location = new System.Drawing.Point(488, 223);
+            this.soundsPathButton.Name = "soundsPathButton";
+            this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
+            this.soundsPathButton.TabIndex = 22;
+            this.soundsPathButton.Text = "Открыть";
+            this.soundsPathButton.UseVisualStyleBackColor = true;
+            this.soundsPathButton.Click += new System.EventHandler(this.SoundsPathButton_Click);
+            // 
+            // soundsPathText
+            // 
+            this.soundsPathText.Location = new System.Drawing.Point(142, 225);
+            this.soundsPathText.Name = "soundsPathText";
+            this.soundsPathText.Size = new System.Drawing.Size(340, 20);
+            this.soundsPathText.TabIndex = 21;
+            // 
+            // soundsPathLabel
+            // 
+            this.soundsPathLabel.Location = new System.Drawing.Point(6, 228);
+            this.soundsPathLabel.Name = "soundsPathLabel";
+            this.soundsPathLabel.Size = new System.Drawing.Size(130, 15);
+            this.soundsPathLabel.TabIndex = 20;
+            this.soundsPathLabel.Text = "Путь к папке sounds";
             // 
             // allCheckBox
             // 
@@ -1032,6 +1277,7 @@
             // rusRadioButton
             // 
             this.rusRadioButton.AutoSize = true;
+            this.rusRadioButton.Checked = true;
             this.rusRadioButton.Location = new System.Drawing.Point(1056, 502);
             this.rusRadioButton.Name = "rusRadioButton";
             this.rusRadioButton.Size = new System.Drawing.Size(48, 17);
@@ -1047,7 +1293,6 @@
             this.engRadioButton.Name = "engRadioButton";
             this.engRadioButton.Size = new System.Drawing.Size(48, 17);
             this.engRadioButton.TabIndex = 23;
-            this.engRadioButton.TabStop = true;
             this.engRadioButton.Text = "ENG";
             this.engRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -1070,17 +1315,6 @@
             this.consumablesCheckBox.TabIndex = 25;
             this.consumablesCheckBox.Text = "Расходники";
             this.consumablesCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(898, 444);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 15);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "©ned0emo, ver 1.6";
             // 
             // MainForm
             // 
@@ -1114,6 +1348,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Рандомайзер Тень Чернобыля";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1128,6 +1363,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
+            this.advancedTab2.ResumeLayout(false);
+            this.advancedTab2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1222,6 +1461,24 @@
         private System.Windows.Forms.CheckBox tradersCheckBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox consumablesCheckBox;
+        private System.Windows.Forms.TabPage advancedTab2;
+        private System.Windows.Forms.CheckBox stepRainCheckBox;
+        private System.Windows.Forms.Button soundsPathButton;
+        private System.Windows.Forms.TextBox soundsPathText;
+        private System.Windows.Forms.Label soundsPathLabel;
+        private System.Windows.Forms.Label threadsLabel;
+        private System.Windows.Forms.Label roundDurationLabel;
+        private System.Windows.Forms.NumericUpDown threadsNumeric;
+        private System.Windows.Forms.NumericUpDown roundDurationNumeric;
+        private System.Windows.Forms.Label soundsProgressLabel;
+        private System.Windows.Forms.Label texturesProgressLabel;
+        private System.Windows.Forms.CheckBox uiReplaceCheckBox;
+        private System.Windows.Forms.Button texturesPathButton;
+        private System.Windows.Forms.TextBox texturesPathText;
+        private System.Windows.Forms.Label texturesPathLabel;
+        private System.Windows.Forms.CheckBox texturesCheckBox;
+        private System.Windows.Forms.CheckBox gameSoundCheckBox;
+        private System.Windows.Forms.Label advanced2Label;
     }
 }
 
