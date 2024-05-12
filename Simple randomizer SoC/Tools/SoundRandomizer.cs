@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Tools
 {
@@ -13,28 +12,30 @@ namespace Simple_randomizer_SoC.Tools
     {
         readonly SortedDictionary<int, List<string>> classifiedFiles = new SortedDictionary<int, List<string>>();
 
-        int filesCount = 0;
         int sizeFilter = 1;
 
+        //прогресс
+        int filesCount = 0;
         public int progress = 0;
         public int maxProgress = 0;
 
-        //счет текущего кол-ва потоков
-        int searchThreadsCount = 0;
         //мкс кол-во потоков
-        int searchMaxThreads = 4;
+        int threadCount = 4;
+
+        readonly List<Thread> threads = new List<Thread>();
 
         bool stepSoundEnabled = false;
-        //TODO: ставить флаг на закрытие формы
+
         public bool stopProcessing = false;
 
         public bool isProcessing = false;
 
-        public string status = "";
         public string path = "";
+
+        public string statusMessage = "";
         public string errorMessage = "";
 
-        string outputGamedata = "*";
+        string outputGamedataPath = "*";
 
         readonly Random rnd;
         Thread copyThread;
@@ -49,43 +50,96 @@ namespace Simple_randomizer_SoC.Tools
             //threadsNumeric.Maximum = Math.Max(1, Environment.ProcessorCount);
         }
 
-        public void Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedata)
+        public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath)
         {
+            await Abort();
+
             errorMessage = "";
             isProcessing = true;
-            searchThread?.Abort();
-            copyThread?.Abort();
+
             copyThread = new Thread(CopyAndRename);
             searchThread = new Thread(SearchSounds);
 
             progress = 0;
-            searchMaxThreads = threadCount;
+
+            this.threadCount = threadCount;
             this.sizeFilter = sizeFilter;
             this.stepSoundEnabled = stepSoundEnabled;
-            this.outputGamedata = outputGamedata;
+            this.outputGamedataPath = outputGamedataPath;
 
             searchThread.Start();
         }
 
         public async Task Abort()
         {
+            statusMessage = "Завершение...";
             stopProcessing = true;
-
-            while (copyThread.IsAlive || searchThread.IsAlive)
+            while (copyThread?.IsAlive == true || searchThread?.IsAlive == true || threads.Any(t => t.IsAlive))
             {
                 await Task.Delay(100);
             }
-            isProcessing = false;
+            threads.Clear();
+            stopProcessing = false;
+        }
+
+        void SearchSounds()
+        {
+            int threadLockCount = 0;
+            try
+            {
+                var thread = new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o)));
+                threads.Add(thread);
+                thread.Start(new DirectoryInfo(path));
+
+                while (threads.Count > 0 && threadLockCount < 10)
+                {
+                    if (stopProcessing) threadLockCount++;
+
+                    Thread.Sleep(500);
+                }
+
+                if (stopProcessing)
+                {
+                    if (threadLockCount > 9)
+                    {
+                        try
+                        {
+                            File.WriteAllText(".\\threadError.txt", $"Ошибка завершения потоков");
+                            foreach (var t in threads)
+                            {
+                                t.Abort();
+                            }
+                        }
+                        catch { }
+                    }
+                    return;
+                }
+
+                statusMessage = "Копирование файлов...";
+                maxProgress = filesCount + 10;
+                progress = 0;
+
+                copyThread.Start();
+            }
+            catch (Exception ex)
+            {
+                stopProcessing = true;
+                isProcessing = false;
+
+                errorMessage += ex.Message + "\r\n" + ex.StackTrace.ToString() + "\r\n";
+
+                progress = 0;
+                statusMessage = "Ошибка";
+            }
         }
 
         void DirSearch(DirectoryInfo dir)
         {
             if (stopProcessing)
             {
-                searchThreadsCount--;
                 return;
             }
-            status = "Обработка: " + dir.FullName;
+            statusMessage = "Обработка: " + dir.FullName;
 
             try
             {
@@ -94,7 +148,6 @@ namespace Simple_randomizer_SoC.Tools
                 {
                     if (stopProcessing)
                     {
-                        searchThreadsCount--;
                         return;
                     }
 
@@ -104,7 +157,6 @@ namespace Simple_randomizer_SoC.Tools
                         int duration = (int)vorbis.TotalTime.TotalSeconds / sizeFilter * sizeFilter;
 
                         filesCount++;
-                        //int size = Convert.ToInt32(file.Length / 1024) / 3 * 3;
                         lock (classifiedFiles)
                         {
                             if (classifiedFiles.Keys.Contains(duration))
@@ -123,7 +175,6 @@ namespace Simple_randomizer_SoC.Tools
             catch (Exception ex)
             {
                 errorMessage += $"{ex.Message}\r\n{ex.StackTrace}\r\n";
-                searchThreadsCount--;
                 stopProcessing = true;
                 return;
             }
@@ -131,52 +182,21 @@ namespace Simple_randomizer_SoC.Tools
             var dirList = dir.GetDirectories();
             foreach (DirectoryInfo nextDir in dirList)
             {
-                //если потоков больше максимума, грузим текущий поток вместо открытия нового
-                if (searchThreadsCount++ >= searchMaxThreads)
+                lock (threads)
                 {
-                    DirSearch(nextDir);
+                    threads.RemoveAll(t => t.ThreadState != ThreadState.Running);
+                    //если потоков больше максимума, грузим текущий поток вместо открытия нового
+                    if (threads.Count() >= threadCount)
+                    {
+                        DirSearch(nextDir);
+                    }
+                    else
+                    {
+                        var t = new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o)));
+                        threads.Add(t);
+                        t.Start(nextDir);
+                    }
                 }
-                else
-                {
-                    new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o))).Start(nextDir);
-                }
-            }
-
-            searchThreadsCount--;
-        }
-
-        void SearchSounds()
-        {
-            try
-            {
-                DirectoryInfo sndDir = new DirectoryInfo(path);
-                searchThreadsCount++;
-
-                new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o))).Start(sndDir);
-
-                while (searchThreadsCount > 0)
-                {
-                    Thread.Sleep(500);
-                }
-
-                if (stopProcessing) return;
-
-                status = "Копирование файлов...";
-                maxProgress = filesCount + 10;
-                progress = 0;
-
-                copyThread.Start();
-            }
-            catch (Exception ex)
-            {
-                stopProcessing = true;
-                isProcessing = false;
-
-                errorMessage += ex.Message + "\r\n" + ex.StackTrace.ToString() + "\r\n";
-                //MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                progress = 0;
-                status = "Ошибка";
             }
         }
 
@@ -184,8 +204,6 @@ namespace Simple_randomizer_SoC.Tools
         {
             try
             {
-                //string dateTime = DateTime.Now.ToString("dd.MM.yyyy_HH.mm.ss");
-
                 foreach (List<string> files in classifiedFiles.Values)
                 {
                     if (stopProcessing) return;
@@ -208,7 +226,7 @@ namespace Simple_randomizer_SoC.Tools
                         if (stopProcessing) return;
                         var newFile = copy[rnd.Next(copy.Count)];
 
-                        string outputDirectory = outputGamedata + newFile.Substring(newFile.IndexOf("\\sounds"));
+                        string outputDirectory = outputGamedataPath + newFile.Substring(newFile.IndexOf("\\sounds"));
                         outputDirectory = outputDirectory.Remove(outputDirectory.LastIndexOf('\\'));
                         Directory.CreateDirectory(outputDirectory);
 
@@ -221,13 +239,11 @@ namespace Simple_randomizer_SoC.Tools
 
                 progress = maxProgress;
                 isProcessing = false;
-                //MessageBox.Show("Готово!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 isProcessing = false;
                 errorMessage += $"{ex.Message}\n{ex.InnerException?.Message}\r\n";
-                //MessageBox.Show($"{ex.Message}\n{ex.InnerException?.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

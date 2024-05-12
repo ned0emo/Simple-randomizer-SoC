@@ -991,6 +991,7 @@
             // uiReplaceCheckBox
             // 
             this.uiReplaceCheckBox.AutoSize = true;
+            this.uiReplaceCheckBox.Enabled = false;
             this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 374);
             this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
             this.uiReplaceCheckBox.Size = new System.Drawing.Size(296, 17);
@@ -1000,6 +1001,7 @@
             // 
             // texturesPathButton
             // 
+            this.texturesPathButton.Enabled = false;
             this.texturesPathButton.Location = new System.Drawing.Point(488, 346);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
@@ -1010,6 +1012,7 @@
             // 
             // texturesPathText
             // 
+            this.texturesPathText.Enabled = false;
             this.texturesPathText.Location = new System.Drawing.Point(142, 348);
             this.texturesPathText.Name = "texturesPathText";
             this.texturesPathText.Size = new System.Drawing.Size(340, 20);
@@ -1075,6 +1078,7 @@
             // 
             // roundDurationNumeric
             // 
+            this.roundDurationNumeric.Enabled = false;
             this.roundDurationNumeric.Location = new System.Drawing.Point(9, 274);
             this.roundDurationNumeric.Maximum = new decimal(new int[] {
             15,
@@ -1098,6 +1102,7 @@
             // stepRainCheckBox
             // 
             this.stepRainCheckBox.AutoSize = true;
+            this.stepRainCheckBox.Enabled = false;
             this.stepRainCheckBox.Location = new System.Drawing.Point(9, 251);
             this.stepRainCheckBox.Name = "stepRainCheckBox";
             this.stepRainCheckBox.Size = new System.Drawing.Size(288, 17);
@@ -1107,6 +1112,7 @@
             // 
             // soundsPathButton
             // 
+            this.soundsPathButton.Enabled = false;
             this.soundsPathButton.Location = new System.Drawing.Point(488, 223);
             this.soundsPathButton.Name = "soundsPathButton";
             this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
@@ -1117,6 +1123,7 @@
             // 
             // soundsPathText
             // 
+            this.soundsPathText.Enabled = false;
             this.soundsPathText.Location = new System.Drawing.Point(142, 225);
             this.soundsPathText.Name = "soundsPathText";
             this.soundsPathText.Size = new System.Drawing.Size(340, 20);

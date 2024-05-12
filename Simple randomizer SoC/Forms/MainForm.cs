@@ -457,23 +457,25 @@ namespace RandomizerSoC
             {
                 if (!soundsPathText.Text.Contains("\\sounds"))
                 {
-                    new InfoForm("Путь к игровым звукам не содержит папку \"sounds\"").ShowDialog();
+                    new InfoForm("Указанный путь к игровым звукам не содержит папку \"sounds\"").ShowDialog();
                     changeButtonsStatus(true);
+                    return;
                 }
                 else
                 {
                     try
                     {
-                        soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath);
+                        await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath);
+                        
                         do
                         {
-                            soundsProgressLabel.Text = soundRandomizer.status;
+                            soundsProgressLabel.Text = soundRandomizer.statusMessage;
                             progressBar1.Value = Math.Min(progressBar1.Maximum, soundRandomizer.progress);
                             progressBar1.Maximum = soundRandomizer.maxProgress;
                             await Task.Delay(100);
-                        } while (soundRandomizer.isProcessing && !soundRandomizer.stopProcessing);
+                        } while (soundRandomizer.isProcessing);
 
-                        if(soundRandomizer.errorMessage.Length > 0)
+                        if (soundRandomizer.errorMessage.Length > 0)
                         {
                             throw new Exception(soundRandomizer.errorMessage);
                         }
@@ -483,12 +485,10 @@ namespace RandomizerSoC
                         await soundRandomizer.Abort();
                         new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
                         changeButtonsStatus(true);
-                        progressBar1.Value = 0;
-                        progressBar1.Maximum = 100;
                         return;
                     }
                 }
-            }            
+            }
 
             progressBar1.Value = 0;
             progressBar1.Maximum = 100;
