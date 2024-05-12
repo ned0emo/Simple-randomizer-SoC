@@ -13,9 +13,7 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public DeathItemsGenerator(FileHandler file) : base(file) { }
-
-        public void updateData(string weapons, string newConfigPath)
+        public void UpdateData(string weapons, string newConfigPath)
         {
             this.weapons = weapons;
             this.newConfigPath = newConfigPath;
@@ -23,7 +21,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -31,9 +29,7 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Путь для сохранения файлов вещей убитых не был получен. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("deathItemsDataError")
-                    ? localizeDictionary["deathItemsDataError"]
-                    : "Ошибка данных вещей убитых/Killed NPC items data error";
+                errorMessage = Localization.Get("deathItemsDataError");
                 return STATUS_ERROR;
             }
 
@@ -42,7 +38,7 @@ namespace Simple_randomizer_SoC.Generators
                 var weaponsList = CreateCleanList(weapons);
 
                 //---------Вероятность по группировкам
-                var communitiesDeathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_items_by_communities.ltx");
+                var communitiesDeathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_items_by_communities.ltx");
                 var communitiesDeathGenericData = communitiesDeathGeneric.Split('[').Skip(1).ToList();
 
                 var communityClasses = new List<string>();
@@ -65,10 +61,10 @@ namespace Simple_randomizer_SoC.Generators
                     newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
+                await MyFile.Write($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
 
                 //---------Множитель количества по локациям
-                var levelsDeathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_items_by_levels.ltx");
+                var levelsDeathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_items_by_levels.ltx");
                 var levelsDeathGenericData = levelsDeathGeneric.Split('[').Skip(1).ToList();
 
                 var levelClasses = new List<string>();
@@ -98,10 +94,10 @@ namespace Simple_randomizer_SoC.Generators
                     newLevelsDeathGenericData += $"\n[{levelClass}]\n{newData}";
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
+                await MyFile.Write($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
 
                 //--------Количество по уровню сложности
-                var countDeathItems = await file.ReadFile($"{Environment.configPath}/misc/death_items_count.ltx");
+                var countDeathItems = await MyFile.Read($"{Environment.configPath}/misc/death_items_count.ltx");
                 var countDeathItemsData = countDeathItems.Split('[').Skip(1).ToList();
 
                 var countClasses = new List<string>();
@@ -140,38 +136,35 @@ namespace Simple_randomizer_SoC.Generators
                     ammoMax = Math.Max(ammoMax - 5, 10);
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
+                await MyFile.Write($"{newConfigPath}/misc/death_items_count.ltx", newCountDeathGenericData);
 
                 //--------------Зависимость спавна от оружия
                 if(weaponsList.Length > 0)
                 {
-                    var deathGeneric = await file.ReadFile($"{Environment.configPath}/misc/death_generic.ltx");
+                    var deathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_generic.ltx");
                     var deathGenericSplitted = deathGeneric.Replace("[keep_items]", "\a").Split('\a');
                     var deathGenericParams = deathGenericSplitted[0].Split('\n');
                     for (int i = 0; i < deathGenericParams.Length; i++)
                     {
                         if (deathGenericParams[i].Contains('='))
                         {
-                            deathGenericParams[i] = Regex.Replace(deathGenericParams[i], "=.*", $" = {getRandomElementsFromArray(weaponsList, rnd.Next(1, 10)).Aggregate((a, b) => a + ", " + b)}\n");
+                            deathGenericParams[i] = Regex.Replace(deathGenericParams[i], "=.*", $" = {GetRandomElementsFromArray(weaponsList, rnd.Next(1, 10)).Aggregate((a, b) => a + ", " + b)}\n");
                         }
                     }
 
-                    await file.WriteFile($"{newConfigPath}/misc/death_generic.ltx", deathGenericParams.Aggregate((a, b) => a + b) + "[keep_items]" + deathGenericSplitted[1]);
+                    await MyFile.Write($"{newConfigPath}/misc/death_generic.ltx", deathGenericParams.Aggregate((a, b) => a + b) + "[keep_items]" + deathGenericSplitted[1]);
                 }
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                errorMessage = (localizeDictionary.ContainsKey("deathItemsError")
-                    ? localizeDictionary["deathItemsError"]
-                    : "Ошибка вещей убитых/Death items error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("deathItemsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }
 
-        private string[] getRandomElementsFromArray(string[] array, int numOfElements)
+        private string[] GetRandomElementsFromArray(string[] array, int numOfElements)
         {
             if (numOfElements >= array.Length) return array;
 

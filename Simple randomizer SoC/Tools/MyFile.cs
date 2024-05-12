@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC
 {
-    class FileHandler
+    public static class MyFile
     {
-        public async Task<string> ReadFile(string path)
+        public static async Task<string> Read(string path)
         {
             using (StreamReader sr = new StreamReader(path, Encoding.Default))
             {
@@ -20,7 +20,7 @@ namespace Simple_randomizer_SoC
             }
         }
 
-        public async Task WriteFile(string path, string content)
+        public static async Task Write(string path, string content)
         {
             Directory.CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
             using (StreamWriter sw = new StreamWriter(path))
@@ -30,14 +30,14 @@ namespace Simple_randomizer_SoC
             }
         }
 
-        public async Task CopyFile(string oldPath, string newPath)
+        public static async Task Copy(string oldPath, string newPath)
         {
             await Task.Yield();
             Directory.CreateDirectory(newPath.Substring(0, newPath.LastIndexOf('\\')));
             File.Copy(oldPath, newPath);
         }
 
-        public async Task<string[]> GetFiles(string path)
+        public static async Task<string[]> GetFiles(string path)
         {
             await Task.Yield();
             return Directory.GetFiles(path);

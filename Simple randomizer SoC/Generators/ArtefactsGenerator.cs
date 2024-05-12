@@ -17,8 +17,6 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public ArtefactsGenerator(FileHandler file) : base(file) { }
-
         public void UpdateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
@@ -33,16 +31,13 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                //errorMessage = "Путь для сохранения артефактов не указан. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("artefactsDataError") 
-                    ? localizeDictionary["artefactsDataError"] 
-                    : "Ошибка данных артефактов/Artefacts data error";
+                errorMessage = Localization.Get("artefactsDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var artefacts = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
+                var artefacts = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
                 var artefactsStringList = artefacts.Replace("af_base", "\a").Split('\a');
 
                 string newArtefacts = "";
@@ -77,17 +72,13 @@ namespace Simple_randomizer_SoC.Generators
                     newArtefacts += it + "af_base";
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
+                await MyFile.Write($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                //errorMessage = $"Ошибка генерации артефактов. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = (localizeDictionary.ContainsKey("artefactsError") 
-                    ? localizeDictionary["artefactsError"] 
-                    : "Ошибка артефактов/Artefacts error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("artefactsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

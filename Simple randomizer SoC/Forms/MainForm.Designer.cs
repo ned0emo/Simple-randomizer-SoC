@@ -1039,7 +1039,6 @@
             this.rusRadioButton.TabStop = true;
             this.rusRadioButton.Text = "RUS";
             this.rusRadioButton.UseVisualStyleBackColor = true;
-            this.rusRadioButton.CheckedChanged += new System.EventHandler(this.RusRadioButton_CheckedChanged);
             // 
             // engRadioButton
             // 
@@ -1051,7 +1050,6 @@
             this.engRadioButton.TabStop = true;
             this.engRadioButton.Text = "ENG";
             this.engRadioButton.UseVisualStyleBackColor = true;
-            this.engRadioButton.CheckedChanged += new System.EventHandler(this.EngRadioButton_CheckedChanged);
             // 
             // tradersCheckBox
             // 

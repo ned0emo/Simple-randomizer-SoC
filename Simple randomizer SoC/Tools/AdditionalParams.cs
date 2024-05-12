@@ -12,22 +12,15 @@ namespace Simple_randomizer_SoC
 
         private readonly Random rnd;
 
-        private readonly FileHandler fileHandler;
-
         /// <summary>
         /// Словарь по типу доп параметра и паре "префикс - путь",
         /// где префикс будет меняться при копировании на новый путь
         /// </summary>
         readonly Dictionary<string, Tuple<string, string>> paramTypeToPrefixAndPathDictionary;
 
-        private Dictionary<string, string> localizeDictionary;
-
-        public AdditionalParams(FileHandler fileHandler)
+        public AdditionalParams()
         {
             rnd = new Random();
-            localizeDictionary = new Dictionary<string, string>();
-
-            this.fileHandler = fileHandler;
 
             //advancedGulag, equipWeaponEverywhere, barAlarm,
             //    giveKnife, disableFreedomAgression,moreRespawn, gScript, translate, shuffleText
@@ -45,8 +38,6 @@ namespace Simple_randomizer_SoC
             };
         }
 
-        public void UpdateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
-
         /// <summary>
         /// Копирование всех доп параметров, кроме текста игры.
         /// Передавать словарь, состоящий из типа параметра 
@@ -61,7 +52,7 @@ namespace Simple_randomizer_SoC
             {
                 try
                 {
-                    await fileHandler.CopyFile(
+                    await MyFile.Copy(
                         paramTypeToPrefixAndPathDictionary[key].Item1 + paramTypeToPrefixAndPathDictionary[key].Item2,
                         paramTypeToNewPrefixDictionary[key] + paramTypeToPrefixAndPathDictionary[key].Item2
                     );
@@ -69,10 +60,7 @@ namespace Simple_randomizer_SoC
                 catch
                 {
                     //errorMessage += $"Ошибка копирования {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
-                    errorMessage += (localizeDictionary.ContainsKey("copyError")
-                        ? localizeDictionary["copyError"]
-                        : $"Ошибка копирования/Copy error")
-                        + $" {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
+                    errorMessage += Localization.Get("copyError") + $" {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
                 }
             }
         }
@@ -86,24 +74,21 @@ namespace Simple_randomizer_SoC
             string[] files;
             try
             {
-                files = await fileHandler.GetFiles($"{Environment.configPath}/text/rus");
+                files = await MyFile.GetFiles($"{Environment.configPath}/text/rus");
             }
             catch (Exception ex)
             {
                 //errorMessage += $"Ошибка чтения файлов с игровым текстом\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage += (localizeDictionary.ContainsKey("textDataReadError")
-                    ? localizeDictionary["textDataReadError"]
-                    : $"Ошибка чтения/Read error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage += Localization.Get("textDataReadError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return;
             }
 
             //Составление карты текста по длине
-            foreach (string file in await fileHandler.GetFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}/text/rus"))
             {
                 try
                 {
-                    var textData = await fileHandler.ReadFile(file);
+                    var textData = await MyFile.Read(file);
                     var textDataList = new List<string>(textData.Replace("<text>", "\a").Split('\a'));
 
                     string newTextData = textDataList[0];
@@ -127,10 +112,7 @@ namespace Simple_randomizer_SoC
                 catch
                 {
                     //errorMessage += $"Ошибка чтения или обработки {file}\r\n";
-                    errorMessage += (localizeDictionary.ContainsKey("readHandleError")
-                        ? localizeDictionary["readHandleError"]
-                        : $"Ошибка чтения или обработки/Read or process error")
-                        + $" {file}\r\n";
+                    errorMessage += Localization.Get("readHandleError") + $" {file}\r\n";
                 }
             }
 
@@ -151,30 +133,27 @@ namespace Simple_randomizer_SoC
                         classifiedTextByLengthMap[roundedLength].RemoveAt(index);
                     }
 
-                    await fileHandler.WriteFile(file.Replace(Environment.configPath, newConfigPath), newTextData);
+                    await MyFile.Write(file.Replace(Environment.configPath, newConfigPath), newTextData);
                 }
                 catch
                 {
                     //errorMessage += $"Ошибка записи или обработки {file}\r\n";
-                    errorMessage += (localizeDictionary.ContainsKey("writeHandleError")
-                        ? localizeDictionary["writeHandleError"]
-                        : $"Ошибка записи или обработки/Write or process error")
-                        + $" {file}\r\n";
+                    errorMessage += Localization.Get("writeHandleError") + $" {file}\r\n";
                 }
             }
         }
 
         public async Task CopyText(string newConfigPath)
         {
-            foreach (string file in await fileHandler.GetFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}/text/rus"))
             {
                 try
                 {
-                    await fileHandler.CopyFile(file, file.Replace(Environment.configPath, newConfigPath));
+                    await MyFile.Copy(file, file.Replace(Environment.configPath, newConfigPath));
                 }
                 catch
                 {
-                    errorMessage += localizeDictionary["copyError"] + $" {file}\r\n";
+                    errorMessage += Localization.Get("copyError") + $" {file}\r\n";
                 }
             }
         }

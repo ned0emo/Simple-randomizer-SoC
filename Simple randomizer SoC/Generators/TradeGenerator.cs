@@ -18,8 +18,6 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public TradeGenerator(FileHandler file) : base(file) { }
-
         public void UpdateData(string weapons, string ammos, string outfits,
             string artefacts, string items, string others, string newConfigPath)
         {
@@ -41,15 +39,13 @@ namespace Simple_randomizer_SoC.Generators
 
             if (!isDataLoaded)
             {
-                errorMessage = localizeDictionary.ContainsKey("tradersDataError")
-                    ? localizeDictionary["tradersDataError"]
-                    : "Ошибка данных торговцев/Traders data error";
+                errorMessage = Localization.Get("tradersDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var tradeFilesList = (await file.GetFiles($"{Environment.configPath}/misc")).ToList();
+                var tradeFilesList = (await MyFile.GetFiles($"{Environment.configPath}/misc")).ToList();
                 tradeFilesList.RemoveAll(el => !el.Contains("trade_"));
 
                 foreach (var tradeFile in tradeFilesList)
@@ -76,17 +72,14 @@ namespace Simple_randomizer_SoC.Generators
                         $"[supplies_start_0]\n" +
                         $"{MakeBuySupplies(allItemList, probabilitiesList, countList)}";
 
-                    await file.WriteFile(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
+                    await MyFile.Write(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
                 }
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                errorMessage = (localizeDictionary.ContainsKey("tradersError")
-                    ? localizeDictionary["tradersError"]
-                    : "Ошибка торговцев/Traders error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("tradersError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,30 +15,26 @@ namespace RandomizerSoC
     public partial class InfoForm : Form
     {
         /// <summary>
-        /// В localizeDictionary передавать как минимум значения infoFornName и message
+        /// 
         /// </summary>
-        /// <param name="localizeDictionary"></param>
-        /// <param name="errMessage"></param>
-        public InfoForm(Dictionary<string, string> localizeDictionary, string errMessage = "")
+        /// <param name="errorTitle"></param>
+        /// <param name="errorMessage"></param>
+        public InfoForm(string errorTitle, string errorMessage = "")
         {
             InitializeComponent();
 
-            this.Text = localizeDictionary.ContainsKey("infoFornName")
-                ? localizeDictionary["infoFornName"]
-                : "Внимание/Warning";
+            this.Text = Localization.Get("infoFornName");
 
-            label1.Text = localizeDictionary.ContainsKey("message")
-                ? localizeDictionary["message"]
-                : "Ошибка/Error";
+            label1.Text = errorTitle;
 
-            if(errMessage.Length > 0)
+            if(errorMessage.Length > 0)
             {
                 textBox1.Visible = true;
                 textBox1.Height += 100;
                 Height += 100;
                 button1.Location = new Point(button1.Location.X, button1.Location.Y + 100);
 
-                textBox1.Text = errMessage;
+                textBox1.Text = errorMessage;
             }
         }
 

@@ -25,8 +25,6 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public TreasuresGenerator(FileHandler file) : base(file) { }
-
         /// <summary>
         /// Обновление списков предметов
         /// </summary>
@@ -36,7 +34,7 @@ namespace Simple_randomizer_SoC.Generators
         /// <param name="artefacts">Список артефактов</param>
         /// <param name="items">Список расходников</param>
         /// <param name="others">Список прочего</param>
-        public void updateData(string weapons, string ammos, string outfits,
+        public void UpdateData(string weapons, string ammos, string outfits,
             string artefacts, string items, string others, string newConfigPath)
         {
             this.weapons = weapons;
@@ -50,7 +48,7 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -58,15 +56,13 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Данные для генерации тайников не были получены. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("cachesDataError")
-                    ? localizeDictionary["cachesDataError"]
-                    : "Ошибка данных тайников/Caches data error";
+                errorMessage = Localization.Get("cachesDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var treasures = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
+                var treasures = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
                 var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
 
                 var weaponList = CreateCleanList(weapons);
@@ -87,27 +83,27 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (whichItemType < 5)
                         {
-                            newItems += generateItem(outfitList, 1);
+                            newItems += GenerateItem(outfitList, 1);
                         }
                         else if (whichItemType < 15)
                         {
-                            newItems += generateItem(weaponList, 1);
+                            newItems += GenerateItem(weaponList, 1);
                         }
                         else if (whichItemType < 20)
                         {
-                            newItems += generateItem(artefactList, 2);
+                            newItems += GenerateItem(artefactList, 2);
                         }
                         else if (whichItemType < 70)
                         {
-                            newItems += generateItem(itemList, 8);
+                            newItems += GenerateItem(itemList, 8);
                         }
                         else if (whichItemType < 95)
                         {
-                            newItems += generateItem(ammoList, 6);
+                            newItems += GenerateItem(ammoList, 6);
                         }
                         else
                         {
-                            newItems += generateItem(otherList, 2);
+                            newItems += GenerateItem(otherList, 2);
                         }
 
                         if (i < itemCount - 1) newItems += ", ";
@@ -124,23 +120,19 @@ namespace Simple_randomizer_SoC.Generators
                     treasureString += "items" + treasureStringList[i];
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
+                await MyFile.Write($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                //errorMessage = $"Ошибка генерации тайников. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = (localizeDictionary.ContainsKey("cachesError")
-                    ? localizeDictionary["cachesError"]
-                    : "Ошибка тайников/Caches error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("cachesError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }
 
         //Предмет и количество для добавления в тайник
-        private string generateItem(string[] itemList, int maxItemCount)
+        private string GenerateItem(string[] itemList, int maxItemCount)
         {
             if (itemList.Length < 1)
             {

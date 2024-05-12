@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,15 +15,15 @@ namespace RandomizerSoC
 {
     public partial class SaveForm : Form
     {
-        public SaveForm(string files, ResourceManager rm)
+        public SaveForm(string files)
         {
             InitializeComponent();
             string info;
             try
             {
-                info = rm.GetString("overwritingFiles");
-                this.Name = rm.GetString("saveFormName");
-                cancelButton.Text = rm.GetString("cancel");
+                info = Localization.Get("overwritingFiles");
+                this.Name = Localization.Get("saveFormName");
+                cancelButton.Text = Localization.Get("cancel");
             }
             catch
             {

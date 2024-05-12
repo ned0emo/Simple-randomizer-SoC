@@ -14,8 +14,6 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public WeaponsGenerator(FileHandler file) : base(file) { }
-
         /// <summary>
         /// Обновление списков звуков
         /// </summary>
@@ -38,15 +36,13 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Данные для генерации оружия не были получены. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("weaponsDataError")
-                    ? localizeDictionary["weaponsDataError"]
-                    : "Ошибка данных оружия/Weapon data error";
+                errorMessage = Localization.Get("weaponsDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var weapons = (await file.GetFiles($"{Environment.configPath}/weapons")).ToList();
+                var weapons = (await MyFile.GetFiles($"{Environment.configPath}/weapons")).ToList();
                 var weaponsLtxPath = weapons.Find(match => match.Contains("weapons.ltx"));
                 weapons.Remove(weaponsLtxPath);
 
@@ -55,7 +51,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 foreach (string it in weapons)
                 {
-                    string currWeapon = Regex.Replace(await file.ReadFile(it), "\\s+;.+", "");
+                    string currWeapon = Regex.Replace(await MyFile.Read(it), "\\s+;.+", "");
                     int magSize = rnd.Next(50) + 1;
 
                     currWeapon =
@@ -110,12 +106,12 @@ namespace Simple_randomizer_SoC.Generators
                             $"{Math.Round(rnd.NextDouble() + 0.01, 2)}, {Math.Round(rnd.NextDouble() + 0.01, 2)}");
                     }
 
-                    await file.WriteFile(it.Replace(Environment.configPath, newConfigPath), currWeapon);
+                    await MyFile.Write(it.Replace(Environment.configPath, newConfigPath), currWeapon);
                 }
 
                 if (weaponsLtxPath != "")
                 {
-                    var weaponsLtxText = Regex.Replace(await file.ReadFile(weaponsLtxPath), "\\s*;.+", "");
+                    var weaponsLtxText = Regex.Replace(await MyFile.Read(weaponsLtxPath), "\\s*;.+", "");
                     var ammos = weaponsLtxText.Replace(":ammo_base", "\a").Split('\a');
                     string newWeaponsLtx = ammos[0];
                     for (int i = 1; i < ammos.Length; i++)
@@ -132,17 +128,14 @@ namespace Simple_randomizer_SoC.Generators
                         newWeaponsLtx += ":ammo_base" + ammos[i];
                     }
 
-                    await file.WriteFile(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), newWeaponsLtx);
+                    await MyFile.Write(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), newWeaponsLtx);
                 }
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                errorMessage = (localizeDictionary.ContainsKey("weaponsError")
-                    ? localizeDictionary["weaponsError"]
-                    : "Ошибка оружия/Weapon error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("weaponsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

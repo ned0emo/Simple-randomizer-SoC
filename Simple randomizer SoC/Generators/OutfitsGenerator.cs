@@ -18,16 +18,14 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public void updateData(string newConfigPath)
+        public void UpdateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
 
             isDataLoaded = true;
         }
 
-        public OutfitsGenerator(FileHandler file) : base(file) { }
-
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
@@ -35,15 +33,13 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Путь для сохранения брони не указан. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("outfitsDataError")
-                    ? localizeDictionary["outfitsDataError"]
-                    : "Ошибка данных брони/Armor data error";
+                errorMessage = Localization.Get("outfitsDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var outfits = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
+                var outfits = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
                 var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
 
                 string newOutfits = "";
@@ -91,17 +87,14 @@ namespace Simple_randomizer_SoC.Generators
                     newOutfits += it + "outfit_base";
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/outfit.ltx", newOutfits);
+                await MyFile.Write($"{newConfigPath}/misc/outfit.ltx", newOutfits);
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
                 //errorMessage = $"Ошибка генерации брони. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = (localizeDictionary.ContainsKey("outfitsError")
-                    ? localizeDictionary["outfitsError"]
-                    : "Ошибка брони/Armor error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("outfitsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

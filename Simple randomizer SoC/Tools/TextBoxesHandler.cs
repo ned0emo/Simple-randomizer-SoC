@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC
 {
-    class TextBoxesHandler : FileHandler
+    class TextBoxesHandler
     {
         private readonly string[] fileNames;
 
@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC
             {
                 try
                 {
-                    filesContentDictionary.Add(file, await ReadFile($"{Environment.listsPath + postfix}/{file}.txt"));
+                    filesContentDictionary.Add(file, await MyFile.Read($"{Environment.listsPath + postfix}/{file}.txt"));
                 }
                 catch
                 {
@@ -47,7 +47,7 @@ namespace Simple_randomizer_SoC
             foreach (string file in fileNameContentDictionary.Keys){
                 try
                 {
-                    await WriteFile($"{Environment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
+                    await MyFile.Write($"{Environment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
                 }
                 catch
                 {

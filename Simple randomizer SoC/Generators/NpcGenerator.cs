@@ -29,16 +29,11 @@ namespace Simple_randomizer_SoC.Generators
 
         private bool onlyGenerateNames;
 
-        private bool isRulesLoaded;
-
         /// <summary>
         /// Для работы с неписями после инициализации класса необходимо вызвать не только
         /// updateData, но и updateRules. Для получения инфы с чекбоксов
         /// </summary>
-        public NpcGenerator(FileHandler file) : base(file)
-        {
-            isRulesLoaded = false;
-        }
+        private bool isRulesLoaded = false;
 
         /// <summary>
         /// Обновление списков
@@ -83,18 +78,14 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Данные для генерации НПС не были получены. Требуется вызов \"updateData\"";
-                errorMessage = localizeDictionary.ContainsKey("npcDataError")
-                    ? localizeDictionary["npcDataError"]
-                    : "Ошибка данных НПС/NPC data error";
+                errorMessage = Localization.Get("npcDataError");
                 return STATUS_ERROR;
             }
 
             if (!isRulesLoaded)
             {
                 //errorMessage = "Правила для генерации НПС не были получены. Требуется вызов \"updateRules\"";
-                errorMessage = localizeDictionary.ContainsKey("npcRulesError")
-                    ? localizeDictionary["npcRulesError"]
-                    : "Ошибка правил НПС/NPC rules error";
+                errorMessage = Localization.Get("npcRulesError");
                 return STATUS_ERROR;
             }
 
@@ -119,9 +110,9 @@ namespace Simple_randomizer_SoC.Generators
                     nameList.RemoveAll(el => !el.Contains("GENERATE_NAME"));
                 }
 
-                foreach (string it in await file.GetFiles($"{Environment.configPath}/gameplay"))
+                foreach (string it in await MyFile.GetFiles($"{Environment.configPath}/gameplay"))
                 {
-                    var npcDescList = (await file.ReadFile(it)).Replace("<specific_character", "\a").Split('\a');
+                    var npcDescList = (await MyFile.Read(it)).Replace("<specific_character", "\a").Split('\a');
 
                     for (int i = 1; i < npcDescList.Length; i++)
                     {
@@ -213,7 +204,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     outStr += npcDescList.Last();
 
-                    await file.WriteFile(it.Replace(Environment.configPath, newConfigPath), outStr);
+                    await MyFile.Write(it.Replace(Environment.configPath, newConfigPath), outStr);
                 }
 
                 return STATUS_OK;
@@ -221,10 +212,7 @@ namespace Simple_randomizer_SoC.Generators
             catch (Exception ex)
             {
                 //errorMessage = $"Ошибка генерации НПС. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = (localizeDictionary.ContainsKey("npcError")
-                    ? localizeDictionary["npcError"]
-                    : "Ошибка НПС/NPC error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("npcError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

@@ -15,8 +15,6 @@ namespace RandomizerSoC
 {
     public partial class MainForm : Form
     {
-        ResourceManager rm;
-
         readonly int progressBarStep = 10; // 100/10
 
         //обработчик данных тектбоксов
@@ -25,8 +23,6 @@ namespace RandomizerSoC
         readonly Dictionary<string, TextBox> fileTextBoxDictionary;
         //словарь имен файлов и кэша
         readonly Dictionary<string, string> cacheDictionary;
-
-        Dictionary<string, string> infoFormLocalize;
 
         //для чекбокса "Все"
         readonly List<CheckBox> generateTypeCheckBoxList;
@@ -51,20 +47,11 @@ namespace RandomizerSoC
 
         readonly AdditionalParams additionalParams;
 
-        string onePointFourAdvertise;
-        string twoWords;
-
         public MainForm()
         {
             InitializeComponent();
 
-            FileHandler fileHandler = new FileHandler();
-
             cacheDictionary = new Dictionary<string, string>();
-            infoFormLocalize = new Dictionary<string, string>();
-
-            onePointFourAdvertise = "";
-            twoWords = "";
 
             fileTextBoxDictionary = new Dictionary<string, TextBox>
             {
@@ -102,21 +89,30 @@ namespace RandomizerSoC
                 cb.Checked = true;
             }
 
-            treasuresGenerator = new TreasuresGenerator(fileHandler);
-            artefactsGenerator = new ArtefactsGenerator(fileHandler);
-            weaponsGenerator = new WeaponsGenerator(fileHandler);
-            outfitsGenerator = new OutfitsGenerator(fileHandler);
-            npcGenerator = new NpcGenerator(fileHandler);
-            weatherGenerator = new WeatherGenerator(fileHandler);
-            deathItemsGenerator = new DeathItemsGenerator(fileHandler);
-            tradeGenerator = new TradeGenerator(fileHandler);
-            consumablesGenerator = new ConsumablesGenerator(fileHandler);
+            treasuresGenerator = new TreasuresGenerator();
+            artefactsGenerator = new ArtefactsGenerator();
+            weaponsGenerator = new WeaponsGenerator();
+            outfitsGenerator = new OutfitsGenerator();
+            npcGenerator = new NpcGenerator();
+            weatherGenerator = new WeatherGenerator();
+            deathItemsGenerator = new DeathItemsGenerator();
+            tradeGenerator = new TradeGenerator();
+            consumablesGenerator = new ConsumablesGenerator();
 
-            additionalParams = new AdditionalParams(fileHandler);
+            additionalParams = new AdditionalParams();
 
             textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
 
-            rusRadioButton.Checked = true;
+            if (Localization.IsFirstLoadEnglish())
+            {
+                engRadioButton.Checked = true;
+            }
+            else
+            {
+                rusRadioButton.Checked = true;
+            }
+            rusRadioButton.Click += RusRadioButton_Click;
+            engRadioButton.Click += EngRadioButton_Click;
         }
 
         //кнопка сохранения
@@ -138,7 +134,7 @@ namespace RandomizerSoC
             if (fileNameContentDictionary.Count < 1) return;
 
 
-            if (new SaveForm(changedLists, rm).ShowDialog() == DialogResult.OK)
+            if (new SaveForm(changedLists).ShowDialog() == DialogResult.OK)
             {
                 await textBoxesHandler.SaveData(fileNameContentDictionary);
 
@@ -149,15 +145,7 @@ namespace RandomizerSoC
 
                 if (textBoxesHandler.errorMessage.Length > 0)
                 {
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("saveError")
-                            ? infoFormLocalize["saveError"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, textBoxesHandler.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("saveError"), textBoxesHandler.errorMessage).ShowDialog();
                 }
             }
         }
@@ -169,7 +157,11 @@ namespace RandomizerSoC
         private void LoadDefaultButton_Click(object sender, EventArgs e) => LoadLists(true);
 
         //отображение формы
-        private void MainForm_Shown(object sender, EventArgs e) => LoadLists();
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            UpdateText();
+            LoadLists();
+        }
 
         //загрузка списков редактируемых или дефолтных
         private async void LoadLists(bool isDefault = false)
@@ -192,15 +184,7 @@ namespace RandomizerSoC
 
             if (textBoxesHandler.errorMessage.Length > 0)
             {
-                new InfoForm(new Dictionary<string, string>()
-                {
-                    ["message"] = infoFormLocalize.ContainsKey("loadError")
-                        ? infoFormLocalize["loadError"]
-                        : "Ошибка/Error",
-                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                        ? infoFormLocalize["infoFornName"]
-                        : "Внимание/Warning"
-                }, textBoxesHandler.errorMessage).ShowDialog();
+                new InfoForm(Localization.Get("loadError"), textBoxesHandler.errorMessage).ShowDialog();
             }
         }
 
@@ -240,22 +224,13 @@ namespace RandomizerSoC
             //тайники
             if (treasureCheckBox.Checked)
             {
-                treasuresGenerator.updateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
+                treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                var result = await treasuresGenerator.generate();
+                var result = await treasuresGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    //new InfoForm(rm, "error", treasuresGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, treasuresGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), treasuresGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -270,16 +245,7 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    //new InfoForm(rm, "error", artefactsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, artefactsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), artefactsGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -295,15 +261,7 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     //new InfoForm(rm, "error", weaponsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, weaponsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), weaponsGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -313,21 +271,13 @@ namespace RandomizerSoC
             //бронь
             if (armorCheckBox.Checked)
             {
-                outfitsGenerator.updateData(newConfigPath: newConfigPath);
-                var result = await outfitsGenerator.generate();
+                outfitsGenerator.UpdateData(newConfigPath: newConfigPath);
+                var result = await outfitsGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     //new InfoForm(rm, "error", outfitsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, outfitsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), outfitsGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -348,16 +298,7 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    //new InfoForm(rm, "error", npcGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, npcGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), npcGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -373,16 +314,7 @@ namespace RandomizerSoC
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    //new InfoForm(rm, "error", weatherGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, weatherGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), weatherGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -392,21 +324,13 @@ namespace RandomizerSoC
             //трупы
             if (deathItemsCheckBox.Checked)
             {
-                deathItemsGenerator.updateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
-                var result = await deathItemsGenerator.generate();
+                deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
+                var result = await deathItemsGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
                     //new InfoForm(rm, "error", deathItemsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, deathItemsGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), deathItemsGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -423,15 +347,7 @@ namespace RandomizerSoC
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
 
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, tradeGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), tradeGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -441,20 +357,12 @@ namespace RandomizerSoC
             //расходники
             if (consumablesCheckBox.Checked)
             {
-                consumablesGenerator.updateData(newConfigPath: newConfigPath);
-                var result = await consumablesGenerator.generate();
+                consumablesGenerator.UpdateData(newConfigPath: newConfigPath);
+                var result = await consumablesGenerator.Generate();
 
                 if (result == BaseGenerator.STATUS_ERROR)
                 {
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = infoFormLocalize.ContainsKey("error")
-                            ? infoFormLocalize["error"]
-                            : "Ошибка/Error",
-                        ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                    }, consumablesGenerator.errorMessage).ShowDialog();
+                    new InfoForm(Localization.Get("error"), consumablesGenerator.errorMessage).ShowDialog();
 
                     changeButtonsStatus(true);
                     return;
@@ -517,16 +425,7 @@ namespace RandomizerSoC
 
             if (additionalParams.errorMessage.Length > 0)
             {
-                //new InfoForm(rm, "advancedParamsError", additionalParams.errorMessage).ShowDialog();
-                new InfoForm(new Dictionary<string, string>()
-                {
-                    ["message"] = infoFormLocalize.ContainsKey("advancedParamsError")
-                            ? infoFormLocalize["advancedParamsError"]
-                            : "Ошибка/Error",
-                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                            ? infoFormLocalize["infoFornName"]
-                            : "Внимание/Warning"
-                }, additionalParams.errorMessage).ShowDialog();
+                new InfoForm(Localization.Get("advancedParamsError"), additionalParams.errorMessage).ShowDialog();
 
                 additionalParams.errorMessage = "";
                 changeButtonsStatus(true);
@@ -535,16 +434,7 @@ namespace RandomizerSoC
             #endregion
             progressBar1.Value = 100;
 
-            new InfoForm(new Dictionary<string, string>()
-            {
-                ["message"] = (infoFormLocalize.ContainsKey("savedIn")
-                    ? infoFormLocalize["savedIn"]
-                    : "Сохранено в/Saved in")
-                     + " " + newGamedataPath,
-                ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                    ? infoFormLocalize["infoFornName"]
-                    : "Внимание/Warning"
-            }).ShowDialog();
+            new InfoForm(Localization.Get("savedIn") + " " + newGamedataPath).ShowDialog();
 
             changeButtonsStatus(true);
         }
@@ -587,20 +477,12 @@ namespace RandomizerSoC
             string text;
             try
             {
-                text = rm.GetString("weaponGuide");
+                text = Localization.Get("weaponGuide");
             }
             catch (Exception ex)
             {
                 //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                new InfoForm(new Dictionary<string, string>()
-                {
-                    ["message"] = infoFormLocalize.ContainsKey("error")
-                        ? infoFormLocalize["error"]
-                        : "Ошибка/Error",
-                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                        ? infoFormLocalize["infoFornName"]
-                        : "Внимание/Warning"
-                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
 
                 return;
             }
@@ -612,20 +494,11 @@ namespace RandomizerSoC
             string text;
             try
             {
-                text = rm.GetString("ItemsGuide");
+                text = Localization.Get("ItemsGuide");
             }
             catch (Exception ex)
             {
-                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                new InfoForm(new Dictionary<string, string>()
-                {
-                    ["message"] = infoFormLocalize.ContainsKey("error")
-                        ? infoFormLocalize["error"]
-                        : "Ошибка/Error",
-                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                        ? infoFormLocalize["infoFornName"]
-                        : "Внимание/Warning"
-                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
 
                 return;
             }
@@ -637,20 +510,11 @@ namespace RandomizerSoC
             string text;
             try
             {
-                text = rm.GetString("npcGuide");
+                text = Localization.Get("npcGuide");
             }
             catch (Exception ex)
             {
-                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                new InfoForm(new Dictionary<string, string>()
-                {
-                    ["message"] = infoFormLocalize.ContainsKey("error")
-                        ? infoFormLocalize["error"]
-                        : "Ошибка/Error",
-                    ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                        ? infoFormLocalize["infoFornName"]
-                        : "Внимание/Warning"
-                }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
+                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
 
                 return;
             }
@@ -671,13 +535,12 @@ namespace RandomizerSoC
             }
         }
 
-        //Чекбоксы вкладки неписей
+        #region Чекбоксы вкладки неписей
         private void ModelsCheckBox_CheckedChanged(object sender, EventArgs e) => modelTextBox.Enabled = modelsCheckBox.Checked;
 
         private void SoundsCheckBox_CheckedChanged(object sender, EventArgs e) => soundTextBox.Enabled = soundsCheckBox.Checked;
 
         private void IconsCheckBox_CheckedChanged(object sender, EventArgs e) => iconsTextBox.Enabled = iconsCheckBox.Checked;
-
 
         private void NamesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -705,206 +568,98 @@ namespace RandomizerSoC
 
             linkLabel1.Enabled = npcCheckBox.Checked;
         }
+        #endregion
 
         //ссылка другое под НПС
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
 
-        private void RusRadioButton_CheckedChanged(object sender, EventArgs e)
+        private async void RusRadioButton_Click(object sender, EventArgs e)
         {
-            if (rusRadioButton.Checked)
-            {
-                try
-                {
-                    rm = new ResourceManager("Simple_randomizer_SoC.Language.ru_local", Assembly.GetExecutingAssembly());
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru");
-                    UpdateText();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = "Ошибка смены языка"
-                    }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                }
+            Localization.ChangeLanguage(false);
+            translateCheckBox.Enabled = true;
+            UpdateText();
 
-                translateCheckBox.Enabled = true;
-            }
+            await Localization.SaveDefault("rus");
         }
 
-        private void EngRadioButton_CheckedChanged(object sender, EventArgs e)
+        private async void EngRadioButton_Click(object sender, EventArgs e)
         {
-            if (engRadioButton.Checked)
-            {
-                try
-                {
-                    rm = new ResourceManager("Simple_randomizer_SoC.Language.en_local", Assembly.GetExecutingAssembly());
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            Localization.ChangeLanguage(true);
+            translateCheckBox.Checked = false;
+            translateCheckBox.Enabled = false;
+            UpdateText();
 
-                    UpdateText();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(new Dictionary<string, string>()
-                    {
-                        ["message"] = "Language change error"
-                    }, $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                }
-
-                translateCheckBox.Checked = false;
-                translateCheckBox.Enabled = false;
-            }
+            await Localization.SaveDefault("eng");
         }
 
         private void UpdateText()
         {
-            this.Text = rm.GetString("mainFormName");
-            tabPage1.Text = rm.GetString("weaponsTab");
-            tabPage6.Text = rm.GetString("ItemsTab");
-            tabPage9.Text = rm.GetString("npcTab");
-            tabPage2.Text = rm.GetString("weatherTab");
-            tabPage8.Text = rm.GetString("advancedTab");
-            saveButton.Text = rm.GetString("saveLists");
-            loadButton.Text = rm.GetString("loadLists");
-            generateButton.Text = rm.GetString("generate");
-            loadDefaultButton.Text = rm.GetString("defaultLists");
-            label17.Text = rm.GetString("reloadSoundListTitle");
-            label10.Text = rm.GetString("ammoListTitle");
-            label1.Text = rm.GetString("weaponListTitle");
-            label19.Text = rm.GetString("shootSoundListTitle");
-            label12.Text = rm.GetString("outfits");
-            label11.Text = rm.GetString("artefacts");
-            label9.Text = rm.GetString("otherListTitle");
-            label7.Text = rm.GetString("consumableListTitle");
-            label2.Text = rm.GetString("communityListTitle");
-            namesCheckBox.Text = rm.GetString("nameListTitle");
-            iconsCheckBox.Text = rm.GetString("iconListTitle");
-            soundsCheckBox.Text = rm.GetString("soundListTitle");
-            modelsCheckBox.Text = rm.GetString("modelListTitle");
-            onlyGenerateCheckBox.Text = rm.GetString("generateNameOnlyCheckBox");
-            label3.Text = rm.GetString("exceptionListTitle");
-            label16.Text = rm.GetString("thunderProbability");
-            label15.Text = rm.GetString("rainProbability");
-            label14.Text = rm.GetString("weatherHelp");
-            label5.Text = rm.GetString("thunderListTitle");
-            label13.Text = rm.GetString("skyboxListTitle");
-            gScriptCheckBox.Text = rm.GetString("gScriptFix");
-            advancedGulagCheckBox.Text = rm.GetString("moreGulag");
-            shuffleTextCheckBox.Text = rm.GetString("shuffleText");
-            translateCheckBox.Text = rm.GetString("funnyTranslate");
-            label6.Text = rm.GetString("advancedText");
-            disableFreedomAgressionCheckBox.Text = rm.GetString("freedomAgression");
-            recommendLabel1.Text = rm.GetString("recommended");
-            recommendLabel2.Text = rm.GetString("recommended");
-            recommendLabel3.Text = rm.GetString("recommended");
-            recommendLabel4.Text = rm.GetString("recommended");
-            giveKnifeCheckBox.Text = rm.GetString("knifeAtStart");
-            moreRespawnCheckBox.Text = rm.GetString("moreRespawn");
-            barAlarmCheckBox.Text = rm.GetString("barAlarm");
-            equipWeaponEverywhereCheckBox.Text = rm.GetString("weaponEverywhere");
-            communityCheckBox.Text = rm.GetString("changeCommunity");
-            allCheckBox.Text = rm.GetString("selectAll");
-            treasureCheckBox.Text = rm.GetString("caches");
-            afCheckBox.Text = rm.GetString("artefacts");
-            weaponCheckBox.Text = rm.GetString("weaponsTab");
-            armorCheckBox.Text = rm.GetString("outfits");
-            npcCheckBox.Text = rm.GetString("npcTab");
-            suppliesCheckBox.Text = rm.GetString("weaponsTab");
-            rankCheckBox.Text = rm.GetString("rank");
-            reputationCheckBox.Text = rm.GetString("reputation");
-            label4.Text = rm.GetString("whatGenerate");
-            linkLabel1.Text = rm.GetString("other");
-            weatherCheckBox.Text = rm.GetString("weatherTab");
-            deathItemsCheckBox.Text = rm.GetString("deathItems");
-            onePointFourLinkLabel.Text = rm.GetString("onePointFourLink");
-            tradersCheckBox.Text = rm.GetString("traderItems");
-            consumablesCheckBox.Text = rm.GetString("consumables");
-
-            onePointFourAdvertise = rm.GetString("onePointFourAdvertise");
-            twoWords = rm.GetString("twoWords");
-
-            artefactsGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["artefactsError"] = rm.GetString("artefactsError"),
-                ["artefactsDataError"] = rm.GetString("artefactsDataError")
-            });
-
-            deathItemsGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["deathItemsDataError"] = rm.GetString("deathItemsDataError"),
-                ["deathItemsError"] = rm.GetString("deathItemsError")
-            });
-
-            npcGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["npcDataError"] = rm.GetString("npcDataError"),
-                ["npcError"] = rm.GetString("npcError"),
-                ["npcRulesError"] = rm.GetString("npcRulesError")
-            });
-
-            outfitsGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["outfitsDataError"] = rm.GetString("outfitsDataError"),
-                ["outfitsError"] = rm.GetString("outfitsError")
-            });
-
-            treasuresGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["cachesDataError"] = rm.GetString("cachesDataError"),
-                ["cachesError"] = rm.GetString("cachesError")
-            });
-
-            weaponsGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["weaponsDataError"] = rm.GetString("weaponsDataError"),
-                ["weaponsError"] = rm.GetString("weaponsError")
-            });
-
-            weatherGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["weatherDataError"] = rm.GetString("weatherDataError"),
-                ["weatherError"] = rm.GetString("weatherError")
-            });
-
-            tradeGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["tradersDataError"] = rm.GetString("tradersDataError"),
-                ["tradersError"] = rm.GetString("tradersError")
-            });
-
-            consumablesGenerator.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["consumablesDataError"] = rm.GetString("consumablesDataError"),
-                ["consumablesError"] = rm.GetString("consumablesError")
-            });
-
-            additionalParams.UpdateLocalize(new Dictionary<string, string>()
-            {
-                ["copyError"] = rm.GetString("copyError"),
-                ["textDataReadError"] = rm.GetString("textDataReadError"),
-                ["readHandleError"] = rm.GetString("readHandleError"),
-                ["writeHandleError"] = rm.GetString("writeHandleError")
-            });
-
-            infoFormLocalize = new Dictionary<string, string>()
-            {
-                ["infoFornName"] = rm.GetString("infoFornName"),
-                ["error"] = rm.GetString("error"),
-                ["savedIn"] = rm.GetString("savedIn"),
-                ["advancedParamsError"] = rm.GetString("advancedParamsError"),
-                ["loadError"] = rm.GetString("loadError"),
-                ["saveError"] = rm.GetString("saveError"),
-            };
+            this.Text = Localization.Get("mainFormName");
+            tabPage1.Text = Localization.Get("weaponsTab");
+            tabPage6.Text = Localization.Get("ItemsTab");
+            tabPage9.Text = Localization.Get("npcTab");
+            tabPage2.Text = Localization.Get("weatherTab");
+            tabPage8.Text = Localization.Get("advancedTab");
+            saveButton.Text = Localization.Get("saveLists");
+            loadButton.Text = Localization.Get("loadLists");
+            generateButton.Text = Localization.Get("generate");
+            loadDefaultButton.Text = Localization.Get("defaultLists");
+            label17.Text = Localization.Get("reloadSoundListTitle");
+            label10.Text = Localization.Get("ammoListTitle");
+            label1.Text = Localization.Get("weaponListTitle");
+            label19.Text = Localization.Get("shootSoundListTitle");
+            label12.Text = Localization.Get("outfits");
+            label11.Text = Localization.Get("artefacts");
+            label9.Text = Localization.Get("otherListTitle");
+            label7.Text = Localization.Get("consumableListTitle");
+            label2.Text = Localization.Get("communityListTitle");
+            namesCheckBox.Text = Localization.Get("nameListTitle");
+            iconsCheckBox.Text = Localization.Get("iconListTitle");
+            soundsCheckBox.Text = Localization.Get("soundListTitle");
+            modelsCheckBox.Text = Localization.Get("modelListTitle");
+            onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
+            label3.Text = Localization.Get("exceptionListTitle");
+            label16.Text = Localization.Get("thunderProbability");
+            label15.Text = Localization.Get("rainProbability");
+            label14.Text = Localization.Get("weatherHelp");
+            label5.Text = Localization.Get("thunderListTitle");
+            label13.Text = Localization.Get("skyboxListTitle");
+            gScriptCheckBox.Text = Localization.Get("gScriptFix");
+            advancedGulagCheckBox.Text = Localization.Get("moreGulag");
+            shuffleTextCheckBox.Text = Localization.Get("shuffleText");
+            translateCheckBox.Text = Localization.Get("funnyTranslate");
+            label6.Text = Localization.Get("advancedText");
+            disableFreedomAgressionCheckBox.Text = Localization.Get("freedomAgression");
+            recommendLabel1.Text = Localization.Get("recommended");
+            recommendLabel2.Text = Localization.Get("recommended");
+            recommendLabel3.Text = Localization.Get("recommended");
+            recommendLabel4.Text = Localization.Get("recommended");
+            giveKnifeCheckBox.Text = Localization.Get("knifeAtStart");
+            moreRespawnCheckBox.Text = Localization.Get("moreRespawn");
+            barAlarmCheckBox.Text = Localization.Get("barAlarm");
+            equipWeaponEverywhereCheckBox.Text = Localization.Get("weaponEverywhere");
+            communityCheckBox.Text = Localization.Get("changeCommunity");
+            allCheckBox.Text = Localization.Get("selectAll");
+            treasureCheckBox.Text = Localization.Get("caches");
+            afCheckBox.Text = Localization.Get("artefacts");
+            weaponCheckBox.Text = Localization.Get("weaponsTab");
+            armorCheckBox.Text = Localization.Get("outfits");
+            npcCheckBox.Text = Localization.Get("npcTab");
+            suppliesCheckBox.Text = Localization.Get("weaponsTab");
+            rankCheckBox.Text = Localization.Get("rank");
+            reputationCheckBox.Text = Localization.Get("reputation");
+            label4.Text = Localization.Get("whatGenerate");
+            linkLabel1.Text = Localization.Get("other");
+            weatherCheckBox.Text = Localization.Get("weatherTab");
+            deathItemsCheckBox.Text = Localization.Get("deathItems");
+            onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
+            tradersCheckBox.Text = Localization.Get("traderItems");
+            consumablesCheckBox.Text = Localization.Get("consumables");
         }
 
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new InfoForm(new Dictionary<string, string>()
-            {
-                ["message"] = twoWords,
-                ["infoFornName"] = infoFormLocalize.ContainsKey("infoFornName")
-                        ? infoFormLocalize["infoFornName"]
-                        : "Внимание/Warning"
-            }, onePointFourAdvertise).ShowDialog();
+            new InfoForm(Localization.Get("twoWords"), Localization.Get("onePointFourAdvertise")).ShowDialog();
         }
     }
 }

@@ -12,31 +12,27 @@ namespace Simple_randomizer_SoC.Generators
     {
         private string newConfigPath;
 
-        public ConsumablesGenerator(FileHandler file) : base(file) { }
-
-        public void updateData(string newConfigPath)
+        public void UpdateData(string newConfigPath)
         {
             this.newConfigPath = newConfigPath;
 
             isDataLoaded = true;
         }
 
-        public async Task<int> generate()
+        public async Task<int> Generate()
         {
             errorMessage = "";
             warningMessage = "";
 
             if (!isDataLoaded)
             {
-                errorMessage = localizeDictionary.ContainsKey("consumablesDataError")
-                    ? localizeDictionary["consumablesDataError"]
-                    : "Ошибка данных расходников/Consumables data error";
+                errorMessage = Localization.Get("consumablesDataError");
                 return STATUS_ERROR;
             }
 
             try
             {
-                var items = Regex.Replace(await file.ReadFile($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
+                var items = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
                 var itemsStringList = items.Replace("]:", "\a").Split('\a');
 
                 string newItems = "";
@@ -60,16 +56,13 @@ namespace Simple_randomizer_SoC.Generators
                     newItems += it + "]:";
                 }
 
-                await file.WriteFile($"{newConfigPath}/misc/items.ltx", newItems);
+                await MyFile.Write($"{newConfigPath}/misc/items.ltx", newItems);
 
                 return STATUS_OK;
             }
             catch (Exception ex)
             {
-                errorMessage = (localizeDictionary.ContainsKey("consumablesError")
-                    ? localizeDictionary["consumablesError"]
-                    : "Ошибка расходников/Consumables error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("consumablesError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }

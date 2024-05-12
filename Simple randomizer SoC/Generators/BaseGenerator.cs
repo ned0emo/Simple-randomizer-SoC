@@ -26,26 +26,17 @@ namespace Simple_randomizer_SoC
 
         protected bool isDataLoaded;
 
-        protected FileHandler file;
-
-        protected Dictionary<string, string> localizeDictionary;
-
         /// <summary>
         /// Базовый класс для генерации. Методы "replaceStat" для *.ltx файлов,
         /// метод "replaceXmlValue" для *.xml,
         /// "loadFile" и "saveFile" для загрузки и сохранения файлов соответственно.
         /// Переменная errorMessage будет хранить в себе ошибки
         /// </summary>
-        protected BaseGenerator(FileHandler file)
+        protected BaseGenerator()
         {
             rnd = new Random();
             isDataLoaded = false;
-            localizeDictionary = new Dictionary<string, string>();
-
-            this.file = file;
         }
-
-        public void UpdateLocalize(Dictionary<string, string> localizeDictionary) => this.localizeDictionary = localizeDictionary;
 
         /// <summary>
         /// Замена стата ltx файла

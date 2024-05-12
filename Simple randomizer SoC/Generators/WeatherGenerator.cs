@@ -16,8 +16,6 @@ namespace Simple_randomizer_SoC.Generators
 
         private string newConfigPath;
 
-        public WeatherGenerator(FileHandler file) : base(file) { }
-
         public void UpdateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
         {
             this.skyboxes = skyboxes;
@@ -37,9 +35,7 @@ namespace Simple_randomizer_SoC.Generators
             if (!isDataLoaded)
             {
                 //errorMessage = "Данные для генерации погоды не были получены. Операция прервана";
-                errorMessage = localizeDictionary.ContainsKey("weatherDataError")
-                    ? localizeDictionary["weatherDataError"]
-                    : "Ошибка данных погоды/Weather data error";
+                errorMessage = Localization.Get("weatherDataError");
                 return STATUS_ERROR;
             }
 
@@ -47,11 +43,11 @@ namespace Simple_randomizer_SoC.Generators
             {
                 var thunderList = CreateCleanList(thunders);
                 var skyTextureList = CreateCleanList(skyboxes);
-                var weathers = await file.GetFiles($"{Environment.configPath}/weathers");
+                var weathers = await MyFile.GetFiles($"{Environment.configPath}/weathers");
 
                 foreach (string weatherPath in weathers)
                 {
-                    List<string> weatherList = new List<string>((await file.ReadFile(weatherPath)).Split(']'));
+                    List<string> weatherList = new List<string>((await MyFile.Read(weatherPath)).Split(']'));
 
                     string newWeather = weatherList[0] + "]" + weatherList[1];
                     for (int i = 2; i < weatherList.Count; i++)
@@ -107,7 +103,7 @@ namespace Simple_randomizer_SoC.Generators
                         newWeather += "]" + currentWeather;
                     }
 
-                    await file.WriteFile(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
+                    await MyFile.Write(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
                 }
 
                 return STATUS_OK;
@@ -115,10 +111,7 @@ namespace Simple_randomizer_SoC.Generators
             catch (Exception ex)
             {
                 //errorMessage = $"Ошибка генерации погоды. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = (localizeDictionary.ContainsKey("weatherError")
-                    ? localizeDictionary["weatherError"]
-                    : "Ошибка погоды/Weather error")
-                    + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
+                errorMessage = Localization.Get("weatherError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
                 return STATUS_ERROR;
             }
         }
