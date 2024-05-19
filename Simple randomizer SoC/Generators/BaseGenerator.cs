@@ -57,6 +57,14 @@ namespace Simple_randomizer_SoC
             }
             else if (createIfNotExist)
             {
+                if (item.Contains('\n'))
+                {
+                    var tmp1 = item.Substring(0, item.LastIndexOf('\n'));
+                    var tmp2 = item.Substring(item.LastIndexOf('\n'));
+                    return tmp1 + $"\n{statName} = {statValue}" + tmp2;
+                    //return item.ReplaceFirst(tmp, $"\n{statName} = {statValue}" + tmp);
+                }
+
                 return item + $"\n{statName} = {statValue}";
             }
 

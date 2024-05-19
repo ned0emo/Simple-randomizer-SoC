@@ -33,7 +33,8 @@ namespace Simple_randomizer_SoC.Generators
             try
             {
                 var items = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
-                var itemsStringList = items.Replace("]:", "\a").Split('\a');
+                var itemsStringList = Regex.Split(items, "]:");
+                    //items.Replace("]:", "\a").Split('\a');
 
                 string newItems = "";
 
