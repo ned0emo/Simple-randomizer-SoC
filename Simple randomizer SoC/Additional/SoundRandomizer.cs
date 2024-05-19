@@ -22,24 +22,39 @@ namespace Simple_randomizer_SoC.Tools
         //мкс кол-во потоков
         int threadCount = 4;
 
-        readonly List<Thread> threads = new List<Thread>();
 
         bool stepSoundEnabled = false;
 
+        /// <summary>
+        /// флаг прерывания
+        /// </summary>
         public bool stopProcessing = false;
-
+        /// <summary>
+        /// флаг выполнения (для формы)
+        /// </summary>
         public bool isProcessing = false;
 
-        public string path = "";
-
+        /// <summary>
+        /// текст на лейбл формы
+        /// </summary>
         public string statusMessage = "";
+
         public string errorMessage = "";
 
-        string outputGamedataPath = "*";
+        /// <summary>
+        /// путь до звуков
+        /// </summary>
+        string path = "";
+        /// <summary>
+        /// путь выхода
+        /// </summary>
+        string outputGamedataPath = "";
 
         readonly Random rnd;
+
         Thread copyThread;
         Thread searchThread;
+        readonly List<Thread> threads = new List<Thread>();
 
         public SoundRandomizer()
         {
@@ -50,7 +65,7 @@ namespace Simple_randomizer_SoC.Tools
             //threadsNumeric.Maximum = Math.Max(1, Environment.ProcessorCount);
         }
 
-        public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath)
+        public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath, string inputPath)
         {
             await Abort();
 
@@ -66,6 +81,7 @@ namespace Simple_randomizer_SoC.Tools
             this.sizeFilter = sizeFilter;
             this.stepSoundEnabled = stepSoundEnabled;
             this.outputGamedataPath = outputGamedataPath;
+            path = inputPath;
 
             searchThread.Start();
         }
@@ -74,14 +90,16 @@ namespace Simple_randomizer_SoC.Tools
         {
             statusMessage = "Завершение...";
             stopProcessing = true;
-            while (copyThread?.IsAlive == true || searchThread?.IsAlive == true || threads.Any(t => t.IsAlive))
+            while (copyThread?.ThreadState == ThreadState.Running || searchThread?.ThreadState == ThreadState.Running || threads.Any())
             {
-                await Task.Delay(100);
+                await Task.Delay(500);
             }
-            threads.Clear();
             stopProcessing = false;
         }
 
+        /// <summary>
+        /// первый поток
+        /// </summary>
         void SearchSounds()
         {
             int threadLockCount = 0;
@@ -93,6 +111,10 @@ namespace Simple_randomizer_SoC.Tools
 
                 while (threads.Count > 0 && threadLockCount < 10)
                 {
+                    lock (threads)
+                    {
+                        threads.RemoveAll(t => t.ThreadState != ThreadState.Running);
+                    }
                     if (stopProcessing) threadLockCount++;
 
                     Thread.Sleep(500);
@@ -112,6 +134,7 @@ namespace Simple_randomizer_SoC.Tools
                         }
                         catch { }
                     }
+                    isProcessing = false;
                     return;
                 }
 
@@ -135,10 +158,8 @@ namespace Simple_randomizer_SoC.Tools
 
         void DirSearch(DirectoryInfo dir)
         {
-            if (stopProcessing)
-            {
-                return;
-            }
+            if (stopProcessing) return;
+
             statusMessage = "Обработка: " + dir.FullName;
 
             try
@@ -146,10 +167,7 @@ namespace Simple_randomizer_SoC.Tools
                 var sndList = dir.GetFiles().Select(f => f.FullName);
                 foreach (var file in sndList)
                 {
-                    if (stopProcessing)
-                    {
-                        return;
-                    }
+                    if (stopProcessing) return;
 
                     if (file.EndsWith(".ogg"))
                     {
@@ -182,20 +200,16 @@ namespace Simple_randomizer_SoC.Tools
             var dirList = dir.GetDirectories();
             foreach (DirectoryInfo nextDir in dirList)
             {
-                lock (threads)
+                //если потоков больше максимума, грузим текущий поток вместо открытия нового
+                if (threads.Count() >= threadCount)
                 {
-                    threads.RemoveAll(t => t.ThreadState != ThreadState.Running);
-                    //если потоков больше максимума, грузим текущий поток вместо открытия нового
-                    if (threads.Count() >= threadCount)
-                    {
-                        DirSearch(nextDir);
-                    }
-                    else
-                    {
-                        var t = new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o)));
-                        threads.Add(t);
-                        t.Start(nextDir);
-                    }
+                    DirSearch(nextDir);
+                }
+                else
+                {
+                    var t = new Thread(new ParameterizedThreadStart(o => DirSearch((DirectoryInfo)o)));
+                    threads.Add(t);
+                    t.Start(nextDir);
                 }
             }
         }
@@ -209,10 +223,13 @@ namespace Simple_randomizer_SoC.Tools
                     if (stopProcessing) return;
 
                     files.RemoveAll(f => f.Contains("$no_sound.ogg"));
+
+                    //дождь и шаги
                     if (!stepSoundEnabled)
                     {
                         progress += files.RemoveAll(f => f.Contains("step") || f.Contains("rain"));
                     }
+
                     if (files.Count == 1)
                     {
                         progress++;
@@ -239,11 +256,13 @@ namespace Simple_randomizer_SoC.Tools
 
                 progress = maxProgress;
                 isProcessing = false;
+                statusMessage = "OK";
             }
             catch (Exception ex)
             {
                 isProcessing = false;
                 errorMessage += $"{ex.Message}\n{ex.InnerException?.Message}\r\n";
+                statusMessage = "Ошибка";
             }
         }
     }

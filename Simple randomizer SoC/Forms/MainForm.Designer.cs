@@ -134,6 +134,7 @@
             this.engRadioButton = new System.Windows.Forms.RadioButton();
             this.tradersCheckBox = new System.Windows.Forms.CheckBox();
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
+            this.loadState = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -1002,7 +1003,7 @@
             // texturesPathButton
             // 
             this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(488, 346);
+            this.texturesPathButton.Location = new System.Drawing.Point(668, 346);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
             this.texturesPathButton.TabIndex = 31;
@@ -1015,7 +1016,7 @@
             this.texturesPathText.Enabled = false;
             this.texturesPathText.Location = new System.Drawing.Point(142, 348);
             this.texturesPathText.Name = "texturesPathText";
-            this.texturesPathText.Size = new System.Drawing.Size(340, 20);
+            this.texturesPathText.Size = new System.Drawing.Size(520, 20);
             this.texturesPathText.TabIndex = 30;
             // 
             // texturesPathLabel
@@ -1113,7 +1114,7 @@
             // soundsPathButton
             // 
             this.soundsPathButton.Enabled = false;
-            this.soundsPathButton.Location = new System.Drawing.Point(488, 223);
+            this.soundsPathButton.Location = new System.Drawing.Point(668, 223);
             this.soundsPathButton.Name = "soundsPathButton";
             this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
             this.soundsPathButton.TabIndex = 22;
@@ -1126,7 +1127,7 @@
             this.soundsPathText.Enabled = false;
             this.soundsPathText.Location = new System.Drawing.Point(142, 225);
             this.soundsPathText.Name = "soundsPathText";
-            this.soundsPathText.Size = new System.Drawing.Size(340, 20);
+            this.soundsPathText.Size = new System.Drawing.Size(520, 20);
             this.soundsPathText.TabIndex = 21;
             // 
             // soundsPathLabel
@@ -1323,11 +1324,20 @@
             this.consumablesCheckBox.Text = "Расходники";
             this.consumablesCheckBox.UseVisualStyleBackColor = true;
             // 
+            // loadState
+            // 
+            this.loadState.AutoSize = true;
+            this.loadState.Location = new System.Drawing.Point(1045, 390);
+            this.loadState.Name = "loadState";
+            this.loadState.Size = new System.Drawing.Size(0, 13);
+            this.loadState.TabIndex = 38;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.Controls.Add(this.loadState);
             this.Controls.Add(this.consumablesCheckBox);
             this.Controls.Add(this.tradersCheckBox);
             this.Controls.Add(this.engRadioButton);
@@ -1486,6 +1496,7 @@
         private System.Windows.Forms.CheckBox texturesCheckBox;
         private System.Windows.Forms.CheckBox gameSoundCheckBox;
         private System.Windows.Forms.Label advanced2Label;
+        private System.Windows.Forms.Label loadState;
     }
 }
 

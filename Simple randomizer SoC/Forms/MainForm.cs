@@ -118,6 +118,7 @@ namespace RandomizerSoC
             textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
 
             soundRandomizer = new SoundRandomizer();
+            soundsPathText.Text = Configuration.Get("sound");
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -208,11 +209,11 @@ namespace RandomizerSoC
 
             ///<summary>
             ///Увеличивает значения прогрессбара на указанное параметром progressBarStep.
-            ///Если значение больше 100, оставляет его равным 100
+            ///Если значение больше макс, оставляет его равным макс
             ///</summary>
             void incrementProgressBar()
             {
-                progressBar1.Value = Math.Min(progressBar1.Value + progressBarStep, 100);
+                progressBar1.Value = Math.Min(progressBar1.Value + progressBarStep, progressBar1.Maximum);
             }
 
             void changeButtonsStatus(bool enabled)
@@ -453,40 +454,33 @@ namespace RandomizerSoC
             #endregion
 
             //звуки
-            if (gameSoundCheckBox.Checked)
+            if (gameSoundCheckBox.Checked && soundsPathText.Text.Contains("\\sounds"))
             {
-                if (!soundsPathText.Text.Contains("\\sounds"))
+                try
                 {
-                    new InfoForm("Указанный путь к игровым звукам не содержит папку \"sounds\"").ShowDialog();
+                    //из-за ожидания isProcessing нормально становится true
+                    await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath, soundsPathText.Text);
+                    
+                    loadState.Text = "Обработка звуков...";
+                    do
+                    {
+                        soundsProgressLabel.Text = soundRandomizer.statusMessage;
+                        progressBar1.Value = Math.Min(progressBar1.Maximum, soundRandomizer.progress);
+                        progressBar1.Maximum = soundRandomizer.maxProgress;
+                        await Task.Delay(100);
+                    } while (soundRandomizer.isProcessing);
+
+                    if (soundRandomizer.errorMessage.Length > 0)
+                    {
+                        throw new Exception(soundRandomizer.errorMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await soundRandomizer.Abort();
+                    new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
                     changeButtonsStatus(true);
                     return;
-                }
-                else
-                {
-                    try
-                    {
-                        await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath);
-                        
-                        do
-                        {
-                            soundsProgressLabel.Text = soundRandomizer.statusMessage;
-                            progressBar1.Value = Math.Min(progressBar1.Maximum, soundRandomizer.progress);
-                            progressBar1.Maximum = soundRandomizer.maxProgress;
-                            await Task.Delay(100);
-                        } while (soundRandomizer.isProcessing);
-
-                        if (soundRandomizer.errorMessage.Length > 0)
-                        {
-                            throw new Exception(soundRandomizer.errorMessage);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        await soundRandomizer.Abort();
-                        new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
-                        changeButtonsStatus(true);
-                        return;
-                    }
                 }
             }
 
@@ -629,23 +623,23 @@ namespace RandomizerSoC
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
 
         #region локализация
-        private async void RusRadioButton_Click(object sender, EventArgs e)
+        private void RusRadioButton_Click(object sender, EventArgs e)
         {
             Localization.ChangeLanguage(false);
             translateCheckBox.Enabled = true;
             UpdateText();
 
-            await Localization.SaveDefault("rus");
+            Localization.SaveDefault("rus");
         }
 
-        private async void EngRadioButton_Click(object sender, EventArgs e)
+        private void EngRadioButton_Click(object sender, EventArgs e)
         {
             Localization.ChangeLanguage(true);
             translateCheckBox.Checked = false;
             translateCheckBox.Enabled = false;
             UpdateText();
 
-            await Localization.SaveDefault("eng");
+            Localization.SaveDefault("eng");
         }
 
         private void UpdateText()
@@ -750,8 +744,16 @@ namespace RandomizerSoC
             {
                 SelectedPath = soundsPathText.Text
             };
-            if (fbd.ShowDialog() == DialogResult.OK) soundsPathText.Text = fbd.SelectedPath;
-            soundRandomizer.path = soundsPathText.Text;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                soundsPathText.Text = fbd.SelectedPath;
+                Configuration.Set("sound", fbd.SelectedPath);
+            }
+
+            if (!soundsPathText.Text.Contains("sounds"))
+            {
+                new InfoForm("Указанный к игровым звукам путь не содержит папку \"sounds\"").ShowDialog();
+            }
         }
 
         private void TexturesPathButton_Click(object sender, EventArgs e)

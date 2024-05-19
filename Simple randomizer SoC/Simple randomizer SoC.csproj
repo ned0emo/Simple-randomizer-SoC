@@ -36,6 +36,9 @@
     <Reference Include="NVorbis, Version=0.10.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NVorbis.0.10.5\lib\net45\NVorbis.dll</HintPath>
     </Reference>
+    <Reference Include="Pfim, Version=0.11.2.0, Culture=neutral, PublicKeyToken=c0ebc20d008ae134, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pfim.0.11.2\lib\netstandard2.0\Pfim.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -65,7 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tools\AdditionalParams.cs" />
+    <Compile Include="Additional\AdditionalParams.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Generators\ConsumablesGenerator.cs" />
     <Compile Include="Generators\TradeGenerator.cs" />
@@ -79,6 +82,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\MyFile.cs" />
     <Compile Include="Generators\ArtefactsGenerator.cs" />
     <Compile Include="Generators\BaseGenerator.cs" />
@@ -115,9 +119,9 @@
     <Compile Include="Forms\SaveForm.Designer.cs">
       <DependentUpon>SaveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\SoundRandomizer.cs" />
+    <Compile Include="Additional\SoundRandomizer.cs" />
     <Compile Include="Tools\TextBoxesHandler.cs" />
-    <Compile Include="Tools\TextureRandomizer.cs" />
+    <Compile Include="Additional\TextureRandomizer.cs" />
     <EmbeddedResource Include="Language\en_local.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>en_local.Designer.cs</LastGenOutput>
@@ -163,4 +167,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <MoveToLibFolder Include="$(OutputPath)*.dll ; $(OutputPath)*.pdb ; $(OutputPath)*.xml" />
+    </ItemGroup>
+    <Move SourceFiles="@(MoveToLibFolder)" DestinationFolder="$(OutputPath)lib" OverwriteReadOnlyFiles="true" />
+  </Target>
 </Project>

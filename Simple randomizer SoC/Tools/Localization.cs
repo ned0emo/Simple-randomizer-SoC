@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,24 +27,16 @@ namespace Simple_randomizer_SoC
 
         public void LoadDefault()
         {
-            try
-            {
-                var result = File.ReadAllText(".\\LocalizationConfig.txt");
-                isEnglish = result == "eng";
-                ChangeLanguage(isEnglish);
-            }
-            catch { }
+            var result = Configuration.Get("lang");
+            isEnglish = result == "eng";
+            ChangeLanguage(isEnglish);
         }
 
         public static bool IsFirstLoadEnglish() => instance.isEnglish;
 
-        public static async Task SaveDefault(string lang = "rus")
+        public static void SaveDefault(string lang = "rus")
         {
-            try
-            {
-                await MyFile.Write(".\\LocalizationConfig.txt", lang);
-            }
-            catch { }
+            Configuration.Set("lang", lang);
         }
 
         public static void ChangeLanguage(bool isEnglish)
