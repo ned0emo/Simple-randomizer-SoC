@@ -80,7 +80,7 @@ namespace Simple_randomizer_SoC.Tools
 
         public async Task Abort()
         {
-            statusMessage = "Завершение...";
+            statusMessage = Localization.Get("exiting");
             stopProcessing = true;
             while (copyThread?.ThreadState == ThreadState.Running || searchThread?.ThreadState == ThreadState.Running || threads.Any())
             {
@@ -130,7 +130,7 @@ namespace Simple_randomizer_SoC.Tools
                     return;
                 }
 
-                statusMessage = "Копирование файлов...";
+                statusMessage = Localization.Get("fileCopying");// "Копирование файлов...";
                 maxProgress = filesCount + 10;
                 progress = 0;
 
@@ -144,7 +144,7 @@ namespace Simple_randomizer_SoC.Tools
                 errorMessage += ex.Message + "\r\n" + ex.StackTrace.ToString() + "\r\n";
 
                 progress = 0;
-                statusMessage = "Ошибка";
+                statusMessage = Localization.Get("error");
             }
         }
 
@@ -152,7 +152,7 @@ namespace Simple_randomizer_SoC.Tools
         {
             if (stopProcessing) return;
 
-            statusMessage = "Обработка: " + dir.FullName;
+            statusMessage = $"{Localization.Get("processing")}: " + dir.FullName;
 
             try
             {
@@ -261,7 +261,7 @@ namespace Simple_randomizer_SoC.Tools
             {
                 isProcessing = false;
                 errorMessage += $"{ex.Message}\n{ex.InnerException?.Message}\r\n";
-                statusMessage = "Ошибка";
+                statusMessage = Localization.Get("error");// "Ошибка";
             }
         }
     }

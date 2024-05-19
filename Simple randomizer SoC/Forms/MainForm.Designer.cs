@@ -944,7 +944,7 @@
             this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
             this.advancedTab2.Size = new System.Drawing.Size(1015, 491);
             this.advancedTab2.TabIndex = 11;
-            this.advancedTab2.Text = "Дополнительно2";
+            this.advancedTab2.Text = "Дополнительно 2";
             this.advancedTab2.UseVisualStyleBackColor = true;
             // 
             // advanced2Label
@@ -995,15 +995,15 @@
             this.uiReplaceCheckBox.Enabled = false;
             this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 374);
             this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
-            this.uiReplaceCheckBox.Size = new System.Drawing.Size(296, 17);
+            this.uiReplaceCheckBox.Size = new System.Drawing.Size(194, 17);
             this.uiReplaceCheckBox.TabIndex = 32;
-            this.uiReplaceCheckBox.Text = "Заменять элементы интерфейса (не рекомендуется)";
+            this.uiReplaceCheckBox.Text = "Заменять элементы интерфейса";
             this.uiReplaceCheckBox.UseVisualStyleBackColor = true;
             // 
             // texturesPathButton
             // 
             this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(668, 346);
+            this.texturesPathButton.Location = new System.Drawing.Point(709, 346);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
             this.texturesPathButton.TabIndex = 31;
@@ -1014,7 +1014,7 @@
             // texturesPathText
             // 
             this.texturesPathText.Enabled = false;
-            this.texturesPathText.Location = new System.Drawing.Point(142, 348);
+            this.texturesPathText.Location = new System.Drawing.Point(183, 348);
             this.texturesPathText.Name = "texturesPathText";
             this.texturesPathText.Size = new System.Drawing.Size(520, 20);
             this.texturesPathText.TabIndex = 30;
@@ -1023,7 +1023,7 @@
             // 
             this.texturesPathLabel.Location = new System.Drawing.Point(6, 351);
             this.texturesPathLabel.Name = "texturesPathLabel";
-            this.texturesPathLabel.Size = new System.Drawing.Size(130, 15);
+            this.texturesPathLabel.Size = new System.Drawing.Size(171, 17);
             this.texturesPathLabel.TabIndex = 29;
             this.texturesPathLabel.Text = "Путь к папке textures";
             // 
@@ -1114,7 +1114,7 @@
             // soundsPathButton
             // 
             this.soundsPathButton.Enabled = false;
-            this.soundsPathButton.Location = new System.Drawing.Point(668, 223);
+            this.soundsPathButton.Location = new System.Drawing.Point(709, 223);
             this.soundsPathButton.Name = "soundsPathButton";
             this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
             this.soundsPathButton.TabIndex = 22;
@@ -1125,7 +1125,7 @@
             // soundsPathText
             // 
             this.soundsPathText.Enabled = false;
-            this.soundsPathText.Location = new System.Drawing.Point(142, 225);
+            this.soundsPathText.Location = new System.Drawing.Point(183, 225);
             this.soundsPathText.Name = "soundsPathText";
             this.soundsPathText.Size = new System.Drawing.Size(520, 20);
             this.soundsPathText.TabIndex = 21;
@@ -1134,7 +1134,7 @@
             // 
             this.soundsPathLabel.Location = new System.Drawing.Point(6, 228);
             this.soundsPathLabel.Name = "soundsPathLabel";
-            this.soundsPathLabel.Size = new System.Drawing.Size(130, 15);
+            this.soundsPathLabel.Size = new System.Drawing.Size(171, 17);
             this.soundsPathLabel.TabIndex = 20;
             this.soundsPathLabel.Text = "Путь к папке sounds";
             // 

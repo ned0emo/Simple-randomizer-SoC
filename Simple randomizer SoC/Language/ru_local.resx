@@ -199,11 +199,20 @@
   <data name="exceptionListTitle" xml:space="preserve">
     <value>Исключения</value>
   </data>
+  <data name="exiting" xml:space="preserve">
+    <value>Завершение...</value>
+  </data>
+  <data name="fileCopying" xml:space="preserve">
+    <value>Копирование файлов...</value>
+  </data>
   <data name="freedomAgression" xml:space="preserve">
     <value>Отключить враждебность базы Свободы при наличии на ней НПС, враждебных к ГГ</value>
   </data>
   <data name="funnyTranslate" xml:space="preserve">
     <value>Охлаждающий трахание перевод</value>
+  </data>
+  <data name="gameSounds" xml:space="preserve">
+    <value>Звуки</value>
   </data>
   <data name="generate" xml:space="preserve">
     <value>Сгенерировать</value>
@@ -253,6 +262,9 @@
   </data>
   <data name="mainFormName" xml:space="preserve">
     <value>Простой рандомайзер для Тень Чернобыля</value>
+  </data>
+  <data name="maxThreads" xml:space="preserve">
+    <value>Максимальное количество потоков для обработки</value>
   </data>
   <data name="modelListTitle" xml:space="preserve">
     <value>Модели</value>
@@ -358,6 +370,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="onePointFourLink" xml:space="preserve">
     <value>Версия игры 1.0004 работает с этим рандомайзером НАМНОГО стабильнее, чем 1.0006. Но почему?</value>
   </data>
+  <data name="open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
   <data name="other" xml:space="preserve">
     <value>Другое...</value>
   </data>
@@ -376,6 +391,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   </data>
   <data name="overwritingFiles" xml:space="preserve">
     <value>Следующие файлы будут перезаписаны:</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>Обработка</value>
   </data>
   <data name="rainProbability" xml:space="preserve">
     <value>Вероятность дождя для каждого класса погоды</value>
@@ -422,8 +440,42 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="soundListTitle" xml:space="preserve">
     <value>Озвучка</value>
   </data>
+  <data name="soundsError" xml:space="preserve">
+    <value>Ошибка обработки звуков. Операция прервана</value>
+  </data>
+  <data name="soundsPath" xml:space="preserve">
+    <value>Путь к папке sounds</value>
+  </data>
+  <data name="soundsProcessing" xml:space="preserve">
+    <value>Обработка звука...</value>
+  </data>
+  <data name="soundsRoundStep" xml:space="preserve">
+    <value>Шаг округления длительности звуковых файлов, сек (использование больших значений на свой страх и риск)</value>
+  </data>
+  <data name="soundTexturesDescription" xml:space="preserve">
+    <value>Для перемешивания текстур и звуков нужно иметь распакованные игровые файлы gamedata.db* с текстурами и звуками. Пути к папкам с данными нужно указать в соответствующих полях.
+
+Процесс перемешивания может занять много времени, особенно если игровые файлы лежат на жестком диске, а не на твердотельном накопителе. Также для копирования перемешанных текстур/звуков потребуется около 2ГБ места на диске (для оригинальной игры).
+
+Максимальное количество потоков для обработки устанавливает количество одновременно обрабатываемых директорий при чтени данных с файлов текстур/звуков.</value>
+  </data>
+  <data name="stepRainSounds" xml:space="preserve">
+    <value>Заменять звуки шагов и дождя (не рекомендуется)</value>
+  </data>
   <data name="textDataReadError" xml:space="preserve">
     <value>Ошибка чтения файлов с игровым текстом</value>
+  </data>
+  <data name="textureProcessing" xml:space="preserve">
+    <value>Обработка текстур...</value>
+  </data>
+  <data name="textures" xml:space="preserve">
+    <value>Текстуры</value>
+  </data>
+  <data name="texturesError" xml:space="preserve">
+    <value>Ошибка обработки текстур. Операция прервана</value>
+  </data>
+  <data name="texturesPath" xml:space="preserve">
+    <value>Путь к папке textures</value>
   </data>
   <data name="thunderListTitle" xml:space="preserve">
     <value>Эффекты грозы</value>
@@ -442,6 +494,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   </data>
   <data name="twoWords" xml:space="preserve">
     <value>В двух словах: я не знаю, но...</value>
+  </data>
+  <data name="uiReplacement" xml:space="preserve">
+    <value>Заменять элементы интерфейса</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>Возможность достать оружие в баре, в бункере ученых и у Сидоровича</value>

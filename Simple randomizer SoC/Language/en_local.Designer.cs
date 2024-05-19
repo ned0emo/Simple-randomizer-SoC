@@ -137,7 +137,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Caches.
+        ///   Ищет локализованную строку, похожую на Stashes.
         /// </summary>
         internal static string caches {
             get {
@@ -290,6 +290,24 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Completion....
+        /// </summary>
+        internal static string exiting {
+            get {
+                return ResourceManager.GetString("exiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Copying files....
+        /// </summary>
+        internal static string fileCopying {
+            get {
+                return ResourceManager.GetString("fileCopying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Disable the hostility of the Freedom base if there are NPCs hostile to the player on it.
         /// </summary>
         internal static string freedomAgression {
@@ -304,6 +322,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string funnyTranslate {
             get {
                 return ResourceManager.GetString("funnyTranslate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sounds.
+        /// </summary>
+        internal static string gameSounds {
+            get {
+                return ResourceManager.GetString("gameSounds", resourceCulture);
             }
         }
         
@@ -427,6 +454,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Maximum number of threads to process.
+        /// </summary>
+        internal static string maxThreads {
+            get {
+                return ResourceManager.GetString("maxThreads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Models.
         /// </summary>
         internal static string modelListTitle {
@@ -542,6 +578,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Open.
+        /// </summary>
+        internal static string open {
+            get {
+                return ResourceManager.GetString("open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на More....
         /// </summary>
         internal static string other {
@@ -592,6 +637,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string overwritingFiles {
             get {
                 return ResourceManager.GetString("overwritingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Processing.
+        /// </summary>
+        internal static string processing {
+            get {
+                return ResourceManager.GetString("processing", resourceCulture);
             }
         }
         
@@ -731,11 +785,105 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Sound processing error. The operation was aborted.
+        /// </summary>
+        internal static string soundsError {
+            get {
+                return ResourceManager.GetString("soundsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The path to the sounds folder.
+        /// </summary>
+        internal static string soundsPath {
+            get {
+                return ResourceManager.GetString("soundsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sound processing....
+        /// </summary>
+        internal static string soundsProcessing {
+            get {
+                return ResourceManager.GetString("soundsProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The rounding step of the duration of audio files in seconds (using large values at your own risk).
+        /// </summary>
+        internal static string soundsRoundStep {
+            get {
+                return ResourceManager.GetString("soundsRoundStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To shuffle textures and sounds, you need to have unpacked gamedata.db* game files with textures and sounds. The paths to the data folders must be specified in the appropriate fields.
+        ///
+        ///The shuffiling process can take a long time, especially if the game files are on the hard drive and not on the SSD. Also, copying mixed textures/sounds will require about 2GB of disk space (for the original game).
+        ///
+        ///The maximum number of threads to process sets the number of simultaneously processed directories when reading [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string soundTexturesDescription {
+            get {
+                return ResourceManager.GetString("soundTexturesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Replace the sounds of footsteps and rain (not recommended).
+        /// </summary>
+        internal static string stepRainSounds {
+            get {
+                return ResourceManager.GetString("stepRainSounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error reading game text files.
         /// </summary>
         internal static string textDataReadError {
             get {
                 return ResourceManager.GetString("textDataReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Texture processing....
+        /// </summary>
+        internal static string textureProcessing {
+            get {
+                return ResourceManager.GetString("textureProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Textures.
+        /// </summary>
+        internal static string textures {
+            get {
+                return ResourceManager.GetString("textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Texture processing error. The operation was aborted.
+        /// </summary>
+        internal static string texturesError {
+            get {
+                return ResourceManager.GetString("texturesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The path to the textures folder.
+        /// </summary>
+        internal static string texturesPath {
+            get {
+                return ResourceManager.GetString("texturesPath", resourceCulture);
             }
         }
         
@@ -790,6 +938,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string twoWords {
             get {
                 return ResourceManager.GetString("twoWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Replace interface elements.
+        /// </summary>
+        internal static string uiReplacement {
+            get {
+                return ResourceManager.GetString("uiReplacement", resourceCulture);
             }
         }
         

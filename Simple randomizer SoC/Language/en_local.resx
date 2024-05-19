@@ -149,7 +149,7 @@ The parameters on this tab will most likely not work with other mods. When activ
     <value>Disable the alarm in the Bar when a player kills someone</value>
   </data>
   <data name="caches" xml:space="preserve">
-    <value>Caches</value>
+    <value>Stashes</value>
   </data>
   <data name="cachesDataError" xml:space="preserve">
     <value>Data for generating caches was not received. An "updateData" call is required</value>
@@ -199,11 +199,20 @@ The parameters on this tab will most likely not work with other mods. When activ
   <data name="exceptionListTitle" xml:space="preserve">
     <value>Exceptions</value>
   </data>
+  <data name="exiting" xml:space="preserve">
+    <value>Completion...</value>
+  </data>
+  <data name="fileCopying" xml:space="preserve">
+    <value>Copying files...</value>
+  </data>
   <data name="freedomAgression" xml:space="preserve">
     <value>Disable the hostility of the Freedom base if there are NPCs hostile to the player on it</value>
   </data>
   <data name="funnyTranslate" xml:space="preserve">
     <value>Funny russian translation</value>
+  </data>
+  <data name="gameSounds" xml:space="preserve">
+    <value>Sounds</value>
   </data>
   <data name="generate" xml:space="preserve">
     <value>Generate</value>
@@ -253,6 +262,9 @@ Other - 5%, 1-2 pcs.</value>
   </data>
   <data name="mainFormName" xml:space="preserve">
     <value>Simple randomizer for "S.T.A.L.K.E.R.: Shadow of Chernobyl"</value>
+  </data>
+  <data name="maxThreads" xml:space="preserve">
+    <value>Maximum number of threads to process</value>
   </data>
   <data name="modelListTitle" xml:space="preserve">
     <value>Models</value>
@@ -359,6 +371,9 @@ And so I recommend using the 1.0004 version of the game</value>
   <data name="onePointFourLink" xml:space="preserve">
     <value>The 1.0004 version of the game works with this randomizer MUCH more stable than 1.0006. But why?</value>
   </data>
+  <data name="open" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="other" xml:space="preserve">
     <value>More...</value>
   </data>
@@ -377,6 +392,9 @@ And so I recommend using the 1.0004 version of the game</value>
   </data>
   <data name="overwritingFiles" xml:space="preserve">
     <value>The following files will be overwritten:</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>Processing</value>
   </data>
   <data name="rainProbability" xml:space="preserve">
     <value>The probability of rain for each weather class</value>
@@ -423,8 +441,42 @@ And so I recommend using the 1.0004 version of the game</value>
   <data name="soundListTitle" xml:space="preserve">
     <value>Voice acting</value>
   </data>
+  <data name="soundsError" xml:space="preserve">
+    <value>Sound processing error. The operation was aborted</value>
+  </data>
+  <data name="soundsPath" xml:space="preserve">
+    <value>The path to the sounds folder</value>
+  </data>
+  <data name="soundsProcessing" xml:space="preserve">
+    <value>Sound processing...</value>
+  </data>
+  <data name="soundsRoundStep" xml:space="preserve">
+    <value>The rounding step of the duration of audio files in seconds (using large values at your own risk)</value>
+  </data>
+  <data name="soundTexturesDescription" xml:space="preserve">
+    <value>To shuffle textures and sounds, you need to have unpacked gamedata.db* game files with textures and sounds. The paths to the data folders must be specified in the appropriate fields.
+
+The shuffiling process can take a long time, especially if the game files are on the hard drive and not on the SSD. Also, copying mixed textures/sounds will require about 2GB of disk space (for the original game).
+
+The maximum number of threads to process sets the number of simultaneously processed directories when reading data from texture/sound files.</value>
+  </data>
+  <data name="stepRainSounds" xml:space="preserve">
+    <value>Replace the sounds of footsteps and rain (not recommended)</value>
+  </data>
   <data name="textDataReadError" xml:space="preserve">
     <value>Error reading game text files</value>
+  </data>
+  <data name="textureProcessing" xml:space="preserve">
+    <value>Texture processing...</value>
+  </data>
+  <data name="textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="texturesError" xml:space="preserve">
+    <value>Texture processing error. The operation was aborted</value>
+  </data>
+  <data name="texturesPath" xml:space="preserve">
+    <value>The path to the textures folder</value>
   </data>
   <data name="thunderListTitle" xml:space="preserve">
     <value>Thunderstorm Effects</value>
@@ -443,6 +495,9 @@ And so I recommend using the 1.0004 version of the game</value>
   </data>
   <data name="twoWords" xml:space="preserve">
     <value>In a nutshell: I do not know, but...</value>
+  </data>
+  <data name="uiReplacement" xml:space="preserve">
+    <value>Replace interface elements</value>
   </data>
   <data name="weaponEverywhere" xml:space="preserve">
     <value>The opportunity to get weapons in the bar, in the scientists' bunker and at Sidorovich's</value>

@@ -128,6 +128,8 @@ namespace RandomizerSoC
             if (Localization.IsFirstLoadEnglish())
             {
                 engRadioButton.Checked = true;
+                translateCheckBox.Checked = false;
+                translateCheckBox.Enabled = false;
             }
             else
             {
@@ -246,6 +248,7 @@ namespace RandomizerSoC
             string newScriptsPath = $"{newGamedataPath}\\scripts";
             string newSpawnsPath = $"{newGamedataPath}\\spawns";
 
+            #region основа
             //тайники
             if (treasureCheckBox.Checked)
             {
@@ -394,6 +397,7 @@ namespace RandomizerSoC
                 }
             }
             incrementProgressBar();
+            #endregion
 
             //доп функции
             #region additionalParams
@@ -466,7 +470,7 @@ namespace RandomizerSoC
                     //из-за ожидания isProcessing нормально становится true
                     await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath, soundsPathText.Text);
 
-                    loadState.Text = "Обработка звуков...";
+                    loadState.Text = Localization.Get("soundsProcessing");// "Обработка звуков...";
                     do
                     {
                         soundsProgressLabel.Text = soundRandomizer.statusMessage;
@@ -484,7 +488,7 @@ namespace RandomizerSoC
                 catch (Exception ex)
                 {
                     await soundRandomizer.Abort();
-                    new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                    new InfoForm(Localization.Get("soundsError"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -497,7 +501,7 @@ namespace RandomizerSoC
                 {
                     await textureRandomizer.Start((int)threadsNumeric.Value, uiReplaceCheckBox.Checked, newGamedataPath, texturesPathText.Text);
 
-                    loadState.Text = "Обработка текстур...";
+                    loadState.Text = Localization.Get("textureProcessing");// "Обработка текстур...";
                     do
                     {
                         texturesProgressLabel.Text = textureRandomizer.statusMessage;
@@ -515,7 +519,7 @@ namespace RandomizerSoC
                 catch (Exception ex)
                 {
                     await textureRandomizer.Abort();
-                    new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                    new InfoForm(Localization.Get("texturesError"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -688,6 +692,7 @@ namespace RandomizerSoC
             tabPage9.Text = Localization.Get("npcTab");
             tabPage2.Text = Localization.Get("weatherTab");
             tabPage8.Text = Localization.Get("advancedTab");
+            advancedTab2.Text = Localization.Get("advancedTab") + " 2";
             saveButton.Text = Localization.Get("saveLists");
             loadButton.Text = Localization.Get("loadLists");
             generateButton.Text = Localization.Get("generate");
@@ -743,6 +748,18 @@ namespace RandomizerSoC
             onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
             tradersCheckBox.Text = Localization.Get("traderItems");
             consumablesCheckBox.Text = Localization.Get("consumables");
+
+            advanced2Label.Text = Localization.Get("soundTexturesDescription");
+            threadsLabel.Text = Localization.Get("maxThreads");
+            gameSoundCheckBox.Text = Localization.Get("gameSounds");
+            soundsPathButton.Text = Localization.Get("open");
+            texturesPathButton.Text = Localization.Get("open");
+            soundsPathLabel.Text = Localization.Get("soundsPath");
+            stepRainCheckBox.Text = Localization.Get("stepRainSounds");
+            roundDurationLabel.Text = Localization.Get("soundsRoundStep");
+            texturesCheckBox.Text = Localization.Get("textures");
+            texturesPathLabel.Text = Localization.Get("texturesPath");
+            uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
         }
         #endregion
 
@@ -759,6 +776,7 @@ namespace RandomizerSoC
             }
         }
 
+        #region звуки текстуры
         private void GameSoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             var value = gameSoundCheckBox.Checked;
@@ -811,6 +829,7 @@ namespace RandomizerSoC
                 new InfoForm("Указанный к игровым текстурам путь не содержит папку \"textures\"").ShowDialog();
             }
         }
+        #endregion
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
