@@ -50,25 +50,16 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         string outputGamedataPath = "";
 
-        readonly Random rnd;
+        readonly Random rnd = new Random();
 
         Thread copyThread;
         Thread searchThread;
         readonly List<Thread> threads = new List<Thread>();
 
-        public SoundRandomizer()
-        {
-            rnd = new Random();
-
-            //startButton.Enabled = false;
-            //threadsNumeric.Value = Math.Max(1, Math.Min(threadsNumeric.Value, Environment.ProcessorCount));
-            //threadsNumeric.Maximum = Math.Max(1, Environment.ProcessorCount);
-        }
-
         public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath, string inputPath)
         {
             await Abort();
-
+            classifiedFiles.Clear();
             errorMessage = "";
             isProcessing = true;
 
@@ -76,6 +67,7 @@ namespace Simple_randomizer_SoC.Tools
             searchThread = new Thread(SearchSounds);
 
             progress = 0;
+            filesCount = 0;
 
             this.threadCount = threadCount;
             this.sizeFilter = sizeFilter;
@@ -169,10 +161,17 @@ namespace Simple_randomizer_SoC.Tools
                 {
                     if (stopProcessing) return;
 
+                    //дождь и шаги
+                    if (!stepSoundEnabled && (file.Contains("step") || file.Contains("rain")))
+                    {
+                        continue;
+                    }
+
                     if (file.EndsWith(".ogg"))
                     {
                         var vorbis = new NVorbis.VorbisReader(file);
                         int duration = (int)vorbis.TotalTime.TotalSeconds / sizeFilter * sizeFilter;
+                        vorbis.Dispose();
 
                         filesCount++;
                         lock (classifiedFiles)
@@ -222,13 +221,13 @@ namespace Simple_randomizer_SoC.Tools
                 {
                     if (stopProcessing) return;
 
-                    files.RemoveAll(f => f.Contains("$no_sound.ogg"));
+                    progress += files.RemoveAll(f => f.Contains("$no_sound.ogg"));
 
-                    //дождь и шаги
-                    if (!stepSoundEnabled)
-                    {
-                        progress += files.RemoveAll(f => f.Contains("step") || f.Contains("rain"));
-                    }
+                    //дождь и шаги старое
+                    //if (!stepSoundEnabled)
+                    //{
+                    //    progress += files.RemoveAll(f => f.Contains("step") || f.Contains("rain"));
+                    //}
 
                     if (files.Count == 1)
                     {

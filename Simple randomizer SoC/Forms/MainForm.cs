@@ -49,6 +49,7 @@ namespace RandomizerSoC
         readonly AdditionalParams additionalParams;
 
         readonly SoundRandomizer soundRandomizer;
+        readonly TextureRandomizer textureRandomizer;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -119,6 +120,9 @@ namespace RandomizerSoC
 
             soundRandomizer = new SoundRandomizer();
             soundsPathText.Text = Configuration.Get("sound");
+
+            textureRandomizer = new TextureRandomizer();
+            texturesPathText.Text = Configuration.Get("texture");
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -460,7 +464,7 @@ namespace RandomizerSoC
                 {
                     //из-за ожидания isProcessing нормально становится true
                     await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath, soundsPathText.Text);
-                    
+
                     loadState.Text = "Обработка звуков...";
                     do
                     {
@@ -469,6 +473,7 @@ namespace RandomizerSoC
                         progressBar1.Maximum = soundRandomizer.maxProgress;
                         await Task.Delay(100);
                     } while (soundRandomizer.isProcessing);
+                    soundsProgressLabel.Text = soundRandomizer.statusMessage;
 
                     if (soundRandomizer.errorMessage.Length > 0)
                     {
@@ -484,8 +489,40 @@ namespace RandomizerSoC
                 }
             }
 
+            //текстуры
+            if (texturesCheckBox.Checked && texturesPathText.Text.Contains("\\textures"))
+            {
+                try
+                {
+                    await textureRandomizer.Start((int)threadsNumeric.Value, uiReplaceCheckBox.Checked, newGamedataPath, texturesPathText.Text);
+
+                    loadState.Text = "Обработка текстур...";
+                    do
+                    {
+                        texturesProgressLabel.Text = textureRandomizer.statusMessage;
+                        progressBar1.Value = Math.Min(progressBar1.Maximum, textureRandomizer.progress);
+                        progressBar1.Maximum = textureRandomizer.maxProgress;
+                        await Task.Delay(100);
+                    } while (textureRandomizer.isProcessing);
+                    texturesProgressLabel.Text = textureRandomizer.statusMessage;
+
+                    if (textureRandomizer.errorMessage.Length > 0)
+                    {
+                        throw new Exception(textureRandomizer.errorMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await textureRandomizer.Abort();
+                    new InfoForm(Localization.Get("error"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                    changeButtonsStatus(true);
+                    return;
+                }
+            }
+
             progressBar1.Value = 0;
             progressBar1.Maximum = 100;
+            loadState.Text = "";
 
             new InfoForm(Localization.Get("savedIn") + " " + newGamedataPath).ShowDialog();
 
@@ -750,7 +787,7 @@ namespace RandomizerSoC
                 Configuration.Set("sound", fbd.SelectedPath);
             }
 
-            if (!soundsPathText.Text.Contains("sounds"))
+            if (!soundsPathText.Text.Contains("\\sounds"))
             {
                 new InfoForm("Указанный к игровым звукам путь не содержит папку \"sounds\"").ShowDialog();
             }
@@ -758,12 +795,26 @@ namespace RandomizerSoC
 
         private void TexturesPathButton_Click(object sender, EventArgs e)
         {
+            FolderBrowserDialog fbd = new FolderBrowserDialog
+            {
+                SelectedPath = texturesPathText.Text
+            };
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                texturesPathText.Text = fbd.SelectedPath;
+                Configuration.Set("texture", fbd.SelectedPath);
+            }
 
+            if (!texturesPathText.Text.Contains("\\textures"))
+            {
+                new InfoForm("Указанный к игровым текстурам путь не содержит папку \"textures\"").ShowDialog();
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             soundRandomizer.stopProcessing = true;
+            textureRandomizer.stopProcessing = true;
         }
     }
 }
