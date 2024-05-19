@@ -42,7 +42,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var weapons = (await MyFile.GetFiles($"{Environment.configPath}/weapons")).ToList();
+                var weapons = (await MyFile.GetFiles($"{Environment.configPath}\\weapons")).ToList();
                 var weaponsLtxPath = weapons.Find(match => match.Contains("weapons.ltx"));
                 weapons.Remove(weaponsLtxPath);
 
@@ -51,7 +51,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 foreach (string it in weapons)
                 {
-                    string currWeapon = Regex.Replace(await MyFile.Read(it), "\\s+;.+", "");
+                    string currWeapon = Regex.Replace(await MyFile.Read(it), "\\s*;.*", "");
                     int magSize = rnd.Next(50) + 1;
 
                     currWeapon =

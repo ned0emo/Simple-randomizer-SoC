@@ -1327,10 +1327,12 @@
             // loadState
             // 
             this.loadState.AutoSize = true;
-            this.loadState.Location = new System.Drawing.Point(1045, 390);
+            this.loadState.BackColor = System.Drawing.SystemColors.Control;
+            this.loadState.Location = new System.Drawing.Point(1045, 391);
             this.loadState.Name = "loadState";
-            this.loadState.Size = new System.Drawing.Size(0, 13);
+            this.loadState.Size = new System.Drawing.Size(52, 13);
             this.loadState.TabIndex = 38;
+            this.loadState.Text = "loadState";
             // 
             // MainForm
             // 

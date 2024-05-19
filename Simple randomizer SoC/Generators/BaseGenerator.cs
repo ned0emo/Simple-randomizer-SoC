@@ -55,10 +55,9 @@ namespace Simple_randomizer_SoC
                     ? item.Replace(tmp.Substring(0, tmp.IndexOf('\n')), statName + " = " + statValue)
                     : item.Replace(tmp, statName + " = " + statValue);
             }
-            else if (createIfNotExist && item.Contains('\n'))
+            else if (createIfNotExist)
             {
-                var tmp = item.Substring(item.LastIndexOf("\n"));
-                return item.Replace(tmp, $"\n{statName} = {statValue}{tmp}");
+                return item + $"\n{statName} = {statValue}";
             }
 
             return item;
@@ -101,8 +100,8 @@ namespace Simple_randomizer_SoC
             //Удаление пробельных символов, кроме простых пробелов и переносов строк
             newStr = Regex.Replace(str, "[\\t\\v\\r\\f]", "");
             //Удаление повторяющихся подряд пробелов
-            newStr = Regex.Replace(newStr, "\\ {2,}", " ");
-            var tmpList = Regex.Split(newStr, "\\n{2,}");
+            newStr = Regex.Replace(newStr, " {2,}", " ");
+            var tmpList = Regex.Split(newStr, "\\n+");
 
             if (!keepTextAfterSpaces)
             {

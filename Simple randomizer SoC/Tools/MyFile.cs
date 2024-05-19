@@ -22,8 +22,9 @@ namespace Simple_randomizer_SoC
 
         public static async Task Write(string path, string content)
         {
+            path = path.Replace("/", "\\");
             Directory.CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
-            using (StreamWriter sw = new StreamWriter(path))
+            using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
             {
                 await sw.WriteAsync(content);
                 sw.Close();
@@ -32,6 +33,7 @@ namespace Simple_randomizer_SoC
 
         public static async Task Copy(string oldPath, string newPath)
         {
+            newPath = newPath.Replace("/", "\\");
             await Task.Yield();
             Directory.CreateDirectory(newPath.Substring(0, newPath.LastIndexOf('\\')));
             File.Copy(oldPath, newPath);

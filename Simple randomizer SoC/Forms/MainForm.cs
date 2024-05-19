@@ -64,6 +64,7 @@ namespace RandomizerSoC
         public MainForm()
         {
             InitializeComponent();
+            loadState.Text = "";
 
             cacheDictionary = new Dictionary<string, string>();
 

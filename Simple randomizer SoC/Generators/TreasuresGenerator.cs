@@ -62,7 +62,7 @@ namespace Simple_randomizer_SoC.Generators
 
             try
             {
-                var treasures = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/treasure_manager.ltx"), "\\s+;.+", "");
+                var treasures = Regex.Replace(await MyFile.Read($"{Environment.configPath}\\misc\\treasure_manager.ltx"), "\\s+;.+", "");
                 var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
 
                 var weaponList = CreateCleanList(weapons);
@@ -120,7 +120,7 @@ namespace Simple_randomizer_SoC.Generators
                     treasureString += "items" + treasureStringList[i];
                 }
 
-                await MyFile.Write($"{newConfigPath}/misc/treasure_manager.ltx", treasureString);
+                await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", treasureString);
 
                 return STATUS_OK;
             }

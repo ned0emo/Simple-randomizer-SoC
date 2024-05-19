@@ -27,14 +27,14 @@ namespace Simple_randomizer_SoC
 
             paramTypeToPrefixAndPathDictionary = new Dictionary<string, Tuple<string, string>>()
             {
-                ["advancedGulag1"] = new Tuple<string, string>(Environment.scriptsPath, "/smart_terrain.script"),
-                ["advancedGulag2"] = new Tuple<string, string>(Environment.scriptsPath, "/xr_gulag.script"),
-                ["equipWeaponEverywhere"] = new Tuple<string, string>(Environment.scriptsPath, "/sr_no_weapon.script"),
-                ["barAlarm"] = new Tuple<string, string>(Environment.configPath, "/scripts/bar_territory_zone.ltx"),
-                ["giveKnife"] = new Tuple<string, string>(Environment.spawnsPath, "/all.spawn"),
-                ["disableFreedomAgression"] = new Tuple<string, string>(Environment.scriptsPath, "/gulag_military.script"),
-                ["moreRespawn"] = new Tuple<string, string>(Environment.scriptsPath, "/se_respawn.script"),
-                ["gScript"] = new Tuple<string, string>(Environment.scriptsPath, "/_g.script"),
+                ["advancedGulag1"] = new Tuple<string, string>(Environment.scriptsPath, "\\smart_terrain.script"),
+                ["advancedGulag2"] = new Tuple<string, string>(Environment.scriptsPath, "\\xr_gulag.script"),
+                ["equipWeaponEverywhere"] = new Tuple<string, string>(Environment.scriptsPath, "\\sr_no_weapon.script"),
+                ["barAlarm"] = new Tuple<string, string>(Environment.configPath, "\\scripts\\bar_territory_zone.ltx"),
+                ["giveKnife"] = new Tuple<string, string>(Environment.spawnsPath, "\\all.spawn"),
+                ["disableFreedomAgression"] = new Tuple<string, string>(Environment.scriptsPath, "\\gulag_military.script"),
+                ["moreRespawn"] = new Tuple<string, string>(Environment.scriptsPath, "\\se_respawn.script"),
+                ["gScript"] = new Tuple<string, string>(Environment.scriptsPath, "\\_g.script"),
             };
         }
 
@@ -74,7 +74,7 @@ namespace Simple_randomizer_SoC
             string[] files;
             try
             {
-                files = await MyFile.GetFiles($"{Environment.configPath}/text/rus");
+                files = await MyFile.GetFiles($"{Environment.configPath}\\text\\rus");
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@ namespace Simple_randomizer_SoC
             }
 
             //Составление карты текста по длине
-            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}\\text\\rus"))
             {
                 try
                 {
