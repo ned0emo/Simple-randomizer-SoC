@@ -230,14 +230,6 @@ namespace RandomizerSoC
                 loadButton.Enabled = enabled;
                 loadDefaultButton.Enabled = enabled;
 
-                soundsPathButton.Enabled = enabled;
-                soundsPathText.Enabled = enabled;
-                stepRainCheckBox.Enabled = enabled;
-                roundDurationNumeric.Enabled = enabled;
-                texturesPathButton.Enabled = enabled;
-                texturesPathText.Enabled = enabled;
-                uiReplaceCheckBox.Enabled = enabled;
-
                 progressBar1.Value = 0;
             }
 
