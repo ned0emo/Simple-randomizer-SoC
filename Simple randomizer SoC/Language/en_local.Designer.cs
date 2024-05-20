@@ -272,6 +272,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на It is not recommended to turn it on if you have ever had epileptic seizures.
+        /// </summary>
+        internal static string epilepsy {
+            get {
+                return ResourceManager.GetString("epilepsy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error.
         /// </summary>
         internal static string error {

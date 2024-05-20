@@ -99,6 +99,7 @@
             this.equipWeaponEverywhereCheckBox = new System.Windows.Forms.CheckBox();
             this.communityCheckBox = new System.Windows.Forms.CheckBox();
             this.advancedTab2 = new System.Windows.Forms.TabPage();
+            this.epilepsyLabel = new System.Windows.Forms.Label();
             this.advanced2Label = new System.Windows.Forms.Label();
             this.texturesCheckBox = new System.Windows.Forms.CheckBox();
             this.gameSoundCheckBox = new System.Windows.Forms.CheckBox();
@@ -922,6 +923,7 @@
             // 
             // advancedTab2
             // 
+            this.advancedTab2.Controls.Add(this.epilepsyLabel);
             this.advancedTab2.Controls.Add(this.advanced2Label);
             this.advancedTab2.Controls.Add(this.texturesCheckBox);
             this.advancedTab2.Controls.Add(this.gameSoundCheckBox);
@@ -946,6 +948,15 @@
             this.advancedTab2.TabIndex = 11;
             this.advancedTab2.Text = "Дополнительно 2";
             this.advancedTab2.UseVisualStyleBackColor = true;
+            // 
+            // epilepsyLabel
+            // 
+            this.epilepsyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.epilepsyLabel.Location = new System.Drawing.Point(6, 349);
+            this.epilepsyLabel.Name = "epilepsyLabel";
+            this.epilepsyLabel.Size = new System.Drawing.Size(1003, 21);
+            this.epilepsyLabel.TabIndex = 38;
+            this.epilepsyLabel.Text = "Не рекомендуется включать, если у вас когда-либо были эпилептические приступы!";
             // 
             // advanced2Label
             // 
@@ -983,7 +994,7 @@
             // texturesProgressLabel
             // 
             this.texturesProgressLabel.AutoSize = true;
-            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 397);
+            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 424);
             this.texturesProgressLabel.Name = "texturesProgressLabel";
             this.texturesProgressLabel.Size = new System.Drawing.Size(16, 13);
             this.texturesProgressLabel.TabIndex = 33;
@@ -993,7 +1004,7 @@
             // 
             this.uiReplaceCheckBox.AutoSize = true;
             this.uiReplaceCheckBox.Enabled = false;
-            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 374);
+            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 401);
             this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
             this.uiReplaceCheckBox.Size = new System.Drawing.Size(194, 17);
             this.uiReplaceCheckBox.TabIndex = 32;
@@ -1003,7 +1014,7 @@
             // texturesPathButton
             // 
             this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(709, 346);
+            this.texturesPathButton.Location = new System.Drawing.Point(709, 373);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
             this.texturesPathButton.TabIndex = 31;
@@ -1014,14 +1025,14 @@
             // texturesPathText
             // 
             this.texturesPathText.Enabled = false;
-            this.texturesPathText.Location = new System.Drawing.Point(183, 348);
+            this.texturesPathText.Location = new System.Drawing.Point(183, 375);
             this.texturesPathText.Name = "texturesPathText";
             this.texturesPathText.Size = new System.Drawing.Size(520, 20);
             this.texturesPathText.TabIndex = 30;
             // 
             // texturesPathLabel
             // 
-            this.texturesPathLabel.Location = new System.Drawing.Point(6, 351);
+            this.texturesPathLabel.Location = new System.Drawing.Point(6, 378);
             this.texturesPathLabel.Name = "texturesPathLabel";
             this.texturesPathLabel.Size = new System.Drawing.Size(171, 17);
             this.texturesPathLabel.TabIndex = 29;
@@ -1499,6 +1510,7 @@
         private System.Windows.Forms.CheckBox gameSoundCheckBox;
         private System.Windows.Forms.Label advanced2Label;
         private System.Windows.Forms.Label loadState;
+        private System.Windows.Forms.Label epilepsyLabel;
     }
 }
 

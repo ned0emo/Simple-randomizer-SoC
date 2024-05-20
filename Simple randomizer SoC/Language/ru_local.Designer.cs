@@ -272,6 +272,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Не рекомендуется включать, если у вас когда-либо были эпилептические приступы.
+        /// </summary>
+        internal static string epilepsy {
+            get {
+                return ResourceManager.GetString("epilepsy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка.
         /// </summary>
         internal static string error {

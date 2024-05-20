@@ -760,6 +760,7 @@ namespace RandomizerSoC
             texturesCheckBox.Text = Localization.Get("textures");
             texturesPathLabel.Text = Localization.Get("texturesPath");
             uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
+            epilepsyLabel.Text = Localization.Get("epilepsy");
         }
         #endregion
 

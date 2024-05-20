@@ -193,6 +193,9 @@ The parameters on this tab will most likely not work with other mods. When activ
   <data name="defaultLists" xml:space="preserve">
     <value>Default lists</value>
   </data>
+  <data name="epilepsy" xml:space="preserve">
+    <value>It is not recommended to turn it on if you have ever had epileptic seizures</value>
+  </data>
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>

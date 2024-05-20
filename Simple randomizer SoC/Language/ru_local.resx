@@ -193,6 +193,9 @@
   <data name="defaultLists" xml:space="preserve">
     <value>Списки по умолчанию</value>
   </data>
+  <data name="epilepsy" xml:space="preserve">
+    <value>Не рекомендуется включать, если у вас когда-либо были эпилептические приступы</value>
+  </data>
   <data name="error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
