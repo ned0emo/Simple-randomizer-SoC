@@ -737,11 +737,13 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(898, 444);
+            this.label8.Location = new System.Drawing.Point(859, 369);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 15);
+            this.label8.Size = new System.Drawing.Size(150, 90);
             this.label8.TabIndex = 20;
-            this.label8.Text = "©ned0emo, ver 1.7";
+            this.label8.Text = "©ned0emo, ver 1.7\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPfim by Nick Babcoc" +
+    "k\r\nPrettyBin by Andrey Ershov";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // onePointFourLinkLabel
             // 
