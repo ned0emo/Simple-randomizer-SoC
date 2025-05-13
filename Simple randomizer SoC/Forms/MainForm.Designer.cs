@@ -54,6 +54,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.otherTextBox = new System.Windows.Forms.TextBox();
             this.itemTextBox = new System.Windows.Forms.TextBox();
+            this.dialogsTab = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.actionsExceptionLabel = new System.Windows.Forms.Label();
+            this.actionsExceptionTextBox = new System.Windows.Forms.TextBox();
+            this.infosExceptionLabel = new System.Windows.Forms.Label();
+            this.infosExceptionTextBox = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.namesCheckBox = new System.Windows.Forms.CheckBox();
@@ -80,6 +86,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.recommendUnlockTraderDoorLabel = new System.Windows.Forms.Label();
+            this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
             this.gScriptCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,9 +144,11 @@
             this.tradersCheckBox = new System.Windows.Forms.CheckBox();
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
             this.loadState = new System.Windows.Forms.Label();
+            this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.dialogsTab.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).BeginInit();
@@ -151,7 +161,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1041, 415);
+            this.saveButton.Location = new System.Drawing.Point(1042, 463);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 23);
             this.saveButton.TabIndex = 0;
@@ -161,7 +171,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(1041, 444);
+            this.loadButton.Location = new System.Drawing.Point(1042, 492);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(131, 23);
             this.loadButton.TabIndex = 1;
@@ -172,7 +182,7 @@
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.generateButton.Location = new System.Drawing.Point(1041, 357);
+            this.generateButton.Location = new System.Drawing.Point(1042, 405);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(131, 23);
             this.generateButton.TabIndex = 2;
@@ -182,7 +192,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(1041, 473);
+            this.loadDefaultButton.Location = new System.Drawing.Point(1042, 521);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(131, 23);
             this.loadDefaultButton.TabIndex = 3;
@@ -194,6 +204,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage6);
+            this.tabControl.Controls.Add(this.dialogsTab);
             this.tabControl.Controls.Add(this.tabPage9);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage8);
@@ -202,7 +213,7 @@
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1023, 517);
+            this.tabControl.Size = new System.Drawing.Size(1023, 559);
             this.tabControl.TabIndex = 6;
             // 
             // tabPage1
@@ -219,7 +230,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage1.Size = new System.Drawing.Size(1015, 533);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Оружие";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -231,13 +242,13 @@
             this.shootSoundsTextBox.Multiline = true;
             this.shootSoundsTextBox.Name = "shootSoundsTextBox";
             this.shootSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.shootSoundsTextBox.Size = new System.Drawing.Size(245, 210);
+            this.shootSoundsTextBox.Size = new System.Drawing.Size(245, 225);
             this.shootSoundsTextBox.TabIndex = 32;
             // 
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(764, 249);
+            this.label17.Location = new System.Drawing.Point(764, 276);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(245, 23);
             this.label17.TabIndex = 30;
@@ -247,11 +258,11 @@
             // reloadSoundsTextBox
             // 
             this.reloadSoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reloadSoundsTextBox.Location = new System.Drawing.Point(764, 275);
+            this.reloadSoundsTextBox.Location = new System.Drawing.Point(764, 302);
             this.reloadSoundsTextBox.Multiline = true;
             this.reloadSoundsTextBox.Name = "reloadSoundsTextBox";
             this.reloadSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.reloadSoundsTextBox.Size = new System.Drawing.Size(245, 210);
+            this.reloadSoundsTextBox.Size = new System.Drawing.Size(245, 225);
             this.reloadSoundsTextBox.TabIndex = 29;
             // 
             // weaponGuideButton
@@ -283,7 +294,7 @@
             this.ammoTextBox.Multiline = true;
             this.ammoTextBox.Name = "ammoTextBox";
             this.ammoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ammoTextBox.Size = new System.Drawing.Size(245, 450);
+            this.ammoTextBox.Size = new System.Drawing.Size(245, 492);
             this.ammoTextBox.TabIndex = 7;
             // 
             // label1
@@ -303,7 +314,7 @@
             this.weaponTextBox.Multiline = true;
             this.weaponTextBox.Name = "weaponTextBox";
             this.weaponTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.weaponTextBox.Size = new System.Drawing.Size(496, 450);
+            this.weaponTextBox.Size = new System.Drawing.Size(496, 492);
             this.weaponTextBox.TabIndex = 0;
             this.weaponTextBox.WordWrap = false;
             // 
@@ -331,7 +342,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage6.Size = new System.Drawing.Size(1015, 533);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Предметы";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -365,7 +376,7 @@
             this.outfitTextBox.Multiline = true;
             this.outfitTextBox.Name = "outfitTextBox";
             this.outfitTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.outfitTextBox.Size = new System.Drawing.Size(245, 450);
+            this.outfitTextBox.Size = new System.Drawing.Size(245, 492);
             this.outfitTextBox.TabIndex = 14;
             // 
             // label11
@@ -385,7 +396,7 @@
             this.afTextBox.Multiline = true;
             this.afTextBox.Name = "afTextBox";
             this.afTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.afTextBox.Size = new System.Drawing.Size(245, 450);
+            this.afTextBox.Size = new System.Drawing.Size(245, 492);
             this.afTextBox.TabIndex = 12;
             // 
             // label9
@@ -415,7 +426,7 @@
             this.otherTextBox.Multiline = true;
             this.otherTextBox.Name = "otherTextBox";
             this.otherTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.otherTextBox.Size = new System.Drawing.Size(245, 450);
+            this.otherTextBox.Size = new System.Drawing.Size(245, 492);
             this.otherTextBox.TabIndex = 8;
             // 
             // itemTextBox
@@ -425,8 +436,72 @@
             this.itemTextBox.Multiline = true;
             this.itemTextBox.Name = "itemTextBox";
             this.itemTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.itemTextBox.Size = new System.Drawing.Size(245, 450);
+            this.itemTextBox.Size = new System.Drawing.Size(245, 492);
             this.itemTextBox.TabIndex = 7;
+            // 
+            // dialogsTab
+            // 
+            this.dialogsTab.Controls.Add(this.label18);
+            this.dialogsTab.Controls.Add(this.actionsExceptionLabel);
+            this.dialogsTab.Controls.Add(this.actionsExceptionTextBox);
+            this.dialogsTab.Controls.Add(this.infosExceptionLabel);
+            this.dialogsTab.Controls.Add(this.infosExceptionTextBox);
+            this.dialogsTab.Location = new System.Drawing.Point(4, 22);
+            this.dialogsTab.Name = "dialogsTab";
+            this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.dialogsTab.Size = new System.Drawing.Size(1015, 533);
+            this.dialogsTab.TabIndex = 12;
+            this.dialogsTab.Text = "Диалоги";
+            this.dialogsTab.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(508, 33);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(501, 131);
+            this.label18.TabIndex = 23;
+            this.label18.Text = resources.GetString("label18.Text");
+            // 
+            // actionsExceptionLabel
+            // 
+            this.actionsExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.actionsExceptionLabel.Location = new System.Drawing.Point(257, 7);
+            this.actionsExceptionLabel.Name = "actionsExceptionLabel";
+            this.actionsExceptionLabel.Size = new System.Drawing.Size(245, 23);
+            this.actionsExceptionLabel.TabIndex = 22;
+            this.actionsExceptionLabel.Text = "Вырезанные действия";
+            this.actionsExceptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // actionsExceptionTextBox
+            // 
+            this.actionsExceptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.actionsExceptionTextBox.Location = new System.Drawing.Point(257, 33);
+            this.actionsExceptionTextBox.Multiline = true;
+            this.actionsExceptionTextBox.Name = "actionsExceptionTextBox";
+            this.actionsExceptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.actionsExceptionTextBox.Size = new System.Drawing.Size(245, 494);
+            this.actionsExceptionTextBox.TabIndex = 21;
+            // 
+            // infosExceptionLabel
+            // 
+            this.infosExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.infosExceptionLabel.Location = new System.Drawing.Point(6, 7);
+            this.infosExceptionLabel.Name = "infosExceptionLabel";
+            this.infosExceptionLabel.Size = new System.Drawing.Size(245, 23);
+            this.infosExceptionLabel.TabIndex = 20;
+            this.infosExceptionLabel.Text = "Вырезанные события";
+            this.infosExceptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // infosExceptionTextBox
+            // 
+            this.infosExceptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.infosExceptionTextBox.Location = new System.Drawing.Point(6, 33);
+            this.infosExceptionTextBox.Multiline = true;
+            this.infosExceptionTextBox.Name = "infosExceptionTextBox";
+            this.infosExceptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.infosExceptionTextBox.Size = new System.Drawing.Size(245, 494);
+            this.infosExceptionTextBox.TabIndex = 19;
             // 
             // tabPage9
             // 
@@ -447,7 +522,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage9.Size = new System.Drawing.Size(1015, 533);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "НПС";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -455,7 +530,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(764, 249);
+            this.label2.Location = new System.Drawing.Point(764, 273);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(245, 23);
             this.label2.TabIndex = 26;
@@ -465,7 +540,7 @@
             // namesCheckBox
             // 
             this.namesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.namesCheckBox.Location = new System.Drawing.Point(513, 249);
+            this.namesCheckBox.Location = new System.Drawing.Point(513, 273);
             this.namesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.namesCheckBox.Name = "namesCheckBox";
             this.namesCheckBox.Size = new System.Drawing.Size(245, 23);
@@ -513,7 +588,7 @@
             // onlyGenerateCheckBox
             // 
             this.onlyGenerateCheckBox.AutoSize = true;
-            this.onlyGenerateCheckBox.Location = new System.Drawing.Point(513, 467);
+            this.onlyGenerateCheckBox.Location = new System.Drawing.Point(513, 510);
             this.onlyGenerateCheckBox.Name = "onlyGenerateCheckBox";
             this.onlyGenerateCheckBox.Size = new System.Drawing.Size(236, 17);
             this.onlyGenerateCheckBox.TabIndex = 20;
@@ -523,11 +598,11 @@
             // namesTextBox
             // 
             this.namesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.namesTextBox.Location = new System.Drawing.Point(513, 275);
+            this.namesTextBox.Location = new System.Drawing.Point(513, 302);
             this.namesTextBox.Multiline = true;
             this.namesTextBox.Name = "namesTextBox";
             this.namesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.namesTextBox.Size = new System.Drawing.Size(245, 179);
+            this.namesTextBox.Size = new System.Drawing.Size(245, 195);
             this.namesTextBox.TabIndex = 18;
             // 
             // iconsTextBox
@@ -537,7 +612,7 @@
             this.iconsTextBox.Multiline = true;
             this.iconsTextBox.Name = "iconsTextBox";
             this.iconsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.iconsTextBox.Size = new System.Drawing.Size(245, 210);
+            this.iconsTextBox.Size = new System.Drawing.Size(245, 225);
             this.iconsTextBox.TabIndex = 16;
             // 
             // npcGuideButton
@@ -555,21 +630,21 @@
             // communityTextBox
             // 
             this.communityTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.communityTextBox.Location = new System.Drawing.Point(764, 275);
+            this.communityTextBox.Location = new System.Drawing.Point(764, 302);
             this.communityTextBox.Multiline = true;
             this.communityTextBox.Name = "communityTextBox";
             this.communityTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.communityTextBox.Size = new System.Drawing.Size(245, 210);
+            this.communityTextBox.Size = new System.Drawing.Size(245, 225);
             this.communityTextBox.TabIndex = 13;
             // 
             // npcExecptTextBox
             // 
             this.npcExecptTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.npcExecptTextBox.Location = new System.Drawing.Point(764, 35);
+            this.npcExecptTextBox.Location = new System.Drawing.Point(767, 35);
             this.npcExecptTextBox.Multiline = true;
             this.npcExecptTextBox.Name = "npcExecptTextBox";
             this.npcExecptTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.npcExecptTextBox.Size = new System.Drawing.Size(245, 210);
+            this.npcExecptTextBox.Size = new System.Drawing.Size(245, 225);
             this.npcExecptTextBox.TabIndex = 11;
             // 
             // soundTextBox
@@ -579,7 +654,7 @@
             this.soundTextBox.Multiline = true;
             this.soundTextBox.Name = "soundTextBox";
             this.soundTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.soundTextBox.Size = new System.Drawing.Size(245, 450);
+            this.soundTextBox.Size = new System.Drawing.Size(245, 492);
             this.soundTextBox.TabIndex = 8;
             // 
             // modelTextBox
@@ -589,7 +664,7 @@
             this.modelTextBox.Multiline = true;
             this.modelTextBox.Name = "modelTextBox";
             this.modelTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.modelTextBox.Size = new System.Drawing.Size(245, 450);
+            this.modelTextBox.Size = new System.Drawing.Size(245, 492);
             this.modelTextBox.TabIndex = 7;
             // 
             // label3
@@ -616,7 +691,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage2.Size = new System.Drawing.Size(1015, 533);
             this.tabPage2.TabIndex = 10;
             this.tabPage2.Text = "Погода";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -680,7 +755,7 @@
             this.thunderTextBox.Multiline = true;
             this.thunderTextBox.Name = "thunderTextBox";
             this.thunderTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.thunderTextBox.Size = new System.Drawing.Size(245, 450);
+            this.thunderTextBox.Size = new System.Drawing.Size(245, 492);
             this.thunderTextBox.TabIndex = 16;
             // 
             // label13
@@ -700,11 +775,13 @@
             this.skyTextBox.Multiline = true;
             this.skyTextBox.Name = "skyTextBox";
             this.skyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.skyTextBox.Size = new System.Drawing.Size(245, 450);
+            this.skyTextBox.Size = new System.Drawing.Size(245, 492);
             this.skyTextBox.TabIndex = 14;
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.recommendUnlockTraderDoorLabel);
+            this.tabPage8.Controls.Add(this.unlockTraderDoorCheckBox);
             this.tabPage8.Controls.Add(this.label8);
             this.tabPage8.Controls.Add(this.onePointFourLinkLabel);
             this.tabPage8.Controls.Add(this.gScriptCheckBox);
@@ -727,17 +804,37 @@
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage8.Size = new System.Drawing.Size(1015, 491);
+            this.tabPage8.Size = new System.Drawing.Size(1015, 533);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // recommendUnlockTraderDoorLabel
+            // 
+            this.recommendUnlockTraderDoorLabel.AutoSize = true;
+            this.recommendUnlockTraderDoorLabel.Location = new System.Drawing.Point(467, 417);
+            this.recommendUnlockTraderDoorLabel.Name = "recommendUnlockTraderDoorLabel";
+            this.recommendUnlockTraderDoorLabel.Size = new System.Drawing.Size(92, 13);
+            this.recommendUnlockTraderDoorLabel.TabIndex = 22;
+            this.recommendUnlockTraderDoorLabel.Text = "(Рекомендуется)";
+            this.recommendUnlockTraderDoorLabel.Visible = false;
+            // 
+            // unlockTraderDoorCheckBox
+            // 
+            this.unlockTraderDoorCheckBox.AutoSize = true;
+            this.unlockTraderDoorCheckBox.Location = new System.Drawing.Point(7, 415);
+            this.unlockTraderDoorCheckBox.Name = "unlockTraderDoorCheckBox";
+            this.unlockTraderDoorCheckBox.Size = new System.Drawing.Size(214, 17);
+            this.unlockTraderDoorCheckBox.TabIndex = 21;
+            this.unlockTraderDoorCheckBox.Text = "Разблокировать дверь у Сидоровича";
+            this.unlockTraderDoorCheckBox.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(859, 369);
+            this.label8.Location = new System.Drawing.Point(860, 411);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(150, 90);
             this.label8.TabIndex = 20;
@@ -760,7 +857,7 @@
             // gScriptCheckBox
             // 
             this.gScriptCheckBox.AutoSize = true;
-            this.gScriptCheckBox.Location = new System.Drawing.Point(6, 258);
+            this.gScriptCheckBox.Location = new System.Drawing.Point(7, 277);
             this.gScriptCheckBox.Name = "gScriptCheckBox";
             this.gScriptCheckBox.Size = new System.Drawing.Size(422, 17);
             this.gScriptCheckBox.TabIndex = 18;
@@ -770,7 +867,7 @@
             // advancedGulagCheckBox
             // 
             this.advancedGulagCheckBox.AutoSize = true;
-            this.advancedGulagCheckBox.Location = new System.Drawing.Point(6, 373);
+            this.advancedGulagCheckBox.Location = new System.Drawing.Point(7, 392);
             this.advancedGulagCheckBox.Name = "advancedGulagCheckBox";
             this.advancedGulagCheckBox.Size = new System.Drawing.Size(644, 17);
             this.advancedGulagCheckBox.TabIndex = 17;
@@ -783,7 +880,7 @@
             // 
             this.shuffleTextCheckBox.AutoSize = true;
             this.shuffleTextCheckBox.Enabled = false;
-            this.shuffleTextCheckBox.Location = new System.Drawing.Point(6, 327);
+            this.shuffleTextCheckBox.Location = new System.Drawing.Point(7, 346);
             this.shuffleTextCheckBox.Name = "shuffleTextCheckBox";
             this.shuffleTextCheckBox.Size = new System.Drawing.Size(230, 17);
             this.shuffleTextCheckBox.TabIndex = 16;
@@ -792,7 +889,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(695, 466);
+            this.textBox1.Location = new System.Drawing.Point(696, 508);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -804,7 +901,7 @@
             // translateCheckBox
             // 
             this.translateCheckBox.AutoSize = true;
-            this.translateCheckBox.Location = new System.Drawing.Point(6, 304);
+            this.translateCheckBox.Location = new System.Drawing.Point(7, 323);
             this.translateCheckBox.Name = "translateCheckBox";
             this.translateCheckBox.Size = new System.Drawing.Size(194, 17);
             this.translateCheckBox.TabIndex = 12;
@@ -824,7 +921,7 @@
             // disableFreedomAgressionCheckBox
             // 
             this.disableFreedomAgressionCheckBox.AutoSize = true;
-            this.disableFreedomAgressionCheckBox.Location = new System.Drawing.Point(6, 465);
+            this.disableFreedomAgressionCheckBox.Location = new System.Drawing.Point(7, 507);
             this.disableFreedomAgressionCheckBox.Name = "disableFreedomAgressionCheckBox";
             this.disableFreedomAgressionCheckBox.Size = new System.Drawing.Size(454, 17);
             this.disableFreedomAgressionCheckBox.TabIndex = 10;
@@ -834,7 +931,7 @@
             // recommendLabel4
             // 
             this.recommendLabel4.AutoSize = true;
-            this.recommendLabel4.Location = new System.Drawing.Point(466, 444);
+            this.recommendLabel4.Location = new System.Drawing.Point(467, 486);
             this.recommendLabel4.Name = "recommendLabel4";
             this.recommendLabel4.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel4.TabIndex = 9;
@@ -844,7 +941,7 @@
             // recommendLabel2
             // 
             this.recommendLabel2.AutoSize = true;
-            this.recommendLabel2.Location = new System.Drawing.Point(466, 398);
+            this.recommendLabel2.Location = new System.Drawing.Point(467, 440);
             this.recommendLabel2.Name = "recommendLabel2";
             this.recommendLabel2.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel2.TabIndex = 8;
@@ -854,7 +951,7 @@
             // recommendLabel3
             // 
             this.recommendLabel3.AutoSize = true;
-            this.recommendLabel3.Location = new System.Drawing.Point(466, 421);
+            this.recommendLabel3.Location = new System.Drawing.Point(467, 463);
             this.recommendLabel3.Name = "recommendLabel3";
             this.recommendLabel3.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel3.TabIndex = 7;
@@ -864,7 +961,7 @@
             // recommendLabel1
             // 
             this.recommendLabel1.AutoSize = true;
-            this.recommendLabel1.Location = new System.Drawing.Point(466, 467);
+            this.recommendLabel1.Location = new System.Drawing.Point(467, 509);
             this.recommendLabel1.Name = "recommendLabel1";
             this.recommendLabel1.Size = new System.Drawing.Size(92, 13);
             this.recommendLabel1.TabIndex = 6;
@@ -874,7 +971,7 @@
             // giveKnifeCheckBox
             // 
             this.giveKnifeCheckBox.AutoSize = true;
-            this.giveKnifeCheckBox.Location = new System.Drawing.Point(6, 442);
+            this.giveKnifeCheckBox.Location = new System.Drawing.Point(7, 484);
             this.giveKnifeCheckBox.Name = "giveKnifeCheckBox";
             this.giveKnifeCheckBox.Size = new System.Drawing.Size(165, 17);
             this.giveKnifeCheckBox.TabIndex = 5;
@@ -884,7 +981,7 @@
             // moreRespawnCheckBox
             // 
             this.moreRespawnCheckBox.AutoSize = true;
-            this.moreRespawnCheckBox.Location = new System.Drawing.Point(6, 281);
+            this.moreRespawnCheckBox.Location = new System.Drawing.Point(7, 300);
             this.moreRespawnCheckBox.Name = "moreRespawnCheckBox";
             this.moreRespawnCheckBox.Size = new System.Drawing.Size(325, 17);
             this.moreRespawnCheckBox.TabIndex = 4;
@@ -894,7 +991,7 @@
             // barAlarmCheckBox
             // 
             this.barAlarmCheckBox.AutoSize = true;
-            this.barAlarmCheckBox.Location = new System.Drawing.Point(6, 419);
+            this.barAlarmCheckBox.Location = new System.Drawing.Point(7, 461);
             this.barAlarmCheckBox.Name = "barAlarmCheckBox";
             this.barAlarmCheckBox.Size = new System.Drawing.Size(310, 17);
             this.barAlarmCheckBox.TabIndex = 3;
@@ -904,7 +1001,7 @@
             // equipWeaponEverywhereCheckBox
             // 
             this.equipWeaponEverywhereCheckBox.AutoSize = true;
-            this.equipWeaponEverywhereCheckBox.Location = new System.Drawing.Point(6, 396);
+            this.equipWeaponEverywhereCheckBox.Location = new System.Drawing.Point(7, 438);
             this.equipWeaponEverywhereCheckBox.Name = "equipWeaponEverywhereCheckBox";
             this.equipWeaponEverywhereCheckBox.Size = new System.Drawing.Size(391, 17);
             this.equipWeaponEverywhereCheckBox.TabIndex = 2;
@@ -915,7 +1012,7 @@
             // 
             this.communityCheckBox.AutoSize = true;
             this.communityCheckBox.Enabled = false;
-            this.communityCheckBox.Location = new System.Drawing.Point(6, 350);
+            this.communityCheckBox.Location = new System.Drawing.Point(7, 369);
             this.communityCheckBox.Name = "communityCheckBox";
             this.communityCheckBox.Size = new System.Drawing.Size(169, 17);
             this.communityCheckBox.TabIndex = 0;
@@ -946,7 +1043,7 @@
             this.advancedTab2.Location = new System.Drawing.Point(4, 22);
             this.advancedTab2.Name = "advancedTab2";
             this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
-            this.advancedTab2.Size = new System.Drawing.Size(1015, 491);
+            this.advancedTab2.Size = new System.Drawing.Size(1015, 533);
             this.advancedTab2.TabIndex = 11;
             this.advancedTab2.Text = "Дополнительно 2";
             this.advancedTab2.UseVisualStyleBackColor = true;
@@ -954,7 +1051,7 @@
             // epilepsyLabel
             // 
             this.epilepsyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.epilepsyLabel.Location = new System.Drawing.Point(6, 349);
+            this.epilepsyLabel.Location = new System.Drawing.Point(6, 355);
             this.epilepsyLabel.Name = "epilepsyLabel";
             this.epilepsyLabel.Size = new System.Drawing.Size(1003, 21);
             this.epilepsyLabel.TabIndex = 38;
@@ -972,7 +1069,7 @@
             // texturesCheckBox
             // 
             this.texturesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.texturesCheckBox.Location = new System.Drawing.Point(9, 318);
+            this.texturesCheckBox.Location = new System.Drawing.Point(9, 324);
             this.texturesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.texturesCheckBox.Name = "texturesCheckBox";
             this.texturesCheckBox.Size = new System.Drawing.Size(245, 33);
@@ -984,10 +1081,10 @@
             // gameSoundCheckBox
             // 
             this.gameSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 195);
+            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 201);
             this.gameSoundCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.gameSoundCheckBox.Name = "gameSoundCheckBox";
-            this.gameSoundCheckBox.Size = new System.Drawing.Size(245, 33);
+            this.gameSoundCheckBox.Size = new System.Drawing.Size(168, 33);
             this.gameSoundCheckBox.TabIndex = 35;
             this.gameSoundCheckBox.Text = "Звуки";
             this.gameSoundCheckBox.UseVisualStyleBackColor = true;
@@ -996,7 +1093,7 @@
             // texturesProgressLabel
             // 
             this.texturesProgressLabel.AutoSize = true;
-            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 424);
+            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 430);
             this.texturesProgressLabel.Name = "texturesProgressLabel";
             this.texturesProgressLabel.Size = new System.Drawing.Size(16, 13);
             this.texturesProgressLabel.TabIndex = 33;
@@ -1006,7 +1103,7 @@
             // 
             this.uiReplaceCheckBox.AutoSize = true;
             this.uiReplaceCheckBox.Enabled = false;
-            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 401);
+            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 407);
             this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
             this.uiReplaceCheckBox.Size = new System.Drawing.Size(194, 17);
             this.uiReplaceCheckBox.TabIndex = 32;
@@ -1016,7 +1113,7 @@
             // texturesPathButton
             // 
             this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(709, 373);
+            this.texturesPathButton.Location = new System.Drawing.Point(709, 379);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
             this.texturesPathButton.TabIndex = 31;
@@ -1027,14 +1124,14 @@
             // texturesPathText
             // 
             this.texturesPathText.Enabled = false;
-            this.texturesPathText.Location = new System.Drawing.Point(183, 375);
+            this.texturesPathText.Location = new System.Drawing.Point(183, 381);
             this.texturesPathText.Name = "texturesPathText";
             this.texturesPathText.Size = new System.Drawing.Size(520, 20);
             this.texturesPathText.TabIndex = 30;
             // 
             // texturesPathLabel
             // 
-            this.texturesPathLabel.Location = new System.Drawing.Point(6, 378);
+            this.texturesPathLabel.Location = new System.Drawing.Point(6, 384);
             this.texturesPathLabel.Name = "texturesPathLabel";
             this.texturesPathLabel.Size = new System.Drawing.Size(171, 17);
             this.texturesPathLabel.TabIndex = 29;
@@ -1043,7 +1140,7 @@
             // soundsProgressLabel
             // 
             this.soundsProgressLabel.AutoSize = true;
-            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 297);
+            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 303);
             this.soundsProgressLabel.Name = "soundsProgressLabel";
             this.soundsProgressLabel.Size = new System.Drawing.Size(16, 13);
             this.soundsProgressLabel.TabIndex = 28;
@@ -1061,7 +1158,7 @@
             // roundDurationLabel
             // 
             this.roundDurationLabel.AutoSize = true;
-            this.roundDurationLabel.Location = new System.Drawing.Point(70, 276);
+            this.roundDurationLabel.Location = new System.Drawing.Point(70, 282);
             this.roundDurationLabel.Name = "roundDurationLabel";
             this.roundDurationLabel.Size = new System.Drawing.Size(569, 13);
             this.roundDurationLabel.TabIndex = 26;
@@ -1093,7 +1190,7 @@
             // roundDurationNumeric
             // 
             this.roundDurationNumeric.Enabled = false;
-            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 274);
+            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 280);
             this.roundDurationNumeric.Maximum = new decimal(new int[] {
             15,
             0,
@@ -1117,7 +1214,7 @@
             // 
             this.stepRainCheckBox.AutoSize = true;
             this.stepRainCheckBox.Enabled = false;
-            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 251);
+            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 257);
             this.stepRainCheckBox.Name = "stepRainCheckBox";
             this.stepRainCheckBox.Size = new System.Drawing.Size(288, 17);
             this.stepRainCheckBox.TabIndex = 23;
@@ -1127,7 +1224,7 @@
             // soundsPathButton
             // 
             this.soundsPathButton.Enabled = false;
-            this.soundsPathButton.Location = new System.Drawing.Point(709, 223);
+            this.soundsPathButton.Location = new System.Drawing.Point(709, 229);
             this.soundsPathButton.Name = "soundsPathButton";
             this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
             this.soundsPathButton.TabIndex = 22;
@@ -1138,14 +1235,14 @@
             // soundsPathText
             // 
             this.soundsPathText.Enabled = false;
-            this.soundsPathText.Location = new System.Drawing.Point(183, 225);
+            this.soundsPathText.Location = new System.Drawing.Point(183, 231);
             this.soundsPathText.Name = "soundsPathText";
             this.soundsPathText.Size = new System.Drawing.Size(520, 20);
             this.soundsPathText.TabIndex = 21;
             // 
             // soundsPathLabel
             // 
-            this.soundsPathLabel.Location = new System.Drawing.Point(6, 228);
+            this.soundsPathLabel.Location = new System.Drawing.Point(6, 234);
             this.soundsPathLabel.Name = "soundsPathLabel";
             this.soundsPathLabel.Size = new System.Drawing.Size(171, 17);
             this.soundsPathLabel.TabIndex = 20;
@@ -1205,7 +1302,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 245);
+            this.npcCheckBox.Location = new System.Drawing.Point(1042, 268);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -1217,7 +1314,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 269);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 292);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -1228,7 +1325,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1048, 293);
+            this.rankCheckBox.Location = new System.Drawing.Point(1048, 316);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -1239,7 +1336,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 317);
+            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 340);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -1259,7 +1356,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1045, 337);
+            this.linkLabel1.Location = new System.Drawing.Point(1045, 360);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -1270,7 +1367,7 @@
             // weatherCheckBox
             // 
             this.weatherCheckBox.AutoSize = true;
-            this.weatherCheckBox.Location = new System.Drawing.Point(1042, 153);
+            this.weatherCheckBox.Location = new System.Drawing.Point(1042, 176);
             this.weatherCheckBox.Name = "weatherCheckBox";
             this.weatherCheckBox.Size = new System.Drawing.Size(63, 17);
             this.weatherCheckBox.TabIndex = 19;
@@ -1280,7 +1377,7 @@
             // deathItemsCheckBox
             // 
             this.deathItemsCheckBox.AutoSize = true;
-            this.deathItemsCheckBox.Location = new System.Drawing.Point(1042, 176);
+            this.deathItemsCheckBox.Location = new System.Drawing.Point(1042, 199);
             this.deathItemsCheckBox.Name = "deathItemsCheckBox";
             this.deathItemsCheckBox.Size = new System.Drawing.Size(92, 17);
             this.deathItemsCheckBox.TabIndex = 20;
@@ -1289,7 +1386,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(1041, 386);
+            this.progressBar1.Location = new System.Drawing.Point(1042, 434);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(131, 23);
             this.progressBar1.Step = 1;
@@ -1299,7 +1396,7 @@
             // 
             this.rusRadioButton.AutoSize = true;
             this.rusRadioButton.Checked = true;
-            this.rusRadioButton.Location = new System.Drawing.Point(1056, 502);
+            this.rusRadioButton.Location = new System.Drawing.Point(1057, 550);
             this.rusRadioButton.Name = "rusRadioButton";
             this.rusRadioButton.Size = new System.Drawing.Size(48, 17);
             this.rusRadioButton.TabIndex = 22;
@@ -1310,7 +1407,7 @@
             // engRadioButton
             // 
             this.engRadioButton.AutoSize = true;
-            this.engRadioButton.Location = new System.Drawing.Point(1110, 502);
+            this.engRadioButton.Location = new System.Drawing.Point(1111, 550);
             this.engRadioButton.Name = "engRadioButton";
             this.engRadioButton.Size = new System.Drawing.Size(48, 17);
             this.engRadioButton.TabIndex = 23;
@@ -1320,7 +1417,7 @@
             // tradersCheckBox
             // 
             this.tradersCheckBox.AutoSize = true;
-            this.tradersCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.tradersCheckBox.Location = new System.Drawing.Point(1042, 222);
             this.tradersCheckBox.Name = "tradersCheckBox";
             this.tradersCheckBox.Size = new System.Drawing.Size(109, 17);
             this.tradersCheckBox.TabIndex = 24;
@@ -1330,7 +1427,7 @@
             // consumablesCheckBox
             // 
             this.consumablesCheckBox.AutoSize = true;
-            this.consumablesCheckBox.Location = new System.Drawing.Point(1042, 222);
+            this.consumablesCheckBox.Location = new System.Drawing.Point(1042, 245);
             this.consumablesCheckBox.Name = "consumablesCheckBox";
             this.consumablesCheckBox.Size = new System.Drawing.Size(86, 17);
             this.consumablesCheckBox.TabIndex = 25;
@@ -1341,17 +1438,28 @@
             // 
             this.loadState.AutoSize = true;
             this.loadState.BackColor = System.Drawing.SystemColors.Control;
-            this.loadState.Location = new System.Drawing.Point(1045, 391);
+            this.loadState.Location = new System.Drawing.Point(1046, 439);
             this.loadState.Name = "loadState";
             this.loadState.Size = new System.Drawing.Size(52, 13);
             this.loadState.TabIndex = 38;
             this.loadState.Text = "loadState";
             // 
+            // dialogsCheckBox
+            // 
+            this.dialogsCheckBox.AutoSize = true;
+            this.dialogsCheckBox.Location = new System.Drawing.Point(1042, 153);
+            this.dialogsCheckBox.Name = "dialogsCheckBox";
+            this.dialogsCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.dialogsCheckBox.TabIndex = 39;
+            this.dialogsCheckBox.Text = "Диалоги";
+            this.dialogsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 540);
+            this.ClientSize = new System.Drawing.Size(1184, 583);
+            this.Controls.Add(this.dialogsCheckBox);
             this.Controls.Add(this.loadState);
             this.Controls.Add(this.consumablesCheckBox);
             this.Controls.Add(this.tradersCheckBox);
@@ -1387,6 +1495,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.dialogsTab.ResumeLayout(false);
+            this.dialogsTab.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1513,6 +1623,15 @@
         private System.Windows.Forms.Label advanced2Label;
         private System.Windows.Forms.Label loadState;
         private System.Windows.Forms.Label epilepsyLabel;
+        private System.Windows.Forms.TabPage dialogsTab;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label actionsExceptionLabel;
+        private System.Windows.Forms.TextBox actionsExceptionTextBox;
+        private System.Windows.Forms.Label infosExceptionLabel;
+        private System.Windows.Forms.TextBox infosExceptionTextBox;
+        private System.Windows.Forms.CheckBox dialogsCheckBox;
+        private System.Windows.Forms.Label recommendUnlockTraderDoorLabel;
+        private System.Windows.Forms.CheckBox unlockTraderDoorCheckBox;
     }
 }
 
