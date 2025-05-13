@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Tools\Configuration.cs" />
+    <Compile Include="Tools\CustomException.cs" />
     <Compile Include="Tools\MyFile.cs" />
     <Compile Include="Generators\ArtefactsGenerator.cs" />
     <Compile Include="Generators\BaseGenerator.cs" />

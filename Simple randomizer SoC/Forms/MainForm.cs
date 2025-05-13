@@ -16,7 +16,7 @@ namespace RandomizerSoC
 {
     public partial class MainForm : Form
     {
-        readonly int progressBarStep = 10; // 100/10
+        readonly int progressBarStep = 9; // 100 / 11
 
         //обработчик данных тектбоксов
         readonly TextBoxesHandler textBoxesHandler;
@@ -45,6 +45,7 @@ namespace RandomizerSoC
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
         readonly ConsumablesGenerator consumablesGenerator;
+        readonly DialogsGenerator dialogsGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -86,15 +87,17 @@ namespace RandomizerSoC
                 ["skybox"] = skyTextBox,
                 ["thunderbolt"] = thunderTextBox,
                 ["weapon_snd_reload"] = reloadSoundsTextBox,
-                ["weapon_snd_shoot"] = shootSoundsTextBox
+                ["weapon_snd_shoot"] = shootSoundsTextBox,
+                ["dialog_infos_exceptions"] = infosExceptionTextBox,
+                ["dialog_actions_exceptions"] = actionsExceptionTextBox,
             };
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox };
+                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox, dialogsCheckBox };
 
             additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
                 giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox,
-                gameSoundCheckBox, texturesCheckBox};
+                gameSoundCheckBox, texturesCheckBox, unlockTraderDoorCheckBox};
 
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
@@ -114,6 +117,7 @@ namespace RandomizerSoC
             deathItemsGenerator = new DeathItemsGenerator();
             tradeGenerator = new TradeGenerator();
             consumablesGenerator = new ConsumablesGenerator();
+            dialogsGenerator = new DialogsGenerator();
 
             additionalParams = new AdditionalParams();
 
@@ -556,51 +560,17 @@ namespace RandomizerSoC
         #region справка
         private void WeaponGuideButton_Click(object sender, EventArgs e)
         {
-            string text;
-            try
-            {
-                text = Localization.Get("weaponGuide");
-            }
-            catch (Exception ex)
-            {
-                //new InfoForm(rm, "error", $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-
-                return;
-            }
-            new GuideForm(text).ShowDialog();
+            new GuideForm(Localization.Get("weaponGuide")).ShowDialog();
         }
 
         private void ItemGuideButton_Click(object sender, EventArgs e)
         {
-            string text;
-            try
-            {
-                text = Localization.Get("ItemsGuide");
-            }
-            catch (Exception ex)
-            {
-                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-
-                return;
-            }
-            new GuideForm(text).ShowDialog();
+            new GuideForm(Localization.Get("ItemsGuide")).ShowDialog();
         }
 
         private void NpcGuideButton_Click(object sender, EventArgs e)
         {
-            string text;
-            try
-            {
-                text = Localization.Get("npcGuide");
-            }
-            catch (Exception ex)
-            {
-                new InfoForm(Localization.Get("error"), $"{ex.Message}\r\n{ex.StackTrace}").ShowDialog();
-
-                return;
-            }
-            new GuideForm(text).ShowDialog();
+            new GuideForm(Localization.Get("npcGuide")).ShowDialog();
         }
         #endregion
 
@@ -797,11 +767,11 @@ namespace RandomizerSoC
             {
                 soundsPathText.Text = fbd.SelectedPath;
                 Configuration.Set("sound", fbd.SelectedPath);
-            }
 
-            if (!soundsPathText.Text.Contains("\\sounds"))
-            {
-                new InfoForm("Указанный к игровым звукам путь не содержит папку \"sounds\"").ShowDialog();
+                if (!soundsPathText.Text.Contains("\\sounds"))
+                {
+                    new InfoForm("Указанный к игровым звукам путь не содержит папку \"sounds\"").ShowDialog();
+                }
             }
         }
 
@@ -815,11 +785,11 @@ namespace RandomizerSoC
             {
                 texturesPathText.Text = fbd.SelectedPath;
                 Configuration.Set("texture", fbd.SelectedPath);
-            }
 
-            if (!texturesPathText.Text.Contains("\\textures"))
-            {
-                new InfoForm("Указанный к игровым текстурам путь не содержит папку \"textures\"").ShowDialog();
+                if (!texturesPathText.Text.Contains("\\textures"))
+                {
+                    new InfoForm("Указанный к игровым текстурам путь не содержит папку \"textures\"").ShowDialog();
+                }
             }
         }
         #endregion
