@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -11,17 +12,21 @@ namespace Simple_randomizer_SoC.Generators
 {
     internal class DialogsGenerator
     {
-        List<string> incorrectInfos;
-        List<string> incorrectActions;
+        const string exitDialogId = "1917";
+        const string npcPhraseIdPrefix = "228";
+        const string playerPhraseIdPrefix = "1337";
+
+        string[] incorrectInfos;
+        string[] incorrectActions;
 
         bool isDataLoaded = false;
 
         string newConfigPath;
 
-        public void UpdateData(List<string> incorrectInfos, List<string> incorrectActions, string newConfigPath)
+        public void UpdateData(string incorrectInfos, string incorrectActions, string newConfigPath)
         {
-            this.incorrectInfos = incorrectInfos;
-            this.incorrectActions = incorrectActions;
+            this.incorrectInfos = Regex.Split(incorrectInfos, "[\\r\\n]+");
+            this.incorrectActions = Regex.Split(incorrectActions, "[\\r\\n]+");
             this.newConfigPath = newConfigPath;
 
             isDataLoaded = true;
@@ -44,7 +49,7 @@ namespace Simple_randomizer_SoC.Generators
             var texts = new HashSet<string>();
             var actions = new HashSet<string>();
 
-            var files = Directory.GetFiles(Environment.configPath + "\\gameplay");
+            var files = Directory.GetFiles(Environment.configPath + "\\gameplay_dialogs");
             foreach (var file in files)
             {
                 var data = File.ReadAllText(file);
@@ -53,13 +58,13 @@ namespace Simple_randomizer_SoC.Generators
                 xmlDocument.LoadXml(data);
                 docs.Add(xmlDocument, Path.GetFileName(file));
 
+                //заполняет infos, actions, texts, preconditions непустыми строками с Trim
                 read(xmlDocument.ChildNodes, xmlDocument.Name);
-
             }
 
             //удаление исключений
-            infos.RemoveWhere(i => incorrectInfos.Contains(i));
-            actions.RemoveWhere(a => incorrectActions.Contains(a));
+            infos.RemoveWhere(i => incorrectInfos.Contains(i.Trim()));
+            actions.RemoveWhere(a => incorrectActions.Contains(a.Trim()));
 
             var rnd = new Random();
 
@@ -77,8 +82,9 @@ namespace Simple_randomizer_SoC.Generators
                             var phraseList = doc.CreateNode(XmlNodeType.Element, "phrase_list", null);
 
                             List<string> currentHasInfos = new List<string>();
-                            //List<string> currentDontHasInfos = [];
-                            if (rnd.Next(1000) < 383)
+                            var dice = rnd.Next(1000);
+
+                            if (dice < 383)
                             {
                                 var hasInfosCount = rnd.Next(1, 4);
                                 for (int i = 0; i < hasInfosCount; i++)
@@ -91,7 +97,7 @@ namespace Simple_randomizer_SoC.Generators
                                 }
                             }
 
-                            if (rnd.Next(1000) < 376)
+                            if (dice < 376)
                             {
                                 var dontHasInfosCount = rnd.Next(1, 3);
                                 var acceptedInfos = infos.Where(i => !currentHasInfos.Contains(i));
@@ -103,16 +109,17 @@ namespace Simple_randomizer_SoC.Generators
                                 }
                             }
 
-                            if (rnd.Next(1000) < 181)
+                            if (dice < 181)
                             {
                                 var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
                                 preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
                                 phraseList.AppendChild(preconditionNode);
                             }
 
+                            //ветка выхода из диалога
                             var savePhrase = doc.CreateNode(XmlNodeType.Element, "phrase", null);
                             var saveId = doc.CreateAttribute("id");
-                            saveId.Value = "1917";
+                            saveId.Value = exitDialogId;
                             savePhrase.Attributes.Append(saveId);
 
                             var saveText = doc.CreateNode(XmlNodeType.Element, "text", null);
@@ -124,7 +131,9 @@ namespace Simple_randomizer_SoC.Generators
                             savePhrase.AppendChild(saveAction);
 
                             phraseList.AppendChild(savePhrase);
-
+                            
+                            //иногда ветки игрока и НПС свапаются, хз почему
+                            //втеки фраз игрока
                             var playerPhraseCount = rnd.Next(3, 16);
                             var npcPhraseCount = rnd.Next(3, 16);
 
@@ -132,7 +141,9 @@ namespace Simple_randomizer_SoC.Generators
                             {
                                 var phraseNode = doc.CreateNode(XmlNodeType.Element, "phrase", null);
                                 var id = doc.CreateAttribute("id");
-                                id.Value = p == 0 ? "0" : ("1337" + p);
+                                //вроде, диалог обяз начинается с 0 id
+                                id.Value = p == 0 ? "0" : (playerPhraseIdPrefix + p);
+                                //id.Value = playerPhraseIdPrefix + p;
                                 phraseNode.Attributes.Append(id);
 
                                 var textNode = doc.CreateNode(XmlNodeType.Element, "text", null);
@@ -142,21 +153,21 @@ namespace Simple_randomizer_SoC.Generators
                                     texts.ElementAt(rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (rnd.Next(1000) < 132)
+                                if (dice < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
                                     actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (rnd.Next(1000) < 183)
+                                if (dice < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
                                     giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 957)
+                                if (dice < 957)
                                 {
                                     var nextCount = rnd.Next(1, Math.Min(7, npcPhraseCount));
                                     var list = new List<int>();
@@ -168,7 +179,7 @@ namespace Simple_randomizer_SoC.Generators
                                     {
                                         var nextNode = doc.CreateNode(XmlNodeType.Element, "next", null);
                                         var nextIdIndex = rnd.Next(list.Count);
-                                        nextNode.InnerText = "228" + list[nextIdIndex];
+                                        nextNode.InnerText = npcPhraseIdPrefix + list[nextIdIndex];
                                         list.RemoveAt(nextIdIndex);
                                         phraseNode.AppendChild(nextNode);
                                     }
@@ -176,17 +187,18 @@ namespace Simple_randomizer_SoC.Generators
 
                                 //выхход из диалога будет оттображен всегда???
                                 var saveNode = doc.CreateNode(XmlNodeType.Element, "next", null);
-                                saveNode.InnerText = "1917";
+                                saveNode.InnerText = exitDialogId;
                                 phraseNode.AppendChild(saveNode);
 
                                 phraseList.AppendChild(phraseNode);
                             }
 
+                            //ветки фраз НПС
                             for (int p = 0; p < npcPhraseCount; p++)
                             {
                                 var phraseNode = doc.CreateNode(XmlNodeType.Element, "phrase", null);
                                 var id = doc.CreateAttribute("id");
-                                id.Value = "228" + p;
+                                id.Value = npcPhraseIdPrefix + p;
                                 phraseNode.Attributes.Append(id);
 
                                 var textNode = doc.CreateNode(XmlNodeType.Element, "text", null);
@@ -196,52 +208,52 @@ namespace Simple_randomizer_SoC.Generators
                                     texts.ElementAt(rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (rnd.Next(1000) < 34)
+                                if (dice < 34)
                                 {
                                     var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
                                     preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
                                     phraseNode.AppendChild(preconditionNode);
                                 }
 
-                                if (rnd.Next(1000) < 132)
+                                if (dice < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
                                     actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (rnd.Next(1000) < 183)
+                                if (dice < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
                                     giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 150)
+                                if (dice < 150)
                                 {
                                     var dontHasInfoNode = doc.CreateNode(XmlNodeType.Element, "dont_has_info", null);
                                     dontHasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(dontHasInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 150)
+                                if (dice < 150)
                                 {
                                     var hasInfoNode = doc.CreateNode(XmlNodeType.Element, "has_info", null);
                                     hasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(hasInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 957)
+                                if (dice < 957)
                                 {
                                     var nextNode = doc.CreateNode(XmlNodeType.Element, "next", null);
                                     var nextIdIndex = rnd.Next(1, playerPhraseCount);
-                                    nextNode.InnerText = "1337" + nextIdIndex;
+                                    nextNode.InnerText = playerPhraseIdPrefix + nextIdIndex;
                                     phraseNode.AppendChild(nextNode);
                                 }
                                 else
                                 {
                                     var saveNode = doc.CreateNode(XmlNodeType.Element, "next", null);
-                                    saveNode.InnerText = "1917";
+                                    saveNode.InnerText = exitDialogId;
                                     phraseNode.AppendChild(saveNode);
                                 }
 
@@ -260,29 +272,28 @@ namespace Simple_randomizer_SoC.Generators
             {
                 foreach (XmlNode node in nodeList)
                 {
+                    var innerText = node.InnerText.Trim();
+                    if (innerText.Length == 0) continue;
+
                     switch (node.Name)
                     {
                         case "precondition":
-                            preconditions.Add(node.InnerText);
+                            preconditions.Add(innerText);
                             break;
                         case "has_info":
-                            infos.Add(node.InnerText);
+                            infos.Add(innerText);
                             break;
                         case "dont_has_info":
-                            infos.Add(node.InnerText);
+                            infos.Add(innerText);
                             break;
                         case "action":
-                            actions.Add(node.InnerText);
+                            actions.Add(innerText);
                             break;
                         case "text":
-                            var t = node.InnerText.Trim();
-                            if (t.Length > 0)
-                            {
-                                texts.Add(t);
-                            }
+                            texts.Add(innerText);
                             break;
                         case "give_info":
-                            infos.Add(node.InnerText);
+                            infos.Add(innerText);
                             break;
                         case "next":
                             read(node.ChildNodes, node.Name);

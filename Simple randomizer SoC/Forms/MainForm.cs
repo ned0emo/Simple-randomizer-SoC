@@ -393,6 +393,21 @@ namespace RandomizerSoC
                 }
             }
             incrementProgressBar();
+            //диалоги
+            if (dialogsCheckBox.Checked)
+            {
+                dialogsGenerator.UpdateData(infosExceptionTextBox.Text, actionsExceptionTextBox.Text, newConfigPath);
+                try
+                {
+                    await dialogsGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("error"), ex).ShowDialog();
+                    changeButtonsStatus(true);
+                    return;
+                }
+            }
             #endregion
 
             //доп функции

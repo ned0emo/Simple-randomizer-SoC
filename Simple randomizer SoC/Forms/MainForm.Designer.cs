@@ -86,7 +86,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.recommendUnlockTraderDoorLabel = new System.Windows.Forms.Label();
             this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.onePointFourLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -459,9 +458,11 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label18.Location = new System.Drawing.Point(508, 33);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(501, 131);
+            this.label18.Size = new System.Drawing.Size(501, 89);
             this.label18.TabIndex = 23;
-            this.label18.Text = resources.GetString("label18.Text");
+            this.label18.Text = "Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекоменду" +
+    "ется включить разблокировку двери у Сидоровича со старта игры и дать главному ге" +
+    "рою нож (вкладка \"Дополнительно\")\r\n";
             // 
             // actionsExceptionLabel
             // 
@@ -780,7 +781,6 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.recommendUnlockTraderDoorLabel);
             this.tabPage8.Controls.Add(this.unlockTraderDoorCheckBox);
             this.tabPage8.Controls.Add(this.label8);
             this.tabPage8.Controls.Add(this.onePointFourLinkLabel);
@@ -808,16 +808,6 @@
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // recommendUnlockTraderDoorLabel
-            // 
-            this.recommendUnlockTraderDoorLabel.AutoSize = true;
-            this.recommendUnlockTraderDoorLabel.Location = new System.Drawing.Point(467, 417);
-            this.recommendUnlockTraderDoorLabel.Name = "recommendUnlockTraderDoorLabel";
-            this.recommendUnlockTraderDoorLabel.Size = new System.Drawing.Size(92, 13);
-            this.recommendUnlockTraderDoorLabel.TabIndex = 22;
-            this.recommendUnlockTraderDoorLabel.Text = "(Рекомендуется)";
-            this.recommendUnlockTraderDoorLabel.Visible = false;
             // 
             // unlockTraderDoorCheckBox
             // 
@@ -848,10 +838,10 @@
             this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
             this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
-            this.onePointFourLinkLabel.Size = new System.Drawing.Size(499, 16);
+            this.onePointFourLinkLabel.Size = new System.Drawing.Size(429, 16);
             this.onePointFourLinkLabel.TabIndex = 19;
             this.onePointFourLinkLabel.TabStop = true;
-            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает НАМНОГО стабильнне, чем 1.0006. Но почему?";
+            this.onePointFourLinkLabel.Text = "Версия игры 1.0004 работает стабильнне, чем 1.0006. Но почему?";
             this.onePointFourLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // gScriptCheckBox
@@ -1630,7 +1620,6 @@
         private System.Windows.Forms.Label infosExceptionLabel;
         private System.Windows.Forms.TextBox infosExceptionTextBox;
         private System.Windows.Forms.CheckBox dialogsCheckBox;
-        private System.Windows.Forms.Label recommendUnlockTraderDoorLabel;
         private System.Windows.Forms.CheckBox unlockTraderDoorCheckBox;
     }
 }

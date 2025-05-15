@@ -1,4 +1,5 @@
 ﻿using Simple_randomizer_SoC;
+using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace RandomizerSoC
 
             label1.Text = errorTitle;
 
-            if(errorMessage.Length > 0)
+            if (errorMessage.Length > 0)
             {
                 textBox1.Visible = true;
                 textBox1.Height += 100;
@@ -35,6 +36,31 @@ namespace RandomizerSoC
                 button1.Location = new Point(button1.Location.X, button1.Location.Y + 100);
 
                 textBox1.Text = errorMessage;
+            }
+        }
+
+        public InfoForm(string errorTitle, Exception ex)
+        {
+            InitializeComponent();
+
+            this.Text = Localization.Get("infoFornName");
+
+            label1.Text = errorTitle;
+
+            textBox1.Visible = true;
+            textBox1.Height += 100;
+            Height += 100;
+            button1.Location = new Point(button1.Location.X, button1.Location.Y + 100);
+
+            if (ex is CustomException)
+            {
+                textBox1.Text = ex.Message;
+            }
+            else
+            {
+                textBox1.Text = ex.Message + "\r\n" +
+                    ex.InnerException?.Message + "\r\n" +
+                    ex.StackTrace;
             }
         }
 
