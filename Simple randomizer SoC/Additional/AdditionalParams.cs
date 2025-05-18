@@ -31,6 +31,7 @@ namespace Simple_randomizer_SoC
                 ["advancedGulag2"] = new Tuple<string, string>(Environment.scriptsPath, "\\xr_gulag.script"),
                 ["equipWeaponEverywhere"] = new Tuple<string, string>(Environment.scriptsPath, "\\sr_no_weapon.script"),
                 ["barAlarm"] = new Tuple<string, string>(Environment.configPath, "\\scripts\\bar_territory_zone.ltx"),
+                ["escTraderDoor"] = new Tuple<string, string>(Environment.configPath, "\\scripts\\esc_trader_door.ltx"),
                 ["giveKnife"] = new Tuple<string, string>(Environment.spawnsPath, "\\all.spawn"),
                 ["disableFreedomAgression"] = new Tuple<string, string>(Environment.scriptsPath, "\\gulag_military.script"),
                 ["moreRespawn"] = new Tuple<string, string>(Environment.scriptsPath, "\\se_respawn.script"),

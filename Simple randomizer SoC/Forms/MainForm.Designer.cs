@@ -828,7 +828,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(150, 90);
             this.label8.TabIndex = 20;
-            this.label8.Text = "©ned0emo, ver 1.7\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPfim by Nick Babcoc" +
+            this.label8.Text = "©ned0emo, ver 1.8\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPfim by Nick Babcoc" +
     "k\r\nPrettyBin by Andrey Ershov";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 

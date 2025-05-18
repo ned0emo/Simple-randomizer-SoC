@@ -1,4 +1,4 @@
-﻿using Pfim;
+﻿//using Pfim;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +11,8 @@ namespace Simple_randomizer_SoC.Tools
 {
     public class TextureRandomizer
     {
-        readonly Dictionary<string, List<string>> singleTextures = new Dictionary<string, List<string>>();
-        readonly Dictionary<string, List<Tuple<string, string, string>>> tripleTextures = new Dictionary<string, List<Tuple<string, string, string>>>();
+        readonly List<string> singleTextures = new List<string>();
+        readonly List<Tuple<string, string, string>> tripleTextures = new List<Tuple<string, string, string>>();
 
         const string postfix = "_bump";
 
@@ -133,7 +133,7 @@ namespace Simple_randomizer_SoC.Tools
                 }
 
                 statusMessage = Localization.Get("fileCopying");
-                maxProgress = filesCount + 10;
+                maxProgress = filesCount + 11;
                 progress = 0;
 
                 copyThread.Start();
@@ -174,10 +174,6 @@ namespace Simple_randomizer_SoC.Tools
                         //bump отдельно проверяется
                         if (file.Contains(postfix) || file.Contains("font")) continue;
 
-                        var image = Pfimage.FromFile(file);
-                        var key = $"{image.Width}-{image.Height}";
-                        image.Dispose();
-
                         var file2 = file.Replace(".dds", $"{postfix}.dds");
                         bool image2 = File.Exists(file2);
                         var file3 = file.Replace(".dds", $"{postfix}#.dds");
@@ -185,16 +181,7 @@ namespace Simple_randomizer_SoC.Tools
 
                         if (image2 && image3)
                         {
-                            lock (tripleTextures)
-                            {
-                                if (!tripleTextures.TryGetValue(key, out List<Tuple<string, string, string>> value))
-                                {
-                                    value = new List<Tuple<string, string, string>>();
-                                    tripleTextures.Add(key, value);
-                                }
-
-                                value.Add(new Tuple<string, string, string>(file, file2, file3));
-                            }
+                            tripleTextures.Add(new Tuple<string, string, string>(file, file2, file3));
                         }
                         else if (image2 || image3)
                         {
@@ -203,16 +190,7 @@ namespace Simple_randomizer_SoC.Tools
                         }
                         else
                         {
-                            lock (singleTextures)
-                            {
-                                if (!singleTextures.TryGetValue(key, out List<string> value))
-                                {
-                                    value = new List<string>();
-                                    singleTextures.Add(key, value);
-                                }
-
-                                value.Add(file);
-                            }
+                            singleTextures.Add(file);
                         }
 
                         filesCount++;
@@ -247,13 +225,11 @@ namespace Simple_randomizer_SoC.Tools
         {
             try
             {
-                foreach (var set in singleTextures)
+                if (singleTextures.Count > 1)
                 {
-                    if (stopProcessing) return;
-                    if (set.Value.Count < 2) continue;
-                    var copy = set.Value.Skip(0).ToList();
+                    var copy = singleTextures.Skip(0).ToList();
 
-                    foreach (var file in set.Value)
+                    foreach (var file in singleTextures)
                     {
                         if (stopProcessing) return;
                         var newFile = copy[rnd.Next(copy.Count)];
@@ -268,17 +244,11 @@ namespace Simple_randomizer_SoC.Tools
                     }
                 }
 
-                foreach (var set in tripleTextures)
+                if (tripleTextures.Count > 1)
                 {
-                    if (stopProcessing) return;
-                    if (set.Value.Count == 1)
-                    {
-                        progress++;
-                        continue;
-                    }
-                    var copy = set.Value.Skip(0).ToList();
+                    var copy = tripleTextures.Skip(0).ToList();
 
-                    foreach (var files in set.Value)
+                    foreach (var files in tripleTextures)
                     {
                         if (stopProcessing) return;
                         var newFiles = copy[rnd.Next(copy.Count)];

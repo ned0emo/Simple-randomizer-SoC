@@ -59,7 +59,7 @@ namespace Simple_randomizer_SoC.Generators
                 docs.Add(xmlDocument, Path.GetFileName(file));
 
                 //заполняет infos, actions, texts, preconditions непустыми строками с Trim
-                read(xmlDocument.ChildNodes, xmlDocument.Name);
+                readNode(xmlDocument.ChildNodes, xmlDocument.Name);
             }
 
             //удаление исключений
@@ -82,9 +82,9 @@ namespace Simple_randomizer_SoC.Generators
                             var phraseList = doc.CreateNode(XmlNodeType.Element, "phrase_list", null);
 
                             List<string> currentHasInfos = new List<string>();
-                            var dice = rnd.Next(1000);
 
-                            if (dice < 383)
+                            //условия и дествия всего диалога
+                            if (rnd.Next(1000) < 383)
                             {
                                 var hasInfosCount = rnd.Next(1, 4);
                                 for (int i = 0; i < hasInfosCount; i++)
@@ -97,7 +97,7 @@ namespace Simple_randomizer_SoC.Generators
                                 }
                             }
 
-                            if (dice < 376)
+                            if (rnd.Next(1000) < 376)
                             {
                                 var dontHasInfosCount = rnd.Next(1, 3);
                                 var acceptedInfos = infos.Where(i => !currentHasInfos.Contains(i));
@@ -109,7 +109,7 @@ namespace Simple_randomizer_SoC.Generators
                                 }
                             }
 
-                            if (dice < 181)
+                            if (rnd.Next(1000) < 181)
                             {
                                 var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
                                 preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
@@ -153,21 +153,21 @@ namespace Simple_randomizer_SoC.Generators
                                     texts.ElementAt(rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (dice < 132)
+                                if (rnd.Next(1000) < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
                                     actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (dice < 183)
+                                if (rnd.Next(1000) < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
                                     giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (dice < 957)
+                                if (rnd.Next(1000) < 957)
                                 {
                                     var nextCount = rnd.Next(1, Math.Min(7, npcPhraseCount));
                                     var list = new List<int>();
@@ -185,7 +185,7 @@ namespace Simple_randomizer_SoC.Generators
                                     }
                                 }
 
-                                //выхход из диалога будет оттображен всегда???
+                                //выхход из диалога будет отображен всегда???
                                 var saveNode = doc.CreateNode(XmlNodeType.Element, "next", null);
                                 saveNode.InnerText = exitDialogId;
                                 phraseNode.AppendChild(saveNode);
@@ -208,42 +208,42 @@ namespace Simple_randomizer_SoC.Generators
                                     texts.ElementAt(rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (dice < 34)
+                                if (rnd.Next(1000) < 34)
                                 {
                                     var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
                                     preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
                                     phraseNode.AppendChild(preconditionNode);
                                 }
 
-                                if (dice < 132)
+                                if (rnd.Next(1000) < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
                                     actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (dice < 183)
+                                if (rnd.Next(1000) < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
                                     giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (dice < 150)
+                                if (rnd.Next(1000) < 270)
                                 {
                                     var dontHasInfoNode = doc.CreateNode(XmlNodeType.Element, "dont_has_info", null);
                                     dontHasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(dontHasInfoNode);
                                 }
 
-                                if (dice < 150)
+                                if (rnd.Next(1000) < 165)
                                 {
                                     var hasInfoNode = doc.CreateNode(XmlNodeType.Element, "has_info", null);
                                     hasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
                                     phraseNode.AppendChild(hasInfoNode);
                                 }
 
-                                if (dice < 957)
+                                if (rnd.Next(1000) < 957)
                                 {
                                     var nextNode = doc.CreateNode(XmlNodeType.Element, "next", null);
                                     var nextIdIndex = rnd.Next(1, playerPhraseCount);
@@ -268,7 +268,7 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             //рекурсивное чтение XML
-            void read(XmlNodeList nodeList, string parentNodeName)
+            void readNode(XmlNodeList nodeList, string parentNodeName)
             {
                 foreach (XmlNode node in nodeList)
                 {
@@ -296,16 +296,16 @@ namespace Simple_randomizer_SoC.Generators
                             infos.Add(innerText);
                             break;
                         case "next":
-                            read(node.ChildNodes, node.Name);
+                            readNode(node.ChildNodes, node.Name);
                             break;
                         case "dialog":
-                            read(node.ChildNodes, node.Name);
+                            readNode(node.ChildNodes, node.Name);
                             break;
                         case "phrase":
-                            read(node.ChildNodes, node.Name);
+                            readNode(node.ChildNodes, node.Name);
                             break;
                         default:
-                            read(node.ChildNodes, node.Name);
+                            readNode(node.ChildNodes, node.Name);
                             break;
                     }
                 }

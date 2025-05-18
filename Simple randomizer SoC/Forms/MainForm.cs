@@ -449,6 +449,11 @@ namespace RandomizerSoC
                 paramTypeToNewPrefixDictionary.Add("gScript", newScriptsPath);
             }
 
+            if (unlockTraderDoorCheckBox.Checked)
+            {
+                paramTypeToNewPrefixDictionary.Add("escTraderDoor", newConfigPath);
+            }
+
             await additionalParams.CopyParams(paramTypeToNewPrefixDictionary);
 
             if (translateCheckBox.Checked)
