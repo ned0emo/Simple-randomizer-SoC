@@ -250,12 +250,13 @@ namespace RandomizerSoC
             {
                 treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                var result = await treasuresGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    new InfoForm(Localization.Get("error"), treasuresGenerator.errorMessage).ShowDialog();
-
+                    await treasuresGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("cachesError"), ex).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -265,12 +266,13 @@ namespace RandomizerSoC
             if (afCheckBox.Checked)
             {
                 artefactsGenerator.UpdateData(newConfigPath: newConfigPath);
-                var result = await artefactsGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    new InfoForm(Localization.Get("error"), artefactsGenerator.errorMessage).ShowDialog();
-
+                    await artefactsGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("artefactsError"), ex).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -280,13 +282,13 @@ namespace RandomizerSoC
             if (weaponCheckBox.Checked)
             {
                 weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
-                var result = await weaponsGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    //new InfoForm(rm, "error", weaponsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(Localization.Get("error"), weaponsGenerator.errorMessage).ShowDialog();
-
+                    await weaponsGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("weaponsError"), ex).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -296,13 +298,13 @@ namespace RandomizerSoC
             if (armorCheckBox.Checked)
             {
                 outfitsGenerator.UpdateData(newConfigPath: newConfigPath);
-                var result = await outfitsGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    //new InfoForm(rm, "error", outfitsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(Localization.Get("error"), outfitsGenerator.errorMessage).ShowDialog();
-
+                    await outfitsGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("outfitsError"), ex).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }
@@ -318,14 +320,14 @@ namespace RandomizerSoC
                     suppliesEnabled: suppliesCheckBox.Checked, ranksEnabled: rankCheckBox.Checked, reputationEnabled: reputationCheckBox.Checked,
                     onlyGenerateNames: onlyGenerateCheckBox.Checked
                 );
-                var result = await npcGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    new InfoForm(Localization.Get("error"), npcGenerator.errorMessage).ShowDialog();
-
-                    changeButtonsStatus(true);
-                    return;
+                    await npcGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("npcError"), ex).ShowDialog();
+                    changeButtonsStatus(true); return;
                 }
             }
             incrementProgressBar();
@@ -334,14 +336,14 @@ namespace RandomizerSoC
             {
                 weatherGenerator.UpdateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
                     thunderProbability: (int)thunderNumericUpDown.Value, newConfigPath: newConfigPath);
-                var result = await weatherGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    new InfoForm(Localization.Get("error"), weatherGenerator.errorMessage).ShowDialog();
-
-                    changeButtonsStatus(true);
-                    return;
+                    await weatherGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("weatherError"), ex).ShowDialog();
+                    changeButtonsStatus(true); return;
                 }
             }
             incrementProgressBar();
@@ -349,15 +351,14 @@ namespace RandomizerSoC
             if (deathItemsCheckBox.Checked)
             {
                 deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
-                var result = await deathItemsGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    //new InfoForm(rm, "error", deathItemsGenerator.errorMessage).ShowDialog();
-                    new InfoForm(Localization.Get("error"), deathItemsGenerator.errorMessage).ShowDialog();
-
-                    changeButtonsStatus(true);
-                    return;
+                    await deathItemsGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("deathItemsError"), ex).ShowDialog();
+                    changeButtonsStatus(true); return;
                 }
             }
             incrementProgressBar();
@@ -366,15 +367,15 @@ namespace RandomizerSoC
             {
                 tradeGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                var result = await tradeGenerator.Generate();
 
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-
-                    new InfoForm(Localization.Get("error"), tradeGenerator.errorMessage).ShowDialog();
-
-                    changeButtonsStatus(true);
-                    return;
+                    await tradeGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("tradersError"), ex).ShowDialog();
+                    changeButtonsStatus(true); return;
                 }
             }
             incrementProgressBar();
@@ -382,14 +383,14 @@ namespace RandomizerSoC
             if (consumablesCheckBox.Checked)
             {
                 consumablesGenerator.UpdateData(newConfigPath: newConfigPath);
-                var result = await consumablesGenerator.Generate();
-
-                if (result == BaseGenerator.STATUS_ERROR)
+                try
                 {
-                    new InfoForm(Localization.Get("error"), consumablesGenerator.errorMessage).ShowDialog();
-
-                    changeButtonsStatus(true);
-                    return;
+                    await consumablesGenerator.Generate();
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("consumablesError"), ex).ShowDialog();
+                    changeButtonsStatus(true); return;
                 }
             }
             incrementProgressBar();
@@ -403,7 +404,7 @@ namespace RandomizerSoC
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm(Localization.Get("error"), ex).ShowDialog();
+                    new InfoForm(Localization.Get("dialogsError"), ex).ShowDialog();
                     changeButtonsStatus(true);
                     return;
                 }

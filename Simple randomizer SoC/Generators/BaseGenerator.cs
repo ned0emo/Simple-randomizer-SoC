@@ -16,12 +16,6 @@ namespace Simple_randomizer_SoC
     /// </summary>
     class BaseGenerator
     {
-        public static readonly int STATUS_OK = 1;
-        public static readonly int STATUS_ERROR = 2;
-
-        public string errorMessage = "";
-        public string warningMessage = "";
-
         protected Random rnd;
 
         protected bool isDataLoaded;

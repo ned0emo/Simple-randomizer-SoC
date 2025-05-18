@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,63 +25,49 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> Generate()
+        public async Task Generate()
         {
-            errorMessage = "";
-            warningMessage = "";
-
             if (!isDataLoaded)
             {
-                errorMessage = Localization.Get("artefactsDataError");
-                return STATUS_ERROR;
+                throw new CustomException(Localization.Get("artefactsDataError"));
             }
 
-            try
+            var artefacts = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
+            var artefactsStringList = artefacts.Replace("af_base", "\a").Split('\a');
+
+            string newArtefacts = "";
+
+            for (int i = 2; i < artefactsStringList.Length; i++)
             {
-                var artefacts = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
-                var artefactsStringList = artefacts.Replace("af_base", "\a").Split('\a');
+                int statsNum = rnd.Next(5) + 1;
+                List<Tuple<string, double>> generatedAfStats = GenerateAfStats(statsNum);
 
-                string newArtefacts = "";
+                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
+                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
 
-                for (int i = 2; i < artefactsStringList.Length; i++)
+                //Замена статов на пустые для последующего добавления новых
+                foreach (string stat in mainAfStats)
                 {
-                    int statsNum = rnd.Next(5) + 1;
-                    List<Tuple<string, double>> generatedAfStats = GenerateAfStats(statsNum);
-
-                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
-                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
-
-                    //Замена статов на пустые для последующего добавления новых
-                    foreach (string stat in mainAfStats)
-                    {
-                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 1.0);
-                    }
-                    foreach (string stat in additionalAfStats)
-                    {
-                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 0.0);
-                    }
-
-                    //Применение модифицированных статов
-                    foreach (Tuple<string, double> stat in generatedAfStats)
-                    {
-                        artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat.Item1, stat.Item2);
-                    }
+                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 1.0);
+                }
+                foreach (string stat in additionalAfStats)
+                {
+                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat, 0.0);
                 }
 
-                foreach (string it in artefactsStringList)
+                //Применение модифицированных статов
+                foreach (Tuple<string, double> stat in generatedAfStats)
                 {
-                    newArtefacts += it + "af_base";
+                    artefactsStringList[i] = ReplaceStat(artefactsStringList[i], stat.Item1, stat.Item2);
                 }
-
-                await MyFile.Write($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
-
-                return STATUS_OK;
             }
-            catch (Exception ex)
+
+            foreach (string it in artefactsStringList)
             {
-                errorMessage = Localization.Get("artefactsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
-                return STATUS_ERROR;
+                newArtefacts += it + "af_base";
             }
+
+            await MyFile.Write($"{newConfigPath}/misc/artefacts.ltx", newArtefacts);
         }
 
         //генерация статов арта

@@ -36,7 +36,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (!isDataLoaded)
             {
-                throw new CustomException("Данные для генерации диалогов не загружены. Операция прервана");
+                throw new CustomException(Localization.Get("dialogsDataError"));
             }
 
             var docs = new Dictionary<XmlDocument, string>();

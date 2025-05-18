@@ -196,8 +196,14 @@
   <data name="dialogs" xml:space="preserve">
     <value>Диалоги</value>
   </data>
+  <data name="dialogsDataError" xml:space="preserve">
+    <value>Данные для генерации диалогов не загружены. Операция прервана</value>
+  </data>
   <data name="dialogsDescription" xml:space="preserve">
     <value>Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекомендуется включить разблокировку двери у Сидоровича со старта игры и дать главному герою нож (вкладка "Дополнительно")</value>
+  </data>
+  <data name="dialogsError" xml:space="preserve">
+    <value>Ошибка генерации диалогов. Операция прервана</value>
   </data>
   <data name="epilepsy" xml:space="preserve">
     <value>Не рекомендуется включать, если у вас когда-либо были эпилептические приступы</value>

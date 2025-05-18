@@ -281,11 +281,29 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Данные для генерации диалогов не загружены. Операция прервана.
+        /// </summary>
+        internal static string dialogsDataError {
+            get {
+                return ResourceManager.GetString("dialogsDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекомендуется включить разблокировку двери у Сидоровича со старта игры и дать главному герою нож (вкладка &quot;Дополнительно&quot;).
         /// </summary>
         internal static string dialogsDescription {
             get {
                 return ResourceManager.GetString("dialogsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка генерации диалогов. Операция прервана.
+        /// </summary>
+        internal static string dialogsError {
+            get {
+                return ResourceManager.GetString("dialogsError", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,78 +26,63 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> Generate()
+        public async Task Generate()
         {
-            errorMessage = "";
-            warningMessage = "";
-
             if (!isDataLoaded)
             {
                 //errorMessage = "Путь для сохранения брони не указан. Требуется вызов \"updateData\"";
-                errorMessage = Localization.Get("outfitsDataError");
-                return STATUS_ERROR;
+                throw new CustomException(Localization.Get("outfitsDataError"));
             }
 
-            try
+            var outfits = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
+            var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
+
+            string newOutfits = "";
+
+            //Начало с тройки, потому что помимо непосредственно outfit_base есть еще наследование в виде остутсвия костюма
+            for (int i = 3; i < outfitFullList.Length; i++)
             {
-                var outfits = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
-                var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
+                int plusMaxWeight = rnd.Next(-20, 26);
 
-                string newOutfits = "";
+                outfitFullList[i] = ReplaceStat(outfitFullList[i], "inv_weight", rnd.Next(10) + 1);
+                outfitFullList[i] = ReplaceStat(outfitFullList[i], "cost", rnd.Next(10000) + 1);
 
-                //Начало с тройки, потому что помимо непосредственно outfit_base есть еще наследование в виде остутсвия костюма
-                for (int i = 3; i < outfitFullList.Length; i++)
+                foreach (string stat in fullOutfitStats)
                 {
-                    int plusMaxWeight = rnd.Next(-20, 26);
-
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "inv_weight", rnd.Next(10) + 1);
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "cost", rnd.Next(10000) + 1);
-
-                    foreach (string stat in fullOutfitStats)
-                    {
-                        outfitFullList[i] = ReplaceStat(outfitFullList[i], stat, Math.Round(rnd.NextDouble() * 1.4 - 0.7, 2));
-                    }
-
-                    foreach (string immun in fullOutfitImmunities)
-                    {
-                        outfitFullList[i] = ReplaceStat(outfitFullList[i], immun, Math.Round(rnd.NextDouble() / 20, 3));
-                    }
-
-                    if (outfitFullList[i].Contains("additional_inventory_weight"))
-                    {
-                        outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight);
-                    }
-                    else
-                    {
-                        outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight = {plusMaxWeight}\n");
-                    }
-
-                    if (outfitFullList[i].Contains("additional_inventory_weight2"))
-                    {
-                        outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10);
-                    }
-                    else
-                    {
-                        outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight2 = {plusMaxWeight + 10}\n");
-                    }
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], stat, Math.Round(rnd.NextDouble() * 1.4 - 0.7, 2));
                 }
 
-                //лишний outfit_base в конце ничего не ломает
-                foreach (string it in outfitFullList)
+                foreach (string immun in fullOutfitImmunities)
                 {
-                    newOutfits += it + "outfit_base";
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], immun, Math.Round(rnd.NextDouble() / 20, 3));
                 }
 
-                await MyFile.Write($"{newConfigPath}/misc/outfit.ltx", newOutfits);
+                if (outfitFullList[i].Contains("additional_inventory_weight"))
+                {
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight);
+                }
+                else
+                {
+                    outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight = {plusMaxWeight}\n");
+                }
 
-                return STATUS_OK;
+                if (outfitFullList[i].Contains("additional_inventory_weight2"))
+                {
+                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10);
+                }
+                else
+                {
+                    outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight2 = {plusMaxWeight + 10}\n");
+                }
             }
-            catch (Exception ex)
+
+            //лишний outfit_base в конце ничего не ломает
+            foreach (string it in outfitFullList)
             {
-                //errorMessage = $"Ошибка генерации брони. Операция прервана\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage = Localization.Get("outfitsError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
-                return STATUS_ERROR;
+                newOutfits += it + "outfit_base";
             }
+
+            await MyFile.Write($"{newConfigPath}/misc/outfit.ltx", newOutfits);
         }
     }
 }

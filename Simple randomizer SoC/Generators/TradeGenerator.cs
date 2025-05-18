@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,55 +33,41 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> Generate()
+        public async Task Generate()
         {
-            errorMessage = "";
-            warningMessage = "";
-
             if (!isDataLoaded)
             {
-                errorMessage = Localization.Get("tradersDataError");
-                return STATUS_ERROR;
+                throw new CustomException(Localization.Get("tradersDataError"));
             }
 
-            try
+            var tradeFilesList = (await MyFile.GetFiles($"{Environment.configPath}/misc")).ToList();
+            tradeFilesList.RemoveAll(el => !el.Contains("trade_"));
+
+            foreach (var tradeFile in tradeFilesList)
             {
-                var tradeFilesList = (await MyFile.GetFiles($"{Environment.configPath}/misc")).ToList();
-                tradeFilesList.RemoveAll(el => !el.Contains("trade_"));
+                var weaponList = CreateCleanList(weapons);
+                var ammoList = CreateCleanList(ammos);
+                var outfitList = CreateCleanList(outfits);
+                var artefactList = CreateCleanList(artefacts);
+                var itemList = CreateCleanList(items);
+                var otherList = CreateCleanList(others);
 
-                foreach (var tradeFile in tradeFilesList)
-                {
-                    var weaponList = CreateCleanList(weapons);
-                    var ammoList = CreateCleanList(ammos);
-                    var outfitList = CreateCleanList(outfits);
-                    var artefactList = CreateCleanList(artefacts);
-                    var itemList = CreateCleanList(items);
-                    var otherList = CreateCleanList(others);
+                var allItemList = new string[][] { weaponList, ammoList, outfitList, artefactList, itemList, otherList };
+                var probabilitiesList = new int[] { 15, 30, 15, 5, 60, 15 };
+                var countList = new int[] { 2, 10, 1, 2, 10, 2 };
 
-                    var allItemList = new string[][] { weaponList, ammoList, outfitList, artefactList, itemList, otherList };
-                    var probabilitiesList = new int[] { 15, 30, 15, 5, 60, 15 };
-                    var countList = new int[] { 2, 10, 1, 2, 10, 2 };
+                string newTraderData = "[trader]\n" +
+                    $"buy_condition = trader_buy_0\n" +
+                    $"sell_condition = trader_sell_0\n" +
+                    $"buy_supplies = supplies_start_0\n\n" +
+                    $"[trader_buy_0]\n" +
+                    $"{MakeBuyCondition(allItemList)}\n" +
+                    $"[trader_sell_0]\n" +
+                    $"{MakeSellCondition(allItemList)}\n" +
+                    $"[supplies_start_0]\n" +
+                    $"{MakeBuySupplies(allItemList, probabilitiesList, countList)}";
 
-                    string newTraderData = "[trader]\n" +
-                        $"buy_condition = trader_buy_0\n" +
-                        $"sell_condition = trader_sell_0\n" +
-                        $"buy_supplies = supplies_start_0\n\n" +
-                        $"[trader_buy_0]\n" +
-                        $"{MakeBuyCondition(allItemList)}\n" +
-                        $"[trader_sell_0]\n" +
-                        $"{MakeSellCondition(allItemList)}\n" +
-                        $"[supplies_start_0]\n" +
-                        $"{MakeBuySupplies(allItemList, probabilitiesList, countList)}";
-
-                    await MyFile.Write(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
-                }
-
-                return STATUS_OK;
-            }
-            catch (Exception ex)
-            {
-                errorMessage = Localization.Get("tradersError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
-                return STATUS_ERROR;
+                await MyFile.Write(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
             }
         }
 

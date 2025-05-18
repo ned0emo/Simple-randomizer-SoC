@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using RandomizerSoC;
+using Simple_randomizer_SoC.Tools;
 
 namespace Simple_randomizer_SoC.Generators
 {
@@ -48,87 +49,72 @@ namespace Simple_randomizer_SoC.Generators
             isDataLoaded = true;
         }
 
-        public async Task<int> Generate()
+        public async Task Generate()
         {
-            errorMessage = "";
-            warningMessage = "";
-
             if (!isDataLoaded)
             {
-                //errorMessage = "Данные для генерации тайников не были получены. Требуется вызов \"updateData\"";
-                errorMessage = Localization.Get("cachesDataError");
-                return STATUS_ERROR;
+                throw new CustomException(Localization.Get("cachesDataError"));
             }
 
-            try
+            var treasures = Regex.Replace(await MyFile.Read($"{Environment.configPath}\\misc\\treasure_manager.ltx"), "\\s+;.+", "");
+            var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
+
+            var weaponList = CreateCleanList(weapons);
+            var ammoList = CreateCleanList(ammos, true);
+            var outfitList = CreateCleanList(outfits);
+            var artefactList = CreateCleanList(artefacts);
+            var itemList = CreateCleanList(items);
+            var otherList = CreateCleanList(others);
+
+            for (int j = 1; j < treasureStringList.Count; j++)
             {
-                var treasures = Regex.Replace(await MyFile.Read($"{Environment.configPath}\\misc\\treasure_manager.ltx"), "\\s+;.+", "");
-                var treasureStringList = treasures.Replace("items", "\a").Split('\a').ToList();
+                string newItems = "";
+                int itemCount = rnd.Next(7) + 1;
 
-                var weaponList = CreateCleanList(weapons);
-                var ammoList = CreateCleanList(ammos, true);
-                var outfitList = CreateCleanList(outfits);
-                var artefactList = CreateCleanList(artefacts);
-                var itemList = CreateCleanList(items);
-                var otherList = CreateCleanList(others);
-
-                for (int j = 1; j < treasureStringList.Count; j++)
+                for (int i = 0; i < itemCount; i++)
                 {
-                    string newItems = "";
-                    int itemCount = rnd.Next(7) + 1;
+                    int whichItemType = rnd.Next(100);
 
-                    for (int i = 0; i < itemCount; i++)
+                    if (whichItemType < 5)
                     {
-                        int whichItemType = rnd.Next(100);
-
-                        if (whichItemType < 5)
-                        {
-                            newItems += GenerateItem(outfitList, 1);
-                        }
-                        else if (whichItemType < 15)
-                        {
-                            newItems += GenerateItem(weaponList, 1);
-                        }
-                        else if (whichItemType < 20)
-                        {
-                            newItems += GenerateItem(artefactList, 2);
-                        }
-                        else if (whichItemType < 70)
-                        {
-                            newItems += GenerateItem(itemList, 8);
-                        }
-                        else if (whichItemType < 95)
-                        {
-                            newItems += GenerateItem(ammoList, 6);
-                        }
-                        else
-                        {
-                            newItems += GenerateItem(otherList, 2);
-                        }
-
-                        if (i < itemCount - 1) newItems += ", ";
+                        newItems += GenerateItem(outfitList, 1);
+                    }
+                    else if (whichItemType < 15)
+                    {
+                        newItems += GenerateItem(weaponList, 1);
+                    }
+                    else if (whichItemType < 20)
+                    {
+                        newItems += GenerateItem(artefactList, 2);
+                    }
+                    else if (whichItemType < 70)
+                    {
+                        newItems += GenerateItem(itemList, 8);
+                    }
+                    else if (whichItemType < 95)
+                    {
+                        newItems += GenerateItem(ammoList, 6);
+                    }
+                    else
+                    {
+                        newItems += GenerateItem(otherList, 2);
                     }
 
-                    treasureStringList[j] = treasureStringList[j]
-                        .Replace(treasureStringList[j].Substring(0, treasureStringList[j].IndexOf('\n')), $" = {newItems}");
+                    if (i < itemCount - 1) newItems += ", ";
                 }
 
-                string treasureString = treasureStringList[0];
-
-                for (int i = 1; i < treasureStringList.Count; i++)
-                {
-                    treasureString += "items" + treasureStringList[i];
-                }
-
-                await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", treasureString);
-
-                return STATUS_OK;
+                treasureStringList[j] = treasureStringList[j]
+                    .Replace(treasureStringList[j].Substring(0, treasureStringList[j].IndexOf('\n')), $" = {newItems}");
             }
-            catch (Exception ex)
+
+            string treasureString = treasureStringList[0];
+
+            for (int i = 1; i < treasureStringList.Count; i++)
             {
-                errorMessage = Localization.Get("cachesError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
-                return STATUS_ERROR;
+                treasureString += "items" + treasureStringList[i];
             }
+
+            await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", treasureString);
         }
 
         //Предмет и количество для добавления в тайник
@@ -151,7 +137,7 @@ namespace Simple_randomizer_SoC.Generators
                 }
                 catch
                 {
-                    warningMessage += $"Ошибка определения количества предметов для [{item}]\n";
+                    Console.WriteLine($"Ошибка определения количества предметов для [{item}]\n");
                 }
                 item = item.Split(' ')[0];
             }
