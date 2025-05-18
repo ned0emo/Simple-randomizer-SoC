@@ -462,7 +462,7 @@
             this.label18.TabIndex = 23;
             this.label18.Text = "Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекоменду" +
     "ется включить разблокировку двери у Сидоровича со старта игры и дать главному ге" +
-    "рою нож (вкладка \"Дополнительно\")\r\n";
+    "рою нож (вкладка \"Дополнительно\")";
             // 
             // actionsExceptionLabel
             // 
@@ -826,10 +826,10 @@
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label8.Location = new System.Drawing.Point(860, 411);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(150, 90);
+            this.label8.Size = new System.Drawing.Size(150, 75);
             this.label8.TabIndex = 20;
-            this.label8.Text = "©ned0emo, ver 1.8\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPfim by Nick Babcoc" +
-    "k\r\nPrettyBin by Andrey Ershov";
+            this.label8.Text = "©ned0emo, ver 1.8\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPrettyBin by Andrey" +
+    " Ershov";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // onePointFourLinkLabel

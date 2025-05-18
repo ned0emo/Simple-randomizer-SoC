@@ -743,6 +743,14 @@ namespace RandomizerSoC
             texturesPathLabel.Text = Localization.Get("texturesPath");
             uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
             epilepsyLabel.Text = Localization.Get("epilepsy");
+
+            //dialogs 1.8
+            dialogsTab.Text = Localization.Get("dialogs");
+            dialogsCheckBox.Text = Localization.Get("dialogs");
+            infosExceptionLabel.Text = Localization.Get("incorrectInfos");
+            actionsExceptionLabel.Text = Localization.Get("incorrectActions");
+            unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
+            label18.Text = Localization.Get("dialogsDescription");
         }
         #endregion
 

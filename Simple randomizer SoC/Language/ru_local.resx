@@ -193,6 +193,12 @@
   <data name="defaultLists" xml:space="preserve">
     <value>Списки по умолчанию</value>
   </data>
+  <data name="dialogs" xml:space="preserve">
+    <value>Диалоги</value>
+  </data>
+  <data name="dialogsDescription" xml:space="preserve">
+    <value>Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекомендуется включить разблокировку двери у Сидоровича со старта игры и дать главному герою нож (вкладка "Дополнительно")</value>
+  </data>
   <data name="epilepsy" xml:space="preserve">
     <value>Не рекомендуется включать, если у вас когда-либо были эпилептические приступы</value>
   </data>
@@ -231,6 +237,12 @@
   </data>
   <data name="iconListTitle" xml:space="preserve">
     <value>Миниатюры</value>
+  </data>
+  <data name="incorrectActions" xml:space="preserve">
+    <value>Сломанные действия</value>
+  </data>
+  <data name="incorrectInfos" xml:space="preserve">
+    <value>Сломанные события</value>
   </data>
   <data name="infoFornName" xml:space="preserve">
     <value>Внимание</value>
@@ -485,6 +497,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   </data>
   <data name="thunderProbability" xml:space="preserve">
     <value>Вероятность грозы для каждого класса погоды</value>
+  </data>
+  <data name="traderDoor" xml:space="preserve">
+    <value>Разблокировать дверь у Сидоровича</value>
   </data>
   <data name="traderItems" xml:space="preserve">
     <value>Вещи торговцев</value>

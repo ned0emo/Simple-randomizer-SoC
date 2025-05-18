@@ -272,6 +272,24 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Диалоги.
+        /// </summary>
+        internal static string dialogs {
+            get {
+                return ResourceManager.GetString("dialogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекомендуется включить разблокировку двери у Сидоровича со старта игры и дать главному герою нож (вкладка &quot;Дополнительно&quot;).
+        /// </summary>
+        internal static string dialogsDescription {
+            get {
+                return ResourceManager.GetString("dialogsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Не рекомендуется включать, если у вас когда-либо были эпилептические приступы.
         /// </summary>
         internal static string epilepsy {
@@ -385,6 +403,24 @@ namespace Simple_randomizer_SoC.Language {
         internal static string iconListTitle {
             get {
                 return ResourceManager.GetString("iconListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сломанные действия.
+        /// </summary>
+        internal static string incorrectActions {
+            get {
+                return ResourceManager.GetString("incorrectActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сломанные события.
+        /// </summary>
+        internal static string incorrectInfos {
+            get {
+                return ResourceManager.GetString("incorrectInfos", resourceCulture);
             }
         }
         
@@ -910,6 +946,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string thunderProbability {
             get {
                 return ResourceManager.GetString("thunderProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Разблокировать дверь у Сидоровича.
+        /// </summary>
+        internal static string traderDoor {
+            get {
+                return ResourceManager.GetString("traderDoor", resourceCulture);
             }
         }
         

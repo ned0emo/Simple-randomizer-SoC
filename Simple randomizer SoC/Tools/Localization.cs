@@ -57,7 +57,7 @@ namespace Simple_randomizer_SoC
         {
             try
             {
-                return instance.rm.GetString(code);
+                return instance.rm.GetString(code) ?? code;
             }
             catch
             {
