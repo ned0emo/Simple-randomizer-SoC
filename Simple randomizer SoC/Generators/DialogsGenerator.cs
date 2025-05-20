@@ -65,6 +65,7 @@ namespace Simple_randomizer_SoC.Generators
             //удаление исключений
             infos.RemoveWhere(i => incorrectInfos.Contains(i.Trim()));
             actions.RemoveWhere(a => incorrectActions.Contains(a.Trim()));
+            preconditions.RemoveWhere(pc => pc.Contains("bar_dialogs.have_lucky_pda"));
 
             foreach (var doc in docs.Keys)
             {
