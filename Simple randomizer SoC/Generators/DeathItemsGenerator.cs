@@ -50,7 +50,7 @@ namespace Simple_randomizer_SoC.Generators
                 string newData = "";
                 foreach (string item in mainProbabilityData)
                 {
-                    newData += item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(rnd.NextDouble() * (item.StartsWith("af_") ? 0.03 : 0.6) + 0.001, 3)}\n");
+                    newData += item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(GlobalRandom.Rnd.NextDouble() * (item.StartsWith("af_") ? 0.03 : 0.6) + 0.001, 3)}\n");
                 }
                 newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
             }
@@ -76,8 +76,8 @@ namespace Simple_randomizer_SoC.Generators
                 string newData = "";
                 foreach (string item in mainCountData)
                 {
-                    int firstValue = rnd.Next(3);
-                    int secondValue = rnd.Next(firstValue, 3);
+                    int firstValue = GlobalRandom.Rnd.Next(3);
+                    int secondValue = GlobalRandom.Rnd.Next(firstValue, 3);
                     newData += item.Replace(
                         item.Substring(item.IndexOf('=')),
                         firstValue == secondValue
@@ -115,8 +115,8 @@ namespace Simple_randomizer_SoC.Generators
                 foreach (string item in mainCountData1)
                 {
                     int maxValue = item.StartsWith("ammo_") ? ammoMax : itemMax;
-                    int firstValue = rnd.Next(maxValue);
-                    int secondValue = rnd.Next(firstValue, maxValue);
+                    int firstValue = GlobalRandom.Rnd.Next(maxValue);
+                    int secondValue = GlobalRandom.Rnd.Next(firstValue, maxValue);
                     newData += item.Replace(
                         item.Substring(item.IndexOf('=')),
                         firstValue == secondValue
@@ -142,7 +142,7 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (deathGenericParams[i].Contains('='))
                     {
-                        deathGenericParams[i] = Regex.Replace(deathGenericParams[i], "=.*", $" = {GetRandomElementsFromArray(weaponsList, rnd.Next(1, 10)).Aggregate((a, b) => a + ", " + b)}\n");
+                        deathGenericParams[i] = Regex.Replace(deathGenericParams[i], "=.*", $" = {GetRandomElementsFromArray(weaponsList, GlobalRandom.Rnd.Next(1, 10)).Aggregate((a, b) => a + ", " + b)}\n");
                     }
                 }
 
@@ -163,7 +163,7 @@ namespace Simple_randomizer_SoC.Generators
             var finalListOfIndex = new List<int>();
             for (int i = 0; i < numOfElements; i++)
             {
-                int j = rnd.Next(listOfIndex.Count);
+                int j = GlobalRandom.Rnd.Next(listOfIndex.Count);
                 finalListOfIndex.Add(listOfIndex[j]);
                 listOfIndex.RemoveAt(j);
             }

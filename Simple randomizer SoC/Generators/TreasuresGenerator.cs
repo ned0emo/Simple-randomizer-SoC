@@ -69,11 +69,11 @@ namespace Simple_randomizer_SoC.Generators
             for (int j = 1; j < treasureStringList.Count; j++)
             {
                 string newItems = "";
-                int itemCount = rnd.Next(7) + 1;
+                int itemCount = GlobalRandom.Rnd.Next(7) + 1;
 
                 for (int i = 0; i < itemCount; i++)
                 {
-                    int whichItemType = rnd.Next(100);
+                    int whichItemType = GlobalRandom.Rnd.Next(100);
 
                     if (whichItemType < 5)
                     {
@@ -126,7 +126,7 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             int itemPackCount = 1;
-            string item = itemList[rnd.Next(itemList.Length)];
+            string item = itemList[GlobalRandom.Rnd.Next(itemList.Length)];
 
             //Для патронов
             if (item.Contains(" "))
@@ -142,7 +142,7 @@ namespace Simple_randomizer_SoC.Generators
                 item = item.Split(' ')[0];
             }
 
-            int count = rnd.Next(1, maxItemCount + 1) * itemPackCount;
+            int count = GlobalRandom.Rnd.Next(1, maxItemCount + 1) * itemPackCount;
 
             return item + ", " + count;
         }

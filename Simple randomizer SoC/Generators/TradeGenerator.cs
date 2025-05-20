@@ -79,9 +79,9 @@ namespace Simple_randomizer_SoC.Generators
             {
                 foreach (var item in items)
                 {
-                    var maxPrice = rnd.Next(10, 101);
+                    var maxPrice = GlobalRandom.Rnd.Next(10, 101);
 
-                    newStr += item + $" = {(double)maxPrice / 100}, {(double)rnd.Next(1, maxPrice) / 100}\n";
+                    newStr += item + $" = {(double)maxPrice / 100}, {(double)GlobalRandom.Rnd.Next(1, maxPrice) / 100}\n";
                 }
             }
 
@@ -96,9 +96,9 @@ namespace Simple_randomizer_SoC.Generators
             {
                 foreach (var item in items)
                 {
-                    var maxValue = rnd.Next(2, 4);
+                    var maxValue = GlobalRandom.Rnd.Next(2, 4);
 
-                    newStr += item + $" = {rnd.Next(1, maxValue)}, {maxValue}\n";
+                    newStr += item + $" = {GlobalRandom.Rnd.Next(1, maxValue)}, {maxValue}\n";
                 }
             }
 
@@ -113,9 +113,9 @@ namespace Simple_randomizer_SoC.Generators
             {
                 foreach (var item in allItems[i])
                 {
-                    if (rnd.Next(100) >= tradeProbabilities[i]) continue;
+                    if (GlobalRandom.Rnd.Next(100) >= tradeProbabilities[i]) continue;
 
-                    newStr += item + $" = {rnd.Next(maxItemCounts[i]) + 1}, {Math.Round(rnd.NextDouble() + 0.01, 2)}\n";
+                    newStr += item + $" = {GlobalRandom.Rnd.Next(maxItemCounts[i]) + 1}, {Math.Round(GlobalRandom.Rnd.NextDouble() + 0.01, 2)}\n";
                 }
             }
 

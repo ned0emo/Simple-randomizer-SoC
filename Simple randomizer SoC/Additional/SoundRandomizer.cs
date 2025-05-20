@@ -39,7 +39,7 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         public string statusMessage = "";
 
-        public string errorMessage = "";
+        public Exception exception = null;
 
         /// <summary>
         /// путь до звуков
@@ -50,8 +50,6 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         string outputGamedataPath = "";
 
-        readonly Random rnd = new Random();
-
         Thread copyThread;
         Thread searchThread;
         readonly List<Thread> threads = new List<Thread>();
@@ -60,7 +58,7 @@ namespace Simple_randomizer_SoC.Tools
         {
             await Abort();
             classifiedFiles.Clear();
-            errorMessage = "";
+            exception = null;
             isProcessing = true;
 
             copyThread = new Thread(CopyAndRename);
@@ -141,8 +139,7 @@ namespace Simple_randomizer_SoC.Tools
                 stopProcessing = true;
                 isProcessing = false;
 
-                errorMessage += ex.Message + "\r\n" + ex.StackTrace.ToString() + "\r\n";
-
+                exception = ex;
                 progress = 0;
                 statusMessage = Localization.Get("error");
             }
@@ -191,8 +188,9 @@ namespace Simple_randomizer_SoC.Tools
             }
             catch (Exception ex)
             {
-                errorMessage += $"{ex.Message}\r\n{ex.StackTrace}\r\n";
                 stopProcessing = true;
+                isProcessing = false;
+                exception = ex;
                 return;
             }
 
@@ -240,7 +238,7 @@ namespace Simple_randomizer_SoC.Tools
                     foreach (var file in files)
                     {
                         if (stopProcessing) return;
-                        var newFile = copy[rnd.Next(copy.Count)];
+                        var newFile = copy[GlobalRandom.Rnd.Next(copy.Count)];
 
                         string outputDirectory = outputGamedataPath + newFile.Substring(newFile.IndexOf("\\sounds"));
                         outputDirectory = outputDirectory.Remove(outputDirectory.LastIndexOf('\\'));
@@ -260,8 +258,8 @@ namespace Simple_randomizer_SoC.Tools
             catch (Exception ex)
             {
                 isProcessing = false;
-                errorMessage += $"{ex.Message}\n{ex.InnerException?.Message}\r\n";
                 statusMessage = Localization.Get("error");// "Ошибка";
+                exception = ex;
             }
         }
     }

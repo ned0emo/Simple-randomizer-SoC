@@ -40,7 +40,7 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         public string statusMessage = "";
 
-        public string errorMessage = "";
+        public Exception exception = null;
 
         /// <summary>
         /// путь до звуков
@@ -50,8 +50,6 @@ namespace Simple_randomizer_SoC.Tools
         /// путь выхода
         /// </summary>
         string outputGamedataPath = "";
-
-        readonly Random rnd = new Random();
 
         Thread copyThread;
         Thread searchThread;
@@ -63,7 +61,7 @@ namespace Simple_randomizer_SoC.Tools
             singleTextures.Clear();
             tripleTextures.Clear();
 
-            errorMessage = "";
+            exception = null;
             isProcessing = true;
 
             copyThread = new Thread(CopyAndRename);
@@ -143,8 +141,7 @@ namespace Simple_randomizer_SoC.Tools
                 stopProcessing = true;
                 isProcessing = false;
 
-                errorMessage += ex.Message + "\r\n" + ex.StackTrace.ToString() + "\r\n";
-
+                exception = ex;
                 progress = 0;
                 statusMessage = Localization.Get("error");
             }
@@ -199,9 +196,9 @@ namespace Simple_randomizer_SoC.Tools
             }
             catch (Exception ex)
             {
-                errorMessage += $"{ex.Message}\r\n{ex.StackTrace}\r\n";
+                exception = ex;
                 stopProcessing = true;
-                return;
+                isProcessing = false;
             }
 
             var dirList = dir.GetDirectories();
@@ -232,7 +229,7 @@ namespace Simple_randomizer_SoC.Tools
                     foreach (var file in singleTextures)
                     {
                         if (stopProcessing) return;
-                        var newFile = copy[rnd.Next(copy.Count)];
+                        var newFile = copy[GlobalRandom.Rnd.Next(copy.Count)];
 
                         string outputFile = outputGamedataPath + newFile.Substring(newFile.IndexOf("\\textures"));
                         Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
@@ -251,7 +248,7 @@ namespace Simple_randomizer_SoC.Tools
                     foreach (var files in tripleTextures)
                     {
                         if (stopProcessing) return;
-                        var newFiles = copy[rnd.Next(copy.Count)];
+                        var newFiles = copy[GlobalRandom.Rnd.Next(copy.Count)];
 
                         var output1 = outputGamedataPath + newFiles.Item1.Substring(newFiles.Item1.IndexOf("\\textures"));
                         var output2 = outputGamedataPath + newFiles.Item2.Substring(newFiles.Item2.IndexOf("\\textures"));
@@ -277,7 +274,7 @@ namespace Simple_randomizer_SoC.Tools
             catch (Exception ex)
             {
                 isProcessing = false;
-                errorMessage += $"{ex.Message}\n{ex.InnerException?.Message}\r\n";
+                exception = ex;
                 statusMessage = Localization.Get("error");
             }
         }

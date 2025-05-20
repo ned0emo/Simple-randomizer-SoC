@@ -124,13 +124,13 @@
     <value>Advanced</value>
   </data>
   <data name="advancedText" xml:space="preserve">
-    <value>The program can theoretically be used with many mods (if the mod does not violate the logic of the original game files).
+    <value>The program can theoretically be used with some small mods (if the mod does not violate the logic of the original game files).
 
-To work with the mod , you need to in the folder ./rndata/default/gamedata/config in the "gameplay", "misc", "weathers" and "weapons" directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should correct the lists in accordance with the content of the mod.
+To work with the mod, you need in the folder./rndata/gamedata/config in the gameplay, misc, weathers, and weapons directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should adjust the lists according to the content of the mod.
 
-If there are additional models and NPC voice acting in the modification, you just need to write the paths to them in the lists by analogy with how the original models / voice acting are written. You don't need to copy the files themselves anywhere
+If there are additional models and NPC voice acting in the modification, you just need to write down the paths to them in the lists by analogy with how the original models / voice acting are written. The files themselves don't need to be copied anywhere.
 
-The parameters on this tab will most likely not work with other mods. When activating these parameters, pre-edited game files are copied, which can break the mod.</value>
+The options on this tab are highly likely to not work with other mods. When activating these parameters, pre-edited game files are copied, which, if replaced, may break the mod.</value>
   </data>
   <data name="ammoListTitle" xml:space="preserve">
     <value>Cartridges and its num. in a pack</value>
@@ -193,6 +193,25 @@ The parameters on this tab will most likely not work with other mods. When activ
   <data name="defaultLists" xml:space="preserve">
     <value>Default lists</value>
   </data>
+  <data name="dialogs" xml:space="preserve">
+    <value>Dialogs</value>
+  </data>
+  <data name="dialogsDataError" xml:space="preserve">
+    <value>The dialog generation data has not been uploaded. Operation aborted</value>
+  </data>
+  <data name="dialogsDescription" xml:space="preserve">
+    <value>Changing the dialogues completely breaks the plot and most of the quests, so it is recommended to enable unlocking Sidorovich's door from the start of the game and give the main character a knife (the "Advanced" tab).
+
+By default, the lists of broken infos/actions contain infos/actions that cause the game to crash or the interface to freeze. However, they can record any other infos/actions that you want to exclude from generation.
+
+XML tags for infos are has_info, dont_has_info, and give_info.
+The XML tag for actions is action.
+
+If you want to mix the dialogs of a mod, then the dialog files should be placed in the rndata/gameplay_dialogs folder. At the same time, make sure that each file has only one XML tag in its root.</value>
+  </data>
+  <data name="dialogsError" xml:space="preserve">
+    <value>Dialog generation error. Operation aborted</value>
+  </data>
   <data name="epilepsy" xml:space="preserve">
     <value>It is not recommended to turn it on if you have ever had epileptic seizures</value>
   </data>
@@ -231,6 +250,12 @@ The parameters on this tab will most likely not work with other mods. When activ
   </data>
   <data name="iconListTitle" xml:space="preserve">
     <value>Miniatures</value>
+  </data>
+  <data name="incorrectActions" xml:space="preserve">
+    <value>Broken actions</value>
+  </data>
+  <data name="incorrectInfos" xml:space="preserve">
+    <value>Broken infos</value>
   </data>
   <data name="infoFornName" xml:space="preserve">
     <value>Warning</value>
@@ -273,10 +298,10 @@ Other - 5%, 1-2 pcs.</value>
     <value>Models</value>
   </data>
   <data name="moreGulag" xml:space="preserve">
-    <value>Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable. Unstable on 1.0006)</value>
+    <value>Expand the joining of NPCs to camps (breaks some scripts. It can lead to crashes when playing for a long time, especially on version 1.0006)</value>
   </data>
   <data name="moreRespawn" xml:space="preserve">
-    <value>Increase the frequency of NPC respawn (Unstable on 1.0006)</value>
+    <value>Increase the respawn rate of NPCs (may lead to crashes during a long game, especially on version 1.0006)</value>
   </data>
   <data name="nameListTitle" xml:space="preserve">
     <value>Names</value>
@@ -372,7 +397,7 @@ If anyone has any ideas on how to fix this, I'm open to suggestions
 And so I recommend using the 1.0004 version of the game</value>
   </data>
   <data name="onePointFourLink" xml:space="preserve">
-    <value>The 1.0004 version of the game works with this randomizer MUCH more stable than 1.0006. But why?</value>
+    <value>The 1.0004 version of the game works with this randomizer more stable than 1.0006. But why?</value>
   </data>
   <data name="open" xml:space="preserve">
     <value>Open</value>
@@ -428,6 +453,9 @@ And so I recommend using the 1.0004 version of the game</value>
   </data>
   <data name="saveLists" xml:space="preserve">
     <value>Save lists</value>
+  </data>
+  <data name="seed" xml:space="preserve">
+    <value>Generation seed</value>
   </data>
   <data name="selectAll" xml:space="preserve">
     <value>Select all</value>
@@ -486,6 +514,9 @@ The maximum number of threads to process sets the number of simultaneously proce
   </data>
   <data name="thunderProbability" xml:space="preserve">
     <value>The probability of a thunderstorm for each weather class</value>
+  </data>
+  <data name="traderDoor" xml:space="preserve">
+    <value>Unlock Sidorovich's door</value>
   </data>
   <data name="traderItems" xml:space="preserve">
     <value>Merchants' belongings</value>

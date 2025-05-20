@@ -123,37 +123,37 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (communitiesEnabled && communityList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "community", communityList[rnd.Next(communityList.Length)]);
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "community", communityList[GlobalRandom.Rnd.Next(communityList.Length)]);
                     }
 
                     if (ranksEnabled)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "rank", rnd.Next(1000).ToString());
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "rank", GlobalRandom.Rnd.Next(1000).ToString());
                     }
 
                     if (reputationEnabled)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "reputation", (rnd.Next(2001) - 1000).ToString());
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "reputation", (GlobalRandom.Rnd.Next(2001) - 1000).ToString());
                     }
 
                     if (modelsEnabled && modelList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "visual", modelList[rnd.Next(modelList.Length)]);
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "visual", modelList[GlobalRandom.Rnd.Next(modelList.Length)]);
                     }
 
                     if (iconsEnabled && iconList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "icon", iconList[rnd.Next(iconList.Length)]);
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "icon", iconList[GlobalRandom.Rnd.Next(iconList.Length)]);
                     }
 
                     if (namesEnabled && (!onlyGenerateNames || npcDescList[i].Contains("GENERATE_NAME")) && nameList.Count > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "name", nameList[rnd.Next(nameList.Count)]);
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "name", nameList[GlobalRandom.Rnd.Next(nameList.Count)]);
                     }
 
                     if (soundsEnabled && soundList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "snd_config", soundList[rnd.Next(soundList.Length)]);
+                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "snd_config", soundList[GlobalRandom.Rnd.Next(soundList.Length)]);
                     }
 
                     if (suppliesEnabled && npcDescList[i].Contains("[spawn]") && weaponList.Count > 0)
@@ -169,11 +169,11 @@ namespace Simple_randomizer_SoC.Generators
                             }
                         }
 
-                        int weapNum = rnd.Next(weaponList.Count);
+                        int weapNum = GlobalRandom.Rnd.Next(weaponList.Count);
 
                         string[] currentWeaponAndAmmo = weaponList[weapNum].Split(' ');
                         string weapon = currentWeaponAndAmmo[0];
-                        string ammo = currentWeaponAndAmmo[rnd.Next(currentWeaponAndAmmo.Length - 1) + 1];
+                        string ammo = currentWeaponAndAmmo[GlobalRandom.Rnd.Next(currentWeaponAndAmmo.Length - 1) + 1];
 
                         suppList.Insert(1, weapon + " \\n\n");
                         suppList.Insert(1, ammo.Replace("\n", "").Replace("\r", "") + " \\n\n");

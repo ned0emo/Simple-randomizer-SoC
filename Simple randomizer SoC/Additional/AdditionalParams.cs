@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,6 @@ namespace Simple_randomizer_SoC
 {
     class AdditionalParams
     {
-        public string errorMessage = "";
-
-        private readonly Random rnd;
-
         /// <summary>
         /// Словарь по типу доп параметра и паре "префикс - путь",
         /// где префикс будет меняться при копировании на новый путь
@@ -20,8 +17,6 @@ namespace Simple_randomizer_SoC
 
         public AdditionalParams()
         {
-            rnd = new Random();
-
             //advancedGulag, equipWeaponEverywhere, barAlarm,
             //    giveKnife, disableFreedomAgression,moreRespawn, gScript, translate, shuffleText
 
@@ -51,18 +46,10 @@ namespace Simple_randomizer_SoC
         {
             foreach (string key in paramTypeToNewPrefixDictionary.Keys)
             {
-                try
-                {
-                    await MyFile.Copy(
-                        paramTypeToPrefixAndPathDictionary[key].Item1 + paramTypeToPrefixAndPathDictionary[key].Item2,
-                        paramTypeToNewPrefixDictionary[key] + paramTypeToPrefixAndPathDictionary[key].Item2
-                    );
-                }
-                catch
-                {
-                    //errorMessage += $"Ошибка копирования {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
-                    errorMessage += Localization.Get("copyError") + $" {paramTypeToPrefixAndPathDictionary[key].Item2}\r\n";
-                }
+                await MyFile.Copy(
+                    paramTypeToPrefixAndPathDictionary[key].Item1 + paramTypeToPrefixAndPathDictionary[key].Item2,
+                    paramTypeToNewPrefixDictionary[key] + paramTypeToPrefixAndPathDictionary[key].Item2
+                );
             }
         }
 
@@ -72,75 +59,47 @@ namespace Simple_randomizer_SoC
             Dictionary<string, string> tmpFilesDataMap = new Dictionary<string, string>();
             Dictionary<string, List<string>> classifiedTextByLengthMap = new Dictionary<string, List<string>>();
 
-            string[] files;
-            try
-            {
-                files = await MyFile.GetFiles($"{Environment.configPath}\\text\\rus");
-            }
-            catch (Exception ex)
-            {
-                //errorMessage += $"Ошибка чтения файлов с игровым текстом\r\n{ex.Message}\r\n{ex.StackTrace}";
-                errorMessage += Localization.Get("textDataReadError") + $"\r\n{ex.Message}\r\n{ex.StackTrace}";
-                return;
-            }
-
             //Составление карты текста по длине
             foreach (string file in await MyFile.GetFiles($"{Environment.configPath}\\text\\rus"))
             {
-                try
+                var textData = await MyFile.Read(file);
+                var textDataList = new List<string>(textData.Replace("<text>", "\a").Split('\a'));
+
+                string newTextData = textDataList[0];
+                textDataList.RemoveAt(0);
+
+                foreach (string textSection in textDataList)
                 {
-                    var textData = await MyFile.Read(file);
-                    var textDataList = new List<string>(textData.Replace("<text>", "\a").Split('\a'));
+                    string text = textSection.Substring(0, textSection.IndexOf("</text>"));
+                    string roundedLength = (text.Length / 5 * 5).ToString();
+                    newTextData += "\a" + textSection.Replace(text + "</text>", roundedLength + "</text>");
 
-                    string newTextData = textDataList[0];
-                    textDataList.RemoveAt(0);
-
-                    foreach (string textSection in textDataList)
+                    if (!classifiedTextByLengthMap.Keys.Contains(roundedLength))
                     {
-                        string text = textSection.Substring(0, textSection.IndexOf("</text>"));
-                        string roundedLength = (text.Length / 5 * 5).ToString();
-                        newTextData += "\a" + textSection.Replace(text + "</text>", roundedLength + "</text>");
-
-                        if (!classifiedTextByLengthMap.Keys.Contains(roundedLength))
-                        {
-                            classifiedTextByLengthMap[roundedLength] = new List<string>();
-                        }
-                        classifiedTextByLengthMap[roundedLength].Add(text);
+                        classifiedTextByLengthMap[roundedLength] = new List<string>();
                     }
+                    classifiedTextByLengthMap[roundedLength].Add(text);
+                }
 
-                    tmpFilesDataMap[file] = newTextData;
-                }
-                catch
-                {
-                    //errorMessage += $"Ошибка чтения или обработки {file}\r\n";
-                    errorMessage += Localization.Get("readHandleError") + $" {file}\r\n";
-                }
+                tmpFilesDataMap[file] = newTextData;
             }
 
             //Замена текста в игровых файлах
             foreach (string file in tmpFilesDataMap.Keys)
             {
-                try
-                {
-                    var textData = new List<string>(tmpFilesDataMap[file].Split('\a'));
-                    string newTextData = textData[0];
-                    textData.RemoveAt(0);
+                var textData = new List<string>(tmpFilesDataMap[file].Split('\a'));
+                string newTextData = textData[0];
+                textData.RemoveAt(0);
 
-                    foreach (string textSection in textData)
-                    {
-                        string roundedLength = textSection.Substring(0, textSection.IndexOf("</text>"));
-                        int index = rnd.Next(classifiedTextByLengthMap[roundedLength].Count);
-                        newTextData += "<text>" + textSection.Replace(roundedLength + "</text>", classifiedTextByLengthMap[roundedLength][index] + "</text>");
-                        classifiedTextByLengthMap[roundedLength].RemoveAt(index);
-                    }
-
-                    await MyFile.Write(file.Replace(Environment.configPath, newConfigPath), newTextData);
-                }
-                catch
+                foreach (string textSection in textData)
                 {
-                    //errorMessage += $"Ошибка записи или обработки {file}\r\n";
-                    errorMessage += Localization.Get("writeHandleError") + $" {file}\r\n";
+                    string roundedLength = textSection.Substring(0, textSection.IndexOf("</text>"));
+                    int index = GlobalRandom.Rnd.Next(classifiedTextByLengthMap[roundedLength].Count);
+                    newTextData += "<text>" + textSection.Replace(roundedLength + "</text>", classifiedTextByLengthMap[roundedLength][index] + "</text>");
+                    classifiedTextByLengthMap[roundedLength].RemoveAt(index);
                 }
+
+                await MyFile.Write(file.Replace(Environment.configPath, newConfigPath), newTextData);
             }
         }
 
@@ -148,14 +107,7 @@ namespace Simple_randomizer_SoC
         {
             foreach (string file in await MyFile.GetFiles($"{Environment.configPath}/text/rus"))
             {
-                try
-                {
-                    await MyFile.Copy(file, file.Replace(Environment.configPath, newConfigPath));
-                }
-                catch
-                {
-                    errorMessage += Localization.Get("copyError") + $" {file}\r\n";
-                }
+                await MyFile.Copy(file, file.Replace(Environment.configPath, newConfigPath));
             }
         }
     }

@@ -66,8 +66,6 @@ namespace Simple_randomizer_SoC.Generators
             infos.RemoveWhere(i => incorrectInfos.Contains(i.Trim()));
             actions.RemoveWhere(a => incorrectActions.Contains(a.Trim()));
 
-            var rnd = new Random();
-
             foreach (var doc in docs.Keys)
             {
                 foreach (XmlNode node in doc.ChildNodes)
@@ -84,12 +82,12 @@ namespace Simple_randomizer_SoC.Generators
                             List<string> currentHasInfos = new List<string>();
 
                             //условия и дествия всего диалога
-                            if (rnd.Next(1000) < 383)
+                            if (GlobalRandom.Rnd.Next(1000) < 383)
                             {
-                                var hasInfosCount = rnd.Next(1, 4);
+                                var hasInfosCount = GlobalRandom.Rnd.Next(1, 4);
                                 for (int i = 0; i < hasInfosCount; i++)
                                 {
-                                    var info = infos.ElementAt(rnd.Next(infos.Count));
+                                    var info = infos.ElementAt(GlobalRandom.Rnd.Next(infos.Count));
                                     currentHasInfos.Add(info);
                                     var hasInfoNode = doc.CreateNode(XmlNodeType.Element, "has_info", null);
                                     hasInfoNode.InnerText = info;
@@ -97,22 +95,22 @@ namespace Simple_randomizer_SoC.Generators
                                 }
                             }
 
-                            if (rnd.Next(1000) < 376)
+                            if (GlobalRandom.Rnd.Next(1000) < 376)
                             {
-                                var dontHasInfosCount = rnd.Next(1, 3);
+                                var dontHasInfosCount = GlobalRandom.Rnd.Next(1, 3);
                                 var acceptedInfos = infos.Where(i => !currentHasInfos.Contains(i));
                                 for (int i = 0; i < dontHasInfosCount; i++)
                                 {
                                     var dontHasInfoNode = doc.CreateNode(XmlNodeType.Element, "dont_has_info", null);
-                                    dontHasInfoNode.InnerText = acceptedInfos.ElementAt(rnd.Next(acceptedInfos.Count()));
+                                    dontHasInfoNode.InnerText = acceptedInfos.ElementAt(GlobalRandom.Rnd.Next(acceptedInfos.Count()));
                                     phraseList.AppendChild(dontHasInfoNode);
                                 }
                             }
 
-                            if (rnd.Next(1000) < 181)
+                            if (GlobalRandom.Rnd.Next(1000) < 181)
                             {
                                 var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
-                                preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
+                                preconditionNode.InnerText = preconditions.ElementAt(GlobalRandom.Rnd.Next(preconditions.Count));
                                 phraseList.AppendChild(preconditionNode);
                             }
 
@@ -134,8 +132,8 @@ namespace Simple_randomizer_SoC.Generators
                             
                             //иногда ветки игрока и НПС свапаются, хз почему
                             //втеки фраз игрока
-                            var playerPhraseCount = rnd.Next(3, 16);
-                            var npcPhraseCount = rnd.Next(3, 16);
+                            var playerPhraseCount = GlobalRandom.Rnd.Next(3, 16);
+                            var npcPhraseCount = GlobalRandom.Rnd.Next(3, 16);
 
                             for (int p = 0; p < playerPhraseCount; p++)
                             {
@@ -150,26 +148,26 @@ namespace Simple_randomizer_SoC.Generators
                                 textNode.InnerText =
                                     //ИД фразы перед текстом диалога для отладки
                                     //id.Value +
-                                    texts.ElementAt(rnd.Next(texts.Count));
+                                    texts.ElementAt(GlobalRandom.Rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (rnd.Next(1000) < 132)
+                                if (GlobalRandom.Rnd.Next(1000) < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
-                                    actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
+                                    actionNode.InnerText = actions.ElementAt(GlobalRandom.Rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (rnd.Next(1000) < 183)
+                                if (GlobalRandom.Rnd.Next(1000) < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
-                                    giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
+                                    giveInfoNode.InnerText = infos.ElementAt(GlobalRandom.Rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 957)
+                                if (GlobalRandom.Rnd.Next(1000) < 957)
                                 {
-                                    var nextCount = rnd.Next(1, Math.Min(7, npcPhraseCount));
+                                    var nextCount = GlobalRandom.Rnd.Next(1, Math.Min(7, npcPhraseCount));
                                     var list = new List<int>();
                                     for (int i = 0; i < npcPhraseCount; i++)
                                     {
@@ -178,7 +176,7 @@ namespace Simple_randomizer_SoC.Generators
                                     for (int n = 0; n < nextCount; n++)
                                     {
                                         var nextNode = doc.CreateNode(XmlNodeType.Element, "next", null);
-                                        var nextIdIndex = rnd.Next(list.Count);
+                                        var nextIdIndex = GlobalRandom.Rnd.Next(list.Count);
                                         nextNode.InnerText = npcPhraseIdPrefix + list[nextIdIndex];
                                         list.RemoveAt(nextIdIndex);
                                         phraseNode.AppendChild(nextNode);
@@ -205,48 +203,48 @@ namespace Simple_randomizer_SoC.Generators
                                 textNode.InnerText =
                                     //ИД фразы перед текстом диалога для отладки
                                     //id.Value +
-                                    texts.ElementAt(rnd.Next(texts.Count));
+                                    texts.ElementAt(GlobalRandom.Rnd.Next(texts.Count));
                                 phraseNode.AppendChild(textNode);
 
-                                if (rnd.Next(1000) < 34)
+                                if (GlobalRandom.Rnd.Next(1000) < 34)
                                 {
                                     var preconditionNode = doc.CreateNode(XmlNodeType.Element, "precondition", null);
-                                    preconditionNode.InnerText = preconditions.ElementAt(rnd.Next(preconditions.Count));
+                                    preconditionNode.InnerText = preconditions.ElementAt(GlobalRandom.Rnd.Next(preconditions.Count));
                                     phraseNode.AppendChild(preconditionNode);
                                 }
 
-                                if (rnd.Next(1000) < 132)
+                                if (GlobalRandom.Rnd.Next(1000) < 132)
                                 {
                                     var actionNode = doc.CreateNode(XmlNodeType.Element, "action", null);
-                                    actionNode.InnerText = actions.ElementAt(rnd.Next(actions.Count));
+                                    actionNode.InnerText = actions.ElementAt(GlobalRandom.Rnd.Next(actions.Count));
                                     phraseNode.AppendChild(actionNode);
                                 }
 
-                                if (rnd.Next(1000) < 183)
+                                if (GlobalRandom.Rnd.Next(1000) < 183)
                                 {
                                     var giveInfoNode = doc.CreateNode(XmlNodeType.Element, "give_info", null);
-                                    giveInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
+                                    giveInfoNode.InnerText = infos.ElementAt(GlobalRandom.Rnd.Next(infos.Count));
                                     phraseNode.AppendChild(giveInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 270)
+                                if (GlobalRandom.Rnd.Next(1000) < 270)
                                 {
                                     var dontHasInfoNode = doc.CreateNode(XmlNodeType.Element, "dont_has_info", null);
-                                    dontHasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
+                                    dontHasInfoNode.InnerText = infos.ElementAt(GlobalRandom.Rnd.Next(infos.Count));
                                     phraseNode.AppendChild(dontHasInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 165)
+                                if (GlobalRandom.Rnd.Next(1000) < 165)
                                 {
                                     var hasInfoNode = doc.CreateNode(XmlNodeType.Element, "has_info", null);
-                                    hasInfoNode.InnerText = infos.ElementAt(rnd.Next(infos.Count));
+                                    hasInfoNode.InnerText = infos.ElementAt(GlobalRandom.Rnd.Next(infos.Count));
                                     phraseNode.AppendChild(hasInfoNode);
                                 }
 
-                                if (rnd.Next(1000) < 957)
+                                if (GlobalRandom.Rnd.Next(1000) < 957)
                                 {
                                     var nextNode = doc.CreateNode(XmlNodeType.Element, "next", null);
-                                    var nextIdIndex = rnd.Next(1, playerPhraseCount);
+                                    var nextIdIndex = GlobalRandom.Rnd.Next(1, playerPhraseCount);
                                     nextNode.InnerText = playerPhraseIdPrefix + nextIdIndex;
                                     phraseNode.AppendChild(nextNode);
                                 }

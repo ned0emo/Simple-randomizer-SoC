@@ -35,16 +35,16 @@ namespace Simple_randomizer_SoC.Generators
 
             for (int i = 1; i < itemsStringList.Length; i++)
             {
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "inv_weight", Math.Round(rnd.NextDouble(), 2));
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_health", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_satiety", Math.Round(rnd.NextDouble() - 0.3, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "inv_weight", Math.Round(GlobalRandom.Rnd.NextDouble(), 2));
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_health", Math.Round(GlobalRandom.Rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_satiety", Math.Round(GlobalRandom.Rnd.NextDouble() - 0.3, 2), true);
                 //радиация в минус лучше
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_radiation", Math.Round(rnd.NextDouble() * 1.75 - 1, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_radiation", Math.Round(GlobalRandom.Rnd.NextDouble() * 1.75 - 1, 2), true);
                 //--
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_alcohol", Math.Round(rnd.NextDouble() * 0.6 - 0.3, 2), true);
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_power", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "wounds_heal_perc", Math.Round(rnd.NextDouble() * 1.75 - 0.75, 2), true);
-                itemsStringList[i] = ReplaceStat(itemsStringList[i], "cost", rnd.Next(1401) + 100);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_alcohol", Math.Round(GlobalRandom.Rnd.NextDouble() * 0.6 - 0.3, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "eat_power", Math.Round(GlobalRandom.Rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "wounds_heal_perc", Math.Round(GlobalRandom.Rnd.NextDouble() * 1.75 - 0.75, 2), true);
+                itemsStringList[i] = ReplaceStat(itemsStringList[i], "cost", GlobalRandom.Rnd.Next(1401) + 100);
             }
 
             foreach (string it in itemsStringList)

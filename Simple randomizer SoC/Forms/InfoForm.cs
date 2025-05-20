@@ -31,8 +31,8 @@ namespace RandomizerSoC
             if (errorMessage.Length > 0)
             {
                 textBox1.Visible = true;
-                textBox1.Height += 100;
-                Height += 100;
+                textBox1.Height += 150;
+                Height += 150;
                 button1.Location = new Point(button1.Location.X, button1.Location.Y + 100);
 
                 textBox1.Text = errorMessage;
@@ -48,8 +48,8 @@ namespace RandomizerSoC
             label1.Text = errorTitle;
 
             textBox1.Visible = true;
-            textBox1.Height += 100;
-            Height += 100;
+            textBox1.Height += 150;
+            Height += 150;
             button1.Location = new Point(button1.Location.X, button1.Location.Y + 100);
 
             if (ex is CustomException)

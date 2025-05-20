@@ -16,8 +16,6 @@ namespace Simple_randomizer_SoC
     /// </summary>
     class BaseGenerator
     {
-        protected Random rnd;
-
         protected bool isDataLoaded;
 
         /// <summary>
@@ -28,7 +26,6 @@ namespace Simple_randomizer_SoC
         /// </summary>
         protected BaseGenerator()
         {
-            rnd = new Random();
             isDataLoaded = false;
         }
 

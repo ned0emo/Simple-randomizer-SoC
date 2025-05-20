@@ -79,11 +79,11 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The program can theoretically be used with many mods (if the mod does not violate the logic of the original game files).
+        ///   Ищет локализованную строку, похожую на The program can theoretically be used with some small mods (if the mod does not violate the logic of the original game files).
         ///
-        ///To work with the mod , you need to in the folder ./rndata/default/gamedata/config in the &quot;gameplay&quot;, &quot;misc&quot;, &quot;weathers&quot; and &quot;weapons&quot; directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should correct the lists in accordance with the content of the mod.
+        ///To work with the mod, you need in the folder./rndata/gamedata/config in the gameplay, misc, weathers, and weapons directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should adjust the lists according to the content of the mod.
         ///
-        ///If there are additional models and NPC voice acti [остаток строки не уместился]&quot;;.
+        ///If there are additional models and NPC voice acting in the modification, y [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string advancedText {
             get {
@@ -272,6 +272,47 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Dialogs.
+        /// </summary>
+        internal static string dialogs {
+            get {
+                return ResourceManager.GetString("dialogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The dialog generation data has not been uploaded. Operation aborted.
+        /// </summary>
+        internal static string dialogsDataError {
+            get {
+                return ResourceManager.GetString("dialogsDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Changing the dialogues completely breaks the plot and most of the quests, so it is recommended to enable unlocking Sidorovich&apos;s door from the start of the game and give the main character a knife (the &quot;Advanced&quot; tab).
+        ///
+        ///By default, the lists of broken infos/actions contain infos/actions that cause the game to crash or the interface to freeze. However, they can record any other infos/actions that you want to exclude from generation.
+        ///
+        ///XML tags for infos are has_info, dont_has_info, and give_info.
+        ///The XML  [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string dialogsDescription {
+            get {
+                return ResourceManager.GetString("dialogsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dialog generation error. Operation aborted.
+        /// </summary>
+        internal static string dialogsError {
+            get {
+                return ResourceManager.GetString("dialogsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на It is not recommended to turn it on if you have ever had epileptic seizures.
         /// </summary>
         internal static string epilepsy {
@@ -389,6 +430,24 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Broken actions.
+        /// </summary>
+        internal static string incorrectActions {
+            get {
+                return ResourceManager.GetString("incorrectActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Broken infos.
+        /// </summary>
+        internal static string incorrectInfos {
+            get {
+                return ResourceManager.GetString("incorrectInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Warning.
         /// </summary>
         internal static string infoFornName {
@@ -481,7 +540,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Expand the joining of NPCs to camps (breaks some scripts, but the plot is passable. Unstable on 1.0006).
+        ///   Ищет локализованную строку, похожую на Expand the joining of NPCs to camps (breaks some scripts. It can lead to crashes when playing for a long time, especially on version 1.0006).
         /// </summary>
         internal static string moreGulag {
             get {
@@ -490,7 +549,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Increase the frequency of NPC respawn (Unstable on 1.0006).
+        ///   Ищет локализованную строку, похожую на Increase the respawn rate of NPCs (may lead to crashes during a long game, especially on version 1.0006).
         /// </summary>
         internal static string moreRespawn {
             get {
@@ -578,7 +637,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The 1.0004 version of the game works with this randomizer MUCH more stable than 1.0006. But why?.
+        ///   Ищет локализованную строку, похожую на The 1.0004 version of the game works with this randomizer more stable than 1.0006. But why?.
         /// </summary>
         internal static string onePointFourLink {
             get {
@@ -749,6 +808,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Generation seed.
+        /// </summary>
+        internal static string seed {
+            get {
+                return ResourceManager.GetString("seed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select all.
         /// </summary>
         internal static string selectAll {
@@ -911,6 +979,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string thunderProbability {
             get {
                 return ResourceManager.GetString("thunderProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unlock Sidorovich&apos;s door.
+        /// </summary>
+        internal static string traderDoor {
+            get {
+                return ResourceManager.GetString("traderDoor", resourceCulture);
             }
         }
         

@@ -458,7 +458,7 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label18.Location = new System.Drawing.Point(508, 33);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(501, 89);
+            this.label18.Size = new System.Drawing.Size(501, 477);
             this.label18.TabIndex = 23;
             this.label18.Text = "Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекоменду" +
     "ется включить разблокировку двери у Сидоровича со старта игры и дать главному ге" +
@@ -824,7 +824,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(860, 411);
+            this.label8.Location = new System.Drawing.Point(860, 431);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(150, 75);
             this.label8.TabIndex = 20;
@@ -836,7 +836,7 @@
             // 
             this.onePointFourLinkLabel.AutoSize = true;
             this.onePointFourLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.onePointFourLinkLabel.Location = new System.Drawing.Point(6, 207);
+            this.onePointFourLinkLabel.Location = new System.Drawing.Point(4, 257);
             this.onePointFourLinkLabel.Name = "onePointFourLinkLabel";
             this.onePointFourLinkLabel.Size = new System.Drawing.Size(429, 16);
             this.onePointFourLinkLabel.TabIndex = 19;

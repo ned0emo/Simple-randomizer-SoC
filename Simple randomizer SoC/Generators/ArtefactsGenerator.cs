@@ -12,7 +12,7 @@ namespace Simple_randomizer_SoC.Generators
     {
         private readonly string[] mainAfStats = { "burn_immunity", "strike_immunity",
             "shock_immunity", "telepatic_immunity", "chemical_burn_immunity", "explosion_immunity",
-            "fire_wound_immunity"};
+            "fire_wound_immunity" };
         private readonly string[] additionalAfStats = { "radiation_restore_speed", "health_restore_speed",
             "power_restore_speed", "bleeding_restore_speed" };
 
@@ -39,11 +39,11 @@ namespace Simple_randomizer_SoC.Generators
 
             for (int i = 2; i < artefactsStringList.Length; i++)
             {
-                int statsNum = rnd.Next(5) + 1;
+                int statsNum = GlobalRandom.Rnd.Next(5) + 1;
                 List<Tuple<string, double>> generatedAfStats = GenerateAfStats(statsNum);
 
-                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "cost", rnd.Next(5000) + 1);
-                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "inv_weight", (rnd.NextDouble() + 0.3) * 2);
+                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "cost", GlobalRandom.Rnd.Next(5000) + 1);
+                artefactsStringList[i] = ReplaceStat(artefactsStringList[i], "inv_weight", (GlobalRandom.Rnd.NextDouble() + 0.3) * 2);
 
                 //Замена статов на пустые для последующего добавления новых
                 foreach (string stat in mainAfStats)
@@ -79,7 +79,7 @@ namespace Simple_randomizer_SoC.Generators
 
             for (int i = 0; i < statsNum; i++)
             {
-                int rndInd = rnd.Next(0, statsList.Count);
+                int rndInd = GlobalRandom.Rnd.Next(0, statsList.Count);
                 string currentStat = statsList[rndInd];
                 statsList.RemoveAt(rndInd);
 
@@ -87,19 +87,19 @@ namespace Simple_randomizer_SoC.Generators
                 switch (currentStat)
                 {
                     case "radiation_restore_speed":
-                        rndStat = Math.Round(rnd.NextDouble() * 0.01 - 0.005, 4);
+                        rndStat = Math.Round(GlobalRandom.Rnd.NextDouble() * 0.01 - 0.005, 4);
                         break;
                     case "health_restore_speed":
-                        rndStat = Math.Round(rnd.NextDouble() * 0.002 - 0.001, 4);
+                        rndStat = Math.Round(GlobalRandom.Rnd.NextDouble() * 0.002 - 0.001, 4);
                         break;
                     case "power_restore_speed":
-                        rndStat = Math.Round(rnd.NextDouble() * 0.02 - 0.01, 3);
+                        rndStat = Math.Round(GlobalRandom.Rnd.NextDouble() * 0.02 - 0.01, 3);
                         break;
                     case "bleeding_restore_speed":
-                        rndStat = Math.Round(rnd.NextDouble() * 0.04 - 0.02, 3);
+                        rndStat = Math.Round(GlobalRandom.Rnd.NextDouble() * 0.04 - 0.02, 3);
                         break;
                     default:
-                        rndStat = Math.Round(rnd.NextDouble() * 0.6 - 0.3 + 1.0, 2);
+                        rndStat = Math.Round(GlobalRandom.Rnd.NextDouble() * 0.6 - 0.3 + 1.0, 2);
                         break;
                 }
 

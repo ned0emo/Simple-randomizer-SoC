@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Resources;
 using System.Text;
@@ -146,7 +147,6 @@ namespace RandomizerSoC
         #region списки
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            string changedLists = "";
             var fileNameContentDictionary = new Dictionary<string, string>();
 
             //проходим по всем спискам и ищем отличия от кешированных данных
@@ -154,15 +154,13 @@ namespace RandomizerSoC
             {
                 if (cacheDictionary[key] != fileTextBoxDictionary[key].Text)
                 {
-                    changedLists += key + ", ";
                     fileNameContentDictionary.Add(key, fileTextBoxDictionary[key].Text);
                 }
             }
 
             if (fileNameContentDictionary.Count < 1) return;
 
-
-            if (new SaveForm(changedLists).ShowDialog() == DialogResult.OK)
+            if (MessageBox.Show(Localization.Get("overwritingFiles") + fileNameContentDictionary.Keys.Aggregate((v1, v2) => v1 + ", " + v2), Localization.Get("saveFormName"), MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 await textBoxesHandler.SaveData(fileNameContentDictionary);
 
@@ -217,6 +215,8 @@ namespace RandomizerSoC
             {
                 return;
             }
+
+            GlobalRandom.Init(null);
 
             ///<summary>
             ///Увеличивает значения прогрессбара на указанное параметром progressBarStep.
@@ -459,23 +459,24 @@ namespace RandomizerSoC
 
             if (translateCheckBox.Checked)
             {
-                if (shuffleTextCheckBox.Checked)
+                try
                 {
-                    await additionalParams.ShuffleAndCopyText(newConfigPath);
+                    if (shuffleTextCheckBox.Checked)
+                    {
+                        await additionalParams.ShuffleAndCopyText(newConfigPath);
+
+                    }
+                    else
+                    {
+                        await additionalParams.CopyText(newConfigPath);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    await additionalParams.CopyText(newConfigPath);
+                    new InfoForm(Localization.Get("textDataReadError"), ex);
+                    changeButtonsStatus(true);
+                    return;
                 }
-            }
-
-            if (additionalParams.errorMessage.Length > 0)
-            {
-                new InfoForm(Localization.Get("advancedParamsError"), additionalParams.errorMessage).ShowDialog();
-
-                additionalParams.errorMessage = "";
-                changeButtonsStatus(true);
-                return;
             }
             #endregion
 
@@ -497,16 +498,17 @@ namespace RandomizerSoC
                     } while (soundRandomizer.isProcessing);
                     soundsProgressLabel.Text = soundRandomizer.statusMessage;
 
-                    if (soundRandomizer.errorMessage.Length > 0)
+                    if (soundRandomizer.exception != null)
                     {
-                        throw new Exception(soundRandomizer.errorMessage);
+                        throw soundRandomizer.exception;
                     }
                 }
                 catch (Exception ex)
                 {
                     await soundRandomizer.Abort();
-                    new InfoForm(Localization.Get("soundsError"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                    new InfoForm(Localization.Get("soundsError"), ex).ShowDialog();
                     changeButtonsStatus(true);
+                    loadState.Text = "";
                     return;
                 }
             }
@@ -528,16 +530,17 @@ namespace RandomizerSoC
                     } while (textureRandomizer.isProcessing);
                     texturesProgressLabel.Text = textureRandomizer.statusMessage;
 
-                    if (textureRandomizer.errorMessage.Length > 0)
+                    if (textureRandomizer.exception != null)
                     {
-                        throw new Exception(textureRandomizer.errorMessage);
+                        throw textureRandomizer.exception;
                     }
                 }
                 catch (Exception ex)
                 {
                     await textureRandomizer.Abort();
-                    new InfoForm(Localization.Get("texturesError"), ex.Message + "\r\n\r\n" + ex.StackTrace).ShowDialog();
+                    new InfoForm(Localization.Get("texturesError"), ex).ShowDialog();
                     changeButtonsStatus(true);
+                    loadState.Text = "";
                     return;
                 }
             }
@@ -745,7 +748,7 @@ namespace RandomizerSoC
             uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
             epilepsyLabel.Text = Localization.Get("epilepsy");
 
-            //dialogs 1.8
+            //1.8
             dialogsTab.Text = Localization.Get("dialogs");
             dialogsCheckBox.Text = Localization.Get("dialogs");
             infosExceptionLabel.Text = Localization.Get("incorrectInfos");
