@@ -14,12 +14,14 @@
 
 # Скриншоты
 
-![1weapon](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/cbb9e739-b7ae-423c-9b45-2a1505b71e8e)
-![2items](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/dbf34461-ff52-4ce2-b3b8-0c902d9ad7ba)
-![3npc](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/a18dd2e3-1e1f-4452-8ece-64a91dc00f70)
-![4weather](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/354b8166-a4eb-4777-ab95-797175cd2b47)
-![5advanced](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/32d33daf-0f25-4ce5-9925-ba598a24bca9)
-![6advanced](https://github.com/ned0emo/Simple-randomizer-SoC/assets/65717758/de59e305-17da-4369-9474-581dda152a71)
+![1weapon](https://github.com/user-attachments/assets/58759d36-ba84-485b-bbfa-c626dca12397)
+![2items](https://github.com/user-attachments/assets/5b781720-8ae0-4b24-8132-7835ea3610fe)
+![3dialogs](https://github.com/user-attachments/assets/f9c9c5a2-59e6-42e6-8a64-94b20a21b12e)
+![4npc](https://github.com/user-attachments/assets/cdf14e3e-e669-47d5-81b5-6e32f6b8cd69)
+![5weather](https://github.com/user-attachments/assets/32287502-e8fc-4047-9a2d-2cc99df9d1ae)
+![6additional](https://github.com/user-attachments/assets/dfa49bc0-b946-49e9-840d-592c2bf8f94f)
+![7additional2](https://github.com/user-attachments/assets/a9819b3d-15e7-42ec-ab34-ed5f5d9c4925)
+
 
 # Результаты работы программы
 
