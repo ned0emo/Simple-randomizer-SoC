@@ -486,7 +486,13 @@ namespace RandomizerSoC
                 try
                 {
                     //из-за ожидания isProcessing нормально становится true
-                    await soundRandomizer.Start((int)threadsNumeric.Value, (int)roundDurationNumeric.Value, stepRainCheckBox.Checked, newGamedataPath, soundsPathText.Text);
+                    await soundRandomizer.Start(
+                        (int)threadsNumeric.Value, 
+                        (int)roundDurationNumeric.Value, 
+                        stepRainCheckBox.Checked, 
+                        newGamedataPath, 
+                        soundsPathText.Text,
+                        (int) soundeplaceProbabilityInput.Value);
 
                     loadState.Text = Localization.Get("soundsProcessing");// "Обработка звуков...";
                     do
@@ -518,7 +524,12 @@ namespace RandomizerSoC
             {
                 try
                 {
-                    await textureRandomizer.Start((int)threadsNumeric.Value, uiReplaceCheckBox.Checked, newGamedataPath, texturesPathText.Text);
+                    await textureRandomizer.Start(
+                        (int)threadsNumeric.Value, 
+                        uiReplaceCheckBox.Checked, 
+                        newGamedataPath, 
+                        texturesPathText.Text,
+                        (int) textureReplaceProbabilityInput.Value);
 
                     loadState.Text = Localization.Get("textureProcessing");// "Обработка текстур...";
                     do

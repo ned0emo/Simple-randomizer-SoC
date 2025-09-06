@@ -24,6 +24,8 @@ namespace Simple_randomizer_SoC.Tools
         //мкс кол-во потоков
         int threadCount = 4;
 
+        Func<bool> checkSkipProbability = () => true;
+
         bool uiEnabled = false;
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace Simple_randomizer_SoC.Tools
         Thread searchThread;
         readonly List<Thread> threads = new List<Thread>();
 
-        public async Task Start(int threadCount, bool uiEnabled, string outputGamedataPath, string inputPath)
+        public async Task Start(int threadCount, bool uiEnabled, string outputGamedataPath, string inputPath, int replaceProbability)
         {
             await Abort();
             singleTextures.Clear();
@@ -74,6 +76,15 @@ namespace Simple_randomizer_SoC.Tools
             this.uiEnabled = uiEnabled;
             this.outputGamedataPath = outputGamedataPath;
             path = inputPath;
+
+            if (replaceProbability < 100)
+            {
+                checkSkipProbability = () => GlobalRandom.Rnd.Next(100) >= replaceProbability;
+            }
+            else
+            {
+                checkSkipProbability = () => false;
+            }
 
             searchThread.Start();
         }
@@ -170,6 +181,12 @@ namespace Simple_randomizer_SoC.Tools
                         //шрифты всегда пропускаем
                         //bump отдельно проверяется
                         if (file.Contains(postfix) || file.Contains("font")) continue;
+
+                        //вероятность перемешивания
+                        if (checkSkipProbability())
+                        {
+                            continue;
+                        }
 
                         var file2 = file.Replace(".dds", $"{postfix}.dds");
                         bool image2 = File.Exists(file2);

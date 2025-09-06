@@ -22,6 +22,7 @@ namespace Simple_randomizer_SoC.Tools
         //мкс кол-во потоков
         int threadCount = 4;
 
+        Func<bool> checkSkipProbability = () => true;
 
         bool stepSoundEnabled = false;
 
@@ -54,8 +55,11 @@ namespace Simple_randomizer_SoC.Tools
         Thread searchThread;
         readonly List<Thread> threads = new List<Thread>();
 
-        public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath, string inputPath)
+        public async Task Start(int threadCount, int sizeFilter, bool stepSoundEnabled, string outputGamedataPath,
+            string inputPath, int replaceProbability)
         {
+            if (replaceProbability < 1) return;
+
             await Abort();
             classifiedFiles.Clear();
             exception = null;
@@ -71,6 +75,16 @@ namespace Simple_randomizer_SoC.Tools
             this.sizeFilter = sizeFilter;
             this.stepSoundEnabled = stepSoundEnabled;
             this.outputGamedataPath = outputGamedataPath;
+
+            if (replaceProbability < 100)
+            {
+                checkSkipProbability = () => GlobalRandom.Rnd.Next(100) >= replaceProbability;
+            }
+            else
+            {
+                checkSkipProbability = () => false;
+            }
+
             path = inputPath;
 
             searchThread.Start();
@@ -160,6 +174,12 @@ namespace Simple_randomizer_SoC.Tools
 
                     //дождь и шаги
                     if (!stepSoundEnabled && (file.Contains("step") || file.Contains("rain")))
+                    {
+                        continue;
+                    }
+                    
+                    //вероятность перемешивания
+                    if (checkSkipProbability())
                     {
                         continue;
                     }

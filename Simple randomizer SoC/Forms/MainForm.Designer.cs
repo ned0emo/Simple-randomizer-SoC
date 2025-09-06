@@ -144,6 +144,10 @@
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
             this.loadState = new System.Windows.Forms.Label();
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.soundeplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
+            this.textureReplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
+            this.textureReplaceProbabilityLabel = new System.Windows.Forms.Label();
+            this.soundReplaceProbabilityLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -156,6 +160,8 @@
             this.advancedTab2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
@@ -1012,6 +1018,10 @@
             // 
             // advancedTab2
             // 
+            this.advancedTab2.Controls.Add(this.soundReplaceProbabilityLabel);
+            this.advancedTab2.Controls.Add(this.textureReplaceProbabilityLabel);
+            this.advancedTab2.Controls.Add(this.textureReplaceProbabilityInput);
+            this.advancedTab2.Controls.Add(this.soundeplaceProbabilityInput);
             this.advancedTab2.Controls.Add(this.epilepsyLabel);
             this.advancedTab2.Controls.Add(this.advanced2Label);
             this.advancedTab2.Controls.Add(this.texturesCheckBox);
@@ -1041,7 +1051,7 @@
             // epilepsyLabel
             // 
             this.epilepsyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.epilepsyLabel.Location = new System.Drawing.Point(6, 355);
+            this.epilepsyLabel.Location = new System.Drawing.Point(6, 387);
             this.epilepsyLabel.Name = "epilepsyLabel";
             this.epilepsyLabel.Size = new System.Drawing.Size(1003, 21);
             this.epilepsyLabel.TabIndex = 38;
@@ -1052,14 +1062,14 @@
             this.advanced2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.advanced2Label.Location = new System.Drawing.Point(6, 3);
             this.advanced2Label.Name = "advanced2Label";
-            this.advanced2Label.Size = new System.Drawing.Size(1003, 156);
+            this.advanced2Label.Size = new System.Drawing.Size(1003, 190);
             this.advanced2Label.TabIndex = 37;
             this.advanced2Label.Text = resources.GetString("advanced2Label.Text");
             // 
             // texturesCheckBox
             // 
             this.texturesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.texturesCheckBox.Location = new System.Drawing.Point(9, 324);
+            this.texturesCheckBox.Location = new System.Drawing.Point(9, 356);
             this.texturesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.texturesCheckBox.Name = "texturesCheckBox";
             this.texturesCheckBox.Size = new System.Drawing.Size(245, 33);
@@ -1071,7 +1081,7 @@
             // gameSoundCheckBox
             // 
             this.gameSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 201);
+            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 233);
             this.gameSoundCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.gameSoundCheckBox.Name = "gameSoundCheckBox";
             this.gameSoundCheckBox.Size = new System.Drawing.Size(168, 33);
@@ -1083,7 +1093,7 @@
             // texturesProgressLabel
             // 
             this.texturesProgressLabel.AutoSize = true;
-            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 430);
+            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 462);
             this.texturesProgressLabel.Name = "texturesProgressLabel";
             this.texturesProgressLabel.Size = new System.Drawing.Size(16, 13);
             this.texturesProgressLabel.TabIndex = 33;
@@ -1093,7 +1103,7 @@
             // 
             this.uiReplaceCheckBox.AutoSize = true;
             this.uiReplaceCheckBox.Enabled = false;
-            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 407);
+            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 439);
             this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
             this.uiReplaceCheckBox.Size = new System.Drawing.Size(194, 17);
             this.uiReplaceCheckBox.TabIndex = 32;
@@ -1103,7 +1113,7 @@
             // texturesPathButton
             // 
             this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(709, 379);
+            this.texturesPathButton.Location = new System.Drawing.Point(709, 411);
             this.texturesPathButton.Name = "texturesPathButton";
             this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
             this.texturesPathButton.TabIndex = 31;
@@ -1114,14 +1124,14 @@
             // texturesPathText
             // 
             this.texturesPathText.Enabled = false;
-            this.texturesPathText.Location = new System.Drawing.Point(183, 381);
+            this.texturesPathText.Location = new System.Drawing.Point(183, 413);
             this.texturesPathText.Name = "texturesPathText";
             this.texturesPathText.Size = new System.Drawing.Size(520, 20);
             this.texturesPathText.TabIndex = 30;
             // 
             // texturesPathLabel
             // 
-            this.texturesPathLabel.Location = new System.Drawing.Point(6, 384);
+            this.texturesPathLabel.Location = new System.Drawing.Point(6, 416);
             this.texturesPathLabel.Name = "texturesPathLabel";
             this.texturesPathLabel.Size = new System.Drawing.Size(171, 17);
             this.texturesPathLabel.TabIndex = 29;
@@ -1130,7 +1140,7 @@
             // soundsProgressLabel
             // 
             this.soundsProgressLabel.AutoSize = true;
-            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 303);
+            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 335);
             this.soundsProgressLabel.Name = "soundsProgressLabel";
             this.soundsProgressLabel.Size = new System.Drawing.Size(16, 13);
             this.soundsProgressLabel.TabIndex = 28;
@@ -1139,7 +1149,7 @@
             // threadsLabel
             // 
             this.threadsLabel.AutoSize = true;
-            this.threadsLabel.Location = new System.Drawing.Point(70, 175);
+            this.threadsLabel.Location = new System.Drawing.Point(70, 207);
             this.threadsLabel.Name = "threadsLabel";
             this.threadsLabel.Size = new System.Drawing.Size(266, 13);
             this.threadsLabel.TabIndex = 27;
@@ -1148,7 +1158,7 @@
             // roundDurationLabel
             // 
             this.roundDurationLabel.AutoSize = true;
-            this.roundDurationLabel.Location = new System.Drawing.Point(70, 282);
+            this.roundDurationLabel.Location = new System.Drawing.Point(70, 314);
             this.roundDurationLabel.Name = "roundDurationLabel";
             this.roundDurationLabel.Size = new System.Drawing.Size(569, 13);
             this.roundDurationLabel.TabIndex = 26;
@@ -1157,7 +1167,7 @@
             // 
             // threadsNumeric
             // 
-            this.threadsNumeric.Location = new System.Drawing.Point(9, 172);
+            this.threadsNumeric.Location = new System.Drawing.Point(9, 204);
             this.threadsNumeric.Maximum = new decimal(new int[] {
             4,
             0,
@@ -1180,7 +1190,7 @@
             // roundDurationNumeric
             // 
             this.roundDurationNumeric.Enabled = false;
-            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 280);
+            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 312);
             this.roundDurationNumeric.Maximum = new decimal(new int[] {
             15,
             0,
@@ -1204,7 +1214,7 @@
             // 
             this.stepRainCheckBox.AutoSize = true;
             this.stepRainCheckBox.Enabled = false;
-            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 257);
+            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 289);
             this.stepRainCheckBox.Name = "stepRainCheckBox";
             this.stepRainCheckBox.Size = new System.Drawing.Size(288, 17);
             this.stepRainCheckBox.TabIndex = 23;
@@ -1214,7 +1224,7 @@
             // soundsPathButton
             // 
             this.soundsPathButton.Enabled = false;
-            this.soundsPathButton.Location = new System.Drawing.Point(709, 229);
+            this.soundsPathButton.Location = new System.Drawing.Point(709, 261);
             this.soundsPathButton.Name = "soundsPathButton";
             this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
             this.soundsPathButton.TabIndex = 22;
@@ -1225,14 +1235,14 @@
             // soundsPathText
             // 
             this.soundsPathText.Enabled = false;
-            this.soundsPathText.Location = new System.Drawing.Point(183, 231);
+            this.soundsPathText.Location = new System.Drawing.Point(183, 263);
             this.soundsPathText.Name = "soundsPathText";
             this.soundsPathText.Size = new System.Drawing.Size(520, 20);
             this.soundsPathText.TabIndex = 21;
             // 
             // soundsPathLabel
             // 
-            this.soundsPathLabel.Location = new System.Drawing.Point(6, 234);
+            this.soundsPathLabel.Location = new System.Drawing.Point(6, 266);
             this.soundsPathLabel.Name = "soundsPathLabel";
             this.soundsPathLabel.Size = new System.Drawing.Size(171, 17);
             this.soundsPathLabel.TabIndex = 20;
@@ -1444,6 +1454,58 @@
             this.dialogsCheckBox.Text = "Диалоги";
             this.dialogsCheckBox.UseVisualStyleBackColor = true;
             // 
+            // soundeplaceProbabilityInput
+            // 
+            this.soundeplaceProbabilityInput.Location = new System.Drawing.Point(346, 288);
+            this.soundeplaceProbabilityInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.soundeplaceProbabilityInput.Name = "soundeplaceProbabilityInput";
+            this.soundeplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
+            this.soundeplaceProbabilityInput.TabIndex = 39;
+            this.soundeplaceProbabilityInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // textureReplaceProbabilityInput
+            // 
+            this.textureReplaceProbabilityInput.Location = new System.Drawing.Point(346, 438);
+            this.textureReplaceProbabilityInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.textureReplaceProbabilityInput.Name = "textureReplaceProbabilityInput";
+            this.textureReplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
+            this.textureReplaceProbabilityInput.TabIndex = 40;
+            this.textureReplaceProbabilityInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // textureReplaceProbabilityLabel
+            // 
+            this.textureReplaceProbabilityLabel.AutoSize = true;
+            this.textureReplaceProbabilityLabel.Location = new System.Drawing.Point(404, 441);
+            this.textureReplaceProbabilityLabel.Name = "textureReplaceProbabilityLabel";
+            this.textureReplaceProbabilityLabel.Size = new System.Drawing.Size(115, 13);
+            this.textureReplaceProbabilityLabel.TabIndex = 41;
+            this.textureReplaceProbabilityLabel.Text = "Вероятность замены";
+            // 
+            // soundReplaceProbabilityLabel
+            // 
+            this.soundReplaceProbabilityLabel.AutoSize = true;
+            this.soundReplaceProbabilityLabel.Location = new System.Drawing.Point(404, 291);
+            this.soundReplaceProbabilityLabel.Name = "soundReplaceProbabilityLabel";
+            this.soundReplaceProbabilityLabel.Size = new System.Drawing.Size(115, 13);
+            this.soundReplaceProbabilityLabel.TabIndex = 42;
+            this.soundReplaceProbabilityLabel.Text = "Вероятность замены";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1499,6 +1561,8 @@
             this.advancedTab2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1621,6 +1685,10 @@
         private System.Windows.Forms.TextBox infosExceptionTextBox;
         private System.Windows.Forms.CheckBox dialogsCheckBox;
         private System.Windows.Forms.CheckBox unlockTraderDoorCheckBox;
+        private System.Windows.Forms.Label textureReplaceProbabilityLabel;
+        private System.Windows.Forms.NumericUpDown textureReplaceProbabilityInput;
+        private System.Windows.Forms.NumericUpDown soundeplaceProbabilityInput;
+        private System.Windows.Forms.Label soundReplaceProbabilityLabel;
     }
 }
 
