@@ -50,49 +50,73 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (thunderProbability > GlobalRandom.Rnd.Next(100) && thunderList.Length > 0)
                     {
-                        currentWeather = ReplaceStat(currentWeather, "thunderbolt", thunderList[GlobalRandom.Rnd.Next(thunderList.Length)]);
-                        currentWeather = ReplaceStat(currentWeather, "bolt_period", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 10 + 2, 1)}f");
-                        currentWeather = ReplaceStat(currentWeather, "bolt_duration", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 3.9 + 0.1, 2)}f");
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "thunderbolt", thunderList[GlobalRandom.Rnd.Next(thunderList.Length)]));
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "bolt_period", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 10 + 2, 1)}f"));
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "bolt_duration", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 3.9 + 0.1, 2)}f"));
                     }
                     else
                     {
-                        currentWeather = ReplaceStat(currentWeather, "thunderbolt", "");
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "thunderbolt", ""));
                     }
 
                     if (rainProbability > GlobalRandom.Rnd.Next(100))
                     {
-                        currentWeather = ReplaceStat(currentWeather, "rain_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2));
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "rain_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2)));
                     }
                     else
                     {
-                        currentWeather = ReplaceStat(currentWeather, "rain_density", 0.0);
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "rain_density", 0.0));
                     }
 
                     if (skyTextureList.Length > 0)
                     {
-                        currentWeather = ReplaceStat(currentWeather, "sky_texture", skyTextureList[GlobalRandom.Rnd.Next(skyTextureList.Length)]);
+                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "sky_texture", skyTextureList[GlobalRandom.Rnd.Next(skyTextureList.Length)]));
                     }
 
-                    currentWeather = ReplaceStat(currentWeather, "sky_rotation", GlobalRandom.Rnd.Next(360));
-                    currentWeather = ReplaceStat(currentWeather, "far_plane", GlobalRandom.Rnd.Next(100, 3001));
-                    currentWeather = ReplaceStat(currentWeather, "fog_distance", GlobalRandom.Rnd.Next(100, 3001));
-                    currentWeather = ReplaceStat(currentWeather, "fog_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2));
-                    currentWeather = ReplaceStat(currentWeather, "wind_velocity", Math.Round(GlobalRandom.Rnd.NextDouble() * 100, 1));
-                    currentWeather
-                        = ReplaceStat(currentWeather, "sky_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}");
-                    currentWeather
+                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "sky_rotation", GlobalRandom.Rnd.Next(360)));
+                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "far_plane", GlobalRandom.Rnd.Next(100, 3001)));
+                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "fog_distance", GlobalRandom.Rnd.Next(100, 3001)));
+                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "fog_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2)));
+                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "wind_velocity", Math.Round(GlobalRandom.Rnd.NextDouble() * 100, 1)));
+                    doOrSkip(() =>
+                    {
+                        currentWeather
+                            = ReplaceStat(currentWeather, "sky_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}");
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "clouds_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 1)}, {Math.Round(GlobalRandom.Rnd.NextDouble() + 1, 1)}");
-                    currentWeather
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "fog_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    currentWeather
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "rain_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    currentWeather
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "ambient", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}");
-                    currentWeather
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "hemi_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 1)}");
-                    currentWeather
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather
                         = ReplaceStat(currentWeather, "sun_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    currentWeather = ReplaceStat(currentWeather, "sun_dir", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 39 - 40, 1)}, {GlobalRandom.Rnd.Next(200, 301)}");
+                    });
+                    doOrSkip(() =>
+                    {
+                        currentWeather = ReplaceStat(currentWeather, "sun_dir", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 39 - 40, 1)}, {GlobalRandom.Rnd.Next(200, 301)}");
+                    });
 
                     newWeather += "]" + currentWeather;
                 }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
+    /// <summary>
+    /// На данный генератор нет настройки вероятности замены, так все файлы строятся с нуля
+    /// </summary>
     class TradeGenerator : BaseGenerator
     {
         private string weapons;

@@ -114,6 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Additional\SoundRandomizer.cs" />
     <Compile Include="Tools\GlobalRandom.cs" />
+    <Compile Include="Tools\StringUtils.cs" />
     <Compile Include="Tools\TextBoxesHandler.cs" />
     <Compile Include="Additional\TextureRandomizer.cs" />
     <EmbeddedResource Include="Language\en_local.resx">

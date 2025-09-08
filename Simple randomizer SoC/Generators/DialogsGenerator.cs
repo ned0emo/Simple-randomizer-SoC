@@ -10,6 +10,9 @@ using System.Xml;
 
 namespace Simple_randomizer_SoC.Generators
 {
+    /// <summary>
+    /// На данный генератор нет настройки вероятности замены, так все диалоги буквально строятся с нуля
+    /// </summary>
     internal class DialogsGenerator
     {
         const string exitDialogId = "1917";
@@ -25,8 +28,8 @@ namespace Simple_randomizer_SoC.Generators
 
         public void UpdateData(string incorrectInfos, string incorrectActions, string newConfigPath)
         {
-            this.incorrectInfos = Regex.Split(incorrectInfos, "[\\r\\n]+");
-            this.incorrectActions = Regex.Split(incorrectActions, "[\\r\\n]+");
+            this.incorrectInfos = StringUtils.SplitBreaklines(incorrectInfos);
+            this.incorrectActions = StringUtils.SplitBreaklines(incorrectActions);
             this.newConfigPath = newConfigPath;
 
             isDataLoaded = true;

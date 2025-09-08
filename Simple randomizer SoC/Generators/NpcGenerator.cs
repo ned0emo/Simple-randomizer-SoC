@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
@@ -104,9 +105,9 @@ namespace Simple_randomizer_SoC.Generators
 
             foreach (string it in await MyFile.GetFiles($"{Environment.configPath}/gameplay"))
             {
-                var npcDescList = (await MyFile.Read(it)).Replace("<specific_character", "\a").Split('\a');
+                var npcDescList = StringUtils.Split(await MyFile.Read(it), "<specific_character");
 
-                for (int i = 1; i < npcDescList.Length; i++)
+                for (int i = 1; i < npcDescList.Count; i++)
                 {
                     bool isException = false;
 
@@ -123,43 +124,43 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (communitiesEnabled && communityList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "community", communityList[GlobalRandom.Rnd.Next(communityList.Length)]);
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "community", communityList[GlobalRandom.Rnd.Next(communityList.Length)]));
                     }
 
                     if (ranksEnabled)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "rank", GlobalRandom.Rnd.Next(1000).ToString());
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "rank", GlobalRandom.Rnd.Next(1000).ToString()));
                     }
 
                     if (reputationEnabled)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "reputation", (GlobalRandom.Rnd.Next(2001) - 1000).ToString());
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "reputation", (GlobalRandom.Rnd.Next(2001) - 1000).ToString()));
                     }
 
                     if (modelsEnabled && modelList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "visual", modelList[GlobalRandom.Rnd.Next(modelList.Length)]);
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "visual", modelList[GlobalRandom.Rnd.Next(modelList.Length)]));
                     }
 
                     if (iconsEnabled && iconList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "icon", iconList[GlobalRandom.Rnd.Next(iconList.Length)]);
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "icon", iconList[GlobalRandom.Rnd.Next(iconList.Length)]));
                     }
 
                     if (namesEnabled && (!onlyGenerateNames || npcDescList[i].Contains("GENERATE_NAME")) && nameList.Count > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "name", nameList[GlobalRandom.Rnd.Next(nameList.Count)]);
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "name", nameList[GlobalRandom.Rnd.Next(nameList.Count)]));
                     }
 
                     if (soundsEnabled && soundList.Length > 0)
                     {
-                        npcDescList[i] = ReplaceXmlValue(npcDescList[i], "snd_config", soundList[GlobalRandom.Rnd.Next(soundList.Length)]);
+                        doOrSkip(() => npcDescList[i] = ReplaceXmlValue(npcDescList[i], "snd_config", soundList[GlobalRandom.Rnd.Next(soundList.Length)]));
                     }
 
-                    if (suppliesEnabled && npcDescList[i].Contains("[spawn]") && weaponList.Count > 0)
+                    if (suppliesEnabled && !skipReplacing() && npcDescList[i].Contains("[spawn]") && weaponList.Count > 0)
                     {
                         string supplies = npcDescList[i].Substring(npcDescList[i].IndexOf("[spawn]"), npcDescList[i].IndexOf("</supplies>") - npcDescList[i].IndexOf("[spawn]"));
-                        List<string> suppList = new List<string>(supplies.Split('\n'));
+                        List<string> suppList = new List<string>(StringUtils.SplitBreaklines(supplies));
 
                         for (int j = 0; j < suppList.Count; j++)
                         {
@@ -171,32 +172,19 @@ namespace Simple_randomizer_SoC.Generators
 
                         int weapNum = GlobalRandom.Rnd.Next(weaponList.Count);
 
-                        string[] currentWeaponAndAmmo = weaponList[weapNum].Split(' ');
+                        string[] currentWeaponAndAmmo = StringUtils.WhitespaceSplit(weaponList[weapNum]);
                         string weapon = currentWeaponAndAmmo[0];
                         string ammo = currentWeaponAndAmmo[GlobalRandom.Rnd.Next(currentWeaponAndAmmo.Length - 1) + 1];
 
-                        suppList.Insert(1, weapon + " \\n\n");
-                        suppList.Insert(1, ammo.Replace("\n", "").Replace("\r", "") + " \\n\n");
+                        suppList.Insert(1, weapon + " \\n");
+                        suppList.Insert(1, StringUtils.RemoveLineBreaking(ammo) + " \\n");
 
-                        string newSupplies = "";
-                        foreach (string supp in suppList)
-                        {
-                            newSupplies += supp;
-                        }
-
-                        npcDescList[i] = npcDescList[i].Replace(supplies, newSupplies);
+                        npcDescList[i] = npcDescList[i].Replace(supplies, suppList.Aggregate((a, b) => a + "\n" + b));
                     }
                 }
 
-                string outStr = "";
-
-                for (int i = 0; i < npcDescList.Length - 1; i++)
-                {
-                    outStr += npcDescList[i] + "<specific_character";
-                }
-                outStr += npcDescList.Last();
-
-                await MyFile.Write(it.Replace(Environment.configPath, newConfigPath), outStr);
+                await MyFile.Write(it.Replace(Environment.configPath, newConfigPath),
+                    npcDescList.Aggregate((a, b) => a + "<specific_character" + b));
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_randomizer_SoC.Tools;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace Simple_randomizer_SoC
     {
         protected bool isDataLoaded;
 
+        protected Func<bool> skipReplacing = () => false;
+        protected Action<Action> doOrSkip = (Action replaceAction) => replaceAction();
+
         /// <summary>
         /// Базовый класс для генерации. Методы "replaceStat" для *.ltx файлов,
         /// метод "replaceXmlValue" для *.xml,
@@ -27,6 +31,31 @@ namespace Simple_randomizer_SoC
         protected BaseGenerator()
         {
             isDataLoaded = false;
+        }
+
+        public void SetProbability(int probability)
+        {
+            if (probability > 99)
+            {
+                skipReplacing = () => false;
+                doOrSkip = (Action replaceAction) => replaceAction();
+            }
+            else
+            {
+                skipReplacing = () => GlobalRandom.Rnd.Next(100) >= probability;
+                doOrSkip = (Action replaceAction) =>
+                {
+                    if (GlobalRandom.Rnd.Next(100) < probability)
+                    {
+                        replaceAction();
+                    }
+                };
+            }
+        }
+
+        public void SetProbability(decimal probability)
+        {
+            SetProbability((int)probability);
         }
 
         /// <summary>

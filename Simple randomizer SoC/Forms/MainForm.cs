@@ -250,6 +250,7 @@ namespace RandomizerSoC
             {
                 treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
+                tradeGenerator.SetProbability(stashReplaceProbInput.Value);
                 try
                 {
                     await treasuresGenerator.Generate();
@@ -266,6 +267,7 @@ namespace RandomizerSoC
             if (afCheckBox.Checked)
             {
                 artefactsGenerator.UpdateData(newConfigPath: newConfigPath);
+                artefactsGenerator.SetProbability(artReplcaeProbInput.Value);
                 try
                 {
                     await artefactsGenerator.Generate();
@@ -282,6 +284,7 @@ namespace RandomizerSoC
             if (weaponCheckBox.Checked)
             {
                 weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
+                weaponsGenerator.SetProbability(weaponReplaceProbInput.Value);
                 try
                 {
                     await weaponsGenerator.Generate();
@@ -298,6 +301,7 @@ namespace RandomizerSoC
             if (armorCheckBox.Checked)
             {
                 outfitsGenerator.UpdateData(newConfigPath: newConfigPath);
+                outfitsGenerator.SetProbability(outfitReplaceProbInput.Value);
                 try
                 {
                     await outfitsGenerator.Generate();
@@ -320,6 +324,7 @@ namespace RandomizerSoC
                     suppliesEnabled: suppliesCheckBox.Checked, ranksEnabled: rankCheckBox.Checked, reputationEnabled: reputationCheckBox.Checked,
                     onlyGenerateNames: onlyGenerateCheckBox.Checked
                 );
+                npcGenerator.SetProbability(npcReplaceProbInput.Value);
                 try
                 {
                     await npcGenerator.Generate();
@@ -336,6 +341,7 @@ namespace RandomizerSoC
             {
                 weatherGenerator.UpdateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
                     thunderProbability: (int)thunderNumericUpDown.Value, newConfigPath: newConfigPath);
+                weatherGenerator.SetProbability(weatherReplaceProbInput.Value);
                 try
                 {
                     await weatherGenerator.Generate();
@@ -351,6 +357,7 @@ namespace RandomizerSoC
             if (deathItemsCheckBox.Checked)
             {
                 deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
+                deathItemsGenerator.SetProbability(deatchItemReplaceProbInput.Value);
                 try
                 {
                     await deathItemsGenerator.Generate();
@@ -383,6 +390,7 @@ namespace RandomizerSoC
             if (consumablesCheckBox.Checked)
             {
                 consumablesGenerator.UpdateData(newConfigPath: newConfigPath);
+                consumablesGenerator.SetProbability(itemReplaceProbInput.Value);
                 try
                 {
                     await consumablesGenerator.Generate();
@@ -464,7 +472,6 @@ namespace RandomizerSoC
                     if (shuffleTextCheckBox.Checked)
                     {
                         await additionalParams.ShuffleAndCopyText(newConfigPath);
-
                     }
                     else
                     {

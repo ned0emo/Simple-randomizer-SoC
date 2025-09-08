@@ -50,7 +50,8 @@ namespace Simple_randomizer_SoC.Generators
                 string newData = "";
                 foreach (string item in mainProbabilityData)
                 {
-                    newData += item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(GlobalRandom.Rnd.NextDouble() * (item.StartsWith("af_") ? 0.03 : 0.6) + 0.001, 3)}\n");
+                    newData += skipReplacing() ? item
+                        : item.Replace(item.Substring(item.IndexOf('=')), $"= {Math.Round(GlobalRandom.Rnd.NextDouble() * (item.StartsWith("af_") ? 0.03 : 0.6) + 0.001, 3)}\n");
                 }
                 newCommunitiesDeathGenericData += $"\n[{communityClass}]\n{newData}";
             }
@@ -76,6 +77,12 @@ namespace Simple_randomizer_SoC.Generators
                 string newData = "";
                 foreach (string item in mainCountData)
                 {
+                    if (skipReplacing())
+                    {
+                        newData += item;
+                        continue;
+                    }
+
                     int firstValue = GlobalRandom.Rnd.Next(3);
                     int secondValue = GlobalRandom.Rnd.Next(firstValue, 3);
                     newData += item.Replace(
@@ -114,6 +121,11 @@ namespace Simple_randomizer_SoC.Generators
                 string newData = "";
                 foreach (string item in mainCountData1)
                 {
+                    if (skipReplacing())
+                    {
+                        newData += item;
+                        continue;
+                    }
                     int maxValue = item.StartsWith("ammo_") ? ammoMax : itemMax;
                     int firstValue = GlobalRandom.Rnd.Next(maxValue);
                     int secondValue = GlobalRandom.Rnd.Next(firstValue, maxValue);
@@ -140,6 +152,8 @@ namespace Simple_randomizer_SoC.Generators
                 var deathGenericParams = deathGenericSplitted[0].Split('\n');
                 for (int i = 0; i < deathGenericParams.Length; i++)
                 {
+                    if (skipReplacing()) continue;
+
                     if (deathGenericParams[i].Contains('='))
                     {
                         deathGenericParams[i] = Regex.Replace(deathGenericParams[i], "=.*", $" = {GetRandomElementsFromArray(weaponsList, GlobalRandom.Rnd.Next(1, 10)).Aggregate((a, b) => a + ", " + b)}\n");

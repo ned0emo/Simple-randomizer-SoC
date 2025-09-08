@@ -35,54 +35,48 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             var outfits = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
-            var outfitFullList = outfits.Replace("outfit_base", "\a").Split('\a');
+            var outfitFullList = StringUtils.Split(outfits, "outfit_base");
 
-            string newOutfits = "";
+            //string newOutfits = "";
 
             //Начало с тройки, потому что помимо непосредственно outfit_base есть еще наследование в виде остутсвия костюма
-            for (int i = 3; i < outfitFullList.Length; i++)
+            for (int i = 3; i < outfitFullList.Count; i++)
             {
                 int plusMaxWeight = GlobalRandom.Rnd.Next(-20, 26);
 
-                outfitFullList[i] = ReplaceStat(outfitFullList[i], "inv_weight", GlobalRandom.Rnd.Next(10) + 1);
-                outfitFullList[i] = ReplaceStat(outfitFullList[i], "cost", GlobalRandom.Rnd.Next(10000) + 1);
+                doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], "inv_weight", GlobalRandom.Rnd.Next(10) + 1));
+                doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], "cost", GlobalRandom.Rnd.Next(10000) + 1));
 
                 foreach (string stat in fullOutfitStats)
                 {
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], stat, Math.Round(GlobalRandom.Rnd.NextDouble() * 1.4 - 0.7, 2));
+                    doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], stat, Math.Round(GlobalRandom.Rnd.NextDouble() * 1.4 - 0.7, 2)));
                 }
 
                 foreach (string immun in fullOutfitImmunities)
                 {
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], immun, Math.Round(GlobalRandom.Rnd.NextDouble() / 20, 3));
+                    doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], immun, Math.Round(GlobalRandom.Rnd.NextDouble() / 20, 3)));
                 }
 
                 if (outfitFullList[i].Contains("additional_inventory_weight"))
                 {
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight);
+                    doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight", plusMaxWeight));
                 }
                 else
                 {
-                    outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight = {plusMaxWeight}\n");
+                    doOrSkip(() => outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight = {plusMaxWeight}\n"));
                 }
 
                 if (outfitFullList[i].Contains("additional_inventory_weight2"))
                 {
-                    outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10);
+                    doOrSkip(() => outfitFullList[i] = ReplaceStat(outfitFullList[i], "additional_inventory_weight2", plusMaxWeight + 10));
                 }
                 else
                 {
-                    outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight2 = {plusMaxWeight + 10}\n");
+                    doOrSkip(() => outfitFullList[i] = outfitFullList[i].Insert(outfitFullList[i].IndexOf("[sect"), $"additional_inventory_weight2 = {plusMaxWeight + 10}\n"));
                 }
             }
 
-            //лишний outfit_base в конце ничего не ломает
-            foreach (string it in outfitFullList)
-            {
-                newOutfits += it + "outfit_base";
-            }
-
-            await MyFile.Write($"{newConfigPath}/misc/outfit.ltx", newOutfits);
+            await MyFile.Write($"{newConfigPath}/misc/outfit.ltx", outfitFullList.Aggregate((a, b) => a + "outfit_base" + b));
         }
     }
 }
