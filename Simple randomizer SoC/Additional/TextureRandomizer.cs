@@ -12,9 +12,8 @@ namespace Simple_randomizer_SoC.Tools
     public class TextureRandomizer
     {
         readonly List<string> singleTextures = new List<string>();
-        readonly List<Tuple<string, string, string>> tripleTextures = new List<Tuple<string, string, string>>();
 
-        const string postfix = "_bump";
+        const string bump_postfix = "_bump";
 
         //прогресс
         int filesCount = 0;
@@ -61,7 +60,7 @@ namespace Simple_randomizer_SoC.Tools
         {
             await Abort();
             singleTextures.Clear();
-            tripleTextures.Clear();
+            //tripleTextures.Clear();
 
             exception = null;
             isProcessing = true;
@@ -178,9 +177,8 @@ namespace Simple_randomizer_SoC.Tools
 
                     if (file.EndsWith(".dds"))
                     {
-                        //шрифты всегда пропускаем
-                        //bump отдельно проверяется
-                        if (file.Contains(postfix) || file.Contains("font")) continue;
+                        //шрифты и bump всегда пропускаем
+                        if (file.Contains(bump_postfix) || file.Contains("font")) continue;
 
                         //вероятность перемешивания
                         if (checkSkipProbability())
@@ -188,24 +186,7 @@ namespace Simple_randomizer_SoC.Tools
                             continue;
                         }
 
-                        var file2 = file.Replace(".dds", $"{postfix}.dds");
-                        bool image2 = File.Exists(file2);
-                        var file3 = file.Replace(".dds", $"{postfix}#.dds");
-                        bool image3 = File.Exists(file3);
-
-                        if (image2 && image3)
-                        {
-                            tripleTextures.Add(new Tuple<string, string, string>(file, file2, file3));
-                        }
-                        else if (image2 || image3)
-                        {
-                            Console.WriteLine($"Файл {file} пропущен");
-                            continue;
-                        }
-                        else
-                        {
-                            singleTextures.Add(file);
-                        }
+                        singleTextures.Add(file);
 
                         filesCount++;
                     }
@@ -253,32 +234,6 @@ namespace Simple_randomizer_SoC.Tools
 
                         File.Copy(file, outputFile);
                         copy.Remove(newFile);
-
-                        progress++;
-                    }
-                }
-
-                if (tripleTextures.Count > 1)
-                {
-                    var copy = tripleTextures.Skip(0).ToList();
-
-                    foreach (var files in tripleTextures)
-                    {
-                        if (stopProcessing) return;
-                        var newFiles = copy[GlobalRandom.Rnd.Next(copy.Count)];
-
-                        var output1 = outputGamedataPath + newFiles.Item1.Substring(newFiles.Item1.IndexOf("\\textures"));
-                        var output2 = outputGamedataPath + newFiles.Item2.Substring(newFiles.Item2.IndexOf("\\textures"));
-                        var output3 = outputGamedataPath + newFiles.Item3.Substring(newFiles.Item3.IndexOf("\\textures"));
-
-                        Directory.CreateDirectory(Path.GetDirectoryName(output1));
-                        Directory.CreateDirectory(Path.GetDirectoryName(output2));
-                        Directory.CreateDirectory(Path.GetDirectoryName(output3));
-
-                        File.Copy(files.Item1, output1);
-                        File.Copy(files.Item2, output2);
-                        File.Copy(files.Item3, output3);
-                        copy.Remove(newFiles);
 
                         progress++;
                     }
