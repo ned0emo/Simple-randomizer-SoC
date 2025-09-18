@@ -36,6 +36,8 @@ namespace RandomizerSoC
 
         readonly List<Label> recommendLabelList;
 
+        readonly List<NumericUpDown> probailityInputs;
+
         //Генераторы
         readonly TreasuresGenerator treasuresGenerator;
         readonly WeaponsGenerator weaponsGenerator;
@@ -92,6 +94,10 @@ namespace RandomizerSoC
                 ["dialog_infos_exceptions"] = infosExceptionTextBox,
                 ["dialog_actions_exceptions"] = actionsExceptionTextBox,
             };
+
+            probailityInputs = new List<NumericUpDown>() {artReplcaeProbInput, itemReplaceProbInput, deathItemReplaceProbInput,
+            npcReplaceProbInput, outfitReplaceProbInput, stashReplaceProbInput, weaponReplaceProbInput, weatherReplaceProbInput,
+            soundeplaceProbabilityInput, textureReplaceProbabilityInput};
 
             generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
                 weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox, dialogsCheckBox };
@@ -216,6 +222,8 @@ namespace RandomizerSoC
                 return;
             }
 
+            var randomProbability = allRandomProbabilityCheckbox.Checked;
+
             GlobalRandom.Init(null);
 
             ///<summary>
@@ -250,7 +258,7 @@ namespace RandomizerSoC
             {
                 treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                tradeGenerator.SetProbability(stashReplaceProbInput.Value);
+                tradeGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashReplaceProbInput.Value);
                 try
                 {
                     await treasuresGenerator.Generate();
@@ -267,7 +275,7 @@ namespace RandomizerSoC
             if (afCheckBox.Checked)
             {
                 artefactsGenerator.UpdateData(newConfigPath: newConfigPath);
-                artefactsGenerator.SetProbability(artReplcaeProbInput.Value);
+                artefactsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : artReplcaeProbInput.Value);
                 try
                 {
                     await artefactsGenerator.Generate();
@@ -284,7 +292,7 @@ namespace RandomizerSoC
             if (weaponCheckBox.Checked)
             {
                 weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
-                weaponsGenerator.SetProbability(weaponReplaceProbInput.Value);
+                weaponsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponReplaceProbInput.Value);
                 try
                 {
                     await weaponsGenerator.Generate();
@@ -301,7 +309,7 @@ namespace RandomizerSoC
             if (armorCheckBox.Checked)
             {
                 outfitsGenerator.UpdateData(newConfigPath: newConfigPath);
-                outfitsGenerator.SetProbability(outfitReplaceProbInput.Value);
+                outfitsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : outfitReplaceProbInput.Value);
                 try
                 {
                     await outfitsGenerator.Generate();
@@ -324,7 +332,7 @@ namespace RandomizerSoC
                     suppliesEnabled: suppliesCheckBox.Checked, ranksEnabled: rankCheckBox.Checked, reputationEnabled: reputationCheckBox.Checked,
                     onlyGenerateNames: onlyGenerateCheckBox.Checked
                 );
-                npcGenerator.SetProbability(npcReplaceProbInput.Value);
+                npcGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : npcReplaceProbInput.Value);
                 try
                 {
                     await npcGenerator.Generate();
@@ -341,7 +349,7 @@ namespace RandomizerSoC
             {
                 weatherGenerator.UpdateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
                     thunderProbability: (int)thunderNumericUpDown.Value, newConfigPath: newConfigPath);
-                weatherGenerator.SetProbability(weatherReplaceProbInput.Value);
+                weatherGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weatherReplaceProbInput.Value);
                 try
                 {
                     await weatherGenerator.Generate();
@@ -357,7 +365,7 @@ namespace RandomizerSoC
             if (deathItemsCheckBox.Checked)
             {
                 deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
-                deathItemsGenerator.SetProbability(deatchItemReplaceProbInput.Value);
+                deathItemsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : deathItemReplaceProbInput.Value);
                 try
                 {
                     await deathItemsGenerator.Generate();
@@ -390,7 +398,7 @@ namespace RandomizerSoC
             if (consumablesCheckBox.Checked)
             {
                 consumablesGenerator.UpdateData(newConfigPath: newConfigPath);
-                consumablesGenerator.SetProbability(itemReplaceProbInput.Value);
+                consumablesGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : itemReplaceProbInput.Value);
                 try
                 {
                     await consumablesGenerator.Generate();
@@ -494,12 +502,12 @@ namespace RandomizerSoC
                 {
                     //из-за ожидания isProcessing нормально становится true
                     await soundRandomizer.Start(
-                        (int)threadsNumeric.Value, 
-                        (int)roundDurationNumeric.Value, 
-                        stepRainCheckBox.Checked, 
-                        newGamedataPath, 
+                        (int)threadsNumeric.Value,
+                        (int)roundDurationNumeric.Value,
+                        stepRainCheckBox.Checked,
+                        newGamedataPath,
                         soundsPathText.Text,
-                        (int) soundeplaceProbabilityInput.Value);
+                        randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)soundeplaceProbabilityInput.Value);
 
                     loadState.Text = Localization.Get("soundsProcessing");// "Обработка звуков...";
                     do
@@ -532,11 +540,11 @@ namespace RandomizerSoC
                 try
                 {
                     await textureRandomizer.Start(
-                        (int)threadsNumeric.Value, 
-                        uiReplaceCheckBox.Checked, 
-                        newGamedataPath, 
+                        (int)threadsNumeric.Value,
+                        uiReplaceCheckBox.Checked,
+                        newGamedataPath,
                         texturesPathText.Text,
-                        (int) textureReplaceProbabilityInput.Value);
+                        randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)textureReplaceProbabilityInput.Value);
 
                     loadState.Text = Localization.Get("textureProcessing");// "Обработка текстур...";
                     do
@@ -848,6 +856,12 @@ namespace RandomizerSoC
         {
             soundRandomizer.stopProcessing = true;
             textureRandomizer.stopProcessing = true;
+        }
+
+        private void AllRandomProbabilityCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            var value = !allRandomProbabilityCheckbox.Checked;
+            probailityInputs.ForEach(i => { i.Enabled = value; });
         }
     }
 }

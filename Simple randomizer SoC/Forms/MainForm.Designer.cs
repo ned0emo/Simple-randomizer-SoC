@@ -125,6 +125,19 @@
             this.soundsPathText = new System.Windows.Forms.TextBox();
             this.soundsPathLabel = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.weatherReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.weaponReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.artReplcaeProbInput = new System.Windows.Forms.NumericUpDown();
+            this.itemReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.deathItemReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.npcReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.outfitReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.stashReplaceProbInput = new System.Windows.Forms.NumericUpDown();
+            this.soundReplaceProbabilityLabel = new System.Windows.Forms.Label();
+            this.textureReplaceProbabilityLabel = new System.Windows.Forms.Label();
+            this.textureReplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
+            this.soundeplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
             this.itemReplaceProbLabel = new System.Windows.Forms.Label();
             this.deathItemReplaceProbLabel = new System.Windows.Forms.Label();
             this.npcReplaceProbLabel = new System.Windows.Forms.Label();
@@ -153,19 +166,7 @@
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
             this.loadState = new System.Windows.Forms.Label();
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
-            this.soundReplaceProbabilityLabel = new System.Windows.Forms.Label();
-            this.textureReplaceProbabilityLabel = new System.Windows.Forms.Label();
-            this.textureReplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.soundeplaceProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.stashReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.outfitReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.npcReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.deatchItemReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.itemReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.artReplcaeProbInput = new System.Windows.Forms.NumericUpDown();
-            this.weaponReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.weatherReplaceProbInput = new System.Windows.Forms.NumericUpDown();
-            this.label21 = new System.Windows.Forms.Label();
+            this.allRandomProbabilityCheckbox = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -179,16 +180,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.weaponReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.artReplcaeProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathItemReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.npcReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outfitReplaceProbInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outfitReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.npcReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deatchItemReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.artReplcaeProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weaponReplaceProbInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
@@ -1274,12 +1275,13 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.allRandomProbabilityCheckbox);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.weatherReplaceProbInput);
             this.tabPage3.Controls.Add(this.weaponReplaceProbInput);
             this.tabPage3.Controls.Add(this.artReplcaeProbInput);
             this.tabPage3.Controls.Add(this.itemReplaceProbInput);
-            this.tabPage3.Controls.Add(this.deatchItemReplaceProbInput);
+            this.tabPage3.Controls.Add(this.deathItemReplaceProbInput);
             this.tabPage3.Controls.Add(this.npcReplaceProbInput);
             this.tabPage3.Controls.Add(this.outfitReplaceProbInput);
             this.tabPage3.Controls.Add(this.stashReplaceProbInput);
@@ -1303,10 +1305,209 @@
             this.tabPage3.Text = "Настройка вероятностей";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(6, 3);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(1003, 62);
+            this.label21.TabIndex = 55;
+            this.label21.Text = "Чем ниже вероятность, тем меньше будет изменений в игровом процессе по каждому из" +
+    " параметров.\r\n\r\nПри установленном значении 100 генерироваться/перемешиваться буд" +
+    "ет все.";
+            // 
+            // weatherReplaceProbInput
+            // 
+            this.weatherReplaceProbInput.Location = new System.Drawing.Point(6, 291);
+            this.weatherReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.weatherReplaceProbInput.Name = "weatherReplaceProbInput";
+            this.weatherReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.weatherReplaceProbInput.TabIndex = 54;
+            this.weatherReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // weaponReplaceProbInput
+            // 
+            this.weaponReplaceProbInput.Location = new System.Drawing.Point(6, 265);
+            this.weaponReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.weaponReplaceProbInput.Name = "weaponReplaceProbInput";
+            this.weaponReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.weaponReplaceProbInput.TabIndex = 53;
+            this.weaponReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // artReplcaeProbInput
+            // 
+            this.artReplcaeProbInput.Location = new System.Drawing.Point(6, 109);
+            this.artReplcaeProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.artReplcaeProbInput.Name = "artReplcaeProbInput";
+            this.artReplcaeProbInput.Size = new System.Drawing.Size(52, 20);
+            this.artReplcaeProbInput.TabIndex = 52;
+            this.artReplcaeProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // itemReplaceProbInput
+            // 
+            this.itemReplaceProbInput.Location = new System.Drawing.Point(6, 135);
+            this.itemReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.itemReplaceProbInput.Name = "itemReplaceProbInput";
+            this.itemReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.itemReplaceProbInput.TabIndex = 51;
+            this.itemReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // deatchItemReplaceProbInput
+            // 
+            this.deathItemReplaceProbInput.Location = new System.Drawing.Point(6, 161);
+            this.deathItemReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.deathItemReplaceProbInput.Name = "deatchItemReplaceProbInput";
+            this.deathItemReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.deathItemReplaceProbInput.TabIndex = 50;
+            this.deathItemReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // npcReplaceProbInput
+            // 
+            this.npcReplaceProbInput.Location = new System.Drawing.Point(6, 187);
+            this.npcReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.npcReplaceProbInput.Name = "npcReplaceProbInput";
+            this.npcReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.npcReplaceProbInput.TabIndex = 49;
+            this.npcReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // outfitReplaceProbInput
+            // 
+            this.outfitReplaceProbInput.Location = new System.Drawing.Point(6, 213);
+            this.outfitReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.outfitReplaceProbInput.Name = "outfitReplaceProbInput";
+            this.outfitReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.outfitReplaceProbInput.TabIndex = 48;
+            this.outfitReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // stashReplaceProbInput
+            // 
+            this.stashReplaceProbInput.Location = new System.Drawing.Point(6, 239);
+            this.stashReplaceProbInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.stashReplaceProbInput.Name = "stashReplaceProbInput";
+            this.stashReplaceProbInput.Size = new System.Drawing.Size(52, 20);
+            this.stashReplaceProbInput.TabIndex = 47;
+            this.stashReplaceProbInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // soundReplaceProbabilityLabel
+            // 
+            this.soundReplaceProbabilityLabel.AutoSize = true;
+            this.soundReplaceProbabilityLabel.Location = new System.Drawing.Point(64, 320);
+            this.soundReplaceProbabilityLabel.Name = "soundReplaceProbabilityLabel";
+            this.soundReplaceProbabilityLabel.Size = new System.Drawing.Size(285, 13);
+            this.soundReplaceProbabilityLabel.TabIndex = 46;
+            this.soundReplaceProbabilityLabel.Text = "Вероятность замены для каждого звукового эффекта";
+            // 
+            // textureReplaceProbabilityLabel
+            // 
+            this.textureReplaceProbabilityLabel.AutoSize = true;
+            this.textureReplaceProbabilityLabel.Location = new System.Drawing.Point(64, 346);
+            this.textureReplaceProbabilityLabel.Name = "textureReplaceProbabilityLabel";
+            this.textureReplaceProbabilityLabel.Size = new System.Drawing.Size(227, 13);
+            this.textureReplaceProbabilityLabel.TabIndex = 45;
+            this.textureReplaceProbabilityLabel.Text = "Вероятность замены для каждой текстуры";
+            // 
+            // textureReplaceProbabilityInput
+            // 
+            this.textureReplaceProbabilityInput.Location = new System.Drawing.Point(6, 343);
+            this.textureReplaceProbabilityInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.textureReplaceProbabilityInput.Name = "textureReplaceProbabilityInput";
+            this.textureReplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
+            this.textureReplaceProbabilityInput.TabIndex = 44;
+            this.textureReplaceProbabilityInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // soundeplaceProbabilityInput
+            // 
+            this.soundeplaceProbabilityInput.Location = new System.Drawing.Point(6, 317);
+            this.soundeplaceProbabilityInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.soundeplaceProbabilityInput.Name = "soundeplaceProbabilityInput";
+            this.soundeplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
+            this.soundeplaceProbabilityInput.TabIndex = 43;
+            this.soundeplaceProbabilityInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
             // itemReplaceProbLabel
             // 
             this.itemReplaceProbLabel.AutoSize = true;
-            this.itemReplaceProbLabel.Location = new System.Drawing.Point(64, 100);
+            this.itemReplaceProbLabel.Location = new System.Drawing.Point(64, 137);
             this.itemReplaceProbLabel.Name = "itemReplaceProbLabel";
             this.itemReplaceProbLabel.Size = new System.Drawing.Size(294, 13);
             this.itemReplaceProbLabel.TabIndex = 17;
@@ -1315,7 +1516,7 @@
             // deathItemReplaceProbLabel
             // 
             this.deathItemReplaceProbLabel.AutoSize = true;
-            this.deathItemReplaceProbLabel.Location = new System.Drawing.Point(64, 126);
+            this.deathItemReplaceProbLabel.Location = new System.Drawing.Point(64, 163);
             this.deathItemReplaceProbLabel.Name = "deathItemReplaceProbLabel";
             this.deathItemReplaceProbLabel.Size = new System.Drawing.Size(432, 13);
             this.deathItemReplaceProbLabel.TabIndex = 15;
@@ -1324,7 +1525,7 @@
             // npcReplaceProbLabel
             // 
             this.npcReplaceProbLabel.AutoSize = true;
-            this.npcReplaceProbLabel.Location = new System.Drawing.Point(64, 152);
+            this.npcReplaceProbLabel.Location = new System.Drawing.Point(64, 189);
             this.npcReplaceProbLabel.Name = "npcReplaceProbLabel";
             this.npcReplaceProbLabel.Size = new System.Drawing.Size(255, 13);
             this.npcReplaceProbLabel.TabIndex = 13;
@@ -1333,7 +1534,7 @@
             // outfitReplaceProbLabel
             // 
             this.outfitReplaceProbLabel.AutoSize = true;
-            this.outfitReplaceProbLabel.Location = new System.Drawing.Point(64, 178);
+            this.outfitReplaceProbLabel.Location = new System.Drawing.Point(64, 215);
             this.outfitReplaceProbLabel.Name = "outfitReplaceProbLabel";
             this.outfitReplaceProbLabel.Size = new System.Drawing.Size(259, 13);
             this.outfitReplaceProbLabel.TabIndex = 11;
@@ -1342,7 +1543,7 @@
             // stashReplaceProbLabel
             // 
             this.stashReplaceProbLabel.AutoSize = true;
-            this.stashReplaceProbLabel.Location = new System.Drawing.Point(64, 204);
+            this.stashReplaceProbLabel.Location = new System.Drawing.Point(64, 241);
             this.stashReplaceProbLabel.Name = "stashReplaceProbLabel";
             this.stashReplaceProbLabel.Size = new System.Drawing.Size(239, 13);
             this.stashReplaceProbLabel.TabIndex = 9;
@@ -1351,7 +1552,7 @@
             // weaponReplaceProbLabel
             // 
             this.weaponReplaceProbLabel.AutoSize = true;
-            this.weaponReplaceProbLabel.Location = new System.Drawing.Point(64, 232);
+            this.weaponReplaceProbLabel.Location = new System.Drawing.Point(64, 269);
             this.weaponReplaceProbLabel.Name = "weaponReplaceProbLabel";
             this.weaponReplaceProbLabel.Size = new System.Drawing.Size(266, 13);
             this.weaponReplaceProbLabel.TabIndex = 7;
@@ -1360,7 +1561,7 @@
             // weatherReplaceProbLabel
             // 
             this.weatherReplaceProbLabel.AutoSize = true;
-            this.weatherReplaceProbLabel.Location = new System.Drawing.Point(64, 258);
+            this.weatherReplaceProbLabel.Location = new System.Drawing.Point(64, 295);
             this.weatherReplaceProbLabel.Name = "weatherReplaceProbLabel";
             this.weatherReplaceProbLabel.Size = new System.Drawing.Size(293, 13);
             this.weatherReplaceProbLabel.TabIndex = 5;
@@ -1369,7 +1570,7 @@
             // artReplaceProbLabel
             // 
             this.artReplaceProbLabel.AutoSize = true;
-            this.artReplaceProbLabel.Location = new System.Drawing.Point(64, 74);
+            this.artReplaceProbLabel.Location = new System.Drawing.Point(64, 111);
             this.artReplaceProbLabel.Name = "artReplaceProbLabel";
             this.artReplaceProbLabel.Size = new System.Drawing.Size(283, 13);
             this.artReplaceProbLabel.TabIndex = 1;
@@ -1581,204 +1782,16 @@
             this.dialogsCheckBox.Text = "Диалоги";
             this.dialogsCheckBox.UseVisualStyleBackColor = true;
             // 
-            // soundReplaceProbabilityLabel
+            // allRandomProbabilityCheckbox
             // 
-            this.soundReplaceProbabilityLabel.AutoSize = true;
-            this.soundReplaceProbabilityLabel.Location = new System.Drawing.Point(64, 283);
-            this.soundReplaceProbabilityLabel.Name = "soundReplaceProbabilityLabel";
-            this.soundReplaceProbabilityLabel.Size = new System.Drawing.Size(285, 13);
-            this.soundReplaceProbabilityLabel.TabIndex = 46;
-            this.soundReplaceProbabilityLabel.Text = "Вероятность замены для каждого звукового эффекта";
-            // 
-            // textureReplaceProbabilityLabel
-            // 
-            this.textureReplaceProbabilityLabel.AutoSize = true;
-            this.textureReplaceProbabilityLabel.Location = new System.Drawing.Point(64, 309);
-            this.textureReplaceProbabilityLabel.Name = "textureReplaceProbabilityLabel";
-            this.textureReplaceProbabilityLabel.Size = new System.Drawing.Size(227, 13);
-            this.textureReplaceProbabilityLabel.TabIndex = 45;
-            this.textureReplaceProbabilityLabel.Text = "Вероятность замены для каждой текстуры";
-            // 
-            // textureReplaceProbabilityInput
-            // 
-            this.textureReplaceProbabilityInput.Location = new System.Drawing.Point(6, 306);
-            this.textureReplaceProbabilityInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.textureReplaceProbabilityInput.Name = "textureReplaceProbabilityInput";
-            this.textureReplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
-            this.textureReplaceProbabilityInput.TabIndex = 44;
-            this.textureReplaceProbabilityInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // soundeplaceProbabilityInput
-            // 
-            this.soundeplaceProbabilityInput.Location = new System.Drawing.Point(6, 280);
-            this.soundeplaceProbabilityInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.soundeplaceProbabilityInput.Name = "soundeplaceProbabilityInput";
-            this.soundeplaceProbabilityInput.Size = new System.Drawing.Size(52, 20);
-            this.soundeplaceProbabilityInput.TabIndex = 43;
-            this.soundeplaceProbabilityInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // stashReplaceProbInput
-            // 
-            this.stashReplaceProbInput.Location = new System.Drawing.Point(6, 202);
-            this.stashReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.stashReplaceProbInput.Name = "stashReplaceProbInput";
-            this.stashReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.stashReplaceProbInput.TabIndex = 47;
-            this.stashReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // outfitReplaceProbInput
-            // 
-            this.outfitReplaceProbInput.Location = new System.Drawing.Point(6, 176);
-            this.outfitReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.outfitReplaceProbInput.Name = "outfitReplaceProbInput";
-            this.outfitReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.outfitReplaceProbInput.TabIndex = 48;
-            this.outfitReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // npcReplaceProbInput
-            // 
-            this.npcReplaceProbInput.Location = new System.Drawing.Point(6, 150);
-            this.npcReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.npcReplaceProbInput.Name = "npcReplaceProbInput";
-            this.npcReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.npcReplaceProbInput.TabIndex = 49;
-            this.npcReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // deatchItemReplaceProbInput
-            // 
-            this.deatchItemReplaceProbInput.Location = new System.Drawing.Point(6, 124);
-            this.deatchItemReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.deatchItemReplaceProbInput.Name = "deatchItemReplaceProbInput";
-            this.deatchItemReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.deatchItemReplaceProbInput.TabIndex = 50;
-            this.deatchItemReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // itemReplaceProbInput
-            // 
-            this.itemReplaceProbInput.Location = new System.Drawing.Point(6, 98);
-            this.itemReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.itemReplaceProbInput.Name = "itemReplaceProbInput";
-            this.itemReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.itemReplaceProbInput.TabIndex = 51;
-            this.itemReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // artReplcaeProbInput
-            // 
-            this.artReplcaeProbInput.Location = new System.Drawing.Point(6, 72);
-            this.artReplcaeProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.artReplcaeProbInput.Name = "artReplcaeProbInput";
-            this.artReplcaeProbInput.Size = new System.Drawing.Size(52, 20);
-            this.artReplcaeProbInput.TabIndex = 52;
-            this.artReplcaeProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // weaponReplaceProbInput
-            // 
-            this.weaponReplaceProbInput.Location = new System.Drawing.Point(6, 228);
-            this.weaponReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.weaponReplaceProbInput.Name = "weaponReplaceProbInput";
-            this.weaponReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.weaponReplaceProbInput.TabIndex = 53;
-            this.weaponReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // weatherReplaceProbInput
-            // 
-            this.weatherReplaceProbInput.Location = new System.Drawing.Point(6, 254);
-            this.weatherReplaceProbInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.weatherReplaceProbInput.Name = "weatherReplaceProbInput";
-            this.weatherReplaceProbInput.Size = new System.Drawing.Size(52, 20);
-            this.weatherReplaceProbInput.TabIndex = 54;
-            this.weatherReplaceProbInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label21.Location = new System.Drawing.Point(6, 3);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(1003, 62);
-            this.label21.TabIndex = 55;
-            this.label21.Text = "Чем ниже вероятность, тем меньше будет изменений в игровом процессе по каждому из" +
-    " параметров.\r\n\r\nПри установленном значении 100 генерироваться/перемешиваться буд" +
-    "ет все.";
+            this.allRandomProbabilityCheckbox.AutoSize = true;
+            this.allRandomProbabilityCheckbox.Location = new System.Drawing.Point(9, 86);
+            this.allRandomProbabilityCheckbox.Name = "allRandomProbabilityCheckbox";
+            this.allRandomProbabilityCheckbox.Size = new System.Drawing.Size(248, 17);
+            this.allRandomProbabilityCheckbox.TabIndex = 56;
+            this.allRandomProbabilityCheckbox.Text = "Случайная вероятность для всех категорий";
+            this.allRandomProbabilityCheckbox.UseVisualStyleBackColor = true;
+            this.allRandomProbabilityCheckbox.CheckedChanged += new System.EventHandler(this.AllRandomProbabilityCheckbox_CheckedChanged);
             // 
             // MainForm
             // 
@@ -1837,16 +1850,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.weaponReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.artReplcaeProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathItemReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.npcReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.outfitReplaceProbInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.outfitReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.npcReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deatchItemReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.artReplcaeProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weaponReplaceProbInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1986,11 +1999,12 @@
         private System.Windows.Forms.NumericUpDown weaponReplaceProbInput;
         private System.Windows.Forms.NumericUpDown artReplcaeProbInput;
         private System.Windows.Forms.NumericUpDown itemReplaceProbInput;
-        private System.Windows.Forms.NumericUpDown deatchItemReplaceProbInput;
+        private System.Windows.Forms.NumericUpDown deathItemReplaceProbInput;
         private System.Windows.Forms.NumericUpDown npcReplaceProbInput;
         private System.Windows.Forms.NumericUpDown outfitReplaceProbInput;
         private System.Windows.Forms.NumericUpDown stashReplaceProbInput;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.CheckBox allRandomProbabilityCheckbox;
     }
 }
 
