@@ -258,7 +258,7 @@ namespace RandomizerSoC
             {
                 treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                tradeGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashReplaceProbInput.Value);
+                treasuresGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashReplaceProbInput.Value);
                 try
                 {
                     await treasuresGenerator.Generate();
@@ -781,6 +781,22 @@ namespace RandomizerSoC
             actionsExceptionLabel.Text = Localization.Get("incorrectActions");
             unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
             label18.Text = Localization.Get("dialogsDescription");
+
+            //1.9
+            probabilityTab.Text = Localization.Get("probabilityTab");
+            probabilityDescription.Text = Localization.Get("probabilityDescription");
+            allRandomProbabilityCheckbox.Text = Localization.Get("allRandomProbabilityCheckbox");
+
+            artReplaceProbLabel.Text = Localization.Get("artReplcaeProbInput");
+            itemReplaceProbLabel.Text = Localization.Get("itemReplaceProbInput");
+            deathItemReplaceProbLabel.Text = Localization.Get("deathItemReplaceProbInput");
+            npcReplaceProbLabel.Text = Localization.Get("npcReplaceProbInput");
+            outfitReplaceProbLabel.Text = Localization.Get("outfitReplaceProbInput");
+            stashReplaceProbLabel.Text = Localization.Get("stashReplaceProbInput");
+            weaponReplaceProbLabel.Text = Localization.Get("weaponReplaceProbInput");
+            weatherReplaceProbLabel.Text = Localization.Get("weatherReplaceProbInput");
+            soundReplaceProbabilityLabel.Text = Localization.Get("soundReplaceProbabilityInput");
+            textureReplaceProbabilityLabel.Text = Localization.Get("textureReplaceProbabilityInput");
         }
         #endregion
 

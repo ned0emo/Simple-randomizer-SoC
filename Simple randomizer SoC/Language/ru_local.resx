@@ -132,6 +132,9 @@
 
 Параметры на данной вкладке с большой вероятностью не будут работать с другими модами. При активации данных параметров копируются заранее отредактированные игровые файлы, которые, в случае замены модифицированных, могут поломать мод.</value>
   </data>
+  <data name="allRandomProbabilityCheckbox" xml:space="preserve">
+    <value>Случайная вероятность для всех категорий</value>
+  </data>
   <data name="ammoListTitle" xml:space="preserve">
     <value>Патроны и кол-во их в пачке</value>
   </data>
@@ -144,6 +147,9 @@
   </data>
   <data name="artefactsError" xml:space="preserve">
     <value>Ошибка генерации артефактов. Операция прервана</value>
+  </data>
+  <data name="artReplcaeProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого стата артефакта</value>
   </data>
   <data name="barAlarm" xml:space="preserve">
     <value>Отключить тревогу в Баре, когда игрок кого-то убивает</value>
@@ -180,6 +186,9 @@
   </data>
   <data name="copyError" xml:space="preserve">
     <value>Ошибка копирования</value>
+  </data>
+  <data name="deathItemReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого параметра спавнящихся у убитых НПС вещей</value>
   </data>
   <data name="deathItems" xml:space="preserve">
     <value>Вещи убитых</value>
@@ -259,6 +268,9 @@ XML тэг для действий - action.
   </data>
   <data name="infoFornName" xml:space="preserve">
     <value>Внимание</value>
+  </data>
+  <data name="itemReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого стата расходников</value>
   </data>
   <data name="ItemsGuide" xml:space="preserve">
     <value>Все списки на данной вкладке используются для добавления предметов в тайники и для редактирования ассортимента торговцев.
@@ -347,6 +359,9 @@ XML тэг для действий - action.
 
 Галочки около названий списков позволяют включать/отключать некоторые пункты в генерации НПС</value>
   </data>
+  <data name="npcReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждой секции НПС</value>
+  </data>
   <data name="npcRulesError" xml:space="preserve">
     <value>Правила для генерации НПС не были получены. Требуется вызов "updateRules"</value>
   </data>
@@ -407,6 +422,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="otherListTitle" xml:space="preserve">
     <value>Прочее</value>
   </data>
+  <data name="outfitReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого стата брони</value>
+  </data>
   <data name="outfits" xml:space="preserve">
     <value>Броня</value>
     <comment>также для имени списка</comment>
@@ -419,6 +437,14 @@ Scheduler tried to update object mil_freedom_respawn_321043
   </data>
   <data name="overwritingFiles" xml:space="preserve">
     <value>Следующие файлы будут перезаписаны:</value>
+  </data>
+  <data name="probabilityDescription" xml:space="preserve">
+    <value>Чем ниже вероятность, тем меньше будет изменений в игровом процессе по каждому из параметров.
+
+При установленном значении 100 генерироваться/перемешиваться будет все.</value>
+  </data>
+  <data name="probabilityTab" xml:space="preserve">
+    <value>Настройка вероятностей</value>
   </data>
   <data name="processing" xml:space="preserve">
     <value>Обработка</value>
@@ -468,6 +494,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="skyboxListTitle" xml:space="preserve">
     <value>Небо</value>
   </data>
+  <data name="soundReplaceProbabilityInput" xml:space="preserve">
+    <value>Вероятность замены для каждого звукового эффекта</value>
+  </data>
   <data name="soundListTitle" xml:space="preserve">
     <value>Озвучка</value>
   </data>
@@ -490,6 +519,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
 
 Максимальное количество потоков для обработки устанавливает количество одновременно обрабатываемых директорий при чтени данных с файлов текстур/звуков.</value>
   </data>
+  <data name="stashReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого тайника</value>
+  </data>
   <data name="stepRainSounds" xml:space="preserve">
     <value>Заменять звуки шагов и дождя (не рекомендуется)</value>
   </data>
@@ -498,6 +530,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   </data>
   <data name="textureProcessing" xml:space="preserve">
     <value>Обработка текстур...</value>
+  </data>
+  <data name="textureReplaceProbabilityInput" xml:space="preserve">
+    <value>Вероятность замены для каждой текстуры</value>
   </data>
   <data name="textures" xml:space="preserve">
     <value>Текстуры</value>
@@ -558,6 +593,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="weaponListTitle" xml:space="preserve">
     <value>Оружие и используемые им патроны</value>
   </data>
+  <data name="weaponReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого стата оружия</value>
+  </data>
   <data name="weaponsDataError" xml:space="preserve">
     <value>Данные для генерации оружия не были получены. Требуется вызов "updateData"</value>
   </data>
@@ -577,6 +615,9 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="weatherHelp" xml:space="preserve">
     <value>Изменение погоды в основном затрагивает цвет окружения, потому может быть не очень приятным.
 Зато игра будет хорошо дополнять RGB геймерские клавиатуру и мышь</value>
+  </data>
+  <data name="weatherReplaceProbInput" xml:space="preserve">
+    <value>Вероятность генерации для каждого параметра погоды</value>
   </data>
   <data name="weatherTab" xml:space="preserve">
     <value>Погода</value>

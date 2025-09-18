@@ -83,11 +83,20 @@ namespace Simple_randomizer_SoC.Language {
         ///
         ///To work with the mod, you need in the folder./rndata/gamedata/config in the gameplay, misc, weathers, and weapons directories, replace the necessary files with modified ones (if necessary, make a backup copy of the original files). After that, you should adjust the lists according to the content of the mod.
         ///
-        ///If there are additional models and NPC voice acting in the modification, y [остаток строки не уместился]&quot;;.
+        ///If there are additional models and NPC voice acting in the modificatio [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string advancedText {
             get {
                 return ResourceManager.GetString("advancedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Random probability for all categories.
+        /// </summary>
+        internal static string allRandomProbabilityCheckbox {
+            get {
+                return ResourceManager.GetString("allRandomProbabilityCheckbox", resourceCulture);
             }
         }
         
@@ -124,6 +133,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string artefactsError {
             get {
                 return ResourceManager.GetString("artefactsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generating for each artifact stat.
+        /// </summary>
+        internal static string artReplcaeProbInput {
+            get {
+                return ResourceManager.GetString("artReplcaeProbInput", resourceCulture);
             }
         }
         
@@ -232,6 +250,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string copyError {
             get {
                 return ResourceManager.GetString("copyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generating for each parameter of items spawned by killed NPCs.
+        /// </summary>
+        internal static string deathItemReplaceProbInput {
+            get {
+                return ResourceManager.GetString("deathItemReplaceProbInput", resourceCulture);
             }
         }
         
@@ -457,6 +484,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generating for each consumables stat.
+        /// </summary>
+        internal static string itemReplaceProbInput {
+            get {
+                return ResourceManager.GetString("itemReplaceProbInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All lists on this tab are used to add items to caches and to edit the assortment of merchants.
         ///
         ///Armor and artifact stats are generated in the files &quot;outfit.ltx&quot; and &quot;artefacts.ltx&quot;
@@ -602,6 +638,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generating for each NPC section.
+        /// </summary>
+        internal static string npcReplaceProbInput {
+            get {
+                return ResourceManager.GetString("npcReplaceProbInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Rules for generating NPCs have not been received. A call to &quot;updateRules&quot; is required.
         /// </summary>
         internal static string npcRulesError {
@@ -673,6 +718,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generating for each armor stat.
+        /// </summary>
+        internal static string outfitReplaceProbInput {
+            get {
+                return ResourceManager.GetString("outfitReplaceProbInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Armor.
         /// </summary>
         internal static string outfits {
@@ -705,6 +759,26 @@ namespace Simple_randomizer_SoC.Language {
         internal static string overwritingFiles {
             get {
                 return ResourceManager.GetString("overwritingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The lower the probability, the fewer changes there will be in the gameplay for each of the parameters.
+        ///
+        ///With the set value of 100, everything will be generated/mixed..
+        /// </summary>
+        internal static string probabilityDescription {
+            get {
+                return ResourceManager.GetString("probabilityDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Setting up probabilities.
+        /// </summary>
+        internal static string probabilityTab {
+            get {
+                return ResourceManager.GetString("probabilityTab", resourceCulture);
             }
         }
         
@@ -862,6 +936,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of replacement for each sound effect.
+        /// </summary>
+        internal static string soundReplaceProbabilityInput {
+            get {
+                return ResourceManager.GetString("soundReplaceProbabilityInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Sound processing error. The operation was aborted.
         /// </summary>
         internal static string soundsError {
@@ -911,6 +994,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generation for each cache.
+        /// </summary>
+        internal static string stashReplaceProbInput {
+            get {
+                return ResourceManager.GetString("stashReplaceProbInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Replace the sounds of footsteps and rain (not recommended).
         /// </summary>
         internal static string stepRainSounds {
@@ -934,6 +1026,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string textureProcessing {
             get {
                 return ResourceManager.GetString("textureProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of replacement for each texture.
+        /// </summary>
+        internal static string textureReplaceProbabilityInput {
+            get {
+                return ResourceManager.GetString("textureReplaceProbabilityInput", resourceCulture);
             }
         }
         
@@ -1073,6 +1174,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generation for each weapon stat.
+        /// </summary>
+        internal static string weaponReplaceProbInput {
+            get {
+                return ResourceManager.GetString("weaponReplaceProbInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на The data for generating weapons were not received. An &quot;updateData&quot; call is required.
         /// </summary>
         internal static string weaponsDataError {
@@ -1124,6 +1234,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string weatherHelp {
             get {
                 return ResourceManager.GetString("weatherHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The probability of generation for each weather parameter.
+        /// </summary>
+        internal static string weatherReplaceProbInput {
+            get {
+                return ResourceManager.GetString("weatherReplaceProbInput", resourceCulture);
             }
         }
         

@@ -132,6 +132,9 @@ If there are additional models and NPC voice acting in the modification, you jus
 
 The options on this tab are highly likely to not work with other mods. When activating these parameters, pre-edited game files are copied, which, if replaced, may break the mod.</value>
   </data>
+  <data name="allRandomProbabilityCheckbox" xml:space="preserve">
+    <value>Random probability for all categories</value>
+  </data>
   <data name="ammoListTitle" xml:space="preserve">
     <value>Cartridges and its num. in a pack</value>
   </data>
@@ -144,6 +147,9 @@ The options on this tab are highly likely to not work with other mods. When acti
   </data>
   <data name="artefactsError" xml:space="preserve">
     <value>Artifact generation error. Operation aborted</value>
+  </data>
+  <data name="artReplcaeProbInput" xml:space="preserve">
+    <value>The probability of generating for each artifact stat</value>
   </data>
   <data name="barAlarm" xml:space="preserve">
     <value>Disable the alarm in the Bar when a player kills someone</value>
@@ -180,6 +186,9 @@ The options on this tab are highly likely to not work with other mods. When acti
   </data>
   <data name="copyError" xml:space="preserve">
     <value>Copy error</value>
+  </data>
+  <data name="deathItemReplaceProbInput" xml:space="preserve">
+    <value>The probability of generating for each parameter of items spawned by killed NPCs</value>
   </data>
   <data name="deathItems" xml:space="preserve">
     <value>Items of killed NPCs</value>
@@ -259,6 +268,9 @@ If you want to mix the dialogs of a mod, then the dialog files should be placed 
   </data>
   <data name="infoFornName" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="itemReplaceProbInput" xml:space="preserve">
+    <value>The probability of generating for each consumables stat</value>
   </data>
   <data name="ItemsGuide" xml:space="preserve">
     <value>All lists on this tab are used to add items to caches and to edit the assortment of merchants.
@@ -348,6 +360,9 @@ in the "character_desc_*.xml" files located in ./rndata/gamedata/config/gameplay
 
 Checkboxes near the names of the lists allow you to enable/disable some items in the generation of NPCs</value>
   </data>
+  <data name="npcReplaceProbInput" xml:space="preserve">
+    <value>The probability of generating for each NPC section</value>
+  </data>
   <data name="npcRulesError" xml:space="preserve">
     <value>Rules for generating NPCs have not been received. A call to "updateRules" is required</value>
   </data>
@@ -408,6 +423,9 @@ And so I recommend using the 1.0004 version of the game</value>
   <data name="otherListTitle" xml:space="preserve">
     <value>Other</value>
   </data>
+  <data name="outfitReplaceProbInput" xml:space="preserve">
+    <value>The probability of generating for each armor stat</value>
+  </data>
   <data name="outfits" xml:space="preserve">
     <value>Armor</value>
     <comment>также для имени списка</comment>
@@ -420,6 +438,14 @@ And so I recommend using the 1.0004 version of the game</value>
   </data>
   <data name="overwritingFiles" xml:space="preserve">
     <value>The following files will be overwritten:</value>
+  </data>
+  <data name="probabilityDescription" xml:space="preserve">
+    <value>The lower the probability, the fewer changes there will be in the gameplay for each of the parameters.
+
+With the set value of 100, everything will be generated/mixed.</value>
+  </data>
+  <data name="probabilityTab" xml:space="preserve">
+    <value>Setting up probabilities</value>
   </data>
   <data name="processing" xml:space="preserve">
     <value>Processing</value>
@@ -469,6 +495,9 @@ And so I recommend using the 1.0004 version of the game</value>
   <data name="skyboxListTitle" xml:space="preserve">
     <value>Sky</value>
   </data>
+  <data name="soundReplaceProbabilityInput" xml:space="preserve">
+    <value>The probability of replacement for each sound effect</value>
+  </data>
   <data name="soundListTitle" xml:space="preserve">
     <value>Voice acting</value>
   </data>
@@ -491,6 +520,9 @@ The shuffiling process can take a long time, especially if the game files are on
 
 The maximum number of threads to process sets the number of simultaneously processed directories when reading data from texture/sound files.</value>
   </data>
+  <data name="stashReplaceProbInput" xml:space="preserve">
+    <value>The probability of generation for each cache</value>
+  </data>
   <data name="stepRainSounds" xml:space="preserve">
     <value>Replace the sounds of footsteps and rain (not recommended)</value>
   </data>
@@ -499,6 +531,9 @@ The maximum number of threads to process sets the number of simultaneously proce
   </data>
   <data name="textureProcessing" xml:space="preserve">
     <value>Texture processing...</value>
+  </data>
+  <data name="textureReplaceProbabilityInput" xml:space="preserve">
+    <value>The probability of replacement for each texture</value>
   </data>
   <data name="textures" xml:space="preserve">
     <value>Textures</value>
@@ -559,6 +594,9 @@ changed in their *.ltx files in the directory ./data/gamedata/config/weapons</va
   <data name="weaponListTitle" xml:space="preserve">
     <value>Weapons and cartridges used by them</value>
   </data>
+  <data name="weaponReplaceProbInput" xml:space="preserve">
+    <value>The probability of generation for each weapon stat</value>
+  </data>
   <data name="weaponsDataError" xml:space="preserve">
     <value>The data for generating weapons were not received. An "updateData" call is required</value>
   </data>
@@ -578,6 +616,9 @@ changed in their *.ltx files in the directory ./data/gamedata/config/weapons</va
   <data name="weatherHelp" xml:space="preserve">
     <value>A change in the weather mainly affects the color of the environment, therefore it may not be very pleasant.
 But the game will complement the RGB gaming keyboard and mouse well</value>
+  </data>
+  <data name="weatherReplaceProbInput" xml:space="preserve">
+    <value>The probability of generation for each weather parameter</value>
   </data>
   <data name="weatherTab" xml:space="preserve">
     <value>Weather</value>
