@@ -1,5 +1,6 @@
 ﻿using Simple_randomizer_SoC;
 using Simple_randomizer_SoC.Generators;
+using Simple_randomizer_SoC.Model;
 using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace RandomizerSoC
         readonly List<NumericUpDown> probailityInputs;
 
         //Генераторы
-        readonly TreasuresGenerator treasuresGenerator;
+        readonly StashGenerator stashGenerator;
         readonly WeaponsGenerator weaponsGenerator;
         readonly NpcGenerator npcGenerator;
         readonly ArtefactsGenerator artefactsGenerator;
@@ -115,7 +116,7 @@ namespace RandomizerSoC
                 cb.Checked = true;
             }
 
-            treasuresGenerator = new TreasuresGenerator();
+            stashGenerator = new StashGenerator();
             artefactsGenerator = new ArtefactsGenerator();
             weaponsGenerator = new WeaponsGenerator();
             outfitsGenerator = new OutfitsGenerator();
@@ -226,6 +227,8 @@ namespace RandomizerSoC
 
             GlobalRandom.Init(null);
 
+            var lists = new TextBoxData(weaponTextBox.Text, ammoTextBox.Text, outfitTextBox.Text, afTextBox.Text, itemTextBox.Text, otherTextBox.Text, communityTextBox.Text);
+
             ///<summary>
             ///Увеличивает значения прогрессбара на указанное параметром progressBarStep.
             ///Если значение больше макс, оставляет его равным макс
@@ -256,12 +259,10 @@ namespace RandomizerSoC
             //тайники
             if (treasureCheckBox.Checked)
             {
-                treasuresGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
-                    artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-                treasuresGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashReplaceProbInput.Value);
+                stashGenerator.UpdateData(lists, newConfigPath, randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)stashReplaceProbInput.Value);
                 try
                 {
-                    await treasuresGenerator.Generate();
+                    await stashGenerator.Generate();
                 }
                 catch (Exception ex)
                 {

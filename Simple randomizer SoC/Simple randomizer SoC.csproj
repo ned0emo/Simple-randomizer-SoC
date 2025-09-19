@@ -69,6 +69,8 @@
     <Compile Include="Environment.cs" />
     <Compile Include="Generators\ConsumablesGenerator.cs" />
     <Compile Include="Generators\DialogsGenerator.cs" />
+    <Compile Include="Generators\ProbabilityGenerator.cs" />
+    <Compile Include="Generators\StashGenerator.cs" />
     <Compile Include="Generators\TradeGenerator.cs" />
     <Compile Include="Language\en_local.Designer.cs">
       <DependentUpon>en_local.resx</DependentUpon>
@@ -80,6 +82,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Model\LtxData.cs" />
+    <Compile Include="Model\LtxSection.cs" />
+    <Compile Include="Model\TextBoxData.cs" />
+    <Compile Include="Tools\CollectionUtils.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\CustomException.cs" />
     <Compile Include="Tools\MyFile.cs" />
@@ -101,7 +107,6 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generators\TreasuresGenerator.cs" />
     <Compile Include="Forms\GuideForm.cs">
       <SubType>Form</SubType>
     </Compile>

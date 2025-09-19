@@ -172,7 +172,7 @@ namespace Simple_randomizer_SoC.Generators
 
                         int weapNum = GlobalRandom.Rnd.Next(weaponList.Count);
 
-                        string[] currentWeaponAndAmmo = StringUtils.WhitespaceSplit(weaponList[weapNum]);
+                        string[] currentWeaponAndAmmo = StringUtils.WhiteSpaceSplit(weaponList[weapNum]);
                         string weapon = currentWeaponAndAmmo[0];
                         string ammo = currentWeaponAndAmmo[GlobalRandom.Rnd.Next(currentWeaponAndAmmo.Length - 1) + 1];
 

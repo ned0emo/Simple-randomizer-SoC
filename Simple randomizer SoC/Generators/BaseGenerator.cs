@@ -126,17 +126,25 @@ namespace Simple_randomizer_SoC
 
             string newStr;
             //Удаление пробельных символов, кроме простых пробелов и переносов строк
-            newStr = Regex.Replace(str, "[\\t\\v\\r\\f]", "");
+            newStr = Regex.Replace(str, "[\\t\\v\\f]", "");
             //Удаление повторяющихся подряд пробелов
             newStr = Regex.Replace(newStr, " {2,}", " ");
-            var tmpList = Regex.Split(newStr, "\\n+");
+            var tmpList = StringUtils.SplitBreaklines(newStr);
 
             if (!keepTextAfterSpaces)
             {
                 //Выбор первой подстроки перед пробелом
                 for (int i = 0; i < tmpList.Length; i++)
                 {
+                    tmpList[i] = tmpList[i].Trim();
                     tmpList[i] = tmpList[i].Contains(" ") ? tmpList[i].Substring(0, tmpList[i].IndexOf(' ')) : tmpList[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < tmpList.Length; i++)
+                {
+                    tmpList[i] = tmpList[i].Trim();
                 }
             }
 

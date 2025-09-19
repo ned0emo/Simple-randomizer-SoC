@@ -10,6 +10,7 @@ namespace Simple_randomizer_SoC.Tools
     internal abstract class StringUtils
     {
         private static readonly Regex breaklinesSplitter = new Regex("[\\r\\n]+");
+        private static readonly Regex breaklinesSideWhiteSpacesSplitter = new Regex("\\s*[\\r\\n]+\\s*");
         private static readonly Regex whitespaceSplitter = new Regex("\\s+");
 
         public static string RemoveLineBreaking(string input)
@@ -52,9 +53,16 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         /// <param name="input"></param>
         /// <returns>Regex.Split(input, "[\\r\\n]+")</returns>
-        public static string[] SplitBreaklines(string input)
+        public static string[] SplitBreaklines(string input, bool withSideWhiteSpace = false)
         {
-            return breaklinesSplitter.Split(input);
+            if (withSideWhiteSpace)
+            {
+                return breaklinesSideWhiteSpacesSplitter.Split(input.Trim());
+            }
+            else
+            {
+                return breaklinesSplitter.Split(input.Trim());
+            }
         }
 
         /// <summary>
@@ -62,7 +70,7 @@ namespace Simple_randomizer_SoC.Tools
         /// </summary>
         /// <param name="inupt"></param>
         /// <returns>Regex.Split(input, "\\s+")</returns>
-        public static string[] WhitespaceSplit(string inupt)
+        public static string[] WhiteSpaceSplit(string inupt)
         {
             return whitespaceSplitter.Split(inupt);
         }
