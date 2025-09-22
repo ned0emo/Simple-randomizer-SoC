@@ -13,7 +13,6 @@ namespace Simple_randomizer_SoC.Model
         public string Name { get; set; }
         public ParameterType ParameterType { get; set; }
         public int ValuesCount { get; set; } = 1;
-
         public abstract List<string> GenerateValuesList(Random rnd);
     }
 }

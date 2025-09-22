@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Enums
 {
@@ -11,5 +10,17 @@ namespace Simple_randomizer_SoC.Enums
         FromList,
         IntRange,
         FloatRange
+    }
+
+    public abstract class ParameterTypeDataSource
+    {
+        public static object Get()
+        {
+            return Enum.GetValues(typeof(ParameterType)).Cast<ParameterType>().Select(p => new
+            {
+                Value = p,
+                Description = Localization.Get(p.ToString())
+            }).ToList();
+        }
     }
 }

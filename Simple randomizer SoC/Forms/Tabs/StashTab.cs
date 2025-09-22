@@ -17,6 +17,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
     public partial class StashTab : UserControl
     {
         private readonly StashConfig stashConfig;
+        private readonly ListEditComponent listEditComponent = new ListEditComponent();
 
         public StashTab(StashConfig stashConfig)
         {
@@ -38,70 +39,37 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private void editWeaponsButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список оружия для заполнения тайников", stashConfig.Weapons);
+            listEditComponent.HandleSimpleListEdit("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
         }
 
         private void editArmorsButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список брони для заполнения тайников", stashConfig.Armors);
+            listEditComponent.HandleSimpleListEdit("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
         }
 
         private void editArtefactsButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список артефактов для заполнения тайников", stashConfig.Artefacts);
+            listEditComponent.HandleSimpleListEdit("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
         }
 
-        private async void editAmmosButton_Click(object sender, EventArgs e)
+        private void editAmmosButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var dialog = new ComplexListDialog<AmmoCount>("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" });
-                await Task.Yield();
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    stashConfig.Ammos.Clear();
-                    stashConfig.Ammos.AddRange(dialog.GetData());
-                    await ConfigHandler.Save(stashConfig);
-                }
-            }
-            catch (Exception ex)
-            {
-                new InfoForm("Ошибка", ex).ShowDialog();
-            }
+            listEditComponent.HandleComplexListEdit("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
         }
 
         private void editItemsButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список расходников для заполнения тайников", stashConfig.Items);
+            listEditComponent.HandleSimpleListEdit("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
         }
 
         private void editOthersButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список прочего для заполнения тайников", stashConfig.Others);
+            listEditComponent.HandleSimpleListEdit("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
         }
 
         private void editCommunitiesButton_Click(object sender, EventArgs e)
         {
-            HandleListEdit("Список группировок для выдачи тайников", stashConfig.Communities);
-        }
-
-        private async void HandleListEdit(string dialogName, List<string> list)
-        {
-            try
-            {
-                var dialog = new SimpleListDialog(dialogName, list);
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    list.Clear();
-                    list.AddRange(dialog.GetData());
-                    await ConfigHandler.Save(stashConfig);
-                }
-            }
-            catch (Exception ex)
-            {
-                new InfoForm("Ошибка", ex).ShowDialog();
-            }
+            listEditComponent.HandleSimpleListEdit("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
         }
 
         private void maxWeponsInput_ValueChanged(object sender, EventArgs e)

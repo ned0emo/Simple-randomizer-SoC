@@ -71,7 +71,7 @@ namespace RandomizerSoC
             threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
-        public MainForm(StashConfig stashConfig)
+        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig)
         {
             InitializeComponent();
             loadState.Text = "";
@@ -143,7 +143,7 @@ namespace RandomizerSoC
             texturesPathText.Text = Configuration.Get("texture");
 
             stashTab.Controls.Add(new StashTab(stashConfig));
-            weaponTab.Controls.Add(new WeaponTab());
+            weaponTab.Controls.Add(new WeaponTab(weaponConfig));
 
             this.stashConfig = stashConfig;
 

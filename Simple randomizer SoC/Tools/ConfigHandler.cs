@@ -41,11 +41,11 @@ namespace Simple_randomizer_SoC.Tools
             return new T();
         }
 
-        public static async Task Save<T>(T config) where T : IConfig
+        public static async Task Save(IConfig config)
         {
             using (var sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + configPath + config.Path))
             {
-                var json = JsonSerializer.Serialize(config);
+                var json = JsonSerializer.Serialize(config, config.GetType());
                 await sw.WriteAsync(json);
             }
         }

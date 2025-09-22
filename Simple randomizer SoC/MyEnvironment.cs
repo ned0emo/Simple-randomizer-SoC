@@ -8,5 +8,6 @@
         public const string spawnsPath = ".\\rndata\\gamedata\\spawns";
 
         public const string stashConfig = "stash_config.json";
+        public const string weaponConfig = "weapon_config.json";
     }
 }

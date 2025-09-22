@@ -31,6 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.maxCommunitiesInput = new System.Windows.Forms.NumericUpDown();
+            this.editCommunitiesButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.probabilityInput = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.maxArmorsInput = new System.Windows.Forms.NumericUpDown();
             this.editArmorsButton = new System.Windows.Forms.Button();
@@ -55,22 +61,16 @@
             this.maxWeaponsInput = new System.Windows.Forms.NumericUpDown();
             this.editWeaponsButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.probabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.maxCommunitiesInput = new System.Windows.Forms.NumericUpDown();
-            this.editCommunitiesButton = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxCommunitiesInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.probabilityInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxArmorsInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxArtefactsInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxAmmosInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxItemsInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxOthersInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxWeaponsInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.probabilityInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxCommunitiesInput)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -134,6 +134,85 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(618, 371);
             this.panel2.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(304, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 13);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Макс. количество";
+            // 
+            // maxCommunitiesInput
+            // 
+            this.maxCommunitiesInput.Location = new System.Drawing.Point(408, 159);
+            this.maxCommunitiesInput.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.maxCommunitiesInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.maxCommunitiesInput.Name = "maxCommunitiesInput";
+            this.maxCommunitiesInput.Size = new System.Drawing.Size(53, 20);
+            this.maxCommunitiesInput.TabIndex = 40;
+            this.maxCommunitiesInput.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.maxCommunitiesInput.ValueChanged += new System.EventHandler(this.maxCommunitiesInput_ValueChanged);
+            // 
+            // editCommunitiesButton
+            // 
+            this.editCommunitiesButton.Location = new System.Drawing.Point(116, 156);
+            this.editCommunitiesButton.Name = "editCommunitiesButton";
+            this.editCommunitiesButton.Size = new System.Drawing.Size(154, 23);
+            this.editCommunitiesButton.TabIndex = 39;
+            this.editCommunitiesButton.Text = "Редактировать список";
+            this.editCommunitiesButton.UseVisualStyleBackColor = true;
+            this.editCommunitiesButton.Click += new System.EventHandler(this.editCommunitiesButton_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(3, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 16);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "Группировки";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(66, 191);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(276, 13);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Вероятность генерации каждого параметра тайника";
+            // 
+            // probabilityInput
+            // 
+            this.probabilityInput.Location = new System.Drawing.Point(7, 189);
+            this.probabilityInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.probabilityInput.Name = "probabilityInput";
+            this.probabilityInput.Size = new System.Drawing.Size(53, 20);
+            this.probabilityInput.TabIndex = 36;
+            this.probabilityInput.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.probabilityInput.ValueChanged += new System.EventHandler(this.probabilityInput_ValueChanged);
             // 
             // label17
             // 
@@ -417,85 +496,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Оружие";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 191);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(276, 13);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Вероятность генерации каждого параметра тайника";
-            // 
-            // probabilityInput
-            // 
-            this.probabilityInput.Location = new System.Drawing.Point(7, 189);
-            this.probabilityInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.probabilityInput.Name = "probabilityInput";
-            this.probabilityInput.Size = new System.Drawing.Size(53, 20);
-            this.probabilityInput.TabIndex = 36;
-            this.probabilityInput.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.probabilityInput.ValueChanged += new System.EventHandler(this.probabilityInput_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(304, 162);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 13);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Макс. количество";
-            // 
-            // maxCommunitiesInput
-            // 
-            this.maxCommunitiesInput.Location = new System.Drawing.Point(408, 159);
-            this.maxCommunitiesInput.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.maxCommunitiesInput.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.maxCommunitiesInput.Name = "maxCommunitiesInput";
-            this.maxCommunitiesInput.Size = new System.Drawing.Size(53, 20);
-            this.maxCommunitiesInput.TabIndex = 40;
-            this.maxCommunitiesInput.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.maxCommunitiesInput.ValueChanged += new System.EventHandler(this.maxCommunitiesInput_ValueChanged);
-            // 
-            // editCommunitiesButton
-            // 
-            this.editCommunitiesButton.Location = new System.Drawing.Point(116, 156);
-            this.editCommunitiesButton.Name = "editCommunitiesButton";
-            this.editCommunitiesButton.Size = new System.Drawing.Size(154, 23);
-            this.editCommunitiesButton.TabIndex = 39;
-            this.editCommunitiesButton.Text = "Редактировать список";
-            this.editCommunitiesButton.UseVisualStyleBackColor = true;
-            this.editCommunitiesButton.Click += new System.EventHandler(this.editCommunitiesButton_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(3, 159);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 16);
-            this.label9.TabIndex = 38;
-            this.label9.Text = "Группировки";
-            // 
             // StashTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,14 +508,14 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxCommunitiesInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.probabilityInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxArmorsInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxArtefactsInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxAmmosInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxItemsInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxOthersInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxWeaponsInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.probabilityInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxCommunitiesInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

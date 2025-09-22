@@ -33,7 +33,8 @@ namespace RandomizerSoC
                 ConfigHandler.InitConfigDir();
 
                 var stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
-                Application.Run(new MainForm(stashConfig));
+                var weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
+                Application.Run(new MainForm(stashConfig, weaponConfig));
             }
             catch (Exception ex)
             {
