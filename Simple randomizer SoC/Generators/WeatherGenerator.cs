@@ -37,7 +37,7 @@ namespace Simple_randomizer_SoC.Generators
 
             var thunderList = CreateCleanList(thunders);
             var skyTextureList = CreateCleanList(skyboxes);
-            var weathers = await MyFile.GetFiles($"{Environment.configPath}/weathers");
+            var weathers = await MyFile.GetFiles($"{MyEnvironment.configPath}/weathers");
 
             foreach (string weatherPath in weathers)
             {
@@ -121,7 +121,7 @@ namespace Simple_randomizer_SoC.Generators
                     newWeather += "]" + currentWeather;
                 }
 
-                await MyFile.Write(weatherPath.Replace(Environment.configPath, newConfigPath), newWeather);
+                await MyFile.Write(weatherPath.Replace(MyEnvironment.configPath, newConfigPath), newWeather);
             }
         }
     }

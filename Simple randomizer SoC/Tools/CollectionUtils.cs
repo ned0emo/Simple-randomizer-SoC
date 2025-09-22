@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Tools
 {
@@ -50,12 +48,16 @@ namespace Simple_randomizer_SoC.Tools
             if (count == 0) return new List<T>();
             if (count < 0) throw new ArgumentOutOfRangeException("count");
 
+            var indexList = new List<int>();
+            for (int i = 0; i < count; i++) indexList.Add(i);
+
             var result = new List<T>();
             while (count-- > 0)
             {
-                var index = GlobalRandom.Rnd.Next(list.Count);
+                var index = indexList[GlobalRandom.Rnd.Next(indexList.Count)];
+                indexList.Remove(index);
+
                 result.Add(list[index]);
-                list.RemoveAt(index);
             }
 
             return result;

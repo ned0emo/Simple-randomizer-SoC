@@ -27,7 +27,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new CustomException(Localization.Get("consumablesDataError"));
             }
 
-            var items = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/items.ltx"), "\\s*;.+", "");
+            var items = Regex.Replace(await MyFile.Read($"{MyEnvironment.configPath}/misc/items.ltx"), "\\s*;.+", "");
             var itemsStringList = StringUtils.Split(items, "]:");
 
             string newItems = "";

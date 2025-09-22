@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public abstract class ProbabilityGenerator
+    public abstract class ProbabilityChecker
     {
         protected Func<bool> skipReplacing = () => false;
         protected Action<Action> doOrSkip = (Action replaceAction) => replaceAction();

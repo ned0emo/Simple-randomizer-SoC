@@ -52,7 +52,7 @@ namespace Simple_randomizer_SoC.Generators
             var texts = new HashSet<string>();
             var actions = new HashSet<string>();
 
-            var files = Directory.GetFiles(Environment.configPath + "\\gameplay_dialogs");
+            var files = Directory.GetFiles(MyEnvironment.configPath + "\\gameplay_dialogs");
             foreach (var file in files)
             {
                 var data = File.ReadAllText(file);

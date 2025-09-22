@@ -36,7 +36,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new CustomException(Localization.Get("weaponsDataError"));
             }
 
-            var weapons = (await MyFile.GetFiles($"{Environment.configPath}\\weapons")).ToList();
+            var weapons = (await MyFile.GetFiles($"{MyEnvironment.configPath}\\weapons")).ToList();
             var weaponsLtxPath = weapons.Find(match => match.Contains("weapons.ltx"));
             weapons.Remove(weaponsLtxPath);
 
@@ -91,7 +91,7 @@ namespace Simple_randomizer_SoC.Generators
                     });
                 }
 
-                await MyFile.Write(it.Replace(Environment.configPath, newConfigPath), currWeapon);
+                await MyFile.Write(it.Replace(MyEnvironment.configPath, newConfigPath), currWeapon);
             }
 
             if (weaponsLtxPath != "")
@@ -113,7 +113,7 @@ namespace Simple_randomizer_SoC.Generators
                     //newWeaponsLtx += ":ammo_base" + ammos[i];
                 }
 
-                await MyFile.Write(weaponsLtxPath.Replace(Environment.configPath, newConfigPath), ammos.Aggregate((a, b) => a + ":ammo_base" + b));
+                await MyFile.Write(weaponsLtxPath.Replace(MyEnvironment.configPath, newConfigPath), ammos.Aggregate((a, b) => a + ":ammo_base" + b));
             }
         }
     }

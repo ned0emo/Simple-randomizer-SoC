@@ -1,4 +1,6 @@
 ﻿using Simple_randomizer_SoC;
+using Simple_randomizer_SoC.Models.AppConfig;
+using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,22 @@ namespace RandomizerSoC
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            LoadConfigAndRun().GetAwaiter().GetResult();
+        }
+
+        static async Task LoadConfigAndRun()
+        {
+            try
+            {
+                ConfigHandler.InitConfigDir();
+
+                var stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
+                Application.Run(new MainForm(stashConfig));
+            }
+            catch (Exception ex)
+            {
+                Application.Run(new InfoForm("Необработанное исключение", ex));
+            }
         }
     }
 }

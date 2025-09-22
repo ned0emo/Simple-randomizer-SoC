@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC
             {
                 try
                 {
-                    filesContentDictionary.Add(file, await MyFile.Read($"{Environment.listsPath + postfix}/{file}.txt"));
+                    filesContentDictionary.Add(file, await MyFile.Read($"{MyEnvironment.listsPath + postfix}/{file}.txt"));
                 }
                 catch
                 {
@@ -47,7 +47,7 @@ namespace Simple_randomizer_SoC
             foreach (string file in fileNameContentDictionary.Keys){
                 try
                 {
-                    await MyFile.Write($"{Environment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
+                    await MyFile.Write($"{MyEnvironment.listsPath}/{file}.txt", fileNameContentDictionary[file]);
                 }
                 catch
                 {

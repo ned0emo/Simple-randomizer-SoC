@@ -20,6 +20,17 @@ namespace Simple_randomizer_SoC.Model
                 (Sections.Count == 0 ? "" : Sections.Select(s => s.ToString()).Aggregate((s1, s2) => s1 + "\r\n" + s2));
         }
 
+        public static async Task<LtxData> Parse(string filePath)
+        {
+            LtxData ltx = null;
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                ltx = await Parse(sr);
+            }
+
+            return ltx;
+        }
+
         public static async Task<LtxData> Parse(StreamReader streamReader)
         {
             var ltxData = new LtxData();

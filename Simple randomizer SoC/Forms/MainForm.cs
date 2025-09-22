@@ -1,6 +1,9 @@
 ﻿using Simple_randomizer_SoC;
+using Simple_randomizer_SoC.Forms;
+using Simple_randomizer_SoC.Forms.Tabs;
 using Simple_randomizer_SoC.Generators;
 using Simple_randomizer_SoC.Model;
+using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
@@ -56,6 +59,8 @@ namespace RandomizerSoC
         readonly SoundRandomizer soundRandomizer;
         readonly TextureRandomizer textureRandomizer;
 
+        readonly StashConfig stashConfig;
+
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
         {
@@ -66,7 +71,7 @@ namespace RandomizerSoC
             threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
-        public MainForm()
+        public MainForm(StashConfig stashConfig)
         {
             InitializeComponent();
             loadState.Text = "";
@@ -136,6 +141,11 @@ namespace RandomizerSoC
 
             textureRandomizer = new TextureRandomizer();
             texturesPathText.Text = Configuration.Get("texture");
+
+            stashTab.Controls.Add(new StashTab(stashConfig));
+            weaponTab.Controls.Add(new WeaponTab());
+
+            this.stashConfig = stashConfig;
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -259,7 +269,7 @@ namespace RandomizerSoC
             //тайники
             if (treasureCheckBox.Checked)
             {
-                stashGenerator.UpdateData(lists, newConfigPath, randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)stashReplaceProbInput.Value);
+                stashGenerator.UpdateData(stashConfig, newConfigPath, randomProbability);
                 try
                 {
                     await stashGenerator.Generate();

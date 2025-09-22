@@ -32,7 +32,7 @@ namespace Simple_randomizer_SoC.Generators
             var weaponsList = CreateCleanList(weapons);
 
             //---------Вероятность по группировкам
-            var communitiesDeathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_items_by_communities.ltx");
+            var communitiesDeathGeneric = await MyFile.Read($"{MyEnvironment.configPath}/misc/death_items_by_communities.ltx");
             var communitiesDeathGenericData = communitiesDeathGeneric.Split('[').Skip(1).ToList();
 
             var communityClasses = new List<string>();
@@ -59,7 +59,7 @@ namespace Simple_randomizer_SoC.Generators
             await MyFile.Write($"{newConfigPath}/misc/death_items_by_communities.ltx", newCommunitiesDeathGenericData);
 
             //---------Множитель количества по локациям
-            var levelsDeathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_items_by_levels.ltx");
+            var levelsDeathGeneric = await MyFile.Read($"{MyEnvironment.configPath}/misc/death_items_by_levels.ltx");
             var levelsDeathGenericData = levelsDeathGeneric.Split('[').Skip(1).ToList();
 
             var levelClasses = new List<string>();
@@ -98,7 +98,7 @@ namespace Simple_randomizer_SoC.Generators
             await MyFile.Write($"{newConfigPath}/misc/death_items_by_levels.ltx", newLevelsDeathGenericData);
 
             //--------Количество по уровню сложности
-            var countDeathItems = await MyFile.Read($"{Environment.configPath}/misc/death_items_count.ltx");
+            var countDeathItems = await MyFile.Read($"{MyEnvironment.configPath}/misc/death_items_count.ltx");
             var countDeathItemsData = countDeathItems.Split('[').Skip(1).ToList();
 
             var countClasses = new List<string>();
@@ -147,7 +147,7 @@ namespace Simple_randomizer_SoC.Generators
             //--------------Зависимость спавна от оружия
             if (weaponsList.Length > 0)
             {
-                var deathGeneric = await MyFile.Read($"{Environment.configPath}/misc/death_generic.ltx");
+                var deathGeneric = await MyFile.Read($"{MyEnvironment.configPath}/misc/death_generic.ltx");
                 var deathGenericSplitted = deathGeneric.Replace("[keep_items]", "\a").Split('\a');
                 var deathGenericParams = deathGenericSplitted[0].Split('\n');
                 for (int i = 0; i < deathGenericParams.Length; i++)

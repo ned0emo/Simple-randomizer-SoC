@@ -103,7 +103,7 @@ namespace Simple_randomizer_SoC.Generators
                 nameList.RemoveAll(el => !el.Contains("GENERATE_NAME"));
             }
 
-            foreach (string it in await MyFile.GetFiles($"{Environment.configPath}/gameplay"))
+            foreach (string it in await MyFile.GetFiles($"{MyEnvironment.configPath}/gameplay"))
             {
                 var npcDescList = StringUtils.Split(await MyFile.Read(it), "<specific_character");
 
@@ -183,7 +183,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                 }
 
-                await MyFile.Write(it.Replace(Environment.configPath, newConfigPath),
+                await MyFile.Write(it.Replace(MyEnvironment.configPath, newConfigPath),
                     npcDescList.Aggregate((a, b) => a + "<specific_character" + b));
             }
         }

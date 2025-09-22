@@ -1,4 +1,5 @@
 ﻿using Simple_randomizer_SoC.Model;
+using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class StashGenerator : ProbabilityGenerator
+    public class StashGenerator : ProbabilityChecker, IGenerator
     {
-        private TextBoxData data;
+        private StashConfig stashConfig;
 
         private string newConfigPath;
 
         private static readonly List<string> defaultItems = new List<string>() { "bandage", "1" };
 
-        public void UpdateData(TextBoxData data, string newConfigPath, int probability)
+        public void UpdateData(StashConfig stashConfig, string newConfigPath, bool randomProbability)
         {
-            this.data = data;
+            this.stashConfig = stashConfig;
             this.newConfigPath = newConfigPath;
-            SetProbability(probability);
+            SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashConfig.Probability);
         }
 
         public async Task Generate()
@@ -31,7 +32,7 @@ namespace Simple_randomizer_SoC.Generators
 
             LtxData ltx = null;
 
-            using (var sr = new StreamReader($"{Environment.configPath}\\misc\\treasure_manager.ltx"))
+            using (var sr = new StreamReader($"{MyEnvironment.configPath}\\misc\\treasure_manager.ltx"))
             {
                 ltx = await LtxData.Parse(sr);
             }
@@ -53,7 +54,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 doOrSkip(() =>
                 {
-                    var c = CollectionUtils.GetRandomElements(data.Communities, GlobalRandom.Rnd.Next(5) + 1);
+                    var c = CollectionUtils.GetRandomElements(stashConfig.Communities, GlobalRandom.Rnd.Next(5) + 1);
                     if (c.Count == 0) return;
 
                     section.Params["community"] = c;
@@ -109,27 +110,27 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (whichItemType < 5)
                         {
-                            list.AddRange(GenerateItem(data.Outfits, 1));
+                            list.AddRange(GenerateItem(stashConfig.Armors, stashConfig.ArmorsMaxCount));
                         }
                         else if (whichItemType < 15)
                         {
-                            list.AddRange(GenerateItem(data.WeaponsAndAmmo.Keys.ToList(), 1));
+                            list.AddRange(GenerateItem(stashConfig.Weapons, stashConfig.WeaponsMaxCount));
                         }
                         else if (whichItemType < 20)
                         {
-                            list.AddRange(GenerateItem(data.Artefacts, 2));
+                            list.AddRange(GenerateItem(stashConfig.Artefacts, stashConfig.ArtefactsMaxCount));
                         }
                         else if (whichItemType < 70)
                         {
-                            list.AddRange(GenerateItem(data.Items, 8));
+                            list.AddRange(GenerateItem(stashConfig.Items, stashConfig.ItemsMaxCount));
                         }
                         else if (whichItemType < 95)
                         {
-                            list.AddRange(GenerateItem(data.AmmoAndCount, 6));
+                            list.AddRange(GenerateItem(stashConfig.Ammos, stashConfig.AmmosMaxCount));
                         }
                         else
                         {
-                            list.AddRange(GenerateItem(data.Others, 2));
+                            list.AddRange(GenerateItem(stashConfig.Others, stashConfig.OthersMaxCount));
                         }
                     }
                 });
@@ -149,18 +150,6 @@ namespace Simple_randomizer_SoC.Generators
         }
 
         //Предмет и количество для добавления в тайник
-        private List<string> GenerateItem(string[] itemList, int maxItemCount)
-        {
-            if (itemList.Length < 1)
-            {
-                return defaultItems;
-            }
-
-            int count = GlobalRandom.Rnd.Next(maxItemCount) + 1;
-
-            return new List<string>() { CollectionUtils.GetRandomElement(itemList), count.ToString() };
-        }
-
         private List<string> GenerateItem(List<string> itemList, int maxItemCount)
         {
             if (itemList.Count < 1)
@@ -173,7 +162,7 @@ namespace Simple_randomizer_SoC.Generators
             return new List<string>() { CollectionUtils.GetRandomElement(itemList), count.ToString() };
         }
 
-        private List<string> GenerateItem(Dictionary<string, int> itemList, int maxItemCount)
+        private List<string> GenerateItem(List<AmmoCount> itemList, int maxItemCount)
         {
             if (itemList.Count < 1)
             {
@@ -181,9 +170,9 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             int count = GlobalRandom.Rnd.Next(maxItemCount) + 1;
-            var pair = CollectionUtils.GetRandomElement(itemList);
+            var item = CollectionUtils.GetRandomElement(itemList);
 
-            return new List<string>() { pair.Key, (pair.Value * count).ToString() };
+            return new List<string>() { item.Name, (item.Count * count).ToString() };
         }
 
         private void Shuffle(List<string> items, List<LtxSection> sections, string paramName)

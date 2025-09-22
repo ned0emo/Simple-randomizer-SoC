@@ -34,7 +34,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new CustomException(Localization.Get("outfitsDataError"));
             }
 
-            var outfits = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
+            var outfits = Regex.Replace(await MyFile.Read($"{MyEnvironment.configPath}/misc/outfit.ltx"), "\\s+;.+", "");
             var outfitFullList = StringUtils.Split(outfits, "outfit_base");
 
             //string newOutfits = "";

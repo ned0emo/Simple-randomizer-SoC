@@ -1,4 +1,6 @@
-﻿namespace RandomizerSoC
+﻿using Simple_randomizer_SoC.Forms.Tabs;
+
+namespace RandomizerSoC
 {
     partial class MainForm
     {
@@ -29,6 +31,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "123"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Info, null);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
@@ -147,6 +153,10 @@
             this.weaponReplaceProbLabel = new System.Windows.Forms.Label();
             this.weatherReplaceProbLabel = new System.Windows.Forms.Label();
             this.artReplaceProbLabel = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.stashTab = new System.Windows.Forms.TabPage();
             this.allCheckBox = new System.Windows.Forms.CheckBox();
             this.treasureCheckBox = new System.Windows.Forms.CheckBox();
             this.afCheckBox = new System.Windows.Forms.CheckBox();
@@ -167,6 +177,10 @@
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
             this.loadState = new System.Windows.Forms.Label();
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.weaponTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -190,11 +204,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1042, 463);
+            this.saveButton.Location = new System.Drawing.Point(6, 460);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(131, 23);
             this.saveButton.TabIndex = 0;
@@ -204,7 +221,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(1042, 492);
+            this.loadButton.Location = new System.Drawing.Point(6, 489);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(131, 23);
             this.loadButton.TabIndex = 1;
@@ -215,7 +232,7 @@
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.generateButton.Location = new System.Drawing.Point(1042, 405);
+            this.generateButton.Location = new System.Drawing.Point(6, 402);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(131, 23);
             this.generateButton.TabIndex = 2;
@@ -225,7 +242,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(1042, 521);
+            this.loadDefaultButton.Location = new System.Drawing.Point(6, 518);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(131, 23);
             this.loadDefaultButton.TabIndex = 3;
@@ -235,6 +252,8 @@
             // 
             // tabControl
             // 
+            this.tabControl.Controls.Add(this.stashTab);
+            this.tabControl.Controls.Add(this.weaponTab);
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage6);
             this.tabControl.Controls.Add(this.dialogsTab);
@@ -243,28 +262,30 @@
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Controls.Add(this.probabilityTab);
-            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1023, 559);
+            this.tabControl.Size = new System.Drawing.Size(998, 676);
             this.tabControl.TabIndex = 6;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.shootSoundsTextBox);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.reloadSoundsTextBox);
             this.tabPage1.Controls.Add(this.weaponGuideButton);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.ammoTextBox);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.weaponTextBox);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1015, 533);
+            this.tabPage1.Size = new System.Drawing.Size(990, 650);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Оружие";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -286,7 +307,6 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(245, 23);
             this.label17.TabIndex = 30;
-            this.label17.Text = "Звуки перезарядки";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // reloadSoundsTextBox
@@ -318,7 +338,6 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(249, 23);
             this.label10.TabIndex = 8;
-            this.label10.Text = "Патроны и кол-во их в пачке";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ammoTextBox
@@ -338,7 +357,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(500, 23);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Оружие и используемые в нем патроны";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // weaponTextBox
@@ -359,7 +377,6 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(245, 23);
             this.label19.TabIndex = 33;
-            this.label19.Text = "Звуки стрельбы";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage6
@@ -376,7 +393,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1015, 533);
+            this.tabPage6.Size = new System.Drawing.Size(990, 650);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Предметы";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -483,7 +500,7 @@
             this.dialogsTab.Location = new System.Drawing.Point(4, 22);
             this.dialogsTab.Name = "dialogsTab";
             this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogsTab.Size = new System.Drawing.Size(1015, 533);
+            this.dialogsTab.Size = new System.Drawing.Size(990, 650);
             this.dialogsTab.TabIndex = 12;
             this.dialogsTab.Text = "Диалоги";
             this.dialogsTab.UseVisualStyleBackColor = true;
@@ -558,7 +575,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1015, 533);
+            this.tabPage9.Size = new System.Drawing.Size(990, 650);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "НПС";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -727,7 +744,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1015, 533);
+            this.tabPage2.Size = new System.Drawing.Size(990, 650);
             this.tabPage2.TabIndex = 10;
             this.tabPage2.Text = "Погода";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -839,7 +856,7 @@
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage8.Size = new System.Drawing.Size(1015, 533);
+            this.tabPage8.Size = new System.Drawing.Size(990, 650);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1068,7 +1085,7 @@
             this.advancedTab2.Location = new System.Drawing.Point(4, 22);
             this.advancedTab2.Name = "advancedTab2";
             this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
-            this.advancedTab2.Size = new System.Drawing.Size(1015, 533);
+            this.advancedTab2.Size = new System.Drawing.Size(990, 650);
             this.advancedTab2.TabIndex = 11;
             this.advancedTab2.Text = "Дополнительно 2";
             this.advancedTab2.UseVisualStyleBackColor = true;
@@ -1300,7 +1317,7 @@
             this.probabilityTab.Location = new System.Drawing.Point(4, 22);
             this.probabilityTab.Name = "probabilityTab";
             this.probabilityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.probabilityTab.Size = new System.Drawing.Size(1015, 533);
+            this.probabilityTab.Size = new System.Drawing.Size(990, 650);
             this.probabilityTab.TabIndex = 13;
             this.probabilityTab.Text = "Настройка вероятностей";
             this.probabilityTab.UseVisualStyleBackColor = true;
@@ -1587,10 +1604,59 @@
             this.artReplaceProbLabel.TabIndex = 1;
             this.artReplaceProbLabel.Text = "Вероятность генерации для каждого стата артефакта";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage3.Controls.Add(this.listView1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(990, 650);
+            this.tabPage3.TabIndex = 14;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(313, 6);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(499, 317);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.listView1.Location = new System.Drawing.Point(6, 6);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(301, 397);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            // 
+            // stashTab
+            // 
+            this.stashTab.Location = new System.Drawing.Point(4, 22);
+            this.stashTab.Name = "stashTab";
+            this.stashTab.Padding = new System.Windows.Forms.Padding(3);
+            this.stashTab.Size = new System.Drawing.Size(990, 650);
+            this.stashTab.TabIndex = 15;
+            this.stashTab.Text = "Тайники";
+            this.stashTab.UseVisualStyleBackColor = true;
+            // 
             // allCheckBox
             // 
             this.allCheckBox.AutoSize = true;
-            this.allCheckBox.Location = new System.Drawing.Point(1042, 34);
+            this.allCheckBox.Location = new System.Drawing.Point(6, 31);
             this.allCheckBox.Name = "allCheckBox";
             this.allCheckBox.Size = new System.Drawing.Size(45, 17);
             this.allCheckBox.TabIndex = 7;
@@ -1601,7 +1667,7 @@
             // treasureCheckBox
             // 
             this.treasureCheckBox.AutoSize = true;
-            this.treasureCheckBox.Location = new System.Drawing.Point(1042, 58);
+            this.treasureCheckBox.Location = new System.Drawing.Point(6, 55);
             this.treasureCheckBox.Name = "treasureCheckBox";
             this.treasureCheckBox.Size = new System.Drawing.Size(69, 17);
             this.treasureCheckBox.TabIndex = 8;
@@ -1611,7 +1677,7 @@
             // afCheckBox
             // 
             this.afCheckBox.AutoSize = true;
-            this.afCheckBox.Location = new System.Drawing.Point(1042, 82);
+            this.afCheckBox.Location = new System.Drawing.Point(6, 79);
             this.afCheckBox.Name = "afCheckBox";
             this.afCheckBox.Size = new System.Drawing.Size(83, 17);
             this.afCheckBox.TabIndex = 9;
@@ -1621,7 +1687,7 @@
             // weaponCheckBox
             // 
             this.weaponCheckBox.AutoSize = true;
-            this.weaponCheckBox.Location = new System.Drawing.Point(1042, 106);
+            this.weaponCheckBox.Location = new System.Drawing.Point(6, 103);
             this.weaponCheckBox.Name = "weaponCheckBox";
             this.weaponCheckBox.Size = new System.Drawing.Size(65, 17);
             this.weaponCheckBox.TabIndex = 10;
@@ -1631,7 +1697,7 @@
             // armorCheckBox
             // 
             this.armorCheckBox.AutoSize = true;
-            this.armorCheckBox.Location = new System.Drawing.Point(1042, 130);
+            this.armorCheckBox.Location = new System.Drawing.Point(6, 127);
             this.armorCheckBox.Name = "armorCheckBox";
             this.armorCheckBox.Size = new System.Drawing.Size(57, 17);
             this.armorCheckBox.TabIndex = 11;
@@ -1641,7 +1707,7 @@
             // npcCheckBox
             // 
             this.npcCheckBox.AutoSize = true;
-            this.npcCheckBox.Location = new System.Drawing.Point(1042, 268);
+            this.npcCheckBox.Location = new System.Drawing.Point(6, 265);
             this.npcCheckBox.Name = "npcCheckBox";
             this.npcCheckBox.Size = new System.Drawing.Size(49, 17);
             this.npcCheckBox.TabIndex = 12;
@@ -1653,7 +1719,7 @@
             // 
             this.suppliesCheckBox.AutoSize = true;
             this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(1048, 292);
+            this.suppliesCheckBox.Location = new System.Drawing.Point(12, 289);
             this.suppliesCheckBox.Name = "suppliesCheckBox";
             this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
             this.suppliesCheckBox.TabIndex = 14;
@@ -1664,7 +1730,7 @@
             // 
             this.rankCheckBox.AutoSize = true;
             this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(1048, 316);
+            this.rankCheckBox.Location = new System.Drawing.Point(12, 313);
             this.rankCheckBox.Name = "rankCheckBox";
             this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
             this.rankCheckBox.TabIndex = 15;
@@ -1675,7 +1741,7 @@
             // 
             this.reputationCheckBox.AutoSize = true;
             this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(1048, 340);
+            this.reputationCheckBox.Location = new System.Drawing.Point(12, 337);
             this.reputationCheckBox.Name = "reputationCheckBox";
             this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
             this.reputationCheckBox.TabIndex = 16;
@@ -1685,7 +1751,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1039, 12);
+            this.label4.Location = new System.Drawing.Point(3, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 17;
@@ -1695,7 +1761,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(1045, 360);
+            this.linkLabel1.Location = new System.Drawing.Point(9, 357);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 13);
             this.linkLabel1.TabIndex = 18;
@@ -1706,7 +1772,7 @@
             // weatherCheckBox
             // 
             this.weatherCheckBox.AutoSize = true;
-            this.weatherCheckBox.Location = new System.Drawing.Point(1042, 176);
+            this.weatherCheckBox.Location = new System.Drawing.Point(6, 173);
             this.weatherCheckBox.Name = "weatherCheckBox";
             this.weatherCheckBox.Size = new System.Drawing.Size(63, 17);
             this.weatherCheckBox.TabIndex = 19;
@@ -1716,7 +1782,7 @@
             // deathItemsCheckBox
             // 
             this.deathItemsCheckBox.AutoSize = true;
-            this.deathItemsCheckBox.Location = new System.Drawing.Point(1042, 199);
+            this.deathItemsCheckBox.Location = new System.Drawing.Point(6, 196);
             this.deathItemsCheckBox.Name = "deathItemsCheckBox";
             this.deathItemsCheckBox.Size = new System.Drawing.Size(92, 17);
             this.deathItemsCheckBox.TabIndex = 20;
@@ -1725,7 +1791,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(1042, 434);
+            this.progressBar1.Location = new System.Drawing.Point(6, 431);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(131, 23);
             this.progressBar1.Step = 1;
@@ -1735,7 +1801,7 @@
             // 
             this.rusRadioButton.AutoSize = true;
             this.rusRadioButton.Checked = true;
-            this.rusRadioButton.Location = new System.Drawing.Point(1057, 550);
+            this.rusRadioButton.Location = new System.Drawing.Point(21, 547);
             this.rusRadioButton.Name = "rusRadioButton";
             this.rusRadioButton.Size = new System.Drawing.Size(48, 17);
             this.rusRadioButton.TabIndex = 22;
@@ -1746,7 +1812,7 @@
             // engRadioButton
             // 
             this.engRadioButton.AutoSize = true;
-            this.engRadioButton.Location = new System.Drawing.Point(1111, 550);
+            this.engRadioButton.Location = new System.Drawing.Point(75, 547);
             this.engRadioButton.Name = "engRadioButton";
             this.engRadioButton.Size = new System.Drawing.Size(48, 17);
             this.engRadioButton.TabIndex = 23;
@@ -1756,7 +1822,7 @@
             // tradersCheckBox
             // 
             this.tradersCheckBox.AutoSize = true;
-            this.tradersCheckBox.Location = new System.Drawing.Point(1042, 222);
+            this.tradersCheckBox.Location = new System.Drawing.Point(6, 219);
             this.tradersCheckBox.Name = "tradersCheckBox";
             this.tradersCheckBox.Size = new System.Drawing.Size(109, 17);
             this.tradersCheckBox.TabIndex = 24;
@@ -1766,7 +1832,7 @@
             // consumablesCheckBox
             // 
             this.consumablesCheckBox.AutoSize = true;
-            this.consumablesCheckBox.Location = new System.Drawing.Point(1042, 245);
+            this.consumablesCheckBox.Location = new System.Drawing.Point(6, 242);
             this.consumablesCheckBox.Name = "consumablesCheckBox";
             this.consumablesCheckBox.Size = new System.Drawing.Size(86, 17);
             this.consumablesCheckBox.TabIndex = 25;
@@ -1777,7 +1843,7 @@
             // 
             this.loadState.AutoSize = true;
             this.loadState.BackColor = System.Drawing.SystemColors.Control;
-            this.loadState.Location = new System.Drawing.Point(1046, 439);
+            this.loadState.Location = new System.Drawing.Point(10, 436);
             this.loadState.Name = "loadState";
             this.loadState.Size = new System.Drawing.Size(52, 13);
             this.loadState.TabIndex = 38;
@@ -1786,46 +1852,84 @@
             // dialogsCheckBox
             // 
             this.dialogsCheckBox.AutoSize = true;
-            this.dialogsCheckBox.Location = new System.Drawing.Point(1042, 153);
+            this.dialogsCheckBox.Location = new System.Drawing.Point(6, 150);
             this.dialogsCheckBox.Name = "dialogsCheckBox";
             this.dialogsCheckBox.Size = new System.Drawing.Size(70, 17);
             this.dialogsCheckBox.TabIndex = 39;
             this.dialogsCheckBox.Text = "Диалоги";
             this.dialogsCheckBox.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(21, 373);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tabControl);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1178, 676);
+            this.panel1.TabIndex = 41;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.saveButton);
+            this.panel2.Controls.Add(this.dialogsCheckBox);
+            this.panel2.Controls.Add(this.loadButton);
+            this.panel2.Controls.Add(this.loadState);
+            this.panel2.Controls.Add(this.generateButton);
+            this.panel2.Controls.Add(this.consumablesCheckBox);
+            this.panel2.Controls.Add(this.loadDefaultButton);
+            this.panel2.Controls.Add(this.tradersCheckBox);
+            this.panel2.Controls.Add(this.allCheckBox);
+            this.panel2.Controls.Add(this.engRadioButton);
+            this.panel2.Controls.Add(this.treasureCheckBox);
+            this.panel2.Controls.Add(this.rusRadioButton);
+            this.panel2.Controls.Add(this.afCheckBox);
+            this.panel2.Controls.Add(this.progressBar1);
+            this.panel2.Controls.Add(this.weaponCheckBox);
+            this.panel2.Controls.Add(this.deathItemsCheckBox);
+            this.panel2.Controls.Add(this.armorCheckBox);
+            this.panel2.Controls.Add(this.weatherCheckBox);
+            this.panel2.Controls.Add(this.npcCheckBox);
+            this.panel2.Controls.Add(this.linkLabel1);
+            this.panel2.Controls.Add(this.suppliesCheckBox);
+            this.panel2.Controls.Add(this.rankCheckBox);
+            this.panel2.Controls.Add(this.reputationCheckBox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(998, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(180, 676);
+            this.panel2.TabIndex = 42;
+            // 
+            // weaponTab
+            // 
+            this.weaponTab.Location = new System.Drawing.Point(4, 22);
+            this.weaponTab.Name = "weaponTab";
+            this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
+            this.weaponTab.Size = new System.Drawing.Size(990, 650);
+            this.weaponTab.TabIndex = 16;
+            this.weaponTab.Text = "Оружие";
+            this.weaponTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 583);
-            this.Controls.Add(this.dialogsCheckBox);
-            this.Controls.Add(this.loadState);
-            this.Controls.Add(this.consumablesCheckBox);
-            this.Controls.Add(this.tradersCheckBox);
-            this.Controls.Add(this.engRadioButton);
-            this.Controls.Add(this.rusRadioButton);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.deathItemsCheckBox);
-            this.Controls.Add(this.weatherCheckBox);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.reputationCheckBox);
-            this.Controls.Add(this.rankCheckBox);
-            this.Controls.Add(this.suppliesCheckBox);
-            this.Controls.Add(this.npcCheckBox);
-            this.Controls.Add(this.armorCheckBox);
-            this.Controls.Add(this.weaponCheckBox);
-            this.Controls.Add(this.afCheckBox);
-            this.Controls.Add(this.treasureCheckBox);
-            this.Controls.Add(this.allCheckBox);
-            this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.loadDefaultButton);
-            this.Controls.Add(this.generateButton);
-            this.Controls.Add(this.loadButton);
-            this.Controls.Add(this.saveButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.ClientSize = new System.Drawing.Size(1184, 682);
+            this.Controls.Add(this.panel1);
             this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Рандомайзер Тень Чернобыля";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
@@ -1860,8 +1964,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1872,10 +1979,7 @@
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Button loadDefaultButton;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox weaponTextBox;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox itemTextBox;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TextBox modelTextBox;
@@ -1901,8 +2005,6 @@
         private System.Windows.Forms.Label recommendLabel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox translateCheckBox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox ammoTextBox;
         private System.Windows.Forms.TextBox otherTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
@@ -1910,7 +2012,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox outfitTextBox;
-        private System.Windows.Forms.Button weaponGuideButton;
         private System.Windows.Forms.Button itemGuideButton;
         private System.Windows.Forms.Button npcGuideButton;
         private System.Windows.Forms.TextBox textBox1;
@@ -1942,10 +2043,6 @@
         private System.Windows.Forms.NumericUpDown rainNumericUpDown;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox reloadSoundsTextBox;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox shootSoundsTextBox;
         private System.Windows.Forms.CheckBox deathItemsCheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.RadioButton rusRadioButton;
@@ -2005,6 +2102,24 @@
         private System.Windows.Forms.NumericUpDown stashReplaceProbInput;
         private System.Windows.Forms.Label probabilityDescription;
         private System.Windows.Forms.CheckBox allRandomProbabilityCheckbox;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox shootSoundsTextBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox reloadSoundsTextBox;
+        private System.Windows.Forms.Button weaponGuideButton;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox ammoTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox weaponTextBox;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TabPage stashTab;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabPage weaponTab;
     }
 }
 

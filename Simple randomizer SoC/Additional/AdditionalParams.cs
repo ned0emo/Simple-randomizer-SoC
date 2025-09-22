@@ -22,15 +22,15 @@ namespace Simple_randomizer_SoC
 
             paramTypeToPrefixAndPathDictionary = new Dictionary<string, Tuple<string, string>>()
             {
-                ["advancedGulag1"] = new Tuple<string, string>(Environment.scriptsPath, "\\smart_terrain.script"),
-                ["advancedGulag2"] = new Tuple<string, string>(Environment.scriptsPath, "\\xr_gulag.script"),
-                ["equipWeaponEverywhere"] = new Tuple<string, string>(Environment.scriptsPath, "\\sr_no_weapon.script"),
-                ["barAlarm"] = new Tuple<string, string>(Environment.configPath, "\\scripts\\bar_territory_zone.ltx"),
-                ["escTraderDoor"] = new Tuple<string, string>(Environment.configPath, "\\scripts\\esc_trader_door.ltx"),
-                ["giveKnife"] = new Tuple<string, string>(Environment.spawnsPath, "\\all.spawn"),
-                ["disableFreedomAgression"] = new Tuple<string, string>(Environment.scriptsPath, "\\gulag_military.script"),
-                ["moreRespawn"] = new Tuple<string, string>(Environment.scriptsPath, "\\se_respawn.script"),
-                ["gScript"] = new Tuple<string, string>(Environment.scriptsPath, "\\_g.script"),
+                ["advancedGulag1"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\smart_terrain.script"),
+                ["advancedGulag2"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\xr_gulag.script"),
+                ["equipWeaponEverywhere"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\sr_no_weapon.script"),
+                ["barAlarm"] = new Tuple<string, string>(MyEnvironment.configPath, "\\scripts\\bar_territory_zone.ltx"),
+                ["escTraderDoor"] = new Tuple<string, string>(MyEnvironment.configPath, "\\scripts\\esc_trader_door.ltx"),
+                ["giveKnife"] = new Tuple<string, string>(MyEnvironment.spawnsPath, "\\all.spawn"),
+                ["disableFreedomAgression"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\gulag_military.script"),
+                ["moreRespawn"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\se_respawn.script"),
+                ["gScript"] = new Tuple<string, string>(MyEnvironment.scriptsPath, "\\_g.script"),
             };
         }
 
@@ -60,7 +60,7 @@ namespace Simple_randomizer_SoC
             Dictionary<string, List<string>> classifiedTextByLengthMap = new Dictionary<string, List<string>>();
 
             //Составление карты текста по длине
-            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}\\text\\rus"))
+            foreach (string file in await MyFile.GetFiles($"{MyEnvironment.configPath}\\text\\rus"))
             {
                 var textData = await MyFile.Read(file);
                 var textDataList = new List<string>(textData.Replace("<text>", "\a").Split('\a'));
@@ -99,15 +99,15 @@ namespace Simple_randomizer_SoC
                     classifiedTextByLengthMap[roundedLength].RemoveAt(index);
                 }
 
-                await MyFile.Write(file.Replace(Environment.configPath, newConfigPath), newTextData);
+                await MyFile.Write(file.Replace(MyEnvironment.configPath, newConfigPath), newTextData);
             }
         }
 
         public async Task CopyText(string newConfigPath)
         {
-            foreach (string file in await MyFile.GetFiles($"{Environment.configPath}/text/rus"))
+            foreach (string file in await MyFile.GetFiles($"{MyEnvironment.configPath}/text/rus"))
             {
-                await MyFile.Copy(file, file.Replace(Environment.configPath, newConfigPath));
+                await MyFile.Copy(file, file.Replace(MyEnvironment.configPath, newConfigPath));
             }
         }
     }

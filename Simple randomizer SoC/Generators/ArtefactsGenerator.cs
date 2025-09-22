@@ -32,7 +32,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new CustomException(Localization.Get("artefactsDataError"));
             }
 
-            var artefacts = Regex.Replace(await MyFile.Read($"{Environment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
+            var artefacts = Regex.Replace(await MyFile.Read($"{MyEnvironment.configPath}/misc/artefacts.ltx"), "\\s+;.+", "");
             var artefactsStringList = StringUtils.Split(artefacts, "af_base");
 
             for (int i = 2; i < artefactsStringList.Count; i++)

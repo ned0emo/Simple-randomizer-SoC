@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new CustomException(Localization.Get("tradersDataError"));
             }
 
-            var tradeFilesList = (await MyFile.GetFiles($"{Environment.configPath}/misc")).ToList();
+            var tradeFilesList = (await MyFile.GetFiles($"{MyEnvironment.configPath}/misc")).ToList();
             tradeFilesList.RemoveAll(el => !el.Contains("trade_"));
 
             foreach (var tradeFile in tradeFilesList)
@@ -70,7 +70,7 @@ namespace Simple_randomizer_SoC.Generators
                     $"[supplies_start_0]\n" +
                     $"{MakeBuySupplies(allItemList, probabilitiesList, countList)}";
 
-                await MyFile.Write(tradeFile.Replace(Environment.configPath, newConfigPath), newTraderData);
+                await MyFile.Write(tradeFile.Replace(MyEnvironment.configPath, newConfigPath), newTraderData);
             }
         }
 
