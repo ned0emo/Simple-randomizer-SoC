@@ -15,7 +15,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
     {
         public string ParameterName { get; private set; } = null;
         public ParameterType ParameterType { get; private set; } = ParameterType.FromList;
-        public int ValuesCount { get; private set; } = 0;
+        public int ValuesCount { get; private set; } = 1;
 
         public AddParameterDialog()
         {
@@ -23,8 +23,6 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             DialogResult = DialogResult.Cancel;
 
             typeSelect.DataSource = ParameterTypeDataSource.Get();
-            //typeSelect.DisplayMember = "Description";
-            //typeSelect.ValueMember = "Value";
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -53,6 +51,14 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         private void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             ParameterType = (ParameterType)typeSelect.SelectedValue;
+            if (ParameterType == ParameterType.Shuffle || ParameterType == ParameterType.Copy)
+            {
+                countInput.Enabled = false;
+            }
+            else
+            {
+                countInput.Enabled = true;
+            }
         }
 
         private void countInput_ValueChanged(object sender, EventArgs e)

@@ -11,8 +11,10 @@ namespace Simple_randomizer_SoC.Model
 {
     public class LtxData
     {
-        public List<string> Includes { get; set; } = new List<string>();
-        public List<LtxSection> Sections { get; set; } = new List<LtxSection>();
+        public string FileName { get; private set; }
+        public List<string> Includes { get; private set; } = new List<string>();
+        public List<LtxSection> Sections { get; private set; } = new List<LtxSection>();
+        public List<string> SectionsList { get; private set; } = new List<string>();
 
         public override string ToString()
         {
@@ -20,93 +22,88 @@ namespace Simple_randomizer_SoC.Model
                 (Sections.Count == 0 ? "" : Sections.Select(s => s.ToString()).Aggregate((s1, s2) => s1 + "\r\n" + s2));
         }
 
-        public static async Task<LtxData> Parse(string filePath)
+        public static async Task<LtxData> Load(string filePath)
         {
-            LtxData ltx = null;
             using (StreamReader sr = new StreamReader(filePath))
             {
-                ltx = await Parse(sr);
-            }
+                var ltxData = new LtxData();
+                ltxData.FileName = Path.GetFileName(filePath);
 
-            return ltx;
-        }
+                string line;
+                LtxSection currentSection = null;
 
-        public static async Task<LtxData> Parse(StreamReader streamReader)
-        {
-            var ltxData = new LtxData();
-
-            string line;
-            LtxSection currentSection = null;
-            while ((line = await streamReader.ReadLineAsync()) != null)
-            {
-                if (line.Contains(";"))
+                while ((line = await sr.ReadLineAsync()) != null)
                 {
-                    line = line.Substring(0, line.IndexOf(";"));
-                }
-
-                line = line.Trim();
-
-                if (string.IsNullOrWhiteSpace(line)) continue;
-
-                if (line.StartsWith("#include"))
-                {
-                    ltxData.Includes.Add(line);
-                    continue;
-                }
-
-                if (line.StartsWith("["))
-                {
-                    var section = new LtxSection();
-                    if (line.Contains(":"))
+                    if (line.Contains(";"))
                     {
-                        var split = line.Split(':');
-                        if (split.Length > 2)
+                        line = line.Substring(0, line.IndexOf(";"));
+                    }
+
+                    line = line.Trim();
+
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+
+                    if (line.StartsWith("#include"))
+                    {
+                        ltxData.Includes.Add(line);
+                        continue;
+                    }
+
+                    if (line.StartsWith("["))
+                    {
+                        var section = new LtxSection();
+                        if (line.Contains(":"))
                         {
-                            throw new CustomException("Строка секции содержит больше одного символа ':'");
+                            var split = line.Split(':');
+                            if (split.Length > 2)
+                            {
+                                throw new CustomException("Строка секции содержит больше одного символа ':'");
+                            }
+
+                            section.Name = split[0].Substring(1, split[0].Length - 2);
+                            section.ParentName = split[1];
+                        }
+                        else
+                        {
+                            section.Name = line.Substring(1, line.Length - 2);
                         }
 
-                        section.Name = split[0];
-                        section.ParentName = split[1];
+                        ltxData.Sections.Add(section);
+                        ltxData.SectionsList.Add(section.Name);
+                        currentSection = section;
+
+                        continue;
                     }
-                    else
+
+                    if (currentSection != null)
                     {
-                        section.Name = line;
-                    }
+                        //var param = new LtxParam();
 
-                    ltxData.Sections.Add(section);
-                    currentSection = section;
+                        if (line.Contains("="))
+                        {
+                            var eqIndex = line.IndexOf("=");
+                            var paramData = new List<string>() { line.Substring(0, eqIndex), line.Substring(eqIndex + 1, line.Length - eqIndex - 1) };
 
-                    continue;
-                }
+                            var paramName = paramData[0].Trim();
+                            List<string> paramValues;
 
-                if (currentSection != null)
-                {
-                    //var param = new LtxParam();
+                            if (paramData[1].Contains(","))
+                                paramValues = paramData[1].Split(',').Select(p => p.Trim()).ToList();
+                            else
+                                paramValues = new List<string>() { paramData[1].Trim() };
 
-                    if (line.Contains("="))
-                    {
-                        var eqIndex = line.IndexOf("=");
-                        var paramData = new List<string>() { line.Substring(0, eqIndex), line.Substring(eqIndex + 1, line.Length - eqIndex - 1) };
-
-                        var paramName = paramData[0].Trim();
-                        List<string> paramValues;
-
-                        if (paramData[1].Contains(","))
-                            paramValues = paramData[1].Split(',').Select(p => p.Trim()).ToList();
+                            currentSection.HasAnyParam = true;
+                            currentSection.Params[paramName] = paramValues;
+                        }
                         else
-                            paramValues = new List<string>() { paramData[1].Trim() };
-
-                        currentSection.HasAnyParam = true;
-                        currentSection.Params[paramName] = paramValues;
-                    }
-                    else
-                    {
-                        currentSection.Params[line] = new List<string>();
+                        {
+                            currentSection.Params[line] = new List<string>();
+                        }
                     }
                 }
-            }
 
-            return ltxData;
+                return ltxData;
+            }
         }
     }
 }

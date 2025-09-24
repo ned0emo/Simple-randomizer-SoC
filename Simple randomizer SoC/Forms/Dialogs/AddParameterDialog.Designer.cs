@@ -176,6 +176,11 @@
             this.countInput.Name = "countInput";
             this.countInput.Size = new System.Drawing.Size(134, 20);
             this.countInput.TabIndex = 5;
+            this.countInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.countInput.ValueChanged += new System.EventHandler(this.countInput_ValueChanged);
             // 
             // AddParameterDialog

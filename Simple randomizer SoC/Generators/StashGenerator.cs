@@ -1,4 +1,5 @@
-﻿using Simple_randomizer_SoC.Model;
+﻿using Simple_randomizer_SoC.Generators.Support;
+using Simple_randomizer_SoC.Model;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -11,36 +12,29 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class StashGenerator : ProbabilityChecker, IGenerator
+    public class StashGenerator : IGenerator
     {
-        private StashConfig stashConfig;
-
-        private string newConfigPath;
-
         private static readonly List<string> defaultItems = new List<string>() { "bandage", "1" };
+
+        private readonly ProbabilityChecker pc = new ProbabilityChecker();
+        private readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;
+
+        private StashConfig stashConfig;
+        private string newConfigPath;
 
         public void UpdateData(StashConfig stashConfig, string newConfigPath, bool randomProbability)
         {
             this.stashConfig = stashConfig;
             this.newConfigPath = newConfigPath;
-            SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashConfig.Probability);
+            pc.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : stashConfig.Probability);
         }
 
         public async Task Generate()
         {
             var rnd = GlobalRandom.Rnd;
 
-            LtxData ltx = null;
-
-            using (var sr = new StreamReader($"{MyEnvironment.configPath}\\misc\\treasure_manager.ltx"))
-            {
-                ltx = await LtxData.Parse(sr);
-            }
-
-            if (ltx == null)
-            {
-                throw new CustomException("Ошибка чтения файла с данными о тайниках");
-            }
+            LtxData ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\treasure_manager.ltx")
+                ?? throw new CustomException("Ошибка чтения файла с данными о тайниках");
 
             List<string> names = new List<string>();
             List<LtxSection> sectionsToShuffleNames = new List<LtxSection>();
@@ -52,7 +46,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (!section.HasAnyParam) continue;
 
-                doOrSkip(() =>
+                pc.DoOrSkip(() =>
                 {
                     var c = CollectionUtils.GetRandomElements(stashConfig.Communities, GlobalRandom.Rnd.Next(5) + 1);
                     if (c.Count == 0) return;
@@ -60,12 +54,12 @@ namespace Simple_randomizer_SoC.Generators
                     section.Params["community"] = c;
                 });
 
-                doOrSkip(() =>
+                pc.DoOrSkip(() =>
                 {
                     section.Params["condlist"] = new List<string> { (GlobalRandom.Rnd.Next(5) + 1).ToString() };
                 });
 
-                doOrSkip(() =>
+                pc.DoOrSkip(() =>
                 {
                     if (section.Params.TryGetValue("name", out List<string> p))
                     {
@@ -78,7 +72,7 @@ namespace Simple_randomizer_SoC.Generators
                 });
 
 
-                doOrSkip(() =>
+                pc.DoOrSkip(() =>
                 {
                     if (section.Params.TryGetValue("description", out List<string> p))
                     {
@@ -90,7 +84,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                 });
 
-                doOrSkip(() =>
+                pc.DoOrSkip(() =>
                 {
                     int itemCount = GlobalRandom.Rnd.Next(7) + 1;
                     if (section.Params.TryGetValue("items", out List<string> p))
@@ -138,12 +132,12 @@ namespace Simple_randomizer_SoC.Generators
 
             if (sectionsToShuffleNames.Count > 1)
             {
-                Shuffle(names, sectionsToShuffleNames, "name");
+                shuffler.Shuffle(names, sectionsToShuffleNames, "name");
             }
 
             if (sectionsToShuffleDescriptions.Count > 1)
             {
-                Shuffle(descriptions, sectionsToShuffleDescriptions, "description");
+                shuffler.Shuffle(descriptions, sectionsToShuffleDescriptions, "description");
             }
 
             await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", ltx.ToString());
@@ -173,24 +167,6 @@ namespace Simple_randomizer_SoC.Generators
             var item = CollectionUtils.GetRandomElement(itemList);
 
             return new List<string>() { item.Name, (item.Count * count).ToString() };
-        }
-
-        private void Shuffle(List<string> items, List<LtxSection> sections, string paramName)
-        {
-            if (items.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(items));
-            while (items.Count > 0)
-            {
-                var itemIndex = GlobalRandom.Rnd.Next(items.Count);
-                var sectionIndex = GlobalRandom.Rnd.Next(sections.Count);
-
-                var item = items[itemIndex];
-                var section = sections[sectionIndex];
-
-                section.SetParam(paramName, item);
-
-                items.RemoveAt(itemIndex);
-                sections.RemoveAt(sectionIndex);
-            }
         }
     }
 }

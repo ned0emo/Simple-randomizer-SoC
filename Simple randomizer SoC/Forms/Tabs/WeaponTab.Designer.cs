@@ -73,7 +73,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(65, 135);
+            this.label6.Location = new System.Drawing.Point(65, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(282, 13);
             this.label6.TabIndex = 47;
@@ -81,7 +81,7 @@
             // 
             // ammoProbabilityInput
             // 
-            this.ammoProbabilityInput.Location = new System.Drawing.Point(6, 133);
+            this.ammoProbabilityInput.Location = new System.Drawing.Point(6, 135);
             this.ammoProbabilityInput.Minimum = new decimal(new int[] {
             1,
             0,
@@ -100,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(65, 109);
+            this.label3.Location = new System.Drawing.Point(65, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(272, 13);
             this.label3.TabIndex = 45;
@@ -108,7 +108,7 @@
             // 
             // weaponProbabilityInput
             // 
-            this.weaponProbabilityInput.Location = new System.Drawing.Point(6, 107);
+            this.weaponProbabilityInput.Location = new System.Drawing.Point(6, 109);
             this.weaponProbabilityInput.Minimum = new decimal(new int[] {
             1,
             0,

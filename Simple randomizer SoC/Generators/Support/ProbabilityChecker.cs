@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public abstract class ProbabilityChecker
+    public class ProbabilityChecker
     {
-        protected Func<bool> skipReplacing = () => false;
-        protected Action<Action> doOrSkip = (Action replaceAction) => replaceAction();
+        public Func<bool> SkipReplacing { get; private set; } = () => false;
+        public Action<Action> DoOrSkip { get; private set; } = (action) => action();
 
         public void SetProbability(int probability)
         {
             if (probability > 99)
             {
-                skipReplacing = () => false;
-                doOrSkip = (Action replaceAction) => replaceAction();
+                SkipReplacing = () => false;
+                DoOrSkip = (action) => action();
             }
             else
             {
-                skipReplacing = () => GlobalRandom.Rnd.Next(100) >= probability;
-                doOrSkip = (Action replaceAction) =>
+                SkipReplacing = () => GlobalRandom.Rnd.Next(100) >= probability;
+                DoOrSkip = (action) =>
                 {
                     if (GlobalRandom.Rnd.Next(100) < probability)
                     {
-                        replaceAction();
+                        action();
                     }
                 };
             }

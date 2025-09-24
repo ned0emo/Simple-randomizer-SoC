@@ -9,7 +9,9 @@ namespace Simple_randomizer_SoC.Enums
     {
         FromList,
         IntRange,
-        FloatRange
+        FloatRange,
+        Shuffle,
+        Copy
     }
 
     public abstract class ParameterTypeDataSource

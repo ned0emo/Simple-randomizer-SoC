@@ -21,11 +21,11 @@ namespace Simple_randomizer_SoC.Generators
 
         public async Task Generate()
         {
-            LtxData ltx = await LtxData.Parse(config.FilePath);
+            LtxData ltx = await LtxData.Load(config.FilePath);
 
             foreach (var p in config.Parameters)
             {
-                doOrSkip(() =>
+                DoOrSkip(() =>
                 {
                     foreach (var s in ltx.Sections)
                     {

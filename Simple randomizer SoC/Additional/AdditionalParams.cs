@@ -46,7 +46,7 @@ namespace Simple_randomizer_SoC
         {
             foreach (string key in paramTypeToNewPrefixDictionary.Keys)
             {
-                await MyFile.Copy(
+                await MyFile.CopyFileAsync(
                     paramTypeToPrefixAndPathDictionary[key].Item1 + paramTypeToPrefixAndPathDictionary[key].Item2,
                     paramTypeToNewPrefixDictionary[key] + paramTypeToPrefixAndPathDictionary[key].Item2
                 );
@@ -107,7 +107,7 @@ namespace Simple_randomizer_SoC
         {
             foreach (string file in await MyFile.GetFiles($"{MyEnvironment.configPath}/text/rus"))
             {
-                await MyFile.Copy(file, file.Replace(MyEnvironment.configPath, newConfigPath));
+                await MyFile.CopyFileAsync(file, file.Replace(MyEnvironment.configPath, newConfigPath));
             }
         }
     }

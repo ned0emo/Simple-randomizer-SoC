@@ -25,5 +25,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 
             return result;
         }
+
+        public override bool Validate()
+        {
+            if (MinValue > MaxValue) return false;
+            return base.Validate();
+        }
     }
 }

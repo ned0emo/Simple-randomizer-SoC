@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC
@@ -23,7 +24,7 @@ namespace Simple_randomizer_SoC
         public static async Task Write(string path, string content)
         {
             path = path.Replace("/", "\\");
-            Directory.CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
+            await CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
             using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
             {
                 await sw.WriteAsync(content);
@@ -31,18 +32,31 @@ namespace Simple_randomizer_SoC
             }
         }
 
-        public static async Task Copy(string oldPath, string newPath)
+        public static async Task CopyFileAsync(string sourcePath, string destinationPath,
+            int bufferSize = 4096, CancellationToken cancellationToken = default)
         {
-            newPath = newPath.Replace("/", "\\");
-            await Task.Yield();
-            Directory.CreateDirectory(newPath.Substring(0, newPath.LastIndexOf('\\')));
-            File.Copy(oldPath, newPath);
+            using (var sourceStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read,
+                bufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan))
+            {
+                using (var destinationStream = new FileStream(
+                    destinationPath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize,
+                    FileOptions.Asynchronous | FileOptions.SequentialScan))
+                {
+                    await sourceStream.CopyToAsync(destinationStream, bufferSize, cancellationToken);
+                }
+            }
+
         }
 
+        //TODO: переделать асинхронность
         public static async Task<string[]> GetFiles(string path)
         {
-            await Task.Yield();
-            return Directory.GetFiles(path);
+            return await Task.Run(() => Directory.GetFiles(path));
+        }
+
+        public static async Task<DirectoryInfo> CreateDirectory(string path)
+        {
+            return await Task.Run(() => Directory.CreateDirectory(path));
         }
     }
 }

@@ -40,14 +40,16 @@ namespace RandomizerSoC
             this.generateButton = new System.Windows.Forms.Button();
             this.loadDefaultButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.stashTab = new System.Windows.Forms.TabPage();
+            this.weaponTab = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.shootSoundsTextBox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.reloadSoundsTextBox = new System.Windows.Forms.TextBox();
             this.weaponGuideButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.ammoTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.weaponTextBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -156,7 +158,6 @@ namespace RandomizerSoC
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.stashTab = new System.Windows.Forms.TabPage();
             this.allCheckBox = new System.Windows.Forms.CheckBox();
             this.treasureCheckBox = new System.Windows.Forms.CheckBox();
             this.afCheckBox = new System.Windows.Forms.CheckBox();
@@ -180,7 +181,6 @@ namespace RandomizerSoC
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.weaponTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -268,8 +268,28 @@ namespace RandomizerSoC
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(998, 676);
+            this.tabControl.Size = new System.Drawing.Size(518, 435);
             this.tabControl.TabIndex = 6;
+            // 
+            // stashTab
+            // 
+            this.stashTab.Location = new System.Drawing.Point(4, 40);
+            this.stashTab.Name = "stashTab";
+            this.stashTab.Padding = new System.Windows.Forms.Padding(3);
+            this.stashTab.Size = new System.Drawing.Size(510, 391);
+            this.stashTab.TabIndex = 15;
+            this.stashTab.Text = "Тайники";
+            this.stashTab.UseVisualStyleBackColor = true;
+            // 
+            // weaponTab
+            // 
+            this.weaponTab.Location = new System.Drawing.Point(4, 22);
+            this.weaponTab.Name = "weaponTab";
+            this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
+            this.weaponTab.Size = new System.Drawing.Size(990, 650);
+            this.weaponTab.TabIndex = 16;
+            this.weaponTab.Text = "Оружие";
+            this.weaponTab.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -289,6 +309,15 @@ namespace RandomizerSoC
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Оружие";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(500, 23);
+            this.label1.TabIndex = 2;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // shootSoundsTextBox
             // 
@@ -349,15 +378,6 @@ namespace RandomizerSoC
             this.ammoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.ammoTextBox.Size = new System.Drawing.Size(245, 492);
             this.ammoTextBox.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(500, 23);
-            this.label1.TabIndex = 2;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // weaponTextBox
             // 
@@ -1643,16 +1663,6 @@ namespace RandomizerSoC
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
-            // stashTab
-            // 
-            this.stashTab.Location = new System.Drawing.Point(4, 22);
-            this.stashTab.Name = "stashTab";
-            this.stashTab.Padding = new System.Windows.Forms.Padding(3);
-            this.stashTab.Size = new System.Drawing.Size(990, 650);
-            this.stashTab.TabIndex = 15;
-            this.stashTab.Text = "Тайники";
-            this.stashTab.UseVisualStyleBackColor = true;
-            // 
             // allCheckBox
             // 
             this.allCheckBox.AutoSize = true;
@@ -1875,7 +1885,7 @@ namespace RandomizerSoC
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1178, 676);
+            this.panel1.Size = new System.Drawing.Size(698, 435);
             this.panel1.TabIndex = 41;
             // 
             // panel2
@@ -1907,27 +1917,18 @@ namespace RandomizerSoC
             this.panel2.Controls.Add(this.rankCheckBox);
             this.panel2.Controls.Add(this.reputationCheckBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(998, 0);
+            this.panel2.Location = new System.Drawing.Point(518, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(180, 676);
+            this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
-            // 
-            // weaponTab
-            // 
-            this.weaponTab.Location = new System.Drawing.Point(4, 22);
-            this.weaponTab.Name = "weaponTab";
-            this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(990, 650);
-            this.weaponTab.TabIndex = 16;
-            this.weaponTab.Text = "Оружие";
-            this.weaponTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 682);
+            this.ClientSize = new System.Drawing.Size(704, 441);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(720, 480);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Рандомайзер Тень Чернобыля";

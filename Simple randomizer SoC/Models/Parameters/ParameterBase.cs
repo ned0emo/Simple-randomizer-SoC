@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Model
 {
-    public abstract class ParameterBase
+    public abstract class ParameterBase : Parameter
     {
-        public string Name { get; set; }
-        public ParameterType ParameterType { get; set; }
         public int ValuesCount { get; set; } = 1;
         public abstract List<string> GenerateValuesList(Random rnd);
+
+        public override bool Validate()
+        {
+            if (ValuesCount < 0) return false;
+
+            return base.Validate();
+        }
     }
 }

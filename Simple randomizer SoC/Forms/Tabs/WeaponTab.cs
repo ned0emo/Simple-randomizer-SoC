@@ -36,7 +36,8 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editWeaponParametersButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ParameterListDialog(weaponConfig.WeaponFromListParameters, weaponConfig.WeaponIntRangeParameters, weaponConfig.WeaponFloatRangeParameters);
+            var dialog = new ParameterListDialog(weaponConfig.WeaponFromListParameters, weaponConfig.WeaponIntRangeParameters,
+                weaponConfig.WeaponFloatRangeParameters, weaponConfig.WeaponShuffleParameters, weaponConfig.WeaponCopyParameters);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 weaponConfig.WeaponFromListParameters.Clear();
@@ -45,6 +46,10 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 weaponConfig.WeaponIntRangeParameters.AddRange(dialog.IntRangeParameters);
                 weaponConfig.WeaponFloatRangeParameters.Clear();
                 weaponConfig.WeaponFloatRangeParameters.AddRange(dialog.FloatRangeParameters);
+                weaponConfig.WeaponShuffleParameters.Clear();
+                weaponConfig.WeaponShuffleParameters.AddRange(dialog.ShuffleParameters);
+                weaponConfig.WeaponCopyParameters.Clear();
+                weaponConfig.WeaponCopyParameters.AddRange(dialog.CopyParameters);
 
                 await ConfigHandler.Save(weaponConfig);
             }
@@ -57,7 +62,8 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editAmmoParametersButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ParameterListDialog(weaponConfig.AmmoFromListParameters, weaponConfig.WeaponIntRangeParameters, weaponConfig.WeaponFloatRangeParameters);
+            var dialog = new ParameterListDialog(weaponConfig.AmmoFromListParameters, weaponConfig.AmmoIntRangeParameters,
+                weaponConfig.AmmoFloatRangeParameters, weaponConfig.AmmoShuffleParameters, weaponConfig.AmmoCopyParameters);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 weaponConfig.AmmoFromListParameters.Clear();
@@ -66,6 +72,10 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 weaponConfig.AmmoIntRangeParameters.AddRange(dialog.IntRangeParameters);
                 weaponConfig.AmmoFloatRangeParameters.Clear();
                 weaponConfig.AmmoFloatRangeParameters.AddRange(dialog.FloatRangeParameters);
+                weaponConfig.AmmoShuffleParameters.Clear();
+                weaponConfig.AmmoShuffleParameters.AddRange(dialog.ShuffleParameters);
+                weaponConfig.AmmoCopyParameters.Clear();
+                weaponConfig.AmmoCopyParameters.AddRange(dialog.CopyParameters);
 
                 await ConfigHandler.Save(weaponConfig);
             }

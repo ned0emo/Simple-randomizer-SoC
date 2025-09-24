@@ -44,7 +44,7 @@ namespace RandomizerSoC
 
         //Генераторы
         readonly StashGenerator stashGenerator;
-        readonly WeaponsGenerator weaponsGenerator;
+        readonly WeaponGenerator weaponsGenerator;
         readonly NpcGenerator npcGenerator;
         readonly ArtefactsGenerator artefactsGenerator;
         readonly OutfitsGenerator outfitsGenerator;
@@ -60,6 +60,7 @@ namespace RandomizerSoC
         readonly TextureRandomizer textureRandomizer;
 
         readonly StashConfig stashConfig;
+        readonly WeaponConfig weaponConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -123,7 +124,7 @@ namespace RandomizerSoC
 
             stashGenerator = new StashGenerator();
             artefactsGenerator = new ArtefactsGenerator();
-            weaponsGenerator = new WeaponsGenerator();
+            weaponsGenerator = new WeaponGenerator();
             outfitsGenerator = new OutfitsGenerator();
             npcGenerator = new NpcGenerator();
             weatherGenerator = new WeatherGenerator();
@@ -146,6 +147,7 @@ namespace RandomizerSoC
             weaponTab.Controls.Add(new WeaponTab(weaponConfig));
 
             this.stashConfig = stashConfig;
+            this.weaponConfig = weaponConfig;
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -302,8 +304,9 @@ namespace RandomizerSoC
             //оружие
             if (weaponCheckBox.Checked)
             {
-                weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
-                weaponsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponReplaceProbInput.Value);
+                weaponsGenerator.UpdateData(weaponConfig, newConfigPath, randomProbability);
+                //weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
+                //weaponsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponReplaceProbInput.Value);
                 try
                 {
                     await weaponsGenerator.Generate();

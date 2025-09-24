@@ -11,7 +11,7 @@ namespace Simple_randomizer_SoC.Models.Parameters
     {
         public float MinValue { get; set; }
         public float MaxValue { get; set; }
-        public int Accuracy { get; set; } = 2;
+        public int Precision { get; set; } = 2;
 
         public override List<string> GenerateValuesList(Random rnd)
         {
@@ -21,18 +21,23 @@ namespace Simple_randomizer_SoC.Models.Parameters
                 throw new ArgumentOutOfRangeException(nameof(ValuesCount), "Количество значений параметра не может быть меньше 0");
             if (MinValue > MaxValue)
                 throw new ArgumentOutOfRangeException(nameof(MinValue), "Минимальное значение параметра не может быть больше максимального");
-            if (Accuracy < 0)
-                throw new ArgumentOutOfRangeException(nameof(Accuracy), "Точность значения параметра не может быть меньше 0");
+            if (Precision < 0)
+                throw new ArgumentOutOfRangeException(nameof(Precision), "Точность значения параметра не может быть меньше 0");
 
             var diff = MaxValue - MinValue;
             var result = new List<string>();
             rnd.Next(1, 100);
             for (int i = 0; i < ValuesCount; i++)
             {
-                result.Add(Math.Round(rnd.NextDouble() * diff + MinValue, Accuracy).ToString());
+                result.Add(Math.Round(rnd.NextDouble() * diff + MinValue, Precision).ToString());
             }
 
             return result;
+        }
+        public override bool Validate()
+        {
+            if (MinValue > MaxValue || Precision < 0) return false;
+            return base.Validate();
         }
     }
 }
