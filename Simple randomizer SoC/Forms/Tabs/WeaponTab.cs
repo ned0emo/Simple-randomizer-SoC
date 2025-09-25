@@ -1,4 +1,5 @@
 ﻿using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Support;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -17,6 +18,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
     {
         private readonly WeaponConfig weaponConfig;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
+        private readonly ParametersEditor parametersEditor = Singleton<ParametersEditor>.Instance;
 
         public WeaponTab(WeaponConfig weaponConfig)
         {
@@ -29,35 +31,24 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             ammoProbabilityInput.Value = weaponConfig.AmmoStatProbability;
         }
 
-        private void editWeaponSectionsButton_Click(object sender, EventArgs e)
+        private async void editWeaponSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Секции оружия", weaponConfig.WeaponSections, weaponConfig);
+            await listEditComponent.SimpleListEditAndSave("Секции оружия", weaponConfig.WeaponSections, weaponConfig);
         }
 
         private async void editWeaponParametersButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ParameterListDialog(weaponConfig.WeaponParameterContainer);
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                weaponConfig.WeaponParameterContainer.Update(dialog.ParameterContainer);
-                await ConfigHandler.Save(weaponConfig);
-            }
+            await parametersEditor.ParametersEditAndSave("Параметры оружия", weaponConfig.WeaponParameterContainer, weaponConfig);
         }
 
-        private void editAmmoSectionsButton_Click(object sender, EventArgs e)
+        private async void editAmmoSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Секции патронов", weaponConfig.AmmoSections, weaponConfig);
+            await listEditComponent.SimpleListEditAndSave("Секции патронов", weaponConfig.AmmoSections, weaponConfig);
         }
 
         private async void editAmmoParametersButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ParameterListDialog(weaponConfig.AmmoParameterContainer);
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                weaponConfig.AmmoParameterContainer.Update(dialog.ParameterContainer);
-
-                await ConfigHandler.Save(weaponConfig);
-            }
+            await parametersEditor.ParametersEditAndSave("Параметры патронов", weaponConfig.AmmoParameterContainer, weaponConfig);
         }
 
         private void probabilityInput_ValueChanged(object sender, EventArgs e)

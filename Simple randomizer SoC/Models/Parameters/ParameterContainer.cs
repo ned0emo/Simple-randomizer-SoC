@@ -36,5 +36,12 @@ namespace Simple_randomizer_SoC.Models.Parameters
             ShuffleParameters.AddRange(pc.ShuffleParameters);
             CopyParameters.AddRange(pc.CopyParameters);
         }
+
+        public List<string> GetParameterList()
+        {
+            var result = new List<string>();
+            ForEachParameter((p) =>  result.Add(p.Name));
+            return result;
+        }
     }
 }

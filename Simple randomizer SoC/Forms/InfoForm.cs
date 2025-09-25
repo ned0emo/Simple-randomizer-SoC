@@ -59,6 +59,7 @@ namespace RandomizerSoC
             else
             {
                 textBox1.Text = ex.Message + "\r\n" +
+                    ex.GetType().Name + "\r\n" +
                     ex.InnerException?.Message + "\r\n" +
                     ex.StackTrace;
             }

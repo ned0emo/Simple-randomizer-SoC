@@ -44,9 +44,9 @@ namespace RandomizerSoC
 
         //Генераторы
         readonly StashGenerator stashGenerator;
-        readonly WeaponGenerator weaponsGenerator;
+        readonly WeaponGenerator weaponGenerator;
         readonly NpcGenerator npcGenerator;
-        readonly ArtefactsGenerator artefactsGenerator;
+        readonly ArtefactGenerator artefactGenerator;
         readonly OutfitsGenerator outfitsGenerator;
         readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
@@ -61,6 +61,7 @@ namespace RandomizerSoC
 
         readonly StashConfig stashConfig;
         readonly WeaponConfig weaponConfig;
+        readonly ItemConfig itemConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace RandomizerSoC
             threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
-        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig)
+        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig, ItemConfig itemConfig)
         {
             InitializeComponent();
             loadState.Text = "";
@@ -123,8 +124,9 @@ namespace RandomizerSoC
             }
 
             stashGenerator = new StashGenerator();
-            artefactsGenerator = new ArtefactsGenerator();
-            weaponsGenerator = new WeaponGenerator();
+            artefactGenerator = new ArtefactGenerator();
+            weaponGenerator = new WeaponGenerator();
+
             outfitsGenerator = new OutfitsGenerator();
             npcGenerator = new NpcGenerator();
             weatherGenerator = new WeatherGenerator();
@@ -145,9 +147,11 @@ namespace RandomizerSoC
 
             stashTab.Controls.Add(new StashTab(stashConfig));
             weaponTab.Controls.Add(new WeaponTab(weaponConfig));
+            itemTab.Controls.Add(new ItemTab(itemConfig));
 
             this.stashConfig = stashConfig;
             this.weaponConfig = weaponConfig;
+            this.itemConfig = itemConfig;
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -287,11 +291,10 @@ namespace RandomizerSoC
             //артефакты
             if (afCheckBox.Checked)
             {
-                artefactsGenerator.UpdateData(newConfigPath: newConfigPath);
-                artefactsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : artReplcaeProbInput.Value);
+                artefactGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
                 try
                 {
-                    await artefactsGenerator.Generate();
+                    await artefactGenerator.Generate();
                 }
                 catch (Exception ex)
                 {
@@ -304,12 +307,12 @@ namespace RandomizerSoC
             //оружие
             if (weaponCheckBox.Checked)
             {
-                weaponsGenerator.UpdateData(weaponConfig, newConfigPath, randomProbability);
+                weaponGenerator.UpdateData(weaponConfig, newConfigPath, randomProbability);
                 //weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
                 //weaponsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponReplaceProbInput.Value);
                 try
                 {
-                    await weaponsGenerator.Generate();
+                    await weaponGenerator.Generate();
                 }
                 catch (Exception ex)
                 {

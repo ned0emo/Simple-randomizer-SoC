@@ -1,5 +1,6 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Support;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -16,99 +17,88 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 {
     public partial class ItemTab : UserControl
     {
-        private readonly StashConfig stashConfig;
+        private readonly ItemConfig config;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
+        private readonly ParametersEditor parametersEditor = Singleton<ParametersEditor>.Instance;
 
-        public ItemTab(StashConfig stashConfig)
+        public ItemTab(ItemConfig config)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
 
-            this.stashConfig = stashConfig;
+            this.config = config;
 
-            maxWeaponsInput.Value = stashConfig.WeaponsMaxCount;
-            maxArmorsInput.Value = stashConfig.ArmorsMaxCount;
-            maxArtefactsInput.Value = stashConfig.ArtefactsMaxCount;
-            maxAmmosInput.Value = stashConfig.AmmosMaxCount;
-            maxItemsInput.Value = stashConfig.ItemsMaxCount;
-            maxOthersInput.Value = stashConfig.OthersMaxCount;
-            maxCommunitiesInput.Value = stashConfig.CommunitiesMaxCount;
+            artefactProbabilityInput.Value = config.ArtefactProbability;
+            armorProbabilityInput.Value = config.ArmorProbability;
+            itemProbabilityInput.Value = config.ConsumableProbability;
 
-            probabilityInput.Value = stashConfig.Probability;
+            minArtefactStatCountInput.Value = config.MinArtefactStatCount;
+            maxArtefactStatCountInput.Value = config.MaxArtefactStatCount;
         }
 
-        private void editWeaponsButton_Click(object sender, EventArgs e)
+        private async void artefactSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Секции артефактов", config.ArtefactSections, config);
         }
 
-        private void editArmorsButton_Click(object sender, EventArgs e)
+        private async void artefactParametersButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
+            await parametersEditor.ParametersEditAndSave("Стандартные параметры артефактов", config.StandardArtefactParameters, config);
         }
 
-        private void editArtefactsButton_Click(object sender, EventArgs e)
+        private async void artefactStatParametersButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
+            await parametersEditor.ParametersEditAndSave("Параметры характеристик артефактов, с базовым значением 0.0", config.StatArtefactParameters0, config);
         }
 
-        private void editAmmosButton_Click(object sender, EventArgs e)
+        private async void artefactStatParameters1Button_Click(object sender, EventArgs e)
         {
-            listEditComponent.ComplexListEditAndSave("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
+            await parametersEditor.ParametersEditAndSave("Параметры характеристик артефактов, с базовым значением 1.0", config.StatArtefactParameters1, config);
         }
 
-        private void editItemsButton_Click(object sender, EventArgs e)
+        private async void armorSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Секции брони", config.ArmorSections, config);
         }
 
-        private void editOthersButton_Click(object sender, EventArgs e)
+        private async void armorParametersButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
+            await parametersEditor.ParametersEditAndSave("Параметры брони", config.ArmorParameters, config);
         }
 
-        private void editCommunitiesButton_Click(object sender, EventArgs e)
+        private async void itemSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Секции расходников", config.ConsumableSections, config);
         }
 
-        private void maxWeponsInput_ValueChanged(object sender, EventArgs e)
+        private async void itemParametersButton_Click(object sender, EventArgs e)
         {
-            stashConfig.WeaponsMaxCount = (int)maxWeaponsInput.Value;
+            await parametersEditor.ParametersEditAndSave("Параметры расходников", config.ConsumableParameters, config);
         }
 
-        private void maxArmorsInput_ValueChanged(object sender, EventArgs e)
+        private void artefactProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
-            stashConfig.ArmorsMaxCount = (int)maxArmorsInput.Value;
+            config.ArtefactProbability = (int)artefactProbabilityInput.Value;
         }
 
-        private void maxArtefactsInput_ValueChanged(object sender, EventArgs e)
+        private void armorProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
-            stashConfig.ArtefactsMaxCount = (int)maxArtefactsInput.Value;
+            config.ArmorProbability = (int)armorProbabilityInput.Value;
         }
 
-        private void maxAmmosInput_ValueChanged(object sender, EventArgs e)
+        private void itemProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
-            stashConfig.AmmosMaxCount = (int)maxAmmosInput.Value;
+            config.ConsumableProbability = (int)itemProbabilityInput.Value;
         }
 
-        private void maxItemsInput_ValueChanged(object sender, EventArgs e)
+        private void minArtefactStatCountInput_ValueChanged(object sender, EventArgs e)
         {
-            stashConfig.ItemsMaxCount = (int)maxItemsInput.Value;
+            config.MinArtefactStatCount = (int)minArtefactStatCountInput.Value;
         }
 
-        private void maxOthersInput_ValueChanged(object sender, EventArgs e)
+        private void maxArtefactStatCountInput_ValueChanged(object sender, EventArgs e)
         {
-            stashConfig.OthersMaxCount = (int)maxOthersInput.Value;
-        }
-        private void maxCommunitiesInput_ValueChanged(object sender, EventArgs e)
-        {
-            stashConfig.CommunitiesMaxCount = (int)maxCommunitiesInput.Value;
-        }
-
-        private void probabilityInput_ValueChanged(object sender, EventArgs e)
-        {
-            stashConfig.Probability = (int)probabilityInput.Value;
+            config.MaxArtefactStatCount = (int)maxArtefactStatCountInput.Value;
         }
     }
 }

@@ -11,10 +11,21 @@ namespace Simple_randomizer_SoC.Model
 {
     public class LtxData
     {
+        private readonly Dictionary<string, LtxSection> _sectionByName = new Dictionary<string, LtxSection>();
         public string FileName { get; private set; }
         public List<string> Includes { get; private set; } = new List<string>();
         public List<LtxSection> Sections { get; private set; } = new List<LtxSection>();
         public List<string> SectionsList { get; private set; } = new List<string>();
+
+        public LtxSection GetSectionByName(string name)
+        {
+            if (_sectionByName.TryGetValue(name, out LtxSection section))
+            {
+                return section;
+            }
+
+            return null;
+        }
 
         public override string ToString()
         {
@@ -71,6 +82,8 @@ namespace Simple_randomizer_SoC.Model
                         ltxData.Sections.Add(section);
                         ltxData.SectionsList.Add(section.Name);
                         currentSection = section;
+
+                        ltxData._sectionByName.Add(section.Name, section);
 
                         continue;
                     }

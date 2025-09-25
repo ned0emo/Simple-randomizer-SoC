@@ -37,39 +37,39 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             probabilityInput.Value = stashConfig.Probability;
         }
 
-        private void editWeaponsButton_Click(object sender, EventArgs e)
+        private async void editWeaponsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
         }
 
-        private void editArmorsButton_Click(object sender, EventArgs e)
+        private async void editArmorsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
         }
 
-        private void editArtefactsButton_Click(object sender, EventArgs e)
+        private async void editArtefactsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
         }
 
-        private void editAmmosButton_Click(object sender, EventArgs e)
+        private async void editAmmosButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.ComplexListEditAndSave("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
+            await listEditComponent.ComplexListEditAndSave("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
         }
 
-        private void editItemsButton_Click(object sender, EventArgs e)
+        private async void editItemsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
         }
 
-        private void editOthersButton_Click(object sender, EventArgs e)
+        private async void editOthersButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
         }
 
-        private void editCommunitiesButton_Click(object sender, EventArgs e)
+        private async void editCommunitiesButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.SimpleListEditAndSave("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
+            await listEditComponent.SimpleListEditAndSave("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
         }
 
         private void maxWeponsInput_ValueChanged(object sender, EventArgs e)

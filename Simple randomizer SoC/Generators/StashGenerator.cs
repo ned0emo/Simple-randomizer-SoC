@@ -132,12 +132,12 @@ namespace Simple_randomizer_SoC.Generators
 
             if (sectionsToShuffleNames.Count > 1)
             {
-                shuffler.Shuffle(names, sectionsToShuffleNames, "name");
+                shuffler.ShuffleSingle(names, sectionsToShuffleNames, "name");
             }
 
             if (sectionsToShuffleDescriptions.Count > 1)
             {
-                shuffler.Shuffle(descriptions, sectionsToShuffleDescriptions, "description");
+                shuffler.ShuffleSingle(descriptions, sectionsToShuffleDescriptions, "description");
             }
 
             await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", ltx.ToString());

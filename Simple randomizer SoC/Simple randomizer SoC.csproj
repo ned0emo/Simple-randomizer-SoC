@@ -102,6 +102,7 @@
       <DependentUpon>ParameterListDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Support\DataListEditor.cs" />
+    <Compile Include="Forms\Support\ParametersEditor.cs" />
     <Compile Include="Forms\Tabs\ItemTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,8 +112,10 @@
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Generators\ArtefactGenerator.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
+    <Compile Include="Models\AppConfig\ArtefactAbsorbation.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
     <Compile Include="Models\Parameters\CopyParameter.cs" />

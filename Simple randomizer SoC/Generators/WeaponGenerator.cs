@@ -38,11 +38,11 @@ namespace Simple_randomizer_SoC.Generators
             //перемешивание идет между файлами, а копирование внутри каждого файла после перемешивания
             //потому обработка происходит после основного цикла
             var weaponSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
-            var weaponParamValuesByShuffleParam = new Dictionary<string, List<string>>();
+            var weaponParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
             var weaponCopyParameters = new List<Tuple<LtxSection, string, string>>();
 
             var ammoSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
-            var ammoParamValuesByShuffleParam = new Dictionary<string, List<string>>();
+            var ammoParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
             var ammoCopyParameters = new List<Tuple<LtxSection, string, string>>();
 
             var wpc = weaponConfig.WeaponParameterContainer;
@@ -84,12 +84,12 @@ namespace Simple_randomizer_SoC.Generators
                                     if (weaponSectionsByShuffleParam.TryGetValue(shuffleParam.Name, out var sections))
                                     {
                                         sections.Add(section);
-                                        weaponParamValuesByShuffleParam[shuffleParam.Name].Add(section.GetParamString(shuffleParam.Name));
+                                        weaponParamValuesByShuffleParam[shuffleParam.Name].Add(section.GetParam(shuffleParam.Name));
                                     }
                                     else
                                     {
                                         weaponSectionsByShuffleParam[shuffleParam.Name] = new List<LtxSection> { section };
-                                        weaponParamValuesByShuffleParam[shuffleParam.Name] = new List<string> { section.GetParamString(shuffleParam.Name) };
+                                        weaponParamValuesByShuffleParam[shuffleParam.Name] = new List<List<string>> { section.GetParam(shuffleParam.Name) };
                                     }
                                 }
                             });
@@ -133,12 +133,12 @@ namespace Simple_randomizer_SoC.Generators
                                     if (ammoSectionsByShuffleParam.TryGetValue(shuffleParam.Name, out var sections))
                                     {
                                         sections.Add(section);
-                                        ammoParamValuesByShuffleParam[shuffleParam.Name].Add(section.GetParamString(shuffleParam.Name));
+                                        ammoParamValuesByShuffleParam[shuffleParam.Name].Add(section.GetParam(shuffleParam.Name));
                                     }
                                     else
                                     {
                                         ammoSectionsByShuffleParam[shuffleParam.Name] = new List<LtxSection> { section };
-                                        ammoParamValuesByShuffleParam[shuffleParam.Name] = new List<string> { section.GetParamString(shuffleParam.Name) };
+                                        ammoParamValuesByShuffleParam[shuffleParam.Name] = new List<List<string>> { section.GetParam(shuffleParam.Name) };
                                     }
                                 }
                             });
@@ -180,8 +180,8 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             //копирование статов оружия и патронов
-            weaponCopyParameters.ForEach(p => p.Item1.SetParams(p.Item2, p.Item1.Params[p.Item3]));
-            ammoCopyParameters.ForEach(p => p.Item1.SetParams(p.Item2, p.Item1.Params[p.Item3]));
+            weaponCopyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.Params[p.Item3]));
+            ammoCopyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.Params[p.Item3]));
 
             foreach (var f in files)
             {

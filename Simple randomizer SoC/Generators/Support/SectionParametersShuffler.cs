@@ -10,21 +10,54 @@ namespace Simple_randomizer_SoC.Generators.Support
 {
     public class SectionParametersShuffler
     {
-        public void Shuffle(List<string> items, List<LtxSection> sections, string paramName)
+        public void ShuffleSingle(List<string> values, List<LtxSection> sections, string paramName)
         {
-            if (items.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(items));
-            while (items.Count > 0)
+            if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
+            while (values.Count > 0)
             {
-                var itemIndex = GlobalRandom.Rnd.Next(items.Count);
+                var itemIndex = GlobalRandom.Rnd.Next(values.Count);
                 var sectionIndex = GlobalRandom.Rnd.Next(sections.Count);
 
-                var item = items[itemIndex];
+                var item = values[itemIndex];
                 var section = sections[sectionIndex];
 
                 section.SetParam(paramName, item);
 
-                items.RemoveAt(itemIndex);
+                values.RemoveAt(itemIndex);
                 sections.RemoveAt(sectionIndex);
+            }
+        }
+
+        public void Shuffle(List<List<string>> values, List<LtxSection> sections, string paramName)
+        {
+            if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
+            while (values.Count > 0)
+            {
+                var itemIndex = GlobalRandom.Rnd.Next(values.Count);
+                var sectionIndex = GlobalRandom.Rnd.Next(sections.Count);
+
+                var item = values[itemIndex];
+                var section = sections[sectionIndex];
+
+                section.SetParamValues(paramName, item);
+
+                values.RemoveAt(itemIndex);
+                sections.RemoveAt(sectionIndex);
+            }
+        }
+
+        public void Prepare(LtxSection section, string paramName,
+            Dictionary<string, List<LtxSection>> sectionsByShuffleParam, Dictionary<string, List<List<string>>> paramValuesByShuffleParam)
+        {
+            if (sectionsByShuffleParam.TryGetValue(paramName, out var sections))
+            {
+                sections.Add(section);
+                paramValuesByShuffleParam[paramName].Add(section.GetParam(paramName));
+            }
+            else
+            {
+                sectionsByShuffleParam[paramName] = new List<LtxSection> { section };
+                paramValuesByShuffleParam[paramName] = new List<List<string>> { section.GetParam(paramName) };
             }
         }
     }

@@ -38,7 +38,7 @@ namespace Simple_randomizer_SoC.Model
             Params[name] = new List<string> { value };
         }
 
-        public void SetParams(string name, List<string> values)
+        public void SetParamValues(string name, List<string> values)
         {
             Params[name] = values;
         }
@@ -53,6 +53,16 @@ namespace Simple_randomizer_SoC.Model
             {
                 SetParam(name, value);
             }
+        }
+
+        public List<string> GetParam(string name)
+        {
+            return Params[name];
+        }
+
+        public bool HasParam(string name)
+        {
+            return Params.ContainsKey(name);
         }
     }
 }

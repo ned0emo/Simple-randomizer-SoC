@@ -44,12 +44,12 @@ namespace Simple_randomizer_SoC.Tools
 
         public static List<T> GetRandomElements<T>(List<T> list, int count)
         {
-            if (count >= list.Count) return list.ToList();
+            if (count >= list.Count) return list;
             if (count == 0) return new List<T>();
             if (count < 0) throw new ArgumentOutOfRangeException("count");
 
             var indexList = new List<int>();
-            for (int i = 0; i < count; i++) indexList.Add(i);
+            for (int i = 0; i < list.Count; i++) indexList.Add(i);
 
             var result = new List<T>();
             while (count-- > 0)

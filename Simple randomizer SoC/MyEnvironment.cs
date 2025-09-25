@@ -9,5 +9,6 @@
 
         public const string stashConfig = "stash_config.json";
         public const string weaponConfig = "weapon_config.json";
+        public const string itemConfig = "item_config.json";
     }
 }

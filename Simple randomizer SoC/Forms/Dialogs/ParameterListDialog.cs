@@ -22,9 +22,10 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
         public ParameterContainer ParameterContainer { get; } = new ParameterContainer();
 
-        public ParameterListDialog(ParameterContainer parameterContainer)
+        public ParameterListDialog(string title, ParameterContainer parameterContainer)
         {
             InitializeComponent();
+            Text = title;
 
             foreach (var p in parameterContainer.FromListParameters)
             {

@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async void SimpleListEditAndSave(string dialogName, List<string> list, IConfig config)
+        public async Task SimpleListEditAndSave(string dialogName, List<string> list, IConfig config)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async void ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, IConfig config) where T : class, new()
+        public async Task ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, IConfig config) where T : class, new()
         {
             try
             {

@@ -4,6 +4,7 @@ using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,7 +35,12 @@ namespace RandomizerSoC
 
                 var stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
                 var weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
-                Application.Run(new MainForm(stashConfig, weaponConfig));
+                var itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
+                Application.Run(new MainForm(stashConfig, weaponConfig, itemConfig));
+            }
+            catch (JsonException ex)
+            {
+                Application.Run(new InfoForm("Ошибка чтения или записи конфигурации приложения", ex));
             }
             catch (Exception ex)
             {

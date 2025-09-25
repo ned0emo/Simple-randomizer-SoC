@@ -9,19 +9,19 @@ namespace Simple_randomizer_SoC.Generators
 {
     public class ProbabilityChecker
     {
-        public Func<bool> SkipReplacing { get; private set; } = () => false;
+        public Func<bool> Skip { get; private set; } = () => false;
         public Action<Action> DoOrSkip { get; private set; } = (action) => action();
 
         public void SetProbability(int probability)
         {
             if (probability > 99)
             {
-                SkipReplacing = () => false;
+                Skip = () => false;
                 DoOrSkip = (action) => action();
             }
             else
             {
-                SkipReplacing = () => GlobalRandom.Rnd.Next(100) >= probability;
+                Skip = () => GlobalRandom.Rnd.Next(100) >= probability;
                 DoOrSkip = (action) =>
                 {
                     if (GlobalRandom.Rnd.Next(100) < probability)
