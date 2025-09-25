@@ -16,7 +16,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
     public partial class WeaponTab : UserControl
     {
         private readonly WeaponConfig weaponConfig;
-        private readonly ListEditComponent listEditComponent = new ListEditComponent();
+        private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
 
         public WeaponTab(WeaponConfig weaponConfig)
         {
@@ -31,7 +31,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private void editWeaponSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Секции оружия", weaponConfig.WeaponSections, weaponConfig);
+            listEditComponent.SimpleListEditAndSave("Секции оружия", weaponConfig.WeaponSections, weaponConfig);
         }
 
         private async void editWeaponParametersButton_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private void editAmmoSectionsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Секции патронов", weaponConfig.AmmoSections, weaponConfig);
+            listEditComponent.SimpleListEditAndSave("Секции патронов", weaponConfig.AmmoSections, weaponConfig);
         }
 
         private async void editAmmoParametersButton_Click(object sender, EventArgs e)

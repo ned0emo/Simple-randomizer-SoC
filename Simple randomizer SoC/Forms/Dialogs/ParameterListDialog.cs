@@ -3,6 +3,7 @@ using Simple_randomizer_SoC.Enums;
 using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Models.Parameters;
+using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 {
     public partial class ParameterListDialog : Form
     {
-        private readonly ListEditComponent listEditComponent = new ListEditComponent();
+        private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
 
         public List<FromListParameter> FromListParameters { get; } = new List<FromListParameter>();
         public List<IntRangeParameter> IntRangeParameters { get; } = new List<IntRangeParameter>();
@@ -86,7 +87,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 setListButton.Text = "Настроить список";
                 setListButton.Click += (s, e) =>
                 {
-                    listEditComponent.HandleSimpleListEdit("Настройка списка элементов параметра " + parameter.Name, parameter.Values);
+                    listEditComponent.SimpleListEdit("Настройка списка элементов параметра " + parameter.Name, parameter.Values);
                 };
 
                 var removeButton = new Button();

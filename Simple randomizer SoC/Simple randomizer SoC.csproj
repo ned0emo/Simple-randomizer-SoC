@@ -101,17 +101,8 @@
     <Compile Include="Forms\Dialogs\ParameterListDialog.Designer.cs">
       <DependentUpon>ParameterListDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ListEditComponent.cs" />
-    <Compile Include="Forms\Templates\FromStringParameterTemplate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Templates\FromStringParameterTemplate.Designer.cs">
-      <DependentUpon>FromStringParameterTemplate.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\Support\DataListEditor.cs" />
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\Templates\NumberTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
@@ -226,9 +217,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\WeaponTab.resx">
       <DependentUpon>WeaponTab.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Templates\FromStringParameterTemplate.resx">
-      <DependentUpon>FromStringParameterTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Language\en_local.resx">
       <Generator>ResXFileCodeGenerator</Generator>

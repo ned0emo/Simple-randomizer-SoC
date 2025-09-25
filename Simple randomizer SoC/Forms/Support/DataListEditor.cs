@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms
 {
-    public class ListEditComponent
+    public class DataListEditor
     {
-        public void HandleSimpleListEdit(string dialogName, List<string> list)
+        public void SimpleListEdit(string dialogName, List<string> list)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async void HandleSimpleListEdit(string dialogName, List<string> list, IConfig config)
+        public async void SimpleListEditAndSave(string dialogName, List<string> list, IConfig config)
         {
             try
             {
@@ -48,7 +48,26 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async void HandleComplexListEdit<T>(string dialogName, List<T> list, List<string> columnNames, IConfig config) where T : class, new()
+        public async void ComplexListEdit<T>(string dialogName, List<T> list, List<string> columnNames) where T : class, new()
+        {
+            try
+            {
+                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames);
+                await Task.Yield();
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    list.Clear();
+                    list.AddRange(dialog.GetData());
+                }
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("Ошибка", ex).ShowDialog();
+            }
+        }
+
+        public async void ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, IConfig config) where T : class, new()
         {
             try
             {

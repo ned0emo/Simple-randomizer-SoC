@@ -17,7 +17,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
     public partial class StashTab : UserControl
     {
         private readonly StashConfig stashConfig;
-        private readonly ListEditComponent listEditComponent = new ListEditComponent();
+        private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
 
         public StashTab(StashConfig stashConfig)
         {
@@ -39,37 +39,37 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private void editWeaponsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список оружия для заполнения тайников", stashConfig.Weapons, stashConfig);
         }
 
         private void editArmorsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список брони для заполнения тайников", stashConfig.Armors, stashConfig);
         }
 
         private void editArtefactsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список артефактов для заполнения тайников", stashConfig.Artefacts, stashConfig);
         }
 
         private void editAmmosButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleComplexListEdit("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
+            listEditComponent.ComplexListEditAndSave("Список патронов для заполнения тайников", stashConfig.Ammos, new List<string>() { "Значение", "Количество в пачке" }, stashConfig);
         }
 
         private void editItemsButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список расходников для заполнения тайников", stashConfig.Items, stashConfig);
         }
 
         private void editOthersButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список прочего для заполнения тайников", stashConfig.Others, stashConfig);
         }
 
         private void editCommunitiesButton_Click(object sender, EventArgs e)
         {
-            listEditComponent.HandleSimpleListEdit("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
+            listEditComponent.SimpleListEditAndSave("Список группировок для выдачи тайников", stashConfig.Communities, stashConfig);
         }
 
         private void maxWeponsInput_ValueChanged(object sender, EventArgs e)
