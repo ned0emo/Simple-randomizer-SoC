@@ -15,7 +15,7 @@ namespace Simple_randomizer_SoC.Forms.Support
     {
         public async Task ParametersEditAndSave(string title, ParameterContainer parameterContainer, IConfig config)
         {
-            var dialog = new ParameterListDialog("Параметры артефактов", parameterContainer);
+            var dialog = new ParameterListDialog(title, parameterContainer);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 parameterContainer.Update(dialog.ParameterContainer);
@@ -25,7 +25,7 @@ namespace Simple_randomizer_SoC.Forms.Support
 
         public void ParametersEdit(string title, ParameterContainer parameterContainer)
         {
-            var dialog = new ParameterListDialog("Параметры артефактов", parameterContainer);
+            var dialog = new ParameterListDialog(title, parameterContainer);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 parameterContainer.Update(dialog.ParameterContainer);

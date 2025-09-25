@@ -43,15 +43,17 @@ namespace RandomizerSoC
         readonly List<NumericUpDown> probailityInputs;
 
         //Генераторы
-        readonly StashGenerator stashGenerator;
-        readonly WeaponGenerator weaponGenerator;
+        readonly StashGenerator stashGenerator = new StashGenerator();
+        readonly WeaponGenerator weaponGenerator = new WeaponGenerator();
+        readonly ArtefactGenerator artefactGenerator = new ArtefactGenerator();
+        readonly ArmorGenerator armorGenerator = new ArmorGenerator();
+        readonly ConsumableGenerator consumableGenerator = new ConsumableGenerator();
+
         readonly NpcGenerator npcGenerator;
-        readonly ArtefactGenerator artefactGenerator;
-        readonly OutfitsGenerator outfitsGenerator;
+        //readonly OutfitsGenerator outfitsGenerator;
         readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
-        readonly ConsumablesGenerator consumablesGenerator;
         readonly DialogsGenerator dialogsGenerator;
 
         readonly AdditionalParams additionalParams;
@@ -123,16 +125,11 @@ namespace RandomizerSoC
                 cb.Checked = true;
             }
 
-            stashGenerator = new StashGenerator();
-            artefactGenerator = new ArtefactGenerator();
-            weaponGenerator = new WeaponGenerator();
-
-            outfitsGenerator = new OutfitsGenerator();
+            //outfitsGenerator = new OutfitsGenerator();
             npcGenerator = new NpcGenerator();
             weatherGenerator = new WeatherGenerator();
             deathItemsGenerator = new DeathItemsGenerator();
             tradeGenerator = new TradeGenerator();
-            consumablesGenerator = new ConsumablesGenerator();
             dialogsGenerator = new DialogsGenerator();
 
             additionalParams = new AdditionalParams();
@@ -325,11 +322,10 @@ namespace RandomizerSoC
             //бронь
             if (armorCheckBox.Checked)
             {
-                outfitsGenerator.UpdateData(newConfigPath: newConfigPath);
-                outfitsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : outfitReplaceProbInput.Value);
+                armorGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
                 try
                 {
-                    await outfitsGenerator.Generate();
+                    await armorGenerator.Generate();
                 }
                 catch (Exception ex)
                 {
@@ -414,11 +410,10 @@ namespace RandomizerSoC
             //расходники
             if (consumablesCheckBox.Checked)
             {
-                consumablesGenerator.UpdateData(newConfigPath: newConfigPath);
-                consumablesGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : itemReplaceProbInput.Value);
+                consumableGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
                 try
                 {
-                    await consumablesGenerator.Generate();
+                    await consumableGenerator.Generate();
                 }
                 catch (Exception ex)
                 {

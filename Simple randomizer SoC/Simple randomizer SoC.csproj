@@ -113,6 +113,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Generators\ArmorGenerator.cs" />
+    <Compile Include="Generators\ConsumableGenerator.cs" />
     <Compile Include="Generators\ItemGenerator.cs" />
     <Compile Include="Generators\ArtefactGenerator.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />

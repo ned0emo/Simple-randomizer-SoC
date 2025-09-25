@@ -160,7 +160,7 @@ namespace Simple_randomizer_SoC.Generators
                     });
                 }
 
-                if (absorbationSection.HasParam(copyParam.Name) & absorbationSection.HasParam(copyParam.CopyFrom))
+                if (absorbationSection.HasParam(copyParam.Name) && absorbationSection.HasParam(copyParam.CopyFrom))
                 {
                     probabilityChecker.DoOrSkip(() =>
                     {

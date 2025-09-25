@@ -6,59 +6,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class ArmorGenerator : ItemGenerator
+    public class ConsumableGenerator : ItemGenerator
     {
         public override async Task Generate()
         {
-            var outPath = newConfigPath + "\\misc\\outfit.ltx";
-            var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\outfit.ltx")
-                ?? throw new CustomException("Ошибка чтения файла с данными о броне");
+            var outPath = newConfigPath + "\\misc\\items.ltx";
+            var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\items.ltx")
+                ?? throw new CustomException("Ошибка чтения файла с данными о расходниках");
 
-            var mainSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
-            var mainParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
-
-            var immunitiesSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
-            var immunitiesParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
+            var sectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
+            var paramValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
 
             var copyParameters = new List<Tuple<LtxSection, string, string>>();
 
-            foreach (var sec in config.ArmorSections)
+            foreach (var sec in config.ConsumableSections)
             {
                 var section = ltx.GetSectionByName(sec);
                 if (section == null) continue;
 
-                HandleParameters(config.ArmorParameters, section,
-                    mainSectionsByShuffleParam, mainParamValuesByShuffleParam, copyParameters);
-            }
-
-            foreach (var sec in config.ArmorImmunitySections)
-            {
-                var section = ltx.GetSectionByName(sec);
-                if (section == null) continue;
-
-                HandleParameters(config.ArmorImmunityParameters, section,
-                    immunitiesSectionsByShuffleParam, immunitiesParamValuesByShuffleParam, copyParameters);
+                HandleParameters(config.ConsumableParameters, section,
+                    sectionsByShuffleParam, paramValuesByShuffleParam, copyParameters);
             }
 
             //перемешивание
-            foreach (var shuffleParam in mainSectionsByShuffleParam.Keys)
+            foreach (var shuffleParam in sectionsByShuffleParam.Keys)
             {
-                var sections = mainSectionsByShuffleParam[shuffleParam];
+                var sections = sectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(mainParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
-                }
-            }
-            foreach (var shuffleParam in immunitiesSectionsByShuffleParam.Keys)
-            {
-                var sections = immunitiesSectionsByShuffleParam[shuffleParam];
-                if (sections.Count > 1)
-                {
-                    shuffler.Shuffle(immunitiesParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(paramValuesByShuffleParam[shuffleParam], sections, shuffleParam);
                 }
             }
 

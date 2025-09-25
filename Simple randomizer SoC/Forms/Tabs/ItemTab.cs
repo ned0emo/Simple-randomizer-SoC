@@ -61,9 +61,19 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             await listEditComponent.SimpleListEditAndSave("Секции брони", config.ArmorSections, config);
         }
 
+        private async void armorImmunitySectionsButton_Click(object sender, EventArgs e)
+        {
+            await listEditComponent.SimpleListEditAndSave("Секции износа брони", config.ArmorImmunitySections, config);
+        }
+
         private async void armorParametersButton_Click(object sender, EventArgs e)
         {
             await parametersEditor.ParametersEditAndSave("Параметры брони", config.ArmorParameters, config);
+        }
+
+        private async void armorImmunityParametersButton_Click(object sender, EventArgs e)
+        {
+            await parametersEditor.ParametersEditAndSave("Параметры износа брони", config.ArmorImmunityParameters, config);
         }
 
         private async void itemSectionsButton_Click(object sender, EventArgs e)

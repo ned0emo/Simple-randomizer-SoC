@@ -18,7 +18,9 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public int MaxArtefactStatCount { get; set; } = 7;
 
         public List<string> ArmorSections { get; set; } = new List<string>();
+        public List<string> ArmorImmunitySections { get; set; } = new List<string>();
         public ParameterContainer ArmorParameters { get; set; } = new ParameterContainer();
+        public ParameterContainer ArmorImmunityParameters { get; set; } = new ParameterContainer();
 
         public List<string> ConsumableSections { get; set; } = new List<string>();
         public ParameterContainer ConsumableParameters { get; set; } = new ParameterContainer();
