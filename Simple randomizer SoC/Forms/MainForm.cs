@@ -84,13 +84,13 @@ namespace RandomizerSoC
 
             fileTextBoxDictionary = new Dictionary<string, TextBox>
             {
-                ["other"] = otherTextBox,
-                ["af"] = afTextBox,
+                //["other"] = otherTextBox,
+                //["af"] = afTextBox,
                 //["ammo"] = ammoTextBox,
-                ["item"] = itemTextBox,
-                ["model"] = modelTextBox,
-                ["other"] = otherTextBox,
-                ["outfit"] = outfitTextBox,
+                //["item"] = itemTextBox,
+                //["model"] = modelTextBox,
+                //["other"] = otherTextBox,
+                //["outfit"] = outfitTextBox,
                 ["sound"] = soundTextBox,
                 //["weapon"] = weaponTextBox,
                 ["npcexception"] = npcExecptTextBox,
@@ -712,7 +712,7 @@ namespace RandomizerSoC
         {
             this.Text = Localization.Get("mainFormName");
             //tabPage1.Text = Localization.Get("weaponsTab");
-            tabPage6.Text = Localization.Get("ItemsTab");
+            //tabPage6.Text = Localization.Get("ItemsTab");
             tabPage9.Text = Localization.Get("npcTab");
             tabPage2.Text = Localization.Get("weatherTab");
             tabPage8.Text = Localization.Get("advancedTab");
@@ -725,10 +725,10 @@ namespace RandomizerSoC
             //label10.Text = Localization.Get("ammoListTitle");
             //label1.Text = Localization.Get("weaponListTitle");
             //label19.Text = Localization.Get("shootSoundListTitle");
-            label12.Text = Localization.Get("outfits");
-            label11.Text = Localization.Get("artefacts");
-            label9.Text = Localization.Get("otherListTitle");
-            label7.Text = Localization.Get("consumableListTitle");
+            //label12.Text = Localization.Get("outfits");
+            //label11.Text = Localization.Get("artefacts");
+            //label9.Text = Localization.Get("otherListTitle");
+            //label7.Text = Localization.Get("consumableListTitle");
             label2.Text = Localization.Get("communityListTitle");
             namesCheckBox.Text = Localization.Get("nameListTitle");
             iconsCheckBox.Text = Localization.Get("iconListTitle");
