@@ -45,6 +45,9 @@ namespace Simple_randomizer_SoC.Generators
             var ammoParamValuesByShuffleParam = new Dictionary<string, List<string>>();
             var ammoCopyParameters = new List<Tuple<LtxSection, string, string>>();
 
+            var wpc = weaponConfig.WeaponParameterContainer;
+            var apc = weaponConfig.AmmoParameterContainer;
+
             foreach (var f in dir.GetFiles())
             {
                 if (f.Extension.ToLower() != ".ltx") continue;
@@ -60,7 +63,7 @@ namespace Simple_randomizer_SoC.Generators
                     if (weaponConfig.WeaponSections.Contains(section.Name))
                     {
                         //стандартные параметры
-                        weaponConfig.ForEachWeaponParameter((p) =>
+                        wpc.ForEachParameter((p) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
@@ -72,7 +75,7 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовока к перемешиванию
-                        weaponConfig.WeaponShuffleParameters.ForEach((shuffleParam) =>
+                        wpc.ShuffleParameters.ForEach((shuffleParam) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
@@ -93,7 +96,7 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовка к копированию
-                        weaponConfig.WeaponCopyParameters.ForEach((p) =>
+                        wpc.CopyParameters.ForEach((p) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
@@ -109,7 +112,7 @@ namespace Simple_randomizer_SoC.Generators
                     if (weaponConfig.AmmoSections.Contains(section.Name))
                     {
                         //стандартные параметры
-                        weaponConfig.ForEachAmmoParameter((p) =>
+                        apc.ForEachParameter((p) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {
@@ -121,7 +124,7 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовка к перемешиванию
-                        weaponConfig.AmmoShuffleParameters.ForEach((shuffleParam) =>
+                        apc.ShuffleParameters.ForEach((shuffleParam) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {
@@ -142,7 +145,7 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовка к копированию
-                        weaponConfig.AmmoCopyParameters.ForEach((copyParam) =>
+                        apc.CopyParameters.ForEach((copyParam) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {

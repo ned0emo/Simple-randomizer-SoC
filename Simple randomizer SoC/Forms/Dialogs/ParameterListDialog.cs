@@ -20,39 +20,33 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
     {
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
 
-        public List<FromListParameter> FromListParameters { get; } = new List<FromListParameter>();
-        public List<IntRangeParameter> IntRangeParameters { get; } = new List<IntRangeParameter>();
-        public List<FloatRangeParameter> FloatRangeParameters { get; } = new List<FloatRangeParameter>();
-        public List<ShuffleParameter> ShuffleParameters { get; } = new List<ShuffleParameter>();
-        public List<CopyParameter> CopyParameters { get; } = new List<CopyParameter>();
+        public ParameterContainer ParameterContainer { get; } = new ParameterContainer();
 
-        public ParameterListDialog(List<FromListParameter> fromListParameters,
-            List<IntRangeParameter> intRangeParameters, List<FloatRangeParameter> floatRangeParameters,
-            List<ShuffleParameter> shuffleParameters, List<CopyParameter> copyParameters)
+        public ParameterListDialog(ParameterContainer parameterContainer)
         {
             InitializeComponent();
 
-            foreach (var p in fromListParameters)
+            foreach (var p in parameterContainer.FromListParameters)
             {
                 AddFromListRow(p);
             }
 
-            foreach (var p in intRangeParameters)
+            foreach (var p in parameterContainer.IntRangeParameters)
             {
                 AddIntRangeRow(p);
             }
 
-            foreach (var p in floatRangeParameters)
+            foreach (var p in parameterContainer.FloatRangeParameters)
             {
                 AddFloatRangeRow(p);
             }
 
-            foreach (var p in shuffleParameters)
+            foreach (var p in parameterContainer.ShuffleParameters)
             {
                 AddShuffleParameter(p);
             }
 
-            foreach (var p in copyParameters)
+            foreach (var p in parameterContainer.CopyParameters)
             {
                 AddCopyParameter(p);
             }
@@ -65,7 +59,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             try
             {
                 fromListPanel.SuspendLayout();
-                FromListParameters.Add(parameter);
+                ParameterContainer.FromListParameters.Add(parameter);
 
                 var nameControl = new TextBox();
                 nameControl.Text = parameter.Name;
@@ -119,7 +113,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     setListButton.Dispose();
                     removeButton.Dispose();
 
-                    FromListParameters.Remove(parameter);
+                    ParameterContainer.FromListParameters.Remove(parameter);
                 };
             }
             catch (Exception ex)
@@ -137,7 +131,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             try
             {
                 intRangePanel.SuspendLayout();
-                IntRangeParameters.Add(parameter);
+                ParameterContainer.IntRangeParameters.Add(parameter);
 
                 var nameControl = new TextBox();
                 nameControl.Text = parameter.Name;
@@ -205,7 +199,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     maxInput.Dispose();
                     removeButton.Dispose();
 
-                    IntRangeParameters.Remove(parameter);
+                    ParameterContainer.IntRangeParameters.Remove(parameter);
                 };
             }
             catch (Exception ex)
@@ -223,7 +217,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             try
             {
                 floatRangePanel.SuspendLayout();
-                FloatRangeParameters.Add(parameter);
+                ParameterContainer.FloatRangeParameters.Add(parameter);
 
                 var nameControl = new TextBox();
                 nameControl.Text = parameter.Name;
@@ -309,7 +303,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     removeButton.Dispose();
                     precisionInput.Dispose();
 
-                    FloatRangeParameters.Remove(parameter);
+                    ParameterContainer.FloatRangeParameters.Remove(parameter);
                 };
             }
             catch (Exception ex)
@@ -327,7 +321,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             try
             {
                 shufflePanel.SuspendLayout();
-                ShuffleParameters.Add(parameter);
+                ParameterContainer.ShuffleParameters.Add(parameter);
 
                 var nameControl = new TextBox();
                 nameControl.Text = parameter.Name;
@@ -360,7 +354,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     nameControl.Dispose();
                     removeButton.Dispose();
 
-                    ShuffleParameters.Remove(parameter);
+                    ParameterContainer.ShuffleParameters.Remove(parameter);
                 };
             }
             catch (Exception ex)
@@ -378,7 +372,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             try
             {
                 copyPanel.SuspendLayout();
-                CopyParameters.Add(parameter);
+                ParameterContainer.CopyParameters.Add(parameter);
 
                 var nameControl = new TextBox();
                 nameControl.Text = parameter.Name;
@@ -422,7 +416,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     copyNameControl.Dispose();
                     removeButton.Dispose();
 
-                    CopyParameters.Remove(parameter);
+                    ParameterContainer.CopyParameters.Remove(parameter);
                 };
             }
             catch (Exception ex)
@@ -493,27 +487,27 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (IntRangeParameters.Any(p => !p.Validate()))
+            if (ParameterContainer.IntRangeParameters.Any(p => !p.Validate()))
             {
                 MessageBox.Show("Не все поля целочисленных параметров заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (FloatRangeParameters.Any(p => !p.Validate()))
+            if (ParameterContainer.FloatRangeParameters.Any(p => !p.Validate()))
             {
                 MessageBox.Show("Не все поля параметров с плавающей точкой заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (FromListParameters.Any(p => !p.Validate()))
+            if (ParameterContainer.FromListParameters.Any(p => !p.Validate()))
             {
                 MessageBox.Show("Не все поля параметров, выбираемых из списка, заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (ShuffleParameters.Any(s => !s.Validate()))
+            if (ParameterContainer.ShuffleParameters.Any(s => !s.Validate()))
             {
                 MessageBox.Show("Не все поля параметров для перемешивания заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (CopyParameters.Any(s => !s.Validate()))
+            if (ParameterContainer.CopyParameters.Any(s => !s.Validate()))
             {
                 MessageBox.Show("Не все поля параметров для копирования заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

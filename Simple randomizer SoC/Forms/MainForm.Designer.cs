@@ -42,16 +42,6 @@ namespace RandomizerSoC
             this.tabControl = new System.Windows.Forms.TabControl();
             this.stashTab = new System.Windows.Forms.TabPage();
             this.weaponTab = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.shootSoundsTextBox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.reloadSoundsTextBox = new System.Windows.Forms.TextBox();
-            this.weaponGuideButton = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ammoTextBox = new System.Windows.Forms.TextBox();
-            this.weaponTextBox = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.itemGuideButton = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -181,8 +171,8 @@ namespace RandomizerSoC
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.itemTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.dialogsTab.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -254,7 +244,7 @@ namespace RandomizerSoC
             // 
             this.tabControl.Controls.Add(this.stashTab);
             this.tabControl.Controls.Add(this.weaponTab);
-            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.itemTab);
             this.tabControl.Controls.Add(this.tabPage6);
             this.tabControl.Controls.Add(this.dialogsTab);
             this.tabControl.Controls.Add(this.tabPage9);
@@ -286,118 +276,10 @@ namespace RandomizerSoC
             this.weaponTab.Location = new System.Drawing.Point(4, 22);
             this.weaponTab.Name = "weaponTab";
             this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(990, 650);
+            this.weaponTab.Size = new System.Drawing.Size(510, 409);
             this.weaponTab.TabIndex = 16;
             this.weaponTab.Text = "Оружие";
             this.weaponTab.UseVisualStyleBackColor = true;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.shootSoundsTextBox);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.reloadSoundsTextBox);
-            this.tabPage1.Controls.Add(this.weaponGuideButton);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.ammoTextBox);
-            this.tabPage1.Controls.Add(this.weaponTextBox);
-            this.tabPage1.Controls.Add(this.label19);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(990, 650);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Оружие";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(500, 23);
-            this.label1.TabIndex = 2;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // shootSoundsTextBox
-            // 
-            this.shootSoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.shootSoundsTextBox.Location = new System.Drawing.Point(764, 35);
-            this.shootSoundsTextBox.Multiline = true;
-            this.shootSoundsTextBox.Name = "shootSoundsTextBox";
-            this.shootSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.shootSoundsTextBox.Size = new System.Drawing.Size(245, 225);
-            this.shootSoundsTextBox.TabIndex = 32;
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(764, 276);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(245, 23);
-            this.label17.TabIndex = 30;
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // reloadSoundsTextBox
-            // 
-            this.reloadSoundsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reloadSoundsTextBox.Location = new System.Drawing.Point(764, 302);
-            this.reloadSoundsTextBox.Multiline = true;
-            this.reloadSoundsTextBox.Name = "reloadSoundsTextBox";
-            this.reloadSoundsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.reloadSoundsTextBox.Size = new System.Drawing.Size(245, 225);
-            this.reloadSoundsTextBox.TabIndex = 29;
-            // 
-            // weaponGuideButton
-            // 
-            this.weaponGuideButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.weaponGuideButton.Location = new System.Drawing.Point(987, 6);
-            this.weaponGuideButton.Margin = new System.Windows.Forms.Padding(2);
-            this.weaponGuideButton.Name = "weaponGuideButton";
-            this.weaponGuideButton.Size = new System.Drawing.Size(22, 24);
-            this.weaponGuideButton.TabIndex = 9;
-            this.weaponGuideButton.Text = "?";
-            this.weaponGuideButton.UseVisualStyleBackColor = true;
-            this.weaponGuideButton.Click += new System.EventHandler(this.WeaponGuideButton_Click);
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(509, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(249, 23);
-            this.label10.TabIndex = 8;
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ammoTextBox
-            // 
-            this.ammoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ammoTextBox.Location = new System.Drawing.Point(513, 35);
-            this.ammoTextBox.Multiline = true;
-            this.ammoTextBox.Name = "ammoTextBox";
-            this.ammoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ammoTextBox.Size = new System.Drawing.Size(245, 492);
-            this.ammoTextBox.TabIndex = 7;
-            // 
-            // weaponTextBox
-            // 
-            this.weaponTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.weaponTextBox.Location = new System.Drawing.Point(6, 35);
-            this.weaponTextBox.Multiline = true;
-            this.weaponTextBox.Name = "weaponTextBox";
-            this.weaponTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.weaponTextBox.Size = new System.Drawing.Size(496, 492);
-            this.weaponTextBox.TabIndex = 0;
-            this.weaponTextBox.WordWrap = false;
-            // 
-            // label19
-            // 
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(764, 9);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(245, 23);
-            this.label19.TabIndex = 33;
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage6
             // 
@@ -413,7 +295,7 @@ namespace RandomizerSoC
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(990, 650);
+            this.tabPage6.Size = new System.Drawing.Size(510, 409);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Предметы";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -520,7 +402,7 @@ namespace RandomizerSoC
             this.dialogsTab.Location = new System.Drawing.Point(4, 22);
             this.dialogsTab.Name = "dialogsTab";
             this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogsTab.Size = new System.Drawing.Size(990, 650);
+            this.dialogsTab.Size = new System.Drawing.Size(510, 409);
             this.dialogsTab.TabIndex = 12;
             this.dialogsTab.Text = "Диалоги";
             this.dialogsTab.UseVisualStyleBackColor = true;
@@ -595,7 +477,7 @@ namespace RandomizerSoC
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(990, 650);
+            this.tabPage9.Size = new System.Drawing.Size(510, 409);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "НПС";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -764,7 +646,7 @@ namespace RandomizerSoC
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(990, 650);
+            this.tabPage2.Size = new System.Drawing.Size(510, 409);
             this.tabPage2.TabIndex = 10;
             this.tabPage2.Text = "Погода";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -876,7 +758,7 @@ namespace RandomizerSoC
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage8.Size = new System.Drawing.Size(990, 650);
+            this.tabPage8.Size = new System.Drawing.Size(510, 409);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1102,10 +984,10 @@ namespace RandomizerSoC
             this.advancedTab2.Controls.Add(this.soundsPathButton);
             this.advancedTab2.Controls.Add(this.soundsPathText);
             this.advancedTab2.Controls.Add(this.soundsPathLabel);
-            this.advancedTab2.Location = new System.Drawing.Point(4, 22);
+            this.advancedTab2.Location = new System.Drawing.Point(4, 40);
             this.advancedTab2.Name = "advancedTab2";
             this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
-            this.advancedTab2.Size = new System.Drawing.Size(990, 650);
+            this.advancedTab2.Size = new System.Drawing.Size(510, 391);
             this.advancedTab2.TabIndex = 11;
             this.advancedTab2.Text = "Дополнительно 2";
             this.advancedTab2.UseVisualStyleBackColor = true;
@@ -1334,10 +1216,10 @@ namespace RandomizerSoC
             this.probabilityTab.Controls.Add(this.weaponReplaceProbLabel);
             this.probabilityTab.Controls.Add(this.weatherReplaceProbLabel);
             this.probabilityTab.Controls.Add(this.artReplaceProbLabel);
-            this.probabilityTab.Location = new System.Drawing.Point(4, 22);
+            this.probabilityTab.Location = new System.Drawing.Point(4, 40);
             this.probabilityTab.Name = "probabilityTab";
             this.probabilityTab.Padding = new System.Windows.Forms.Padding(3);
-            this.probabilityTab.Size = new System.Drawing.Size(990, 650);
+            this.probabilityTab.Size = new System.Drawing.Size(510, 391);
             this.probabilityTab.TabIndex = 13;
             this.probabilityTab.Text = "Настройка вероятностей";
             this.probabilityTab.UseVisualStyleBackColor = true;
@@ -1628,10 +1510,10 @@ namespace RandomizerSoC
             // 
             this.tabPage3.Controls.Add(this.tableLayoutPanel1);
             this.tabPage3.Controls.Add(this.listView1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(990, 650);
+            this.tabPage3.Size = new System.Drawing.Size(510, 391);
             this.tabPage3.TabIndex = 14;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1922,6 +1804,16 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
+            // itemTab
+            // 
+            this.itemTab.Location = new System.Drawing.Point(4, 22);
+            this.itemTab.Name = "itemTab";
+            this.itemTab.Padding = new System.Windows.Forms.Padding(3);
+            this.itemTab.Size = new System.Drawing.Size(510, 409);
+            this.itemTab.TabIndex = 17;
+            this.itemTab.Text = "Предметы";
+            this.itemTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1935,8 +1827,6 @@ namespace RandomizerSoC
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.dialogsTab.ResumeLayout(false);
@@ -2107,20 +1997,11 @@ namespace RandomizerSoC
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox shootSoundsTextBox;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox reloadSoundsTextBox;
-        private System.Windows.Forms.Button weaponGuideButton;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox ammoTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox weaponTextBox;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage stashTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage weaponTab;
+        private System.Windows.Forms.TabPage itemTab;
     }
 }
 

@@ -83,21 +83,21 @@ namespace RandomizerSoC
             {
                 ["other"] = otherTextBox,
                 ["af"] = afTextBox,
-                ["ammo"] = ammoTextBox,
+                //["ammo"] = ammoTextBox,
                 ["item"] = itemTextBox,
                 ["model"] = modelTextBox,
                 ["other"] = otherTextBox,
                 ["outfit"] = outfitTextBox,
                 ["sound"] = soundTextBox,
-                ["weapon"] = weaponTextBox,
+                //["weapon"] = weaponTextBox,
                 ["npcexception"] = npcExecptTextBox,
                 ["community"] = communityTextBox,
                 ["names"] = namesTextBox,
                 ["icons"] = iconsTextBox,
                 ["skybox"] = skyTextBox,
                 ["thunderbolt"] = thunderTextBox,
-                ["weapon_snd_reload"] = reloadSoundsTextBox,
-                ["weapon_snd_shoot"] = shootSoundsTextBox,
+                //["weapon_snd_reload"] = reloadSoundsTextBox,
+                //["weapon_snd_shoot"] = shootSoundsTextBox,
                 ["dialog_infos_exceptions"] = infosExceptionTextBox,
                 ["dialog_actions_exceptions"] = actionsExceptionTextBox,
             };
@@ -239,7 +239,7 @@ namespace RandomizerSoC
 
             GlobalRandom.Init(null);
 
-            var lists = new TextBoxData(weaponTextBox.Text, ammoTextBox.Text, outfitTextBox.Text, afTextBox.Text, itemTextBox.Text, otherTextBox.Text, communityTextBox.Text);
+            //var lists = new TextBoxData(weaponTextBox.Text, ammoTextBox.Text, outfitTextBox.Text, afTextBox.Text, itemTextBox.Text, otherTextBox.Text, communityTextBox.Text);
 
             ///<summary>
             ///Увеличивает значения прогрессбара на указанное параметром progressBarStep.
@@ -337,7 +337,7 @@ namespace RandomizerSoC
             }
             incrementProgressBar();
             //нпс
-            if (npcCheckBox.Checked)
+            /*if (npcCheckBox.Checked)
             {
                 npcGenerator.UpdateData(communities: communityTextBox.Text, models: modelTextBox.Text, icons: iconsTextBox.Text, sounds: soundTextBox.Text,
                     names: namesTextBox.Text, weapons: weaponTextBox.Text, exceptions: npcExecptTextBox.Text, newConfigPath: newConfigPath);
@@ -356,7 +356,7 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("npcError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }
+            }*/
             incrementProgressBar();
             //погода
             if (weatherCheckBox.Checked)
@@ -376,7 +376,7 @@ namespace RandomizerSoC
             }
             incrementProgressBar();
             //трупы
-            if (deathItemsCheckBox.Checked)
+            /*if (deathItemsCheckBox.Checked)
             {
                 deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
                 deathItemsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : deathItemReplaceProbInput.Value);
@@ -389,10 +389,10 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("deathItemsError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }
+            }*/
             incrementProgressBar();
             //торговцы
-            if (tradersCheckBox.Checked)
+            /*if (tradersCheckBox.Checked)
             {
                 tradeGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
                     artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
@@ -406,7 +406,7 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("tradersError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }
+            }*/
             incrementProgressBar();
             //расходники
             if (consumablesCheckBox.Checked)
@@ -713,7 +713,7 @@ namespace RandomizerSoC
         private void UpdateText()
         {
             this.Text = Localization.Get("mainFormName");
-            tabPage1.Text = Localization.Get("weaponsTab");
+            //tabPage1.Text = Localization.Get("weaponsTab");
             tabPage6.Text = Localization.Get("ItemsTab");
             tabPage9.Text = Localization.Get("npcTab");
             tabPage2.Text = Localization.Get("weatherTab");
@@ -723,10 +723,10 @@ namespace RandomizerSoC
             loadButton.Text = Localization.Get("loadLists");
             generateButton.Text = Localization.Get("generate");
             loadDefaultButton.Text = Localization.Get("defaultLists");
-            label17.Text = Localization.Get("reloadSoundListTitle");
-            label10.Text = Localization.Get("ammoListTitle");
-            label1.Text = Localization.Get("weaponListTitle");
-            label19.Text = Localization.Get("shootSoundListTitle");
+            //label17.Text = Localization.Get("reloadSoundListTitle");
+            //label10.Text = Localization.Get("ammoListTitle");
+            //label1.Text = Localization.Get("weaponListTitle");
+            //label19.Text = Localization.Get("shootSoundListTitle");
             label12.Text = Localization.Get("outfits");
             label11.Text = Localization.Get("artefacts");
             label9.Text = Localization.Get("otherListTitle");

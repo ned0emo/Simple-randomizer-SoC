@@ -102,14 +102,22 @@
       <DependentUpon>ParameterListDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Support\DataListEditor.cs" />
+    <Compile Include="Forms\Tabs\ItemTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\ItemTab.Designer.cs">
+      <DependentUpon>ItemTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
+    <Compile Include="Models\AppConfig\ItemConfig.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
     <Compile Include="Models\Parameters\CopyParameter.cs" />
     <Compile Include="Models\Parameters\Parameter.cs" />
+    <Compile Include="Models\Parameters\ParameterContainer.cs" />
     <Compile Include="Models\Parameters\ShuffleParameter.cs" />
     <Compile Include="MyEnvironment.cs" />
     <Compile Include="Forms\Dialogs\SimpleListDialog.cs">
@@ -211,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\SimpleListDialog.resx">
       <DependentUpon>SimpleListDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\ItemTab.resx">
+      <DependentUpon>ItemTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\StashTab.resx">
       <DependentUpon>StashTab.cs</DependentUpon>
