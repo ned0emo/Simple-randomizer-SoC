@@ -13,25 +13,9 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class ArtefactGenerator : IGenerator
+    public class ArtefactGenerator : ItemGenerator
     {
-        private readonly ProbabilityChecker probabilityChecker = new ProbabilityChecker();
-        private readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;
-
-        private readonly Random rnd = new Random();
-
-        private ItemConfig config = null;
-        private string newConfigPath = null;
-
-        public void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
-        {
-            this.config = config;
-            this.newConfigPath = newConfigPath;
-
-            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArtefactProbability);
-        }
-
-        public async Task Generate()
+        public override async Task Generate()
         {
             if (config.MinArtefactStatCount > config.MaxArtefactStatCount)
             {
@@ -66,7 +50,7 @@ namespace Simple_randomizer_SoC.Generators
                 //основные статы
                 HandleParameters(config.StandardArtefactParameters, mainSection, absorbationSection,
                     mainSectionsByShuffleParam, mainParamValuesByShuffleParam, absorbationSectionsByShuffleParam,
-                    absorbationParamValuesByShuffleParam, copyParameters, null, null);                
+                    absorbationParamValuesByShuffleParam, copyParameters, null, null);
 
                 //характеристики
                 var statCount = rnd.Next(config.MinArtefactStatCount, config.MaxArtefactStatCount + 1);
@@ -83,13 +67,34 @@ namespace Simple_randomizer_SoC.Generators
                     absorbationParamValuesByShuffleParam, copyParameters, replacingStats, "1.0");
             }
 
+            //перемешивание
+            foreach (var shuffleParam in mainSectionsByShuffleParam.Keys)
+            {
+                var sections = mainSectionsByShuffleParam[shuffleParam];
+                if (sections.Count > 1)
+                {
+                    shuffler.Shuffle(mainParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                }
+            }
+            foreach (var shuffleParam in absorbationSectionsByShuffleParam.Keys)
+            {
+                var sections = absorbationSectionsByShuffleParam[shuffleParam];
+                if (sections.Count > 1)
+                {
+                    shuffler.Shuffle(absorbationParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                }
+            }
+
+            //копирование
+            copyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.GetParam(p.Item3)));
+
             await MyFile.Write(outPath, ltx.ToString());
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection mainSection, LtxSection absorbationSection,
-            Dictionary<string, List<LtxSection>> mainSectionsByShuffleParam, Dictionary<string, List<List<string>>> mainParamValuesByShuffleParam, 
+            Dictionary<string, List<LtxSection>> mainSectionsByShuffleParam, Dictionary<string, List<List<string>>> mainParamValuesByShuffleParam,
             Dictionary<string, List<LtxSection>> absorbationSectionsByShuffleParam,
-            Dictionary<string, List<List<string>>> absorbationParamValuesByShuffleParam, 
+            Dictionary<string, List<List<string>>> absorbationParamValuesByShuffleParam,
             List<Tuple<LtxSection, string, string>> copyParameters,
             List<string> replacingStats = null, string defaultValue = null)
         {

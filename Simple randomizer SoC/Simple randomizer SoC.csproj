@@ -112,6 +112,8 @@
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Generators\ArmorGenerator.cs" />
+    <Compile Include="Generators\ItemGenerator.cs" />
     <Compile Include="Generators\ArtefactGenerator.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
