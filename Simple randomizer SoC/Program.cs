@@ -36,7 +36,8 @@ namespace RandomizerSoC
                 var stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
                 var weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
                 var itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
-                Application.Run(new MainForm(stashConfig, weaponConfig, itemConfig));
+                var weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>(MyEnvironment.weatherConfig);
+                Application.Run(new MainForm(stashConfig, weaponConfig, itemConfig, weatherConfig));
             }
             catch (JsonException ex)
             {

@@ -52,6 +52,11 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 AddCopyParameter(p);
             }
 
+            foreach (var p in parameterContainer.CustomListParameters)
+            {
+                AddCustomListParameter(p);
+            }
+
             DialogResult = DialogResult.Cancel;
         }
 
@@ -317,6 +322,72 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
         }
 
+        private void AddCustomListParameter(CustomListParameter parameter)
+        {
+            try
+            {
+                customListPanel.SuspendLayout();
+                ParameterContainer.CustomListParameters.Add(parameter);
+
+                var nameControl = new TextBox();
+                nameControl.Text = parameter.Name;
+                nameControl.Dock = DockStyle.Top;
+                nameControl.TextChanged += (s, e) =>
+                {
+                    parameter.Name = nameControl.Text.Trim();
+                };
+
+                var editButton = new Button();
+                editButton.Text = "Редактировать";
+                editButton.AutoSize = true;
+                editButton.Click += (s, e) =>
+                {
+                    var dialog = new OrderableParameterListDialog("Редкатирование параметра " + parameter.Name, parameter.ParameterContainer);
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        parameter.ParameterContainer.Update(dialog.ParameterContainer);
+                    }
+                };
+
+                var removeButton = new Button();
+                removeButton.Text = "Удалить";
+
+                var rc = customListPanel.RowCount;
+                var rs = new RowStyle();
+
+                customListPanel.RowCount++;
+                customListPanel.RowStyles.Add(rs);
+
+                customListPanel.Controls.Add(nameControl, 0, rc);
+                customListPanel.Controls.Add(editButton, 1, rc);
+                customListPanel.Controls.Add(removeButton, 2, rc);
+
+                removeButton.Click += (s, e) =>
+                {
+                    customListPanel.Controls.Remove(nameControl);
+                    customListPanel.Controls.Remove(editButton);
+                    customListPanel.Controls.Remove(removeButton);
+
+                    customListPanel.RowCount--;
+                    customListPanel.RowStyles.Remove(rs);
+
+                    editButton.Dispose();
+                    nameControl.Dispose();
+                    removeButton.Dispose();
+
+                    ParameterContainer.CustomListParameters.Remove(parameter);
+                };
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("Ошибка", ex).ShowDialog();
+            }
+            finally
+            {
+                customListPanel.ResumeLayout();
+            }
+        }
+
         private void AddShuffleParameter(ShuffleParameter parameter)
         {
             try
@@ -440,39 +511,47 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 switch (type)
                 {
                     case ParameterType.FromList:
-                        var parameter = new FromListParameter()
+                        var flp = new FromListParameter()
                         {
                             Name = dialog.ParameterName,
                             ParameterType = type,
                             ValuesCount = dialog.ValuesCount,
                         };
-                        AddFromListRow(parameter);
+                        AddFromListRow(flp);
                         break;
                     case ParameterType.IntRange:
-                        var parameter2 = new IntRangeParameter()
+                        var irp = new IntRangeParameter()
                         {
                             Name = dialog.ParameterName,
                             ParameterType = type,
                             ValuesCount = dialog.ValuesCount,
                         };
-                        AddIntRangeRow(parameter2);
+                        AddIntRangeRow(irp);
                         break;
                     case ParameterType.FloatRange:
-                        var parameter3 = new FloatRangeParameter()
+                        var frp = new FloatRangeParameter()
                         {
                             Name = dialog.ParameterName,
                             ParameterType = type,
                             ValuesCount = dialog.ValuesCount,
                         };
-                        AddFloatRangeRow(parameter3);
+                        AddFloatRangeRow(frp);
                         break;
-                    case ParameterType.Shuffle:
-                        var p = new ShuffleParameter()
+                    case ParameterType.CustomList:
+                        var clp = new CustomListParameter()
                         {
                             Name = dialog.ParameterName,
                             ParameterType = type
                         };
-                        AddShuffleParameter(p);
+                        AddCustomListParameter(clp);
+                        break;
+                    case ParameterType.Shuffle:
+                        var sp = new ShuffleParameter()
+                        {
+                            Name = dialog.ParameterName,
+                            ParameterType = type
+                        };
+                        AddShuffleParameter(sp);
                         break;
                     case ParameterType.Copy:
                         var cp = new CopyParameter()

@@ -31,10 +31,10 @@ namespace RandomizerSoC
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "123"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Info, null);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("");
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
@@ -64,16 +64,6 @@ namespace RandomizerSoC
             this.soundTextBox = new System.Windows.Forms.TextBox();
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.thunderNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.rainNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.thunderTextBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.skyTextBox = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -162,12 +152,10 @@ namespace RandomizerSoC
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.weatherTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.dialogsTab.SuspendLayout();
             this.tabPage9.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.advancedTab2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
@@ -234,9 +222,9 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.stashTab);
             this.tabControl.Controls.Add(this.weaponTab);
             this.tabControl.Controls.Add(this.itemTab);
+            this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.dialogsTab);
             this.tabControl.Controls.Add(this.tabPage9);
-            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Controls.Add(this.probabilityTab);
@@ -258,6 +246,7 @@ namespace RandomizerSoC
             this.stashTab.TabIndex = 15;
             this.stashTab.Text = "Тайники";
             this.stashTab.UseVisualStyleBackColor = true;
+            this.stashTab.Click += new System.EventHandler(this.stashTab_Click);
             // 
             // weaponTab
             // 
@@ -361,10 +350,10 @@ namespace RandomizerSoC
             this.tabPage9.Controls.Add(this.soundTextBox);
             this.tabPage9.Controls.Add(this.modelTextBox);
             this.tabPage9.Controls.Add(this.label3);
-            this.tabPage9.Location = new System.Drawing.Point(4, 40);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(510, 391);
+            this.tabPage9.Size = new System.Drawing.Size(510, 409);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "НПС";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -519,107 +508,6 @@ namespace RandomizerSoC
             this.label3.Text = "Исключения";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.thunderNumericUpDown);
-            this.tabPage2.Controls.Add(this.rainNumericUpDown);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.thunderTextBox);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.skyTextBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(510, 391);
-            this.tabPage2.TabIndex = 10;
-            this.tabPage2.Text = "Погода";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // thunderNumericUpDown
-            // 
-            this.thunderNumericUpDown.Location = new System.Drawing.Point(511, 195);
-            this.thunderNumericUpDown.Name = "thunderNumericUpDown";
-            this.thunderNumericUpDown.Size = new System.Drawing.Size(56, 20);
-            this.thunderNumericUpDown.TabIndex = 24;
-            // 
-            // rainNumericUpDown
-            // 
-            this.rainNumericUpDown.Location = new System.Drawing.Point(511, 169);
-            this.rainNumericUpDown.Name = "rainNumericUpDown";
-            this.rainNumericUpDown.Size = new System.Drawing.Size(56, 20);
-            this.rainNumericUpDown.TabIndex = 23;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(573, 197);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(252, 13);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "Вероятность грозы для каждого класса погоды";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(573, 171);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(253, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Вероятность дождя для каждого класса погоды";
-            // 
-            // label14
-            // 
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(508, 35);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(501, 131);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Изменение погоды в основном затрагивает цвет окружения, потому может быть не очен" +
-    "ь приятным.\r\nЗато игра будет хорошо дополнять RGB геймерские клавиатуру и мышь";
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(257, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(245, 23);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Эффекты грозы";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // thunderTextBox
-            // 
-            this.thunderTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.thunderTextBox.Location = new System.Drawing.Point(257, 35);
-            this.thunderTextBox.Multiline = true;
-            this.thunderTextBox.Name = "thunderTextBox";
-            this.thunderTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.thunderTextBox.Size = new System.Drawing.Size(245, 492);
-            this.thunderTextBox.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(6, 9);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(245, 23);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Небо";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // skyTextBox
-            // 
-            this.skyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.skyTextBox.Location = new System.Drawing.Point(6, 35);
-            this.skyTextBox.Multiline = true;
-            this.skyTextBox.Name = "skyTextBox";
-            this.skyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.skyTextBox.Size = new System.Drawing.Size(245, 492);
-            this.skyTextBox.TabIndex = 14;
-            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.unlockTraderDoorCheckBox);
@@ -641,11 +529,11 @@ namespace RandomizerSoC
             this.tabPage8.Controls.Add(this.barAlarmCheckBox);
             this.tabPage8.Controls.Add(this.equipWeaponEverywhereCheckBox);
             this.tabPage8.Controls.Add(this.communityCheckBox);
-            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage8.Size = new System.Drawing.Size(510, 391);
+            this.tabPage8.Size = new System.Drawing.Size(510, 409);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1422,9 +1310,9 @@ namespace RandomizerSoC
             // 
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(301, 397);
@@ -1691,6 +1579,16 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
+            // weatherTab
+            // 
+            this.weatherTab.Location = new System.Drawing.Point(4, 40);
+            this.weatherTab.Name = "weatherTab";
+            this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
+            this.weatherTab.Size = new System.Drawing.Size(510, 391);
+            this.weatherTab.TabIndex = 18;
+            this.weatherTab.Text = "Погода";
+            this.weatherTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1708,10 +1606,6 @@ namespace RandomizerSoC
             this.dialogsTab.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thunderNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rainNumericUpDown)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.advancedTab2.ResumeLayout(false);
@@ -1788,17 +1682,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.CheckBox reputationCheckBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox thunderTextBox;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox skyTextBox;
         private System.Windows.Forms.CheckBox weatherCheckBox;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.NumericUpDown thunderNumericUpDown;
-        private System.Windows.Forms.NumericUpDown rainNumericUpDown;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox deathItemsCheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.RadioButton rusRadioButton;
@@ -1867,6 +1751,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage weaponTab;
         private System.Windows.Forms.TabPage itemTab;
+        private System.Windows.Forms.TabPage weatherTab;
     }
 }
 

@@ -31,7 +31,7 @@ namespace Simple_randomizer_SoC.Generators
                     {
                         if (s.Params.ContainsKey(p.Name))
                         {
-                            s.Params[p.Name] = p.GenerateValuesList(GlobalRandom.Rnd);
+                            s.Params[p.Name] = p.GenerateValues(GlobalRandom.Rnd);
                             break;
                         }
                     }

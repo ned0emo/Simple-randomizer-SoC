@@ -11,7 +11,7 @@ namespace Simple_randomizer_SoC.Model
     public abstract class ParameterBase : Parameter
     {
         public int ValuesCount { get; set; } = 1;
-        public abstract List<string> GenerateValuesList(Random rnd);
+        public abstract List<string> GenerateValues(Random rnd);
 
         public override bool Validate()
         {

@@ -55,24 +55,38 @@ namespace Simple_randomizer_SoC.Generators
             {
                 probabilityChecker.DoOrSkip(() =>
                 {
-                    section.SetParamValues(parameter.Name, parameter.GenerateValuesList(rnd));
+                    section.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                });
+            });
+
+            parameterContainer.CustomListParameters.ForEach((clp) =>
+            {
+                probabilityChecker.DoOrSkip(() =>
+                {
+                    section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
                 });
             });
 
             parameterContainer.ShuffleParameters.ForEach((shuffleParam) =>
             {
-                probabilityChecker.DoOrSkip(() =>
+                if (section.HasParam(shuffleParam.Name))
                 {
-                    shuffler.Prepare(section, shuffleParam.Name, sectionsByShuffleParam, paramValuesByShuffleParam);
-                });
+                    probabilityChecker.DoOrSkip(() =>
+                    {
+                        shuffler.Prepare(section, shuffleParam.Name, sectionsByShuffleParam, paramValuesByShuffleParam);
+                    });
+                }
             });
 
             parameterContainer.CopyParameters.ForEach((copyParam) =>
             {
-                probabilityChecker.DoOrSkip(() =>
+                if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                 {
-                    copyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
-                });
+                    probabilityChecker.DoOrSkip(() =>
+                    {
+                        copyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
+                    });
+                }
             });
         }
     }

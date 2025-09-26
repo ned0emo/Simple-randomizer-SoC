@@ -12,7 +12,7 @@ namespace Simple_randomizer_SoC.Models.Parameters
     public class FromListParameter : ParameterBase
     {
         public List<string> Values { get; set; } = new List<string>();
-        public override List<string> GenerateValuesList(Random rnd)
+        public override List<string> GenerateValues(Random rnd)
         {
             if (ValuesCount == 0) return new List<string>();
 

@@ -17,6 +17,8 @@ namespace Simple_randomizer_SoC.Generators
         private readonly ProbabilityChecker ammoProbabilityChecker = new ProbabilityChecker();
         private readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;
 
+        private readonly Random rnd = new Random();
+
         private WeaponConfig weaponConfig = null;
         private string newConfigPath = null;
 
@@ -24,8 +26,8 @@ namespace Simple_randomizer_SoC.Generators
         {
             this.newConfigPath = newConfigPath;
             this.weaponConfig = weaponConfig;
-            weaponProbabilityChecker.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponConfig.WeaponStatProbability);
-            ammoProbabilityChecker.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponConfig.AmmoStatProbability);
+            weaponProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.WeaponStatProbability);
+            ammoProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.AmmoStatProbability);
         }
 
         public async Task Generate()
@@ -45,8 +47,8 @@ namespace Simple_randomizer_SoC.Generators
             var ammoParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
             var ammoCopyParameters = new List<Tuple<LtxSection, string, string>>();
 
-            var wpc = weaponConfig.WeaponParameterContainer;
-            var apc = weaponConfig.AmmoParameterContainer;
+            var weaponParameters = weaponConfig.WeaponParameterContainer;
+            var ammoParameters = weaponConfig.AmmoParameterContainer;
 
             foreach (var f in dir.GetFiles())
             {
@@ -63,23 +65,28 @@ namespace Simple_randomizer_SoC.Generators
                     if (weaponConfig.WeaponSections.Contains(section.Name))
                     {
                         //стандартные параметры
-                        wpc.ForEachParameter((p) =>
+                        weaponParameters.ForEachParameter((p) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(p.Name))
-                                {
-                                    section.Params[p.Name] = p.GenerateValuesList(GlobalRandom.Rnd);
-                                }
+                                section.Params[p.Name] = p.GenerateValues(rnd);
+                            });
+                        });
+
+                        weaponParameters.CustomListParameters.ForEach(clp =>
+                        {
+                            weaponProbabilityChecker.DoOrSkip(() =>
+                            {
+                                section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
                             });
                         });
 
                         //подготовока к перемешиванию
-                        wpc.ShuffleParameters.ForEach((shuffleParam) =>
+                        weaponParameters.ShuffleParameters.ForEach((shuffleParam) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(shuffleParam.Name))
+                                if (section.HasParam(shuffleParam.Name))
                                 {
                                     if (weaponSectionsByShuffleParam.TryGetValue(shuffleParam.Name, out var sections))
                                     {
@@ -96,13 +103,13 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовка к копированию
-                        wpc.CopyParameters.ForEach((p) =>
+                        weaponParameters.CopyParameters.ForEach((copyParam) =>
                         {
                             weaponProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(p.Name) && section.Params.ContainsKey(p.CopyFrom))
+                                if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                                 {
-                                    weaponCopyParameters.Add(new Tuple<LtxSection, string, string>(section, p.Name, p.CopyFrom));
+                                    weaponCopyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
                                 }
                             });
                         });
@@ -112,23 +119,28 @@ namespace Simple_randomizer_SoC.Generators
                     if (weaponConfig.AmmoSections.Contains(section.Name))
                     {
                         //стандартные параметры
-                        apc.ForEachParameter((p) =>
+                        ammoParameters.ForEachParameter((p) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(p.Name))
-                                {
-                                    section.Params[p.Name] = p.GenerateValuesList(GlobalRandom.Rnd);
-                                }
+                                section.SetParamValues(p.Name, p.GenerateValues(rnd));
+                            });
+                        });
+
+                        ammoParameters.CustomListParameters.ForEach(clp =>
+                        {
+                            ammoProbabilityChecker.DoOrSkip(() =>
+                            {
+                                section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
                             });
                         });
 
                         //подготовка к перемешиванию
-                        apc.ShuffleParameters.ForEach((shuffleParam) =>
+                        ammoParameters.ShuffleParameters.ForEach((shuffleParam) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(shuffleParam.Name))
+                                if (section.HasParam(shuffleParam.Name))
                                 {
                                     if (ammoSectionsByShuffleParam.TryGetValue(shuffleParam.Name, out var sections))
                                     {
@@ -145,11 +157,11 @@ namespace Simple_randomizer_SoC.Generators
                         });
 
                         //подготовка к копированию
-                        apc.CopyParameters.ForEach((copyParam) =>
+                        ammoParameters.CopyParameters.ForEach((copyParam) =>
                         {
                             ammoProbabilityChecker.DoOrSkip(() =>
                             {
-                                if (section.Params.ContainsKey(copyParam.Name) && section.Params.ContainsKey(copyParam.CopyFrom))
+                                if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                                 {
                                     ammoCopyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
                                 }

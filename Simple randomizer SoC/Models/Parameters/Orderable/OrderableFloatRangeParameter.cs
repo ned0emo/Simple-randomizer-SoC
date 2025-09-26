@@ -7,37 +7,26 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Models.Parameters
 {
-    public class FloatRangeParameter : ParameterBase
+    public class OrderableFloatRangeParameter : OrderableParameterBase
     {
         public float MinValue { get; set; }
         public float MaxValue { get; set; }
         public int Precision { get; set; } = 2;
 
-        public override List<string> GenerateValues(Random rnd)
+        public override string GenerateValue(Random rnd)
         {
-            if (ValuesCount == 0) return new List<string>();
-
-            if (ValuesCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(ValuesCount), "Количество значений параметра не может быть меньше 0");
             if (MinValue > MaxValue)
                 throw new ArgumentOutOfRangeException(nameof(MinValue), "Минимальное значение параметра не может быть больше максимального");
             if (Precision < 0)
                 throw new ArgumentOutOfRangeException(nameof(Precision), "Точность значения параметра не может быть меньше 0");
 
             var diff = MaxValue - MinValue;
-            var result = new List<string>();
-
-            for (int i = 0; i < ValuesCount; i++)
-            {
-                result.Add(Math.Round(rnd.NextDouble() * diff + MinValue, Precision).ToString());
-            }
-
-            return result;
+            return Math.Round(rnd.NextDouble() * diff + MinValue, Precision).ToString();
         }
         public override bool Validate()
         {
             if (MinValue > MaxValue || Precision < 0) return false;
-            return base.Validate();
+            return true;
         }
     }
 }

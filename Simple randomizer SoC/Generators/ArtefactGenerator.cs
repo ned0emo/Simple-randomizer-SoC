@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Simple_randomizer_SoC.Generators
 {
@@ -98,38 +99,138 @@ namespace Simple_randomizer_SoC.Generators
             List<Tuple<LtxSection, string, string>> copyParameters,
             List<string> replacingStats = null, string defaultValue = null)
         {
-            parameterContainer.ForEachParameter((parameter) =>
+            //простая замена без подсчета кол-ва статов
+            if (defaultValue == null)
             {
-                if (mainSection.HasParam(parameter.Name))
+                parameterContainer.ForEachParameter((parameter) =>
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    if (absorbationSection.HasParam(parameter.Name) && mainSection.HasParam(parameter.Name))
                     {
-                        if (defaultValue == null || replacingStats.Contains(parameter.Name))
+                        probabilityChecker.DoOrSkip(() =>
                         {
-                            mainSection.SetParamValues(parameter.Name, parameter.GenerateValuesList(rnd));
-                        }
-                        else
-                        {
-                            mainSection.SetParam(parameter.Name, defaultValue);
-                        }
-                    });
-                }
+                            mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                        });
 
-                if (absorbationSection.HasParam(parameter.Name))
-                {
-                    probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                        });
+                    }
+                    else if (absorbationSection.HasParam(parameter.Name))
                     {
-                        if (defaultValue == null || replacingStats.Contains(parameter.Name))
+                        probabilityChecker.DoOrSkip(() =>
                         {
-                            absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValuesList(rnd));
-                        }
-                        else
+                            absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                        });
+                    }
+                    else
+                    {
+                        probabilityChecker.DoOrSkip(() =>
                         {
-                            absorbationSection.SetParam(parameter.Name, defaultValue);
-                        }
-                    });
-                }
-            });
+                            mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                        });
+                    }
+                });
+
+                parameterContainer.CustomListParameters.ForEach((clp) =>
+                {
+                    if (absorbationSection.HasParam(clp.Name) && mainSection.HasParam(clp.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                        });
+
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                        });
+                    }
+                    else if (absorbationSection.HasParam(clp.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                        });
+                    }
+                    else
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                        });
+                    }
+                });
+            }
+            //замена по кол-ву статов
+            else
+            {
+                parameterContainer.ForEachParameter((parameter) =>
+                {
+                    if (mainSection.HasParam(parameter.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            if (replacingStats.Contains(parameter.Name))
+                            {
+                                mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            }
+                            else
+                            {
+                                mainSection.SetParam(parameter.Name, defaultValue);
+                            }
+                        });
+                    }
+
+                    if (absorbationSection.HasParam(parameter.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            if (replacingStats.Contains(parameter.Name))
+                            {
+                                absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            }
+                            else
+                            {
+                                absorbationSection.SetParam(parameter.Name, defaultValue);
+                            }
+                        });
+                    }
+                });
+
+                parameterContainer.CustomListParameters.ForEach((clp) =>
+                {
+                    if (mainSection.HasParam(clp.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            if (replacingStats.Contains(clp.Name))
+                            {
+                                mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            }
+                            else
+                            {
+                                mainSection.SetParam(clp.Name, defaultValue);
+                            }
+                        });
+                    }
+
+                    if (absorbationSection.HasParam(clp.Name))
+                    {
+                        probabilityChecker.DoOrSkip(() =>
+                        {
+                            if (replacingStats.Contains(clp.Name))
+                            {
+                                absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            }
+                            else
+                            {
+                                absorbationSection.SetParam(clp.Name, defaultValue);
+                            }
+                        });
+                    }
+                });
+            }
 
             parameterContainer.ShuffleParameters.ForEach((shuffleParam) =>
             {

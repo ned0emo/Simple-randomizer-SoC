@@ -18,7 +18,7 @@ namespace Simple_randomizer_SoC.Model
             return "[" + Name + "]" + (ParentName == null ? string.Empty : (":" + ParentName)) + "\r\n" +
                 (Params.Count == 0 ? "" : Params.Select(p =>
                 {
-                    return p.Key + (p.Value.Count == 0 ? "" : ("=" + p.Value.Aggregate((v1, v2) => v1 + "," + v2)));
+                    return p.Key + (p.Value.Count == 0 ? "" : (" = " + p.Value.Aggregate((v1, v2) => v1 + ", " + v2)));
                 }).Aggregate((p1, p2) => p1 + "\r\n" + p2));
         }
 

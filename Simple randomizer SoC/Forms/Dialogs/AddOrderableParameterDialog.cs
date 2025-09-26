@@ -11,18 +11,21 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Dialogs
 {
-    public partial class AddParameterDialog : Form
+    public partial class AddOrderableParameterDialog : Form
     {
-        public string ParameterName { get; private set; } = null;
-        public ParameterType ParameterType { get; private set; } = ParameterType.FromList;
-        public int ValuesCount { get; private set; } = 1;
+        private readonly HashSet<int> existingOrders;
 
-        public AddParameterDialog()
+        public ParameterType ParameterType { get; private set; } = ParameterType.FromList;
+        public int Order { get; private set; } = 0;
+
+        public AddOrderableParameterDialog(HashSet<int> existingOrders)
         {
             InitializeComponent();
             DialogResult = DialogResult.Cancel;
 
-            typeSelect.DataSource = ParameterTypeDataSource.Get();
+            typeSelect.DataSource = ParameterTypeDataSource.GetLess();
+
+            this.existingOrders = existingOrders;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -33,37 +36,23 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(ParameterName))
+            if (existingOrders.Contains(Order))
             {
-                MessageBox.Show("Не все поля заполнены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Указанный номер по порядку уже существует", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            ParameterName = ParameterName.Trim();
             DialogResult = DialogResult.OK;
             Close();
         }
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ParameterName = nameTextBox.Text;
-        }
-
+        
         private void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             ParameterType = (ParameterType)typeSelect.SelectedValue;
-            if (ParameterType == ParameterType.Shuffle || ParameterType == ParameterType.Copy || ParameterType == ParameterType.CustomList)
-            {
-                countInput.Enabled = false;
-            }
-            else
-            {
-                countInput.Enabled = true;
-            }
         }
 
         private void countInput_ValueChanged(object sender, EventArgs e)
         {
-            ValuesCount = (int)countInput.Value;
+            Order = (int)orderInput.Value;
         }
     }
 }

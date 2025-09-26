@@ -11,7 +11,8 @@ namespace Simple_randomizer_SoC.Enums
         IntRange,
         FloatRange,
         Shuffle,
-        Copy
+        Copy,
+        CustomList
     }
 
     public abstract class ParameterTypeDataSource
@@ -23,6 +24,17 @@ namespace Simple_randomizer_SoC.Enums
                 Value = p,
                 Description = Localization.Get(p.ToString())
             }).ToList();
+        }
+
+        public static object GetLess()
+        {
+            return Enum.GetValues(typeof(ParameterType)).Cast<ParameterType>()
+                .Where(p => p != ParameterType.Shuffle && p != ParameterType.Copy && p != ParameterType.CustomList)
+                .Select(p => new
+                {
+                    Value = p,
+                    Description = Localization.Get(p.ToString())
+                }).ToList();
         }
     }
 }

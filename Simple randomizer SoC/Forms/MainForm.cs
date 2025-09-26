@@ -48,10 +48,10 @@ namespace RandomizerSoC
         readonly ArtefactGenerator artefactGenerator = new ArtefactGenerator();
         readonly ArmorGenerator armorGenerator = new ArmorGenerator();
         readonly ConsumableGenerator consumableGenerator = new ConsumableGenerator();
+        readonly WeatherGenerator weatherGenerator = new WeatherGenerator();
 
         readonly NpcGenerator npcGenerator;
         //readonly OutfitsGenerator outfitsGenerator;
-        readonly WeatherGenerator weatherGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
         readonly DialogsGenerator dialogsGenerator;
@@ -64,6 +64,7 @@ namespace RandomizerSoC
         readonly StashConfig stashConfig;
         readonly WeaponConfig weaponConfig;
         readonly ItemConfig itemConfig;
+        readonly WeatherConfig weatherConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -75,7 +76,7 @@ namespace RandomizerSoC
             threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
-        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig, ItemConfig itemConfig)
+        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig, ItemConfig itemConfig, WeatherConfig weatherConfig)
         {
             InitializeComponent();
             loadState.Text = "";
@@ -97,8 +98,8 @@ namespace RandomizerSoC
                 ["community"] = communityTextBox,
                 ["names"] = namesTextBox,
                 ["icons"] = iconsTextBox,
-                ["skybox"] = skyTextBox,
-                ["thunderbolt"] = thunderTextBox,
+                //["skybox"] = skyTextBox,
+                //["thunderbolt"] = thunderTextBox,
                 //["weapon_snd_reload"] = reloadSoundsTextBox,
                 //["weapon_snd_shoot"] = shootSoundsTextBox,
                 ["dialog_infos_exceptions"] = infosExceptionTextBox,
@@ -127,7 +128,7 @@ namespace RandomizerSoC
 
             //outfitsGenerator = new OutfitsGenerator();
             npcGenerator = new NpcGenerator();
-            weatherGenerator = new WeatherGenerator();
+            //weatherGenerator = new WeatherGenerator2();
             deathItemsGenerator = new DeathItemsGenerator();
             tradeGenerator = new TradeGenerator();
             dialogsGenerator = new DialogsGenerator();
@@ -145,10 +146,12 @@ namespace RandomizerSoC
             stashTab.Controls.Add(new StashTab(stashConfig));
             weaponTab.Controls.Add(new WeaponTab(weaponConfig));
             itemTab.Controls.Add(new ItemTab(itemConfig));
+            weatherTab.Controls.Add(new WeatherTab(weatherConfig));
 
             this.stashConfig = stashConfig;
             this.weaponConfig = weaponConfig;
             this.itemConfig = itemConfig;
+            this.weatherConfig = weatherConfig;
 
             if (Localization.IsFirstLoadEnglish())
             {
@@ -360,9 +363,7 @@ namespace RandomizerSoC
             //погода
             if (weatherCheckBox.Checked)
             {
-                weatherGenerator.UpdateData(skyboxes: skyTextBox.Text, thunders: thunderTextBox.Text, rainProbability: (int)rainNumericUpDown.Value,
-                    thunderProbability: (int)thunderNumericUpDown.Value, newConfigPath: newConfigPath);
-                weatherGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weatherReplaceProbInput.Value);
+                weatherGenerator.UpdateData(weatherConfig, newConfigPath, randomProbability);
                 try
                 {
                     await weatherGenerator.Generate();
@@ -714,7 +715,7 @@ namespace RandomizerSoC
             //tabPage1.Text = Localization.Get("weaponsTab");
             //tabPage6.Text = Localization.Get("ItemsTab");
             tabPage9.Text = Localization.Get("npcTab");
-            tabPage2.Text = Localization.Get("weatherTab");
+            //tabPage2.Text = Localization.Get("weatherTab");
             tabPage8.Text = Localization.Get("advancedTab");
             advancedTab2.Text = Localization.Get("advancedTab") + " 2";
             saveButton.Text = Localization.Get("saveLists");
@@ -736,11 +737,11 @@ namespace RandomizerSoC
             modelsCheckBox.Text = Localization.Get("modelListTitle");
             onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
             label3.Text = Localization.Get("exceptionListTitle");
-            label16.Text = Localization.Get("thunderProbability");
-            label15.Text = Localization.Get("rainProbability");
-            label14.Text = Localization.Get("weatherHelp");
-            label5.Text = Localization.Get("thunderListTitle");
-            label13.Text = Localization.Get("skyboxListTitle");
+            //label16.Text = Localization.Get("thunderProbability");
+            //label15.Text = Localization.Get("rainProbability");
+            //label14.Text = Localization.Get("weatherHelp");
+            //label5.Text = Localization.Get("thunderListTitle");
+            //label13.Text = Localization.Get("skyboxListTitle");
             gScriptCheckBox.Text = Localization.Get("gScriptFix");
             advancedGulagCheckBox.Text = Localization.Get("moreGulag");
             shuffleTextCheckBox.Text = Localization.Get("shuffleText");
@@ -890,6 +891,11 @@ namespace RandomizerSoC
         {
             var value = !allRandomProbabilityCheckbox.Checked;
             probailityInputs.ForEach(i => { i.Enabled = value; });
+        }
+
+        private void stashTab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

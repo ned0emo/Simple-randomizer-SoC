@@ -83,6 +83,12 @@
   <ItemGroup>
     <Compile Include="Additional\AdditionalParams.cs" />
     <Compile Include="Enums\ParameterType.cs" />
+    <Compile Include="Forms\Dialogs\AddOrderableParameterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AddOrderableParameterDialog.Designer.cs">
+      <DependentUpon>AddOrderableParameterDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\AddParameterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     </Compile>
     <Compile Include="Forms\Dialogs\ComplexListDialog.Designer.cs">
       <DependentUpon>ComplexListDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\OrderableParameterListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\OrderableParameterListDialog.Designer.cs">
+      <DependentUpon>OrderableParameterListDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\ParameterListDialog.cs">
       <SubType>Form</SubType>
@@ -109,6 +121,12 @@
     <Compile Include="Forms\Tabs\ItemTab.Designer.cs">
       <DependentUpon>ItemTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tabs\WeatherTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\WeatherTab.Designer.cs">
+      <DependentUpon>WeatherTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,12 +136,19 @@
     <Compile Include="Generators\ArtefactGenerator.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
-    <Compile Include="Models\AppConfig\ArtefactAbsorbation.cs" />
+    <Compile Include="Generators\WeatherGenerator.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
+    <Compile Include="Models\AppConfig\WeatherConfig.cs" />
     <Compile Include="Models\Parameters\CopyParameter.cs" />
+    <Compile Include="Models\Parameters\CustomListParameter.cs" />
+    <Compile Include="Models\Parameters\Orderable\OrderableFloatRangeParameter.cs" />
+    <Compile Include="Models\Parameters\Orderable\OrderableFromListParameter.cs" />
+    <Compile Include="Models\Parameters\Orderable\OrderableIntRangeParameter.cs" />
+    <Compile Include="Models\Parameters\Orderable\OrderableParameterBase.cs" />
     <Compile Include="Models\Parameters\Parameter.cs" />
     <Compile Include="Models\Parameters\ParameterContainer.cs" />
+    <Compile Include="Models\Parameters\Orderable\ParameterOrderableContainer.cs" />
     <Compile Include="Models\Parameters\ShuffleParameter.cs" />
     <Compile Include="MyEnvironment.cs" />
     <Compile Include="Forms\Dialogs\SimpleListDialog.cs">
@@ -204,7 +229,6 @@
     <Compile Include="Forms\GuideForm.Designer.cs">
       <DependentUpon>GuideForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generators\WeatherGenerator.cs" />
     <Compile Include="Tools\Localization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,11 +238,17 @@
     <Compile Include="Tools\StringUtils.cs" />
     <Compile Include="Tools\TextBoxesHandler.cs" />
     <Compile Include="Additional\TextureRandomizer.cs" />
+    <EmbeddedResource Include="Forms\Dialogs\AddOrderableParameterDialog.resx">
+      <DependentUpon>AddOrderableParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AddParameterDialog.resx">
       <DependentUpon>AddParameterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\ComplexListDialog.resx">
       <DependentUpon>ComplexListDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\OrderableParameterListDialog.resx">
+      <DependentUpon>OrderableParameterListDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\ParameterListDialog.resx">
       <DependentUpon>ParameterListDialog.cs</DependentUpon>
@@ -234,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\WeaponTab.resx">
       <DependentUpon>WeaponTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\WeatherTab.resx">
+      <DependentUpon>WeatherTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Language\en_local.resx">
       <Generator>ResXFileCodeGenerator</Generator>

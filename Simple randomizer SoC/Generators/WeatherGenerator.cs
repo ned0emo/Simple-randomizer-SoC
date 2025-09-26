@@ -1,128 +1,138 @@
-﻿using Simple_randomizer_SoC.Tools;
+﻿using Simple_randomizer_SoC.Generators.Support;
+using Simple_randomizer_SoC.Model;
+using Simple_randomizer_SoC.Models.AppConfig;
+using Simple_randomizer_SoC.Models.Parameters;
+using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    class WeatherGenerator : BaseGenerator
+    public class WeatherGenerator : IGenerator
     {
-        private string skyboxes;
-        private string thunders;
+        private readonly ProbabilityChecker probabilityChecker = new ProbabilityChecker();
+        private readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;
 
-        private int rainProbability;
-        private int thunderProbability;
+        private readonly Random rnd = new Random();
 
-        private string newConfigPath;
+        private WeatherConfig _config = null;
+        private string _newConfigPath = null;
 
-        public void UpdateData(string skyboxes, string thunders, int rainProbability, int thunderProbability, string newConfigPath)
+        public void UpdateData(WeatherConfig config, string newConfigPath, bool randomProbability)
         {
-            this.skyboxes = skyboxes;
-            this.thunders = thunders;
-            this.rainProbability = rainProbability;
-            this.thunderProbability = thunderProbability;
-            this.newConfigPath = newConfigPath;
+            _config = config;
+            _newConfigPath = newConfigPath;
 
-            isDataLoaded = true;
+            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.StatProbability);
         }
 
         public async Task Generate()
         {
-            if (!isDataLoaded)
+            var dir = new DirectoryInfo($"{MyEnvironment.configPath}\\weathers");
+            var outPath = _newConfigPath + "\\weathers\\";
+
+            var files = new List<LtxData>();
+
+            var sectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
+            var paramValuesByShuffleParam = new Dictionary<string, List<List<string>>>();
+
+            var copyParameters = new List<Tuple<LtxSection, string, string>>();
+
+            foreach (var f in dir.GetFiles())
             {
-                throw new CustomException(Localization.Get("weatherDataError"));
-            }
+                if (f.Extension.ToLower() != ".ltx") continue;
 
-            var thunderList = CreateCleanList(thunders);
-            var skyTextureList = CreateCleanList(skyboxes);
-            var weathers = await MyFile.GetFiles($"{MyEnvironment.configPath}/weathers");
+                LtxData ltx = await LtxData.Load(f.FullName)
+                   ?? throw new CustomException("Ошибка чтения файла с данными о погоде: " + f.FullName);
+                files.Add(ltx);
 
-            foreach (string weatherPath in weathers)
-            {
-                List<string> weatherList = new List<string>((await MyFile.Read(weatherPath)).Split(']'));
-
-                string newWeather = weatherList[0] + "]" + weatherList[1];
-                for (int i = 2; i < weatherList.Count; i++)
+                foreach (var sec in _config.Sections)
                 {
-                    string currentWeather = weatherList[i];
+                    var section = ltx.GetSectionByName(sec);
+                    if (section == null) continue;
 
-                    if (thunderProbability > GlobalRandom.Rnd.Next(100) && thunderList.Length > 0)
-                    {
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "thunderbolt", thunderList[GlobalRandom.Rnd.Next(thunderList.Length)]));
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "bolt_period", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 10 + 2, 1)}f"));
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "bolt_duration", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 3.9 + 0.1, 2)}f"));
-                    }
-                    else
-                    {
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "thunderbolt", ""));
-                    }
+                    HandleParameters(_config.Parameters, section,
+                        sectionsByShuffleParam, paramValuesByShuffleParam, copyParameters);
 
-                    if (rainProbability > GlobalRandom.Rnd.Next(100))
+
+                    if (rnd.Next(100) >= _config.RainProbability)
                     {
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "rain_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2)));
-                    }
-                    else
-                    {
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "rain_density", 0.0));
+                        section.SetParam("rain_density", "0.0");
                     }
 
-                    if (skyTextureList.Length > 0)
+                    if (rnd.Next(100) >= _config.ThunderProbability)
                     {
-                        doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "sky_texture", skyTextureList[GlobalRandom.Rnd.Next(skyTextureList.Length)]));
+                        section.SetParam("thunderbolt", "");
+                        section.SetParam("bolt_period", "");
+                        section.SetParam("bolt_duration", "");
                     }
-
-                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "sky_rotation", GlobalRandom.Rnd.Next(360)));
-                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "far_plane", GlobalRandom.Rnd.Next(100, 3001)));
-                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "fog_distance", GlobalRandom.Rnd.Next(100, 3001)));
-                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "fog_density", Math.Round(GlobalRandom.Rnd.NextDouble(), 2)));
-                    doOrSkip(() => currentWeather = ReplaceStat(currentWeather, "wind_velocity", Math.Round(GlobalRandom.Rnd.NextDouble() * 100, 1)));
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                            = ReplaceStat(currentWeather, "sky_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 2)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "clouds_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 1)}, {Math.Round(GlobalRandom.Rnd.NextDouble() + 1, 1)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "fog_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "rain_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "ambient", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}, {Math.Round(GlobalRandom.Rnd.NextDouble() * 0.2 + 0.01, 4)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "hemi_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 1)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather
-                        = ReplaceStat(currentWeather, "sun_color", $"{Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}, {Math.Round(GlobalRandom.Rnd.NextDouble(), 3)}");
-                    });
-                    doOrSkip(() =>
-                    {
-                        currentWeather = ReplaceStat(currentWeather, "sun_dir", $"{Math.Round(GlobalRandom.Rnd.NextDouble() * 39 - 40, 1)}, {GlobalRandom.Rnd.Next(200, 301)}");
-                    });
-
-                    newWeather += "]" + currentWeather;
                 }
-
-                await MyFile.Write(weatherPath.Replace(MyEnvironment.configPath, newConfigPath), newWeather);
             }
+
+            //перемешивание
+            foreach (var shuffleParam in sectionsByShuffleParam.Keys)
+            {
+                var sections = sectionsByShuffleParam[shuffleParam];
+                if (sections.Count > 1)
+                {
+                    shuffler.Shuffle(paramValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                }
+            }
+
+            //копирование
+            copyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.GetParam(p.Item3)));
+
+            foreach (var f in files)
+            {
+                await MyFile.Write(outPath + f.FileName, f.ToString());
+            }
+        }
+
+        private void HandleParameters(ParameterContainer parameterContainer, LtxSection section,
+            Dictionary<string, List<LtxSection>> sectionsByShuffleParam, Dictionary<string, List<List<string>>> paramValuesByShuffleParam,
+            List<Tuple<LtxSection, string, string>> copyParameters)
+        {
+            parameterContainer.ForEachParameter((parameter) =>
+            {
+                probabilityChecker.DoOrSkip(() =>
+                {
+                    section.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                });
+            });
+
+            parameterContainer.CustomListParameters.ForEach((clp) =>
+            {
+                probabilityChecker.DoOrSkip(() =>
+                {
+                    section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                });
+            });
+
+            parameterContainer.ShuffleParameters.ForEach((shuffleParam) =>
+            {
+                if (section.HasParam(shuffleParam.Name))
+                {
+                    probabilityChecker.DoOrSkip(() =>
+                    {
+                        shuffler.Prepare(section, shuffleParam.Name, sectionsByShuffleParam, paramValuesByShuffleParam);
+                    });
+                }
+            });
+
+            parameterContainer.CopyParameters.ForEach((copyParam) =>
+            {
+                if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
+                {
+                    probabilityChecker.DoOrSkip(() =>
+                    {
+                        copyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
+                    });
+                }
+            });
         }
     }
 }
