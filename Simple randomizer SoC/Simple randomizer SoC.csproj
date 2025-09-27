@@ -221,7 +221,6 @@
       <DependentUpon>InfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Generators\DeathItemsGenerator.cs" />
-    <Compile Include="Generators\NpcGenerator.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

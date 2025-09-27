@@ -33,7 +33,6 @@ namespace RandomizerSoC
         //для чекбокса "Все"
         readonly List<CheckBox> generateTypeCheckBoxList;
 
-        readonly List<CheckBox> npcCheckBoxList;
         readonly List<CheckBox> npcCheckBoxWithoutTextBoxList;
 
         readonly List<CheckBox> additionalParamsCheckBoxList;
@@ -93,12 +92,12 @@ namespace RandomizerSoC
                 //["model"] = modelTextBox,
                 //["other"] = otherTextBox,
                 //["outfit"] = outfitTextBox,
-                ["sound"] = soundTextBox,
+                //["sound"] = soundTextBox,
                 //["weapon"] = weaponTextBox,
-                ["npcexception"] = npcExecptTextBox,
-                ["community"] = communityTextBox,
-                ["names"] = namesTextBox,
-                ["icons"] = iconsTextBox,
+                //["npcexception"] = npcExecptTextBox,
+                //["community"] = communityTextBox,
+                //["names"] = namesTextBox,
+                //["icons"] = iconsTextBox,
                 //["skybox"] = skyTextBox,
                 //["thunderbolt"] = thunderTextBox,
                 //["weapon_snd_reload"] = reloadSoundsTextBox,
@@ -120,12 +119,12 @@ namespace RandomizerSoC
 
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
-            npcCheckBoxList = new List<CheckBox>() { modelsCheckBox, soundsCheckBox, iconsCheckBox, namesCheckBox };
+            //npcCheckBoxList = new List<CheckBox>() { modelsCheckBox, soundsCheckBox, iconsCheckBox, namesCheckBox };
             npcCheckBoxWithoutTextBoxList = new List<CheckBox>() { suppliesCheckBox, rankCheckBox, reputationCheckBox };
-            foreach (CheckBox cb in npcCheckBoxList)
+            /*foreach (CheckBox cb in npcCheckBoxList)
             {
                 cb.Checked = true;
-            }
+            }*/
 
             //outfitsGenerator = new OutfitsGenerator();
             //weatherGenerator = new WeatherGenerator2();
@@ -655,21 +654,6 @@ namespace RandomizerSoC
         }
 
         #region Чекбоксы вкладки неписей
-        private void ModelsCheckBox_CheckedChanged(object sender, EventArgs e) => modelTextBox.Enabled = modelsCheckBox.Checked;
-
-        private void SoundsCheckBox_CheckedChanged(object sender, EventArgs e) => soundTextBox.Enabled = soundsCheckBox.Checked;
-
-        private void IconsCheckBox_CheckedChanged(object sender, EventArgs e) => iconsTextBox.Enabled = iconsCheckBox.Checked;
-
-        private void NamesCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            namesTextBox.Enabled = namesCheckBox.Checked;
-            onlyGenerateCheckBox.Enabled = namesCheckBox.Checked;
-            if (!namesCheckBox.Checked)
-            {
-                onlyGenerateCheckBox.Checked = false;
-            }
-        }
 
         private void NpcCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -690,7 +674,7 @@ namespace RandomizerSoC
         #endregion
 
         //ссылка другое под НПС
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = tabPage9;
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = npcTab;
 
         #region локализация
         private void RusRadioButton_Click(object sender, EventArgs e)
@@ -717,7 +701,7 @@ namespace RandomizerSoC
             this.Text = Localization.Get("mainFormName");
             //tabPage1.Text = Localization.Get("weaponsTab");
             //tabPage6.Text = Localization.Get("ItemsTab");
-            tabPage9.Text = Localization.Get("npcTab");
+            //tabPage9.Text = Localization.Get("npcTab");
             //tabPage2.Text = Localization.Get("weatherTab");
             tabPage8.Text = Localization.Get("advancedTab");
             advancedTab2.Text = Localization.Get("advancedTab") + " 2";
@@ -733,13 +717,13 @@ namespace RandomizerSoC
             //label11.Text = Localization.Get("artefacts");
             //label9.Text = Localization.Get("otherListTitle");
             //label7.Text = Localization.Get("consumableListTitle");
-            label2.Text = Localization.Get("communityListTitle");
-            namesCheckBox.Text = Localization.Get("nameListTitle");
-            iconsCheckBox.Text = Localization.Get("iconListTitle");
-            soundsCheckBox.Text = Localization.Get("soundListTitle");
-            modelsCheckBox.Text = Localization.Get("modelListTitle");
-            onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
-            label3.Text = Localization.Get("exceptionListTitle");
+            //label2.Text = Localization.Get("communityListTitle");
+            //namesCheckBox.Text = Localization.Get("nameListTitle");
+            //iconsCheckBox.Text = Localization.Get("iconListTitle");
+            //soundsCheckBox.Text = Localization.Get("soundListTitle");
+            //modelsCheckBox.Text = Localization.Get("modelListTitle");
+            //onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
+            //label3.Text = Localization.Get("exceptionListTitle");
             //label16.Text = Localization.Get("thunderProbability");
             //label15.Text = Localization.Get("rainProbability");
             //label14.Text = Localization.Get("weatherHelp");
@@ -894,11 +878,6 @@ namespace RandomizerSoC
         {
             var value = !allRandomProbabilityCheckbox.Checked;
             probailityInputs.ForEach(i => { i.Enabled = value; });
-        }
-
-        private void stashTab_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

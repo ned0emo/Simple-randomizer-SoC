@@ -43,27 +43,14 @@ namespace RandomizerSoC
             this.stashTab = new System.Windows.Forms.TabPage();
             this.weaponTab = new System.Windows.Forms.TabPage();
             this.itemTab = new System.Windows.Forms.TabPage();
+            this.weatherTab = new System.Windows.Forms.TabPage();
+            this.npcTab = new System.Windows.Forms.TabPage();
             this.dialogsTab = new System.Windows.Forms.TabPage();
             this.label18 = new System.Windows.Forms.Label();
             this.actionsExceptionLabel = new System.Windows.Forms.Label();
             this.actionsExceptionTextBox = new System.Windows.Forms.TextBox();
             this.infosExceptionLabel = new System.Windows.Forms.Label();
             this.infosExceptionTextBox = new System.Windows.Forms.TextBox();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.namesCheckBox = new System.Windows.Forms.CheckBox();
-            this.iconsCheckBox = new System.Windows.Forms.CheckBox();
-            this.soundsCheckBox = new System.Windows.Forms.CheckBox();
-            this.modelsCheckBox = new System.Windows.Forms.CheckBox();
-            this.onlyGenerateCheckBox = new System.Windows.Forms.CheckBox();
-            this.namesTextBox = new System.Windows.Forms.TextBox();
-            this.iconsTextBox = new System.Windows.Forms.TextBox();
-            this.npcGuideButton = new System.Windows.Forms.Button();
-            this.communityTextBox = new System.Windows.Forms.TextBox();
-            this.npcExecptTextBox = new System.Windows.Forms.TextBox();
-            this.soundTextBox = new System.Windows.Forms.TextBox();
-            this.modelTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -152,11 +139,8 @@ namespace RandomizerSoC
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.weatherTab = new System.Windows.Forms.TabPage();
-            this.npcTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.dialogsTab.SuspendLayout();
-            this.tabPage9.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.advancedTab2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
@@ -226,7 +210,6 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.npcTab);
             this.tabControl.Controls.Add(this.dialogsTab);
-            this.tabControl.Controls.Add(this.tabPage9);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Controls.Add(this.probabilityTab);
@@ -248,27 +231,46 @@ namespace RandomizerSoC
             this.stashTab.TabIndex = 15;
             this.stashTab.Text = "Тайники";
             this.stashTab.UseVisualStyleBackColor = true;
-            this.stashTab.Click += new System.EventHandler(this.stashTab_Click);
             // 
             // weaponTab
             // 
-            this.weaponTab.Location = new System.Drawing.Point(4, 22);
+            this.weaponTab.Location = new System.Drawing.Point(4, 40);
             this.weaponTab.Name = "weaponTab";
             this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(510, 409);
+            this.weaponTab.Size = new System.Drawing.Size(510, 391);
             this.weaponTab.TabIndex = 16;
             this.weaponTab.Text = "Оружие";
             this.weaponTab.UseVisualStyleBackColor = true;
             // 
             // itemTab
             // 
-            this.itemTab.Location = new System.Drawing.Point(4, 22);
+            this.itemTab.Location = new System.Drawing.Point(4, 40);
             this.itemTab.Name = "itemTab";
             this.itemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.itemTab.Size = new System.Drawing.Size(510, 409);
+            this.itemTab.Size = new System.Drawing.Size(510, 391);
             this.itemTab.TabIndex = 17;
             this.itemTab.Text = "Предметы";
             this.itemTab.UseVisualStyleBackColor = true;
+            // 
+            // weatherTab
+            // 
+            this.weatherTab.Location = new System.Drawing.Point(4, 40);
+            this.weatherTab.Name = "weatherTab";
+            this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
+            this.weatherTab.Size = new System.Drawing.Size(510, 391);
+            this.weatherTab.TabIndex = 18;
+            this.weatherTab.Text = "Погода";
+            this.weatherTab.UseVisualStyleBackColor = true;
+            // 
+            // npcTab
+            // 
+            this.npcTab.Location = new System.Drawing.Point(4, 40);
+            this.npcTab.Name = "npcTab";
+            this.npcTab.Padding = new System.Windows.Forms.Padding(3);
+            this.npcTab.Size = new System.Drawing.Size(510, 391);
+            this.npcTab.TabIndex = 19;
+            this.npcTab.Text = "НПС";
+            this.npcTab.UseVisualStyleBackColor = true;
             // 
             // dialogsTab
             // 
@@ -277,10 +279,10 @@ namespace RandomizerSoC
             this.dialogsTab.Controls.Add(this.actionsExceptionTextBox);
             this.dialogsTab.Controls.Add(this.infosExceptionLabel);
             this.dialogsTab.Controls.Add(this.infosExceptionTextBox);
-            this.dialogsTab.Location = new System.Drawing.Point(4, 22);
+            this.dialogsTab.Location = new System.Drawing.Point(4, 40);
             this.dialogsTab.Name = "dialogsTab";
             this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogsTab.Size = new System.Drawing.Size(510, 409);
+            this.dialogsTab.Size = new System.Drawing.Size(510, 391);
             this.dialogsTab.TabIndex = 12;
             this.dialogsTab.Text = "Диалоги";
             this.dialogsTab.UseVisualStyleBackColor = true;
@@ -336,180 +338,6 @@ namespace RandomizerSoC
             this.infosExceptionTextBox.Size = new System.Drawing.Size(245, 494);
             this.infosExceptionTextBox.TabIndex = 19;
             // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.label2);
-            this.tabPage9.Controls.Add(this.namesCheckBox);
-            this.tabPage9.Controls.Add(this.iconsCheckBox);
-            this.tabPage9.Controls.Add(this.soundsCheckBox);
-            this.tabPage9.Controls.Add(this.modelsCheckBox);
-            this.tabPage9.Controls.Add(this.onlyGenerateCheckBox);
-            this.tabPage9.Controls.Add(this.namesTextBox);
-            this.tabPage9.Controls.Add(this.iconsTextBox);
-            this.tabPage9.Controls.Add(this.npcGuideButton);
-            this.tabPage9.Controls.Add(this.communityTextBox);
-            this.tabPage9.Controls.Add(this.npcExecptTextBox);
-            this.tabPage9.Controls.Add(this.soundTextBox);
-            this.tabPage9.Controls.Add(this.modelTextBox);
-            this.tabPage9.Controls.Add(this.label3);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(510, 409);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "НПС";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(764, 273);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 23);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "Группировки";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // namesCheckBox
-            // 
-            this.namesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.namesCheckBox.Location = new System.Drawing.Point(513, 273);
-            this.namesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.namesCheckBox.Name = "namesCheckBox";
-            this.namesCheckBox.Size = new System.Drawing.Size(245, 23);
-            this.namesCheckBox.TabIndex = 25;
-            this.namesCheckBox.Text = "Имена";
-            this.namesCheckBox.UseVisualStyleBackColor = true;
-            this.namesCheckBox.CheckedChanged += new System.EventHandler(this.NamesCheckBox_CheckedChanged);
-            // 
-            // iconsCheckBox
-            // 
-            this.iconsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.iconsCheckBox.Location = new System.Drawing.Point(513, 9);
-            this.iconsCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.iconsCheckBox.Name = "iconsCheckBox";
-            this.iconsCheckBox.Size = new System.Drawing.Size(245, 23);
-            this.iconsCheckBox.TabIndex = 23;
-            this.iconsCheckBox.Text = "Миниатюры";
-            this.iconsCheckBox.UseVisualStyleBackColor = true;
-            this.iconsCheckBox.CheckedChanged += new System.EventHandler(this.IconsCheckBox_CheckedChanged);
-            // 
-            // soundsCheckBox
-            // 
-            this.soundsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.soundsCheckBox.Location = new System.Drawing.Point(257, 9);
-            this.soundsCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.soundsCheckBox.Name = "soundsCheckBox";
-            this.soundsCheckBox.Size = new System.Drawing.Size(245, 23);
-            this.soundsCheckBox.TabIndex = 22;
-            this.soundsCheckBox.Text = "Озвучка";
-            this.soundsCheckBox.UseVisualStyleBackColor = true;
-            this.soundsCheckBox.CheckedChanged += new System.EventHandler(this.SoundsCheckBox_CheckedChanged);
-            // 
-            // modelsCheckBox
-            // 
-            this.modelsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.modelsCheckBox.Location = new System.Drawing.Point(6, 9);
-            this.modelsCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.modelsCheckBox.Name = "modelsCheckBox";
-            this.modelsCheckBox.Size = new System.Drawing.Size(245, 23);
-            this.modelsCheckBox.TabIndex = 21;
-            this.modelsCheckBox.Text = "Модели";
-            this.modelsCheckBox.UseVisualStyleBackColor = true;
-            this.modelsCheckBox.CheckedChanged += new System.EventHandler(this.ModelsCheckBox_CheckedChanged);
-            // 
-            // onlyGenerateCheckBox
-            // 
-            this.onlyGenerateCheckBox.AutoSize = true;
-            this.onlyGenerateCheckBox.Location = new System.Drawing.Point(513, 510);
-            this.onlyGenerateCheckBox.Name = "onlyGenerateCheckBox";
-            this.onlyGenerateCheckBox.Size = new System.Drawing.Size(236, 17);
-            this.onlyGenerateCheckBox.TabIndex = 20;
-            this.onlyGenerateCheckBox.Text = "Использовать только GENERATE_NAME";
-            this.onlyGenerateCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // namesTextBox
-            // 
-            this.namesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.namesTextBox.Location = new System.Drawing.Point(513, 302);
-            this.namesTextBox.Multiline = true;
-            this.namesTextBox.Name = "namesTextBox";
-            this.namesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.namesTextBox.Size = new System.Drawing.Size(245, 195);
-            this.namesTextBox.TabIndex = 18;
-            // 
-            // iconsTextBox
-            // 
-            this.iconsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.iconsTextBox.Location = new System.Drawing.Point(513, 35);
-            this.iconsTextBox.Multiline = true;
-            this.iconsTextBox.Name = "iconsTextBox";
-            this.iconsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.iconsTextBox.Size = new System.Drawing.Size(245, 225);
-            this.iconsTextBox.TabIndex = 16;
-            // 
-            // npcGuideButton
-            // 
-            this.npcGuideButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.npcGuideButton.Location = new System.Drawing.Point(987, 6);
-            this.npcGuideButton.Margin = new System.Windows.Forms.Padding(2);
-            this.npcGuideButton.Name = "npcGuideButton";
-            this.npcGuideButton.Size = new System.Drawing.Size(22, 24);
-            this.npcGuideButton.TabIndex = 15;
-            this.npcGuideButton.Text = "?";
-            this.npcGuideButton.UseVisualStyleBackColor = true;
-            this.npcGuideButton.Click += new System.EventHandler(this.NpcGuideButton_Click);
-            // 
-            // communityTextBox
-            // 
-            this.communityTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.communityTextBox.Location = new System.Drawing.Point(764, 302);
-            this.communityTextBox.Multiline = true;
-            this.communityTextBox.Name = "communityTextBox";
-            this.communityTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.communityTextBox.Size = new System.Drawing.Size(245, 225);
-            this.communityTextBox.TabIndex = 13;
-            // 
-            // npcExecptTextBox
-            // 
-            this.npcExecptTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.npcExecptTextBox.Location = new System.Drawing.Point(767, 35);
-            this.npcExecptTextBox.Multiline = true;
-            this.npcExecptTextBox.Name = "npcExecptTextBox";
-            this.npcExecptTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.npcExecptTextBox.Size = new System.Drawing.Size(245, 225);
-            this.npcExecptTextBox.TabIndex = 11;
-            // 
-            // soundTextBox
-            // 
-            this.soundTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.soundTextBox.Location = new System.Drawing.Point(257, 35);
-            this.soundTextBox.Multiline = true;
-            this.soundTextBox.Name = "soundTextBox";
-            this.soundTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.soundTextBox.Size = new System.Drawing.Size(245, 492);
-            this.soundTextBox.TabIndex = 8;
-            // 
-            // modelTextBox
-            // 
-            this.modelTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.modelTextBox.Location = new System.Drawing.Point(6, 35);
-            this.modelTextBox.Multiline = true;
-            this.modelTextBox.Name = "modelTextBox";
-            this.modelTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.modelTextBox.Size = new System.Drawing.Size(245, 492);
-            this.modelTextBox.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(764, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(245, 23);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Исключения";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.unlockTraderDoorCheckBox);
@@ -531,11 +359,11 @@ namespace RandomizerSoC
             this.tabPage8.Controls.Add(this.barAlarmCheckBox);
             this.tabPage8.Controls.Add(this.equipWeaponEverywhereCheckBox);
             this.tabPage8.Controls.Add(this.communityCheckBox);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Location = new System.Drawing.Point(4, 40);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage8.Size = new System.Drawing.Size(510, 409);
+            this.tabPage8.Size = new System.Drawing.Size(510, 391);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Дополнительно";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1581,26 +1409,6 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
-            // weatherTab
-            // 
-            this.weatherTab.Location = new System.Drawing.Point(4, 22);
-            this.weatherTab.Name = "weatherTab";
-            this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weatherTab.Size = new System.Drawing.Size(510, 409);
-            this.weatherTab.TabIndex = 18;
-            this.weatherTab.Text = "Погода";
-            this.weatherTab.UseVisualStyleBackColor = true;
-            // 
-            // npcTab
-            // 
-            this.npcTab.Location = new System.Drawing.Point(4, 22);
-            this.npcTab.Name = "npcTab";
-            this.npcTab.Padding = new System.Windows.Forms.Padding(3);
-            this.npcTab.Size = new System.Drawing.Size(510, 409);
-            this.npcTab.TabIndex = 19;
-            this.npcTab.Text = "НПС";
-            this.npcTab.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1616,8 +1424,6 @@ namespace RandomizerSoC
             this.tabControl.ResumeLayout(false);
             this.dialogsTab.ResumeLayout(false);
             this.dialogsTab.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.advancedTab2.ResumeLayout(false);
@@ -1651,17 +1457,12 @@ namespace RandomizerSoC
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Button loadDefaultButton;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TextBox modelTextBox;
         private System.Windows.Forms.CheckBox allCheckBox;
         private System.Windows.Forms.CheckBox treasureCheckBox;
         private System.Windows.Forms.CheckBox afCheckBox;
         private System.Windows.Forms.CheckBox weaponCheckBox;
         private System.Windows.Forms.CheckBox armorCheckBox;
         private System.Windows.Forms.CheckBox npcCheckBox;
-        private System.Windows.Forms.TextBox npcExecptTextBox;
-        private System.Windows.Forms.TextBox soundTextBox;
-        private System.Windows.Forms.TextBox communityTextBox;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.CheckBox giveKnifeCheckBox;
         private System.Windows.Forms.CheckBox moreRespawnCheckBox;
@@ -1675,18 +1476,8 @@ namespace RandomizerSoC
         private System.Windows.Forms.Label recommendLabel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox translateCheckBox;
-        private System.Windows.Forms.Button npcGuideButton;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox namesTextBox;
-        private System.Windows.Forms.TextBox iconsTextBox;
-        private System.Windows.Forms.CheckBox onlyGenerateCheckBox;
         private System.Windows.Forms.CheckBox shuffleTextCheckBox;
-        private System.Windows.Forms.CheckBox modelsCheckBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox namesCheckBox;
-        private System.Windows.Forms.CheckBox iconsCheckBox;
-        private System.Windows.Forms.CheckBox soundsCheckBox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox advancedGulagCheckBox;
         private System.Windows.Forms.CheckBox gScriptCheckBox;
         private System.Windows.Forms.CheckBox suppliesCheckBox;
