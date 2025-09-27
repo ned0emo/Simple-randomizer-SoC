@@ -48,12 +48,33 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async void ComplexListEdit<T>(string dialogName, List<T> list, List<string> columnNames) where T : class, new()
+        public async Task SimpleListEditAndSave(string dialogName, HashSet<string> set, IConfig config)
         {
             try
             {
-                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames);
-                await Task.Yield();
+                var dialog = new SimpleListDialog(dialogName, set);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    set.Clear();
+                    foreach (var item in dialog.GetData())
+                    {
+                        set.Add(item);
+                    }
+                    await ConfigHandler.Save(config);
+                }
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("Ошибка", ex).ShowDialog();
+            }
+        }
+
+        public void ComplexListEdit<T>(string dialogName, List<T> list, List<string> columnNames, 
+            bool nullable = false, Func<T, bool> rowValidator = null) where T : class, new()
+        {
+            try
+            {
+                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames, nullable, rowValidator);
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -67,12 +88,12 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public async Task ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, IConfig config) where T : class, new()
+        public async Task ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, 
+            IConfig config, bool nullable = false, Func<T, bool> rowValidator = null) where T : class, new()
         {
             try
             {
-                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames);
-                await Task.Yield();
+                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames, nullable, rowValidator);
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {

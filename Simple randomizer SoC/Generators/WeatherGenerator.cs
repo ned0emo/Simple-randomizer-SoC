@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class WeatherGenerator : IGenerator
+    public class WeatherGenerator : IGenerator<WeatherConfig>
     {
         private readonly ProbabilityChecker probabilityChecker = new ProbabilityChecker();
         private readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;

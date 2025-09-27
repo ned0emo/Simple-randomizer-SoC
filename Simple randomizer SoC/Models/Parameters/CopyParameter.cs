@@ -8,6 +8,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class CopyParameter : Parameter
     {
+        public CopyParameter()
+        {
+            ParameterType = Enums.ParameterType.Copy;
+        }
+
         public string CopyFrom { get; set; }
 
         public override bool Validate()

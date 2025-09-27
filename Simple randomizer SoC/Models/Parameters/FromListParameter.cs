@@ -11,6 +11,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class FromListParameter : ParameterBase
     {
+        public FromListParameter()
+        {
+            ParameterType = Enums.ParameterType.FromList;
+        }
+
         public List<string> Values { get; set; } = new List<string>();
         public override List<string> GenerateValues(Random rnd)
         {

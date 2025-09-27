@@ -49,8 +49,8 @@ namespace RandomizerSoC
         readonly ArmorGenerator armorGenerator = new ArmorGenerator();
         readonly ConsumableGenerator consumableGenerator = new ConsumableGenerator();
         readonly WeatherGenerator weatherGenerator = new WeatherGenerator();
+        readonly NpcGenerator2 npcGenerator = new NpcGenerator2();
 
-        readonly NpcGenerator npcGenerator;
         //readonly OutfitsGenerator outfitsGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
@@ -61,10 +61,11 @@ namespace RandomizerSoC
         readonly SoundRandomizer soundRandomizer;
         readonly TextureRandomizer textureRandomizer;
 
-        readonly StashConfig stashConfig;
-        readonly WeaponConfig weaponConfig;
-        readonly ItemConfig itemConfig;
-        readonly WeatherConfig weatherConfig;
+        private StashConfig stashConfig;
+        private WeaponConfig weaponConfig;
+        private ItemConfig itemConfig;
+        private WeatherConfig weatherConfig;
+        private NpcConfig npcConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -76,7 +77,7 @@ namespace RandomizerSoC
             threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
-        public MainForm(StashConfig stashConfig, WeaponConfig weaponConfig, ItemConfig itemConfig, WeatherConfig weatherConfig)
+        public MainForm()
         {
             InitializeComponent();
             loadState.Text = "";
@@ -127,7 +128,6 @@ namespace RandomizerSoC
             }
 
             //outfitsGenerator = new OutfitsGenerator();
-            npcGenerator = new NpcGenerator();
             //weatherGenerator = new WeatherGenerator2();
             deathItemsGenerator = new DeathItemsGenerator();
             tradeGenerator = new TradeGenerator();
@@ -143,28 +143,38 @@ namespace RandomizerSoC
             textureRandomizer = new TextureRandomizer();
             texturesPathText.Text = Configuration.Get("texture");
 
-            stashTab.Controls.Add(new StashTab(stashConfig));
-            weaponTab.Controls.Add(new WeaponTab(weaponConfig));
-            itemTab.Controls.Add(new ItemTab(itemConfig));
-            weatherTab.Controls.Add(new WeatherTab(weatherConfig));
+            PostInit();
+        }
 
-            this.stashConfig = stashConfig;
-            this.weaponConfig = weaponConfig;
-            this.itemConfig = itemConfig;
-            this.weatherConfig = weatherConfig;
+        private async void PostInit()
+        {
+            stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
+            weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
+            itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
+            weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>(MyEnvironment.weatherConfig);
+            npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>(MyEnvironment.npcConfig);
 
-            if (Localization.IsFirstLoadEnglish())
+            this.Invoke(new Action(() =>
             {
-                engRadioButton.Checked = true;
-                translateCheckBox.Checked = false;
-                translateCheckBox.Enabled = false;
-            }
-            else
-            {
-                rusRadioButton.Checked = true;
-            }
-            rusRadioButton.Click += RusRadioButton_Click;
-            engRadioButton.Click += EngRadioButton_Click;
+                stashTab.Controls.Add(new StashTab(stashConfig));
+                weaponTab.Controls.Add(new WeaponTab(weaponConfig));
+                itemTab.Controls.Add(new ItemTab(itemConfig));
+                weatherTab.Controls.Add(new WeatherTab(weatherConfig));
+                npcTab.Controls.Add(new NpcTab(npcConfig));
+
+                if (Localization.IsFirstLoadEnglish())
+                {
+                    engRadioButton.Checked = true;
+                    translateCheckBox.Checked = false;
+                    translateCheckBox.Enabled = false;
+                }
+                else
+                {
+                    rusRadioButton.Checked = true;
+                }
+                rusRadioButton.Click += RusRadioButton_Click;
+                engRadioButton.Click += EngRadioButton_Click;
+            }));
         }
 
         #region списки
@@ -339,16 +349,9 @@ namespace RandomizerSoC
             }
             incrementProgressBar();
             //нпс
-            /*if (npcCheckBox.Checked)
+            if (npcCheckBox.Checked)
             {
-                npcGenerator.UpdateData(communities: communityTextBox.Text, models: modelTextBox.Text, icons: iconsTextBox.Text, sounds: soundTextBox.Text,
-                    names: namesTextBox.Text, weapons: weaponTextBox.Text, exceptions: npcExecptTextBox.Text, newConfigPath: newConfigPath);
-                npcGenerator.UpdateRules(communitiesEnabled: communityCheckBox.Checked, modelsEnabled: modelsCheckBox.Checked,
-                    iconsEnabled: iconsCheckBox.Checked, soundsEnabled: soundsCheckBox.Checked, namesEnabled: namesCheckBox.Checked,
-                    suppliesEnabled: suppliesCheckBox.Checked, ranksEnabled: rankCheckBox.Checked, reputationEnabled: reputationCheckBox.Checked,
-                    onlyGenerateNames: onlyGenerateCheckBox.Checked
-                );
-                npcGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : npcReplaceProbInput.Value);
+                npcGenerator.UpdateData(npcConfig, newConfigPath, randomProbability);
                 try
                 {
                     await npcGenerator.Generate();
@@ -358,7 +361,7 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("npcError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }*/
+            }
             incrementProgressBar();
             //погода
             if (weatherCheckBox.Checked)

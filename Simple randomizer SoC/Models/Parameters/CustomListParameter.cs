@@ -8,6 +8,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class CustomListParameter : Parameter
     {
+        public CustomListParameter()
+        {
+            ParameterType = Enums.ParameterType.CustomList;
+        }
+
         public ParameterOrderableContainer ParameterContainer { get; set; } = new ParameterOrderableContainer();
 
         public override bool Validate()

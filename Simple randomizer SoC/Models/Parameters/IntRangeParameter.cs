@@ -9,6 +9,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class IntRangeParameter : ParameterBase
     {
+        public IntRangeParameter()
+        {
+            ParameterType = Enums.ParameterType.IntRange;
+        }
+
         public int MinValue { get; set; }
         public int MaxValue { get; set; }
 
@@ -30,6 +35,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
         {
             if (MinValue > MaxValue) return false;
             return base.Validate();
+        }
+
+        public bool SimpleValidate()
+        {
+            return MinValue <= MaxValue;
         }
     }
 }

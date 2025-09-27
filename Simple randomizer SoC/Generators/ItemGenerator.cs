@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public abstract class ItemGenerator : IGenerator
+    public abstract class ItemGenerator : IGenerator<ItemConfig>
     {
         protected readonly ProbabilityChecker probabilityChecker = new ProbabilityChecker();
         protected readonly SectionParametersShuffler shuffler = Singleton<SectionParametersShuffler>.Instance;

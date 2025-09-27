@@ -11,9 +11,9 @@ namespace Simple_randomizer_SoC.Tools
             return arr.Length == 0 ? default : arr[GlobalRandom.Rnd.Next(arr.Length)];
         }
 
-        public static T GetRandomElement<T>(List<T> list)
+        public static T GetRandomElement<T>(List<T> list, Random rnd)
         {
-            return list.Count == 0 ? default : list[GlobalRandom.Rnd.Next(list.Count)];
+            return list.Count == 0 ? default : list[rnd.Next(list.Count)];
         }
 
         public static KeyValuePair<T, V> GetRandomElement<T, V>(Dictionary<T, V> dict)

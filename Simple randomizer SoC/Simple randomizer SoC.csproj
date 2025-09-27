@@ -121,6 +121,12 @@
     <Compile Include="Forms\Tabs\ItemTab.Designer.cs">
       <DependentUpon>ItemTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tabs\NpcTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\NpcTab.Designer.cs">
+      <DependentUpon>NpcTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tabs\WeatherTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,10 +140,13 @@
     <Compile Include="Generators\ConsumableGenerator.cs" />
     <Compile Include="Generators\ItemGenerator.cs" />
     <Compile Include="Generators\ArtefactGenerator.cs" />
+    <Compile Include="Generators\NpcGenerator2.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
     <Compile Include="Generators\WeatherGenerator.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
+    <Compile Include="Models\AppConfig\NpcConfig.cs" />
+    <Compile Include="Models\AppConfig\WeaponAmmo.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
     <Compile Include="Models\AppConfig\WeatherConfig.cs" />
     <Compile Include="Models\Parameters\CopyParameter.cs" />
@@ -169,7 +178,6 @@
     <Compile Include="Forms\Tabs\WeaponTab.Designer.cs">
       <DependentUpon>WeaponTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generators\ConsumablesGenerator.cs" />
     <Compile Include="Generators\CustomSingleFileGenerator.cs" />
     <Compile Include="Generators\DialogsGenerator.cs" />
     <Compile Include="Generators\IGenerator.cs" />
@@ -205,7 +213,6 @@
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\CustomException.cs" />
     <Compile Include="Tools\MyFile.cs" />
-    <Compile Include="Generators\ArtefactsGenerator.cs" />
     <Compile Include="Generators\BaseGenerator.cs" />
     <Compile Include="Forms\InfoForm.cs">
       <SubType>Form</SubType>
@@ -215,8 +222,6 @@
     </Compile>
     <Compile Include="Generators\DeathItemsGenerator.cs" />
     <Compile Include="Generators\NpcGenerator.cs" />
-    <Compile Include="Generators\OutfitsGenerator.cs" />
-    <Compile Include="Generators\WeaponsGenerator.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\WeaponTab.resx">
       <DependentUpon>WeaponTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\NpcTab.resx">
+      <DependentUpon>NpcTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\WeatherTab.resx">
       <DependentUpon>WeatherTab.cs</DependentUpon>

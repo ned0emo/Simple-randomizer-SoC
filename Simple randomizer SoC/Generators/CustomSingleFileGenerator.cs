@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class CustomSingleFileGenerator : ProbabilityChecker, IGenerator
+    public class CustomSingleFileGenerator : ProbabilityChecker, IGenerator<SingleFileGeneratorConfig>
     {
         private readonly SingleFileGeneratorConfig config;
 
@@ -37,6 +37,11 @@ namespace Simple_randomizer_SoC.Generators
                     }
                 });
             }
+        }
+
+        public void UpdateData(SingleFileGeneratorConfig config, string baseOutPath, bool randomProbability)
+        {
+            throw new NotImplementedException();
         }
     }
 }

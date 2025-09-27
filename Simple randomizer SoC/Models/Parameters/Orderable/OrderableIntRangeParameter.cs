@@ -9,6 +9,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class OrderableIntRangeParameter : OrderableParameterBase
     {
+        public OrderableIntRangeParameter()
+        {
+            ParameterType = Enums.ParameterType.IntRange;
+        }
+
         public int MinValue { get; set; }
         public int MaxValue { get; set; }
 

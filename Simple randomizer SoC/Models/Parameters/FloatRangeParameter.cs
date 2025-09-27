@@ -9,6 +9,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class FloatRangeParameter : ParameterBase
     {
+        public FloatRangeParameter()
+        {
+            ParameterType = Enums.ParameterType.FloatRange;
+        }
+
         public float MinValue { get; set; }
         public float MaxValue { get; set; }
         public int Precision { get; set; } = 2;

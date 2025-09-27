@@ -11,6 +11,11 @@ namespace Simple_randomizer_SoC.Models.Parameters
 {
     public class OrderableFromListParameter : OrderableParameterBase
     {
+        public OrderableFromListParameter()
+        {
+            ParameterType = Enums.ParameterType.FromList;
+        }
+
         public List<string> Values { get; set; } = new List<string>();
         public override string GenerateValue(Random rnd)
         {

@@ -31,10 +31,10 @@ namespace RandomizerSoC
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "123"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Info, null);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
@@ -153,6 +153,7 @@ namespace RandomizerSoC
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.weatherTab = new System.Windows.Forms.TabPage();
+            this.npcTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.dialogsTab.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -223,6 +224,7 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.weaponTab);
             this.tabControl.Controls.Add(this.itemTab);
             this.tabControl.Controls.Add(this.weatherTab);
+            this.tabControl.Controls.Add(this.npcTab);
             this.tabControl.Controls.Add(this.dialogsTab);
             this.tabControl.Controls.Add(this.tabPage9);
             this.tabControl.Controls.Add(this.tabPage8);
@@ -250,20 +252,20 @@ namespace RandomizerSoC
             // 
             // weaponTab
             // 
-            this.weaponTab.Location = new System.Drawing.Point(4, 40);
+            this.weaponTab.Location = new System.Drawing.Point(4, 22);
             this.weaponTab.Name = "weaponTab";
             this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(510, 391);
+            this.weaponTab.Size = new System.Drawing.Size(510, 409);
             this.weaponTab.TabIndex = 16;
             this.weaponTab.Text = "Оружие";
             this.weaponTab.UseVisualStyleBackColor = true;
             // 
             // itemTab
             // 
-            this.itemTab.Location = new System.Drawing.Point(4, 40);
+            this.itemTab.Location = new System.Drawing.Point(4, 22);
             this.itemTab.Name = "itemTab";
             this.itemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.itemTab.Size = new System.Drawing.Size(510, 391);
+            this.itemTab.Size = new System.Drawing.Size(510, 409);
             this.itemTab.TabIndex = 17;
             this.itemTab.Text = "Предметы";
             this.itemTab.UseVisualStyleBackColor = true;
@@ -275,10 +277,10 @@ namespace RandomizerSoC
             this.dialogsTab.Controls.Add(this.actionsExceptionTextBox);
             this.dialogsTab.Controls.Add(this.infosExceptionLabel);
             this.dialogsTab.Controls.Add(this.infosExceptionTextBox);
-            this.dialogsTab.Location = new System.Drawing.Point(4, 40);
+            this.dialogsTab.Location = new System.Drawing.Point(4, 22);
             this.dialogsTab.Name = "dialogsTab";
             this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogsTab.Size = new System.Drawing.Size(510, 391);
+            this.dialogsTab.Size = new System.Drawing.Size(510, 409);
             this.dialogsTab.TabIndex = 12;
             this.dialogsTab.Text = "Диалоги";
             this.dialogsTab.UseVisualStyleBackColor = true;
@@ -1310,9 +1312,9 @@ namespace RandomizerSoC
             // 
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(301, 397);
@@ -1581,13 +1583,23 @@ namespace RandomizerSoC
             // 
             // weatherTab
             // 
-            this.weatherTab.Location = new System.Drawing.Point(4, 40);
+            this.weatherTab.Location = new System.Drawing.Point(4, 22);
             this.weatherTab.Name = "weatherTab";
             this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weatherTab.Size = new System.Drawing.Size(510, 391);
+            this.weatherTab.Size = new System.Drawing.Size(510, 409);
             this.weatherTab.TabIndex = 18;
             this.weatherTab.Text = "Погода";
             this.weatherTab.UseVisualStyleBackColor = true;
+            // 
+            // npcTab
+            // 
+            this.npcTab.Location = new System.Drawing.Point(4, 22);
+            this.npcTab.Name = "npcTab";
+            this.npcTab.Padding = new System.Windows.Forms.Padding(3);
+            this.npcTab.Size = new System.Drawing.Size(510, 409);
+            this.npcTab.TabIndex = 19;
+            this.npcTab.Text = "НПС";
+            this.npcTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1752,6 +1764,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.TabPage weaponTab;
         private System.Windows.Forms.TabPage itemTab;
         private System.Windows.Forms.TabPage weatherTab;
+        private System.Windows.Forms.TabPage npcTab;
     }
 }
 

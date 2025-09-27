@@ -24,6 +24,17 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 simpleListDataGrid.Rows.Add(d);
             }
         }
+        public SimpleListDialog(string title, HashSet<string> data)
+        {
+            InitializeComponent();
+            this.Text = title;
+            DialogResult = DialogResult.Cancel;
+
+            foreach (var d in data)
+            {
+                simpleListDataGrid.Rows.Add(d);
+            }
+        }
 
         private void simpleListSaveButton_Click(object sender, EventArgs e)
         {

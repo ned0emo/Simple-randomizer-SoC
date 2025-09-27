@@ -14,18 +14,23 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 {
     public partial class ComplexListDialog<T> : Form where T : class, new()
     {
-        private readonly Type typeInfo;
+        private readonly Type _typeInfo;
+        private readonly bool _nullable;
+        private readonly Func<T, bool> _rowValidator;
 
-        public ComplexListDialog(string title, List<T> data, List<string> columnNames)
+        public ComplexListDialog(string title, List<T> data, List<string> columnNames, bool nullable = false, Func<T, bool> rowValidator = null)
         {
             InitializeComponent();
             this.Text = title;
             DialogResult = DialogResult.Cancel;
 
             var table = new DataTable();
-            typeInfo = data.GetType().GetGenericArguments()[0];
 
-            foreach (var f in typeInfo.GetRuntimeFields())
+            _typeInfo = data.GetType().GetGenericArguments()[0];
+            _nullable = nullable;
+            _rowValidator = rowValidator;
+
+            foreach (var f in _typeInfo.GetRuntimeFields())
             {
                 var c = table.Columns.Add(f.Name, f.FieldType);
             }
@@ -35,7 +40,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 var row = table.NewRow();
 
                 int i = 0;
-                foreach (var f in typeInfo.GetRuntimeFields())
+                foreach (var f in _typeInfo.GetRuntimeFields())
                 {
                     row[i++] = f.GetValue(d);
                 }
@@ -43,6 +48,20 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 table.Rows.Add(row);
             }
 
+            var colCount = table.Columns.Count;
+            if (colCount > 2)
+            {
+                if (colCount >= 5)
+                {
+                    Width = 800;
+                }
+                else
+                {
+                    Width = colCount * 160;
+                }
+            }
+
+            dataGrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGrid.DataSource = table;
             dataGrid.AutoGenerateColumns = true;
             for (int i = 0; i < columnNames.Count; i++)
@@ -78,14 +97,21 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 var t = new T();
                 bool skip = false;
 
-                foreach (var f in typeInfo.GetRuntimeFields())
+                foreach (var f in _typeInfo.GetRuntimeFields())
                 {
                     var cellValue = dataGrid.Rows[i].Cells[f.Name].Value;
 
                     if (cellValue is DBNull)
                     {
-                        skip = true;
-                        break;
+                        if (_nullable)
+                        {
+                            f.SetValue(t, null);
+                        }
+                        else
+                        {
+                            skip = true;
+                            break;
+                        }
                     }
 
                     if (f.FieldType == typeof(int))
@@ -107,6 +133,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 }
 
                 if (skip) continue;
+                if (_rowValidator != null && !_rowValidator(t)) continue;
 
                 result.Add(t);
             }
