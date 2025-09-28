@@ -1,4 +1,6 @@
-﻿using Simple_randomizer_SoC.Forms.Support;
+﻿using RandomizerSoC;
+using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Support;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -49,56 +51,72 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void modelButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Модели НПС", _config.Models, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Модели НПС", _config.Models), _config);
         }
 
         private async void soundButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Озвучка НПС", _config.Sounds, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Озвучка НПС", _config.Sounds), _config);
         }
 
         private async void iconButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Миниатюры НПС", _config.Icons, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Миниатюры НПС", _config.Icons), _config);
         }
 
         private async void generateNameButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Генерируемые имена НПС", _config.GenerateNames, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Генерируемые имена НПС", _config.GenerateNames), _config);
         }
 
         private async void uniqueNameButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Уникальные имена НПС", _config.UniqueNames, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Уникальные имена НПС", _config.UniqueNames), _config);
         }
 
         private async void communityButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Группировки", _config.Communities, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Группировки", _config.Communities), _config);
         }
 
         private async void exceptionButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("НПС, исключенные из генерации", _config.Exceptions, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("НПС, исключенные из генерации", _config.Exceptions), _config);
         }
 
         private async void mainWeaponButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.ComplexListEditAndSave("Основное оружие НПС", _config.MainWeapons,
-                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" },
-                _config, true, (weaponAmmo) => weaponAmmo.Validate());
+            var dialog = new ComplexListDialog<WeaponAmmo>("Основное оружие НПС", _config.MainWeapons,
+                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" })
+            {
+                RowValidator = (wa) => wa.Validate(),
+                OnValidationError = (_) =>
+                {
+                    MessageBox.Show("Ошибка", "Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                },
+                Nullable = true
+            };
+            await listEditComponent.OpenEditThenSave<ComplexListDialog<WeaponAmmo>, WeaponAmmo>(dialog, _config);
         }
 
         private async void additionalWeaponButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.ComplexListEditAndSave("Дополнительное оружие НПС", _config.AdditionalWeapons,
-                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" },
-                _config, true, (weaponAmmo) => weaponAmmo.Validate());
+            var dialog = new ComplexListDialog<WeaponAmmo>("Дополнительное оружие НПС", _config.AdditionalWeapons,
+                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" })
+            {
+                RowValidator = (wa) => wa.Validate(),
+                OnValidationError = (_) =>
+                {
+                    MessageBox.Show("Ошибка", "Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                },
+                Nullable = true
+            };
+            await listEditComponent.OpenEditThenSave<ComplexListDialog<WeaponAmmo>, WeaponAmmo>(dialog, _config);
         }
 
         private async void keepSupplieButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Предметы, которые не нужно убирать при генерации НПС", _config.KeepingSupplies, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Предметы, которые не нужно убирать при генерации НПС", _config.KeepingSupplies), _config);
         }
 
         private void singleWeaponCheckBox_CheckedChanged(object sender, EventArgs e)

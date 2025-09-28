@@ -1,4 +1,5 @@
-﻿using Simple_randomizer_SoC.Forms.Support;
+﻿using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Support;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -33,7 +34,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void weatherSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции погоды", _config.Sections, _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции погоды", _config.Sections), _config);
         }
 
         private async void weatherParametersButton_Click(object sender, EventArgs e)

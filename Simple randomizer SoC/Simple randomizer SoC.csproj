@@ -101,6 +101,7 @@
     <Compile Include="Forms\Dialogs\ComplexListDialog.Designer.cs">
       <DependentUpon>ComplexListDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\IListDialog.cs" />
     <Compile Include="Forms\Dialogs\OrderableParameterListDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +128,12 @@
     <Compile Include="Forms\Tabs\NpcTab.Designer.cs">
       <DependentUpon>NpcTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tabs\SoundTextureTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\SoundTextureTab.Designer.cs">
+      <DependentUpon>SoundTextureTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tabs\WeatherTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +153,7 @@
     <Compile Include="Generators\WeatherGenerator.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
     <Compile Include="Models\AppConfig\NpcConfig.cs" />
+    <Compile Include="Models\AppConfig\SoundTextureConfig.cs" />
     <Compile Include="Models\AppConfig\WeaponAmmo.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
     <Compile Include="Models\AppConfig\WeatherConfig.cs" />
@@ -262,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\ItemTab.resx">
       <DependentUpon>ItemTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\SoundTextureTab.resx">
+      <DependentUpon>SoundTextureTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\StashTab.resx">
       <DependentUpon>StashTab.cs</DependentUpon>

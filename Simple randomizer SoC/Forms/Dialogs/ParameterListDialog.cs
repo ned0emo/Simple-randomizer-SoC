@@ -87,7 +87,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 setListButton.Text = "Настроить список";
                 setListButton.Click += (s, e) =>
                 {
-                    listEditComponent.SimpleListEdit("Настройка списка элементов параметра " + parameter.Name, parameter.Values);
+                    listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog("Настройка списка элементов параметра " + parameter.Name, parameter.Values));
                 };
 
                 var removeButton = new Button();

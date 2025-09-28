@@ -31,10 +31,10 @@ namespace RandomizerSoC
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "123"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Info, null);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
@@ -139,6 +139,7 @@ namespace RandomizerSoC
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.soundTextureTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.dialogsTab.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -214,6 +215,7 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Controls.Add(this.probabilityTab);
             this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.soundTextureTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Multiline = true;
@@ -1140,9 +1142,9 @@ namespace RandomizerSoC
             // 
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(301, 397);
@@ -1409,6 +1411,16 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
+            // soundTextureTab
+            // 
+            this.soundTextureTab.Location = new System.Drawing.Point(4, 40);
+            this.soundTextureTab.Name = "soundTextureTab";
+            this.soundTextureTab.Padding = new System.Windows.Forms.Padding(3);
+            this.soundTextureTab.Size = new System.Drawing.Size(510, 391);
+            this.soundTextureTab.TabIndex = 20;
+            this.soundTextureTab.Text = "Звуки/текстуры";
+            this.soundTextureTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1556,6 +1568,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.TabPage itemTab;
         private System.Windows.Forms.TabPage weatherTab;
         private System.Windows.Forms.TabPage npcTab;
+        private System.Windows.Forms.TabPage soundTextureTab;
     }
 }
 

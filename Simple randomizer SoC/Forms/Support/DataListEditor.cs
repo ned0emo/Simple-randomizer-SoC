@@ -13,54 +13,19 @@ namespace Simple_randomizer_SoC.Forms
 {
     public class DataListEditor
     {
-        public void SimpleListEdit(string dialogName, List<string> list)
+        public async void OpenEdit<TDialog, TRow>(TDialog dialog) where TDialog : Form, IListDialog<TRow>
         {
             try
             {
-                var dialog = new SimpleListDialog(dialogName, list);
+                await Task.Yield();
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    list.Clear();
-                    list.AddRange(dialog.GetData());
-                }
-            }
-            catch (Exception ex)
-            {
-                new InfoForm("Ошибка", ex).ShowDialog();
-            }
-        }
-
-        public async Task SimpleListEditAndSave(string dialogName, List<string> list, IConfig config)
-        {
-            try
-            {
-                var dialog = new SimpleListDialog(dialogName, list);
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    list.Clear();
-                    list.AddRange(dialog.GetData());
-                    await ConfigHandler.Save(config);
-                }
-            }
-            catch (Exception ex)
-            {
-                new InfoForm("Ошибка", ex).ShowDialog();
-            }
-        }
-
-        public async Task SimpleListEditAndSave(string dialogName, HashSet<string> set, IConfig config)
-        {
-            try
-            {
-                var dialog = new SimpleListDialog(dialogName, set);
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    set.Clear();
-                    foreach (var item in dialog.GetData())
+                    var collection = dialog.RawData;
+                    collection.Clear();
+                    foreach (var d in dialog.Data)
                     {
-                        set.Add(item);
+                        collection.Add(d);
                     }
-                    await ConfigHandler.Save(config);
                 }
             }
             catch (Exception ex)
@@ -69,36 +34,19 @@ namespace Simple_randomizer_SoC.Forms
             }
         }
 
-        public void ComplexListEdit<T>(string dialogName, List<T> list, List<string> columnNames, 
-            bool nullable = false, Func<T, bool> rowValidator = null) where T : class, new()
+        public async Task OpenEditThenSave<TDialog, TRow>(TDialog dialog, IConfig config) where TDialog : Form, IListDialog<TRow>
         {
             try
             {
-                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames, nullable, rowValidator);
-
+                await Task.Yield();
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    list.Clear();
-                    list.AddRange(dialog.GetData());
-                }
-            }
-            catch (Exception ex)
-            {
-                new InfoForm("Ошибка", ex).ShowDialog();
-            }
-        }
-
-        public async Task ComplexListEditAndSave<T>(string dialogName, List<T> list, List<string> columnNames, 
-            IConfig config, bool nullable = false, Func<T, bool> rowValidator = null) where T : class, new()
-        {
-            try
-            {
-                var dialog = new ComplexListDialog<T>(dialogName, list, columnNames, nullable, rowValidator);
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    list.Clear();
-                    list.AddRange(dialog.GetData());
+                    var collection = dialog.RawData;
+                    collection.Clear();
+                    foreach (var d in dialog.Data)
+                    {
+                        collection.Add(d);
+                    }
                     await ConfigHandler.Save(config);
                 }
             }

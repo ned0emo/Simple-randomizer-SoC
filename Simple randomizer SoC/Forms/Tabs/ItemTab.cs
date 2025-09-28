@@ -38,7 +38,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void artefactSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции артефактов", config.ArtefactSections, config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции артефактов", config.ArtefactSections), config);
         }
 
         private async void artefactParametersButton_Click(object sender, EventArgs e)
@@ -58,12 +58,12 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void armorSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции брони", config.ArmorSections, config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции брони", config.ArmorSections), config);
         }
 
         private async void armorImmunitySectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции износа брони", config.ArmorImmunitySections, config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции износа брони", config.ArmorImmunitySections), config);
         }
 
         private async void armorParametersButton_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void itemSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции расходников", config.ConsumableSections, config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции расходников", config.ConsumableSections), config);
         }
 
         private async void itemParametersButton_Click(object sender, EventArgs e)

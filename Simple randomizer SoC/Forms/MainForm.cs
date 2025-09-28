@@ -65,6 +65,7 @@ namespace RandomizerSoC
         private ItemConfig itemConfig;
         private WeatherConfig weatherConfig;
         private NpcConfig npcConfig;
+        private SoundTextureConfig soundTextureConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -149,11 +150,12 @@ namespace RandomizerSoC
         {
             try
             {
-                stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
-                weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
-                itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
-                weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>(MyEnvironment.weatherConfig);
-                npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>(MyEnvironment.npcConfig);
+                stashConfig = await ConfigHandler.LoadOrNew<StashConfig>();
+                weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>();
+                itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>();
+                weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>();
+                npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>();
+                soundTextureConfig = await ConfigHandler.LoadOrNew<SoundTextureConfig>();
 
                 var action = new Action(() =>
                 {
@@ -162,6 +164,7 @@ namespace RandomizerSoC
                     itemTab.Controls.Add(new ItemTab(itemConfig));
                     weatherTab.Controls.Add(new WeatherTab(weatherConfig));
                     npcTab.Controls.Add(new NpcTab(npcConfig));
+                    soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
 
                     if (Localization.IsFirstLoadEnglish())
                     {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -12,23 +13,26 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Dialogs
 {
-    public partial class ComplexListDialog<T> : Form where T : class, new()
+    public partial class ComplexListDialog<T> : Form, IListDialog<T> where T : class, new()
     {
         private readonly Type _typeInfo;
-        private readonly bool _nullable;
-        private readonly Func<T, bool> _rowValidator;
 
-        public ComplexListDialog(string title, List<T> data, List<string> columnNames, bool nullable = false, Func<T, bool> rowValidator = null)
+        public Func<T, bool> RowValidator { get; set; }
+        public Action<T> OnValidationError { get; set; }
+        public bool Nullable { get; set; } = false;
+        public List<T> Data { get; } = new List<T>();
+        public ICollection<T> RawData { get; }
+
+        public ComplexListDialog(string title, ICollection<T> data, List<string> columnNames)
         {
             InitializeComponent();
             this.Text = title;
             DialogResult = DialogResult.Cancel;
+            RawData = data;
 
             var table = new DataTable();
 
             _typeInfo = data.GetType().GetGenericArguments()[0];
-            _nullable = nullable;
-            _rowValidator = rowValidator;
 
             foreach (var f in _typeInfo.GetRuntimeFields())
             {
@@ -77,20 +81,8 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
             DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        public List<T> GetData()
-        {
-            var result = new List<T>();
-
+            Data.Clear();
             var length = dataGrid.Rows.Count - 1;
             for (int i = 0; i < length; i++)
             {
@@ -103,7 +95,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
                     if (cellValue is DBNull)
                     {
-                        if (_nullable)
+                        if (Nullable)
                         {
                             f.SetValue(t, null);
                         }
@@ -133,12 +125,25 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 }
 
                 if (skip) continue;
-                if (_rowValidator != null && !_rowValidator(t)) continue;
+                if (RowValidator != null && !RowValidator(t))
+                {
+                    if (OnValidationError == null) continue;
 
-                result.Add(t);
+                    OnValidationError(t);
+                    return;
+                }
+
+                Data.Add(t);
             }
 
-            return result;
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void dataGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)

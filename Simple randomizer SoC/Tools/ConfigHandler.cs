@@ -31,14 +31,16 @@ namespace Simple_randomizer_SoC.Tools
             }
         }
 
-        public static async Task<T> LoadOrNew<T>(string path) where T : class, new()
+        public static async Task<T> LoadOrNew<T>() where T : class, IConfig, new()
         {
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + configPath + path))
+            var t = new T();
+
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + configPath + t.Path))
             {
-                return await Load<T>(path);
+                return await Load<T>(t.Path);
             }
 
-            return new T();
+            return t;
         }
 
         public static async Task Save(IConfig config)

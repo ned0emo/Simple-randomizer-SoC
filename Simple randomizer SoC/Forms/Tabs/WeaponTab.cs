@@ -33,7 +33,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editWeaponSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции оружия", weaponConfig.WeaponSections, weaponConfig);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции оружия", weaponConfig.WeaponSections), weaponConfig);
         }
 
         private async void editWeaponParametersButton_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editAmmoSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.SimpleListEditAndSave("Секции патронов", weaponConfig.AmmoSections, weaponConfig);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции патронов", weaponConfig.AmmoSections), weaponConfig);
         }
 
         private async void editAmmoParametersButton_Click(object sender, EventArgs e)
