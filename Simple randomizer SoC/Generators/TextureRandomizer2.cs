@@ -30,7 +30,12 @@ namespace Simple_randomizer_SoC.Generators
         //прогресс
         public int FilesCount { get; private set; } = 0;
 
-        public bool Stop { get; set; } = false;
+        private volatile bool _stop = false;
+        public bool Stop
+        {
+            get => _stop;
+            set => _stop = value;
+        }
         public Exception Error { get; private set; }
         public Action<int> OnProgress { get; set; } = (_) => { };
 
@@ -177,7 +182,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (_textures.Count > 1)
                 {
-                    var copy = _textures.Skip(0).ToList();
+                    var copy = new List<string>(_textures);
 
                     foreach (var file in _textures)
                     {

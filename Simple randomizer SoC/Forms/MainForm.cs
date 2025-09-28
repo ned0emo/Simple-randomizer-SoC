@@ -55,6 +55,8 @@ namespace RandomizerSoC
         readonly AdditionalParams additionalParams;
 
         private bool isClosing = false;
+        private volatile bool _isForceClosed = false;
+        public bool IsForceClosed { get => _isForceClosed; set => _isForceClosed = value; }
 
         private StashConfig stashConfig;
         private WeaponConfig weaponConfig;
@@ -457,6 +459,7 @@ namespace RandomizerSoC
                     return;
                 }
             }
+            if (isClosing) return;
 
             //текстуры
             if (texturesCheckBox.Checked)
@@ -478,6 +481,7 @@ namespace RandomizerSoC
                     return;
                 }
             }
+            if (isClosing) return;
 
             progressBar1.Value = 0;
             progressBar1.Maximum = 100;
@@ -706,11 +710,11 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                if (!IsForceClosed) new InfoForm("Ошибка", ex).ShowDialog();
             }
             finally
             {
-                Close();
+                if (!IsForceClosed) Close();
             }
         }
 

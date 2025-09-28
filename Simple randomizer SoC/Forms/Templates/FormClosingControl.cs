@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RandomizerSoC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +23,8 @@ namespace Simple_randomizer_SoC.Forms.Templates
 
         private void forceCloseButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ((MainForm)ParentForm).IsForceClosed = true;
+            ParentForm.Close();
         }
 
         private async void EnableButton()

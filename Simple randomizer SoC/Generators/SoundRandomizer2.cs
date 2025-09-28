@@ -29,7 +29,12 @@ namespace Simple_randomizer_SoC.Generators
         //прогресс
         public int FilesCount { get; private set; } = 0;
 
-        public bool Stop { get; set; }
+        private volatile bool _stop = false;
+        public bool Stop
+        {
+            get => _stop;
+            set => _stop = value;
+        }
 
         public Exception Error { get; private set; }
 
@@ -138,9 +143,11 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (file.EndsWith(".ogg"))
                     {
-                        var vorbis = new NVorbis.VorbisReader(file);
-                        int duration = (int)vorbis.TotalTime.TotalSeconds / _config.SoundLengthRound * _config.SoundLengthRound;
-                        vorbis.Dispose();
+                        int duration;
+                        using (var vorbis = new NVorbis.VorbisReader(file))
+                        {
+                            duration = (int)vorbis.TotalTime.TotalSeconds / _config.SoundLengthRound * _config.SoundLengthRound;
+                        }
 
                         FilesCount++;
                         lock (_classifiedFiles)
@@ -199,7 +206,7 @@ namespace Simple_randomizer_SoC.Generators
                         continue;
                     }
 
-                    List<string> copy = files.Skip(0).ToList();
+                    List<string> copy = new List<string>(files);
 
                     foreach (var file in files)
                     {
