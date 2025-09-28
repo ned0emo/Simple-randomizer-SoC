@@ -54,6 +54,7 @@ namespace RandomizerSoC
 
         readonly AdditionalParams additionalParams;
 
+        private bool isClosing = false;
 
         private StashConfig stashConfig;
         private WeaponConfig weaponConfig;
@@ -161,7 +162,7 @@ namespace RandomizerSoC
         //загрузка списков редактируемых или дефолтных
         private async void LoadLists(bool isDefault = false)
         {
-            
+
         }
         #endregion
 
@@ -687,11 +688,29 @@ namespace RandomizerSoC
 
         private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            generateButton.Enabled = false;
-            if (soundRandomizer.IsProcessing() || textureRandomizer.IsProcessing())
+            if (isClosing) return;
+            isClosing = true;
+
+            try
             {
-                Controls.Add(new FormClosingControl());
-                await Task.WhenAll(soundRandomizer.StopProcessing(), textureRandomizer.StopProcessing());
+                e.Cancel = true;
+                generateButton.Enabled = false;
+
+                if (soundRandomizer.IsProcessing() || textureRandomizer.IsProcessing())
+                {
+                    var panel = new FormClosingControl();
+                    Controls.Add(panel);
+                    panel.BringToFront();
+                    await Task.WhenAll(soundRandomizer.StopProcessing(), textureRandomizer.StopProcessing());
+                }
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("Ошибка", ex).ShowDialog();
+            }
+            finally
+            {
+                Close();
             }
         }
 

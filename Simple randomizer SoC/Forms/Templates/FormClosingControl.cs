@@ -28,16 +28,19 @@ namespace Simple_randomizer_SoC.Forms.Templates
         private async void EnableButton()
         {
             await Task.Delay(5000);
-            if (InvokeRequired)
+            if (!IsDisposed)
             {
-                Invoke(new Action(() =>
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        forceCloseButton.Enabled = true;
+                    }));
+                }
+                else
                 {
                     forceCloseButton.Enabled = true;
-                }));
-            }
-            else
-            {
-                forceCloseButton.Enabled = true;
+                }
             }
         }
     }
