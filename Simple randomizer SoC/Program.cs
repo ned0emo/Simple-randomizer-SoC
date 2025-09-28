@@ -20,23 +20,13 @@ namespace RandomizerSoC
         static void Main()
         {
             new Localization().LoadDefault();
+            ConfigHandler.InitConfigDir();
+
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
-            {
-                ConfigHandler.InitConfigDir();
-                Application.Run(new MainForm());
-            }
-            catch (JsonException ex)
-            {
-                Application.Run(new InfoForm("Ошибка чтения или записи конфигурации приложения", ex));
-            }
-            catch (Exception ex)
-            {
-                Application.Run(new InfoForm("Необработанное исключение", ex));
-            }
+            Application.Run(new MainForm());
         }
     }
 }

@@ -147,33 +147,49 @@ namespace RandomizerSoC
 
         private async void PostInit()
         {
-            stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
-            weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
-            itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
-            weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>(MyEnvironment.weatherConfig);
-            npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>(MyEnvironment.npcConfig);
-
-            this.Invoke(new Action(() =>
+            try
             {
-                stashTab.Controls.Add(new StashTab(stashConfig));
-                weaponTab.Controls.Add(new WeaponTab(weaponConfig));
-                itemTab.Controls.Add(new ItemTab(itemConfig));
-                weatherTab.Controls.Add(new WeatherTab(weatherConfig));
-                npcTab.Controls.Add(new NpcTab(npcConfig));
+                stashConfig = await ConfigHandler.LoadOrNew<StashConfig>(MyEnvironment.stashConfig);
+                weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>(MyEnvironment.weaponConfig);
+                itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>(MyEnvironment.itemConfig);
+                weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>(MyEnvironment.weatherConfig);
+                npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>(MyEnvironment.npcConfig);
 
-                if (Localization.IsFirstLoadEnglish())
+                var action = new Action(() =>
                 {
-                    engRadioButton.Checked = true;
-                    translateCheckBox.Checked = false;
-                    translateCheckBox.Enabled = false;
+                    stashTab.Controls.Add(new StashTab(stashConfig));
+                    weaponTab.Controls.Add(new WeaponTab(weaponConfig));
+                    itemTab.Controls.Add(new ItemTab(itemConfig));
+                    weatherTab.Controls.Add(new WeatherTab(weatherConfig));
+                    npcTab.Controls.Add(new NpcTab(npcConfig));
+
+                    if (Localization.IsFirstLoadEnglish())
+                    {
+                        engRadioButton.Checked = true;
+                        translateCheckBox.Checked = false;
+                        translateCheckBox.Enabled = false;
+                    }
+                    else
+                    {
+                        rusRadioButton.Checked = true;
+                    }
+                    rusRadioButton.Click += RusRadioButton_Click;
+                    engRadioButton.Click += EngRadioButton_Click;
+                });
+
+                if (InvokeRequired)
+                {
+                    Invoke(action);
                 }
                 else
                 {
-                    rusRadioButton.Checked = true;
+                    action();
                 }
-                rusRadioButton.Click += RusRadioButton_Click;
-                engRadioButton.Click += EngRadioButton_Click;
-            }));
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("Ошибка загрузки данных", ex).ShowDialog();
+            }
         }
 
         #region списки
