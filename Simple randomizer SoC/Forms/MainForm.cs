@@ -1,6 +1,7 @@
 ﻿using Simple_randomizer_SoC;
 using Simple_randomizer_SoC.Forms;
 using Simple_randomizer_SoC.Forms.Tabs;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Generators;
 using Simple_randomizer_SoC.Model;
 using Simple_randomizer_SoC.Models.AppConfig;
@@ -50,6 +51,8 @@ namespace RandomizerSoC
         readonly WeatherGenerator weatherGenerator = new WeatherGenerator();
         readonly NpcGenerator2 npcGenerator = new NpcGenerator2();
 
+        readonly TextureRandomizer2 textureRandomizer = new TextureRandomizer2();
+        readonly SoundRandomizer2 soundRandomizer = new SoundRandomizer2();
         //readonly OutfitsGenerator outfitsGenerator;
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
@@ -57,8 +60,6 @@ namespace RandomizerSoC
 
         readonly AdditionalParams additionalParams;
 
-        readonly SoundRandomizer soundRandomizer;
-        readonly TextureRandomizer textureRandomizer;
 
         private StashConfig stashConfig;
         private WeaponConfig weaponConfig;
@@ -72,9 +73,6 @@ namespace RandomizerSoC
         {
             UpdateText();
             LoadLists();
-
-            threadsNumeric.Value = Math.Max(1, Math.Min(threadsNumeric.Value, System.Environment.ProcessorCount));
-            threadsNumeric.Maximum = Math.Max(1, System.Environment.ProcessorCount);
         }
 
         public MainForm()
@@ -136,12 +134,6 @@ namespace RandomizerSoC
             additionalParams = new AdditionalParams();
 
             textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
-
-            soundRandomizer = new SoundRandomizer();
-            soundsPathText.Text = Configuration.Get("sound");
-
-            textureRandomizer = new TextureRandomizer();
-            texturesPathText.Text = Configuration.Get("texture");
 
             PostInit();
         }
@@ -530,77 +522,44 @@ namespace RandomizerSoC
             #endregion
 
             //звуки
-            if (gameSoundCheckBox.Checked && soundsPathText.Text.Contains("\\sounds"))
+            if (gameSoundCheckBox.Checked)
             {
+                soundRandomizer.UpdateData(soundTextureConfig, newGamedataPath, randomProbability);
+
                 try
                 {
-                    //из-за ожидания isProcessing нормально становится true
-                    await soundRandomizer.Start(
-                        (int)threadsNumeric.Value,
-                        (int)roundDurationNumeric.Value,
-                        stepRainCheckBox.Checked,
-                        newGamedataPath,
-                        soundsPathText.Text,
-                        randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)soundeplaceProbabilityInput.Value);
-
-                    loadState.Text = Localization.Get("soundsProcessing");// "Обработка звуков...";
-                    do
+                    await soundRandomizer.Generate();
+                    if (soundRandomizer.Error != null)
                     {
-                        soundsProgressLabel.Text = soundRandomizer.statusMessage;
-                        progressBar1.Value = Math.Min(progressBar1.Maximum, soundRandomizer.progress);
-                        progressBar1.Maximum = soundRandomizer.maxProgress;
-                        await Task.Delay(100);
-                    } while (soundRandomizer.isProcessing);
-                    soundsProgressLabel.Text = soundRandomizer.statusMessage;
-
-                    if (soundRandomizer.exception != null)
-                    {
-                        throw soundRandomizer.exception;
+                        new InfoForm(Localization.Get("soundsError"), soundRandomizer.Error).ShowDialog();
+                        return;
                     }
                 }
                 catch (Exception ex)
                 {
-                    await soundRandomizer.Abort();
+                    soundRandomizer.Stop = true;
                     new InfoForm(Localization.Get("soundsError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    loadState.Text = "";
                     return;
                 }
             }
 
             //текстуры
-            if (texturesCheckBox.Checked && texturesPathText.Text.Contains("\\textures"))
+            if (texturesCheckBox.Checked)
             {
+                textureRandomizer.UpdateData(soundTextureConfig, newGamedataPath, randomProbability);
                 try
                 {
-                    await textureRandomizer.Start(
-                        (int)threadsNumeric.Value,
-                        uiReplaceCheckBox.Checked,
-                        newGamedataPath,
-                        texturesPathText.Text,
-                        randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : (int)textureReplaceProbabilityInput.Value);
-
-                    loadState.Text = Localization.Get("textureProcessing");// "Обработка текстур...";
-                    do
+                    await textureRandomizer.Generate();
+                    if (textureRandomizer.Error != null)
                     {
-                        texturesProgressLabel.Text = textureRandomizer.statusMessage;
-                        progressBar1.Value = Math.Min(progressBar1.Maximum, textureRandomizer.progress);
-                        progressBar1.Maximum = textureRandomizer.maxProgress;
-                        await Task.Delay(100);
-                    } while (textureRandomizer.isProcessing);
-                    texturesProgressLabel.Text = textureRandomizer.statusMessage;
-
-                    if (textureRandomizer.exception != null)
-                    {
-                        throw textureRandomizer.exception;
+                        new InfoForm(Localization.Get("texturesError"), textureRandomizer.Error).ShowDialog();
+                        return;
                     }
                 }
                 catch (Exception ex)
                 {
-                    await textureRandomizer.Abort();
+                    textureRandomizer.Stop = true;
                     new InfoForm(Localization.Get("texturesError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    loadState.Text = "";
                     return;
                 }
             }
@@ -723,7 +682,7 @@ namespace RandomizerSoC
             //tabPage9.Text = Localization.Get("npcTab");
             //tabPage2.Text = Localization.Get("weatherTab");
             tabPage8.Text = Localization.Get("advancedTab");
-            advancedTab2.Text = Localization.Get("advancedTab") + " 2";
+            //advancedTab2.Text = Localization.Get("advancedTab") + " 2";
             saveButton.Text = Localization.Get("saveLists");
             loadButton.Text = Localization.Get("loadLists");
             generateButton.Text = Localization.Get("generate");
@@ -780,18 +739,18 @@ namespace RandomizerSoC
             tradersCheckBox.Text = Localization.Get("traderItems");
             consumablesCheckBox.Text = Localization.Get("consumables");
 
-            advanced2Label.Text = Localization.Get("soundTexturesDescription");
-            threadsLabel.Text = Localization.Get("maxThreads");
+            //advanced2Label.Text = Localization.Get("soundTexturesDescription");
+            //threadsLabel.Text = Localization.Get("maxThreads");
             gameSoundCheckBox.Text = Localization.Get("gameSounds");
-            soundsPathButton.Text = Localization.Get("open");
-            texturesPathButton.Text = Localization.Get("open");
-            soundsPathLabel.Text = Localization.Get("soundsPath");
-            stepRainCheckBox.Text = Localization.Get("stepRainSounds");
-            roundDurationLabel.Text = Localization.Get("soundsRoundStep");
+            //soundsPathButton.Text = Localization.Get("open");
+            //texturesPathButton.Text = Localization.Get("open");
+            //soundsPathLabel.Text = Localization.Get("soundsPath");
+            //stepRainCheckBox.Text = Localization.Get("stepRainSounds");
+            //roundDurationLabel.Text = Localization.Get("soundsRoundStep");
             texturesCheckBox.Text = Localization.Get("textures");
-            texturesPathLabel.Text = Localization.Get("texturesPath");
-            uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
-            epilepsyLabel.Text = Localization.Get("epilepsy");
+            //texturesPathLabel.Text = Localization.Get("texturesPath");
+            //uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
+            //epilepsyLabel.Text = Localization.Get("epilepsy");
 
             //1.8
             dialogsTab.Text = Localization.Get("dialogs");
@@ -835,62 +794,21 @@ namespace RandomizerSoC
         #region звуки текстуры
         private void GameSoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            var value = gameSoundCheckBox.Checked;
-            soundsPathButton.Enabled = value;
-            soundsPathText.Enabled = value;
-            stepRainCheckBox.Enabled = value;
-            roundDurationNumeric.Enabled = value;
         }
 
         private void TexturesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            var value = texturesCheckBox.Checked;
-            texturesPathButton.Enabled = value;
-            texturesPathText.Enabled = value;
-            uiReplaceCheckBox.Enabled = value;
-        }
-
-        private void SoundsPathButton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog
-            {
-                SelectedPath = soundsPathText.Text
-            };
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                soundsPathText.Text = fbd.SelectedPath;
-                Configuration.Set("sound", fbd.SelectedPath);
-
-                if (!soundsPathText.Text.Contains("\\sounds"))
-                {
-                    new InfoForm("Указанный к игровым звукам путь не содержит папку \"sounds\"").ShowDialog();
-                }
-            }
-        }
-
-        private void TexturesPathButton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog
-            {
-                SelectedPath = texturesPathText.Text
-            };
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                texturesPathText.Text = fbd.SelectedPath;
-                Configuration.Set("texture", fbd.SelectedPath);
-
-                if (!texturesPathText.Text.Contains("\\textures"))
-                {
-                    new InfoForm("Указанный к игровым текстурам путь не содержит папку \"textures\"").ShowDialog();
-                }
-            }
         }
         #endregion
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            soundRandomizer.stopProcessing = true;
-            textureRandomizer.stopProcessing = true;
+            generateButton.Enabled = false;
+            if (soundRandomizer.IsProcessing() || textureRandomizer.IsProcessing())
+            {
+                Controls.Add(new FormClosingControl());
+                await Task.WhenAll(soundRandomizer.StopProcessing(), textureRandomizer.StopProcessing());
+            }
         }
 
         private void AllRandomProbabilityCheckbox_CheckedChanged(object sender, EventArgs e)

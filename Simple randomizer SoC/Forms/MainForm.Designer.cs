@@ -31,10 +31,6 @@ namespace RandomizerSoC
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "123"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Info, null);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
@@ -43,8 +39,9 @@ namespace RandomizerSoC
             this.stashTab = new System.Windows.Forms.TabPage();
             this.weaponTab = new System.Windows.Forms.TabPage();
             this.itemTab = new System.Windows.Forms.TabPage();
-            this.weatherTab = new System.Windows.Forms.TabPage();
             this.npcTab = new System.Windows.Forms.TabPage();
+            this.weatherTab = new System.Windows.Forms.TabPage();
+            this.soundTextureTab = new System.Windows.Forms.TabPage();
             this.dialogsTab = new System.Windows.Forms.TabPage();
             this.label18 = new System.Windows.Forms.Label();
             this.actionsExceptionLabel = new System.Windows.Forms.Label();
@@ -71,25 +68,6 @@ namespace RandomizerSoC
             this.barAlarmCheckBox = new System.Windows.Forms.CheckBox();
             this.equipWeaponEverywhereCheckBox = new System.Windows.Forms.CheckBox();
             this.communityCheckBox = new System.Windows.Forms.CheckBox();
-            this.advancedTab2 = new System.Windows.Forms.TabPage();
-            this.epilepsyLabel = new System.Windows.Forms.Label();
-            this.advanced2Label = new System.Windows.Forms.Label();
-            this.texturesCheckBox = new System.Windows.Forms.CheckBox();
-            this.gameSoundCheckBox = new System.Windows.Forms.CheckBox();
-            this.texturesProgressLabel = new System.Windows.Forms.Label();
-            this.uiReplaceCheckBox = new System.Windows.Forms.CheckBox();
-            this.texturesPathButton = new System.Windows.Forms.Button();
-            this.texturesPathText = new System.Windows.Forms.TextBox();
-            this.texturesPathLabel = new System.Windows.Forms.Label();
-            this.soundsProgressLabel = new System.Windows.Forms.Label();
-            this.threadsLabel = new System.Windows.Forms.Label();
-            this.roundDurationLabel = new System.Windows.Forms.Label();
-            this.threadsNumeric = new System.Windows.Forms.NumericUpDown();
-            this.roundDurationNumeric = new System.Windows.Forms.NumericUpDown();
-            this.stepRainCheckBox = new System.Windows.Forms.CheckBox();
-            this.soundsPathButton = new System.Windows.Forms.Button();
-            this.soundsPathText = new System.Windows.Forms.TextBox();
-            this.soundsPathLabel = new System.Windows.Forms.Label();
             this.probabilityTab = new System.Windows.Forms.TabPage();
             this.allRandomProbabilityCheckbox = new System.Windows.Forms.CheckBox();
             this.probabilityDescription = new System.Windows.Forms.Label();
@@ -113,20 +91,15 @@ namespace RandomizerSoC
             this.weaponReplaceProbLabel = new System.Windows.Forms.Label();
             this.weatherReplaceProbLabel = new System.Windows.Forms.Label();
             this.artReplaceProbLabel = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.texturesCheckBox = new System.Windows.Forms.CheckBox();
+            this.gameSoundCheckBox = new System.Windows.Forms.CheckBox();
             this.allCheckBox = new System.Windows.Forms.CheckBox();
             this.treasureCheckBox = new System.Windows.Forms.CheckBox();
             this.afCheckBox = new System.Windows.Forms.CheckBox();
             this.weaponCheckBox = new System.Windows.Forms.CheckBox();
             this.armorCheckBox = new System.Windows.Forms.CheckBox();
             this.npcCheckBox = new System.Windows.Forms.CheckBox();
-            this.suppliesCheckBox = new System.Windows.Forms.CheckBox();
-            this.rankCheckBox = new System.Windows.Forms.CheckBox();
-            this.reputationCheckBox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.weatherCheckBox = new System.Windows.Forms.CheckBox();
             this.deathItemsCheckBox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -136,16 +109,11 @@ namespace RandomizerSoC
             this.consumablesCheckBox = new System.Windows.Forms.CheckBox();
             this.loadState = new System.Windows.Forms.Label();
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.soundTextureTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.dialogsTab.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            this.advancedTab2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).BeginInit();
             this.probabilityTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weaponReplaceProbInput)).BeginInit();
@@ -157,7 +125,6 @@ namespace RandomizerSoC
             ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).BeginInit();
-            this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -208,14 +175,12 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.stashTab);
             this.tabControl.Controls.Add(this.weaponTab);
             this.tabControl.Controls.Add(this.itemTab);
-            this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.npcTab);
+            this.tabControl.Controls.Add(this.weatherTab);
+            this.tabControl.Controls.Add(this.soundTextureTab);
             this.tabControl.Controls.Add(this.dialogsTab);
             this.tabControl.Controls.Add(this.tabPage8);
-            this.tabControl.Controls.Add(this.advancedTab2);
             this.tabControl.Controls.Add(this.probabilityTab);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.soundTextureTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Multiline = true;
@@ -254,6 +219,16 @@ namespace RandomizerSoC
             this.itemTab.Text = "Предметы";
             this.itemTab.UseVisualStyleBackColor = true;
             // 
+            // npcTab
+            // 
+            this.npcTab.Location = new System.Drawing.Point(4, 40);
+            this.npcTab.Name = "npcTab";
+            this.npcTab.Padding = new System.Windows.Forms.Padding(3);
+            this.npcTab.Size = new System.Drawing.Size(510, 391);
+            this.npcTab.TabIndex = 19;
+            this.npcTab.Text = "НПС";
+            this.npcTab.UseVisualStyleBackColor = true;
+            // 
             // weatherTab
             // 
             this.weatherTab.Location = new System.Drawing.Point(4, 40);
@@ -264,15 +239,15 @@ namespace RandomizerSoC
             this.weatherTab.Text = "Погода";
             this.weatherTab.UseVisualStyleBackColor = true;
             // 
-            // npcTab
+            // soundTextureTab
             // 
-            this.npcTab.Location = new System.Drawing.Point(4, 40);
-            this.npcTab.Name = "npcTab";
-            this.npcTab.Padding = new System.Windows.Forms.Padding(3);
-            this.npcTab.Size = new System.Drawing.Size(510, 391);
-            this.npcTab.TabIndex = 19;
-            this.npcTab.Text = "НПС";
-            this.npcTab.UseVisualStyleBackColor = true;
+            this.soundTextureTab.Location = new System.Drawing.Point(4, 40);
+            this.soundTextureTab.Name = "soundTextureTab";
+            this.soundTextureTab.Padding = new System.Windows.Forms.Padding(3);
+            this.soundTextureTab.Size = new System.Drawing.Size(510, 391);
+            this.soundTextureTab.TabIndex = 20;
+            this.soundTextureTab.Text = "Звуки/текстуры";
+            this.soundTextureTab.UseVisualStyleBackColor = true;
             // 
             // dialogsTab
             // 
@@ -570,234 +545,6 @@ namespace RandomizerSoC
             this.communityCheckBox.Text = "Изменять группировку НПС";
             this.communityCheckBox.UseVisualStyleBackColor = true;
             this.communityCheckBox.CheckedChanged += new System.EventHandler(this.CommunityCheckBox_CheckedChanged);
-            // 
-            // advancedTab2
-            // 
-            this.advancedTab2.Controls.Add(this.epilepsyLabel);
-            this.advancedTab2.Controls.Add(this.advanced2Label);
-            this.advancedTab2.Controls.Add(this.texturesCheckBox);
-            this.advancedTab2.Controls.Add(this.gameSoundCheckBox);
-            this.advancedTab2.Controls.Add(this.texturesProgressLabel);
-            this.advancedTab2.Controls.Add(this.uiReplaceCheckBox);
-            this.advancedTab2.Controls.Add(this.texturesPathButton);
-            this.advancedTab2.Controls.Add(this.texturesPathText);
-            this.advancedTab2.Controls.Add(this.texturesPathLabel);
-            this.advancedTab2.Controls.Add(this.soundsProgressLabel);
-            this.advancedTab2.Controls.Add(this.threadsLabel);
-            this.advancedTab2.Controls.Add(this.roundDurationLabel);
-            this.advancedTab2.Controls.Add(this.threadsNumeric);
-            this.advancedTab2.Controls.Add(this.roundDurationNumeric);
-            this.advancedTab2.Controls.Add(this.stepRainCheckBox);
-            this.advancedTab2.Controls.Add(this.soundsPathButton);
-            this.advancedTab2.Controls.Add(this.soundsPathText);
-            this.advancedTab2.Controls.Add(this.soundsPathLabel);
-            this.advancedTab2.Location = new System.Drawing.Point(4, 40);
-            this.advancedTab2.Name = "advancedTab2";
-            this.advancedTab2.Padding = new System.Windows.Forms.Padding(3);
-            this.advancedTab2.Size = new System.Drawing.Size(510, 391);
-            this.advancedTab2.TabIndex = 11;
-            this.advancedTab2.Text = "Дополнительно 2";
-            this.advancedTab2.UseVisualStyleBackColor = true;
-            // 
-            // epilepsyLabel
-            // 
-            this.epilepsyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.epilepsyLabel.Location = new System.Drawing.Point(6, 393);
-            this.epilepsyLabel.Name = "epilepsyLabel";
-            this.epilepsyLabel.Size = new System.Drawing.Size(1003, 21);
-            this.epilepsyLabel.TabIndex = 38;
-            this.epilepsyLabel.Text = "Не рекомендуется включать, если у вас когда-либо были эпилептические приступы!";
-            // 
-            // advanced2Label
-            // 
-            this.advanced2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.advanced2Label.Location = new System.Drawing.Point(6, 9);
-            this.advanced2Label.Name = "advanced2Label";
-            this.advanced2Label.Size = new System.Drawing.Size(1003, 190);
-            this.advanced2Label.TabIndex = 37;
-            this.advanced2Label.Text = resources.GetString("advanced2Label.Text");
-            // 
-            // texturesCheckBox
-            // 
-            this.texturesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.texturesCheckBox.Location = new System.Drawing.Point(9, 362);
-            this.texturesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.texturesCheckBox.Name = "texturesCheckBox";
-            this.texturesCheckBox.Size = new System.Drawing.Size(245, 33);
-            this.texturesCheckBox.TabIndex = 36;
-            this.texturesCheckBox.Text = "Текстуры";
-            this.texturesCheckBox.UseVisualStyleBackColor = true;
-            this.texturesCheckBox.CheckedChanged += new System.EventHandler(this.TexturesCheckBox_CheckedChanged);
-            // 
-            // gameSoundCheckBox
-            // 
-            this.gameSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gameSoundCheckBox.Location = new System.Drawing.Point(9, 239);
-            this.gameSoundCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.gameSoundCheckBox.Name = "gameSoundCheckBox";
-            this.gameSoundCheckBox.Size = new System.Drawing.Size(168, 33);
-            this.gameSoundCheckBox.TabIndex = 35;
-            this.gameSoundCheckBox.Text = "Звуки";
-            this.gameSoundCheckBox.UseVisualStyleBackColor = true;
-            this.gameSoundCheckBox.CheckedChanged += new System.EventHandler(this.GameSoundCheckBox_CheckedChanged);
-            // 
-            // texturesProgressLabel
-            // 
-            this.texturesProgressLabel.AutoSize = true;
-            this.texturesProgressLabel.Location = new System.Drawing.Point(6, 468);
-            this.texturesProgressLabel.Name = "texturesProgressLabel";
-            this.texturesProgressLabel.Size = new System.Drawing.Size(16, 13);
-            this.texturesProgressLabel.TabIndex = 33;
-            this.texturesProgressLabel.Text = "...";
-            // 
-            // uiReplaceCheckBox
-            // 
-            this.uiReplaceCheckBox.AutoSize = true;
-            this.uiReplaceCheckBox.Enabled = false;
-            this.uiReplaceCheckBox.Location = new System.Drawing.Point(9, 445);
-            this.uiReplaceCheckBox.Name = "uiReplaceCheckBox";
-            this.uiReplaceCheckBox.Size = new System.Drawing.Size(194, 17);
-            this.uiReplaceCheckBox.TabIndex = 32;
-            this.uiReplaceCheckBox.Text = "Заменять элементы интерфейса";
-            this.uiReplaceCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // texturesPathButton
-            // 
-            this.texturesPathButton.Enabled = false;
-            this.texturesPathButton.Location = new System.Drawing.Point(709, 417);
-            this.texturesPathButton.Name = "texturesPathButton";
-            this.texturesPathButton.Size = new System.Drawing.Size(75, 23);
-            this.texturesPathButton.TabIndex = 31;
-            this.texturesPathButton.Text = "Открыть";
-            this.texturesPathButton.UseVisualStyleBackColor = true;
-            this.texturesPathButton.Click += new System.EventHandler(this.TexturesPathButton_Click);
-            // 
-            // texturesPathText
-            // 
-            this.texturesPathText.Enabled = false;
-            this.texturesPathText.Location = new System.Drawing.Point(183, 419);
-            this.texturesPathText.Name = "texturesPathText";
-            this.texturesPathText.Size = new System.Drawing.Size(520, 20);
-            this.texturesPathText.TabIndex = 30;
-            // 
-            // texturesPathLabel
-            // 
-            this.texturesPathLabel.Location = new System.Drawing.Point(6, 422);
-            this.texturesPathLabel.Name = "texturesPathLabel";
-            this.texturesPathLabel.Size = new System.Drawing.Size(171, 17);
-            this.texturesPathLabel.TabIndex = 29;
-            this.texturesPathLabel.Text = "Путь к папке textures";
-            // 
-            // soundsProgressLabel
-            // 
-            this.soundsProgressLabel.AutoSize = true;
-            this.soundsProgressLabel.Location = new System.Drawing.Point(6, 341);
-            this.soundsProgressLabel.Name = "soundsProgressLabel";
-            this.soundsProgressLabel.Size = new System.Drawing.Size(16, 13);
-            this.soundsProgressLabel.TabIndex = 28;
-            this.soundsProgressLabel.Text = "...";
-            // 
-            // threadsLabel
-            // 
-            this.threadsLabel.AutoSize = true;
-            this.threadsLabel.Location = new System.Drawing.Point(70, 213);
-            this.threadsLabel.Name = "threadsLabel";
-            this.threadsLabel.Size = new System.Drawing.Size(266, 13);
-            this.threadsLabel.TabIndex = 27;
-            this.threadsLabel.Text = "Максимальное количетсво потоков для обработки";
-            // 
-            // roundDurationLabel
-            // 
-            this.roundDurationLabel.AutoSize = true;
-            this.roundDurationLabel.Location = new System.Drawing.Point(70, 320);
-            this.roundDurationLabel.Name = "roundDurationLabel";
-            this.roundDurationLabel.Size = new System.Drawing.Size(569, 13);
-            this.roundDurationLabel.TabIndex = 26;
-            this.roundDurationLabel.Text = "Шаг округления длительности звуковых файлов, сек (использование больших значений " +
-    "на свой страх и риск)";
-            // 
-            // threadsNumeric
-            // 
-            this.threadsNumeric.Location = new System.Drawing.Point(9, 210);
-            this.threadsNumeric.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.threadsNumeric.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.threadsNumeric.Name = "threadsNumeric";
-            this.threadsNumeric.Size = new System.Drawing.Size(55, 20);
-            this.threadsNumeric.TabIndex = 25;
-            this.threadsNumeric.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            // 
-            // roundDurationNumeric
-            // 
-            this.roundDurationNumeric.Enabled = false;
-            this.roundDurationNumeric.Location = new System.Drawing.Point(9, 318);
-            this.roundDurationNumeric.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.roundDurationNumeric.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.roundDurationNumeric.Name = "roundDurationNumeric";
-            this.roundDurationNumeric.Size = new System.Drawing.Size(55, 20);
-            this.roundDurationNumeric.TabIndex = 24;
-            this.roundDurationNumeric.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // stepRainCheckBox
-            // 
-            this.stepRainCheckBox.AutoSize = true;
-            this.stepRainCheckBox.Enabled = false;
-            this.stepRainCheckBox.Location = new System.Drawing.Point(9, 295);
-            this.stepRainCheckBox.Name = "stepRainCheckBox";
-            this.stepRainCheckBox.Size = new System.Drawing.Size(288, 17);
-            this.stepRainCheckBox.TabIndex = 23;
-            this.stepRainCheckBox.Text = "Заменять звуки шагов и дождя (не рекомендуется)";
-            this.stepRainCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // soundsPathButton
-            // 
-            this.soundsPathButton.Enabled = false;
-            this.soundsPathButton.Location = new System.Drawing.Point(709, 267);
-            this.soundsPathButton.Name = "soundsPathButton";
-            this.soundsPathButton.Size = new System.Drawing.Size(75, 23);
-            this.soundsPathButton.TabIndex = 22;
-            this.soundsPathButton.Text = "Открыть";
-            this.soundsPathButton.UseVisualStyleBackColor = true;
-            this.soundsPathButton.Click += new System.EventHandler(this.SoundsPathButton_Click);
-            // 
-            // soundsPathText
-            // 
-            this.soundsPathText.Enabled = false;
-            this.soundsPathText.Location = new System.Drawing.Point(183, 269);
-            this.soundsPathText.Name = "soundsPathText";
-            this.soundsPathText.Size = new System.Drawing.Size(520, 20);
-            this.soundsPathText.TabIndex = 21;
-            // 
-            // soundsPathLabel
-            // 
-            this.soundsPathLabel.Location = new System.Drawing.Point(6, 272);
-            this.soundsPathLabel.Name = "soundsPathLabel";
-            this.soundsPathLabel.Size = new System.Drawing.Size(171, 17);
-            this.soundsPathLabel.TabIndex = 20;
-            this.soundsPathLabel.Text = "Путь к папке sounds";
             // 
             // probabilityTab
             // 
@@ -1113,44 +860,31 @@ namespace RandomizerSoC
             this.artReplaceProbLabel.TabIndex = 1;
             this.artReplaceProbLabel.Text = "Вероятность генерации для каждого стата артефакта";
             // 
-            // tabPage3
+            // texturesCheckBox
             // 
-            this.tabPage3.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage3.Controls.Add(this.listView1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 40);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(510, 391);
-            this.tabPage3.TabIndex = 14;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.texturesCheckBox.AutoSize = true;
+            this.texturesCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.texturesCheckBox.Location = new System.Drawing.Point(6, 288);
+            this.texturesCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.texturesCheckBox.Name = "texturesCheckBox";
+            this.texturesCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.texturesCheckBox.TabIndex = 36;
+            this.texturesCheckBox.Text = "Текстуры";
+            this.texturesCheckBox.UseVisualStyleBackColor = true;
+            this.texturesCheckBox.CheckedChanged += new System.EventHandler(this.TexturesCheckBox_CheckedChanged);
             // 
-            // tableLayoutPanel1
+            // gameSoundCheckBox
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(313, 6);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(499, 317);
-            this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
-            this.listView1.Location = new System.Drawing.Point(6, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(301, 397);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
+            this.gameSoundCheckBox.AutoSize = true;
+            this.gameSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gameSoundCheckBox.Location = new System.Drawing.Point(6, 311);
+            this.gameSoundCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.gameSoundCheckBox.Name = "gameSoundCheckBox";
+            this.gameSoundCheckBox.Size = new System.Drawing.Size(56, 17);
+            this.gameSoundCheckBox.TabIndex = 35;
+            this.gameSoundCheckBox.Text = "Звуки";
+            this.gameSoundCheckBox.UseVisualStyleBackColor = true;
+            this.gameSoundCheckBox.CheckedChanged += new System.EventHandler(this.GameSoundCheckBox_CheckedChanged);
             // 
             // allCheckBox
             // 
@@ -1214,39 +948,6 @@ namespace RandomizerSoC
             this.npcCheckBox.UseVisualStyleBackColor = true;
             this.npcCheckBox.CheckedChanged += new System.EventHandler(this.NpcCheckBox_CheckedChanged);
             // 
-            // suppliesCheckBox
-            // 
-            this.suppliesCheckBox.AutoSize = true;
-            this.suppliesCheckBox.Enabled = false;
-            this.suppliesCheckBox.Location = new System.Drawing.Point(12, 289);
-            this.suppliesCheckBox.Name = "suppliesCheckBox";
-            this.suppliesCheckBox.Size = new System.Drawing.Size(65, 17);
-            this.suppliesCheckBox.TabIndex = 14;
-            this.suppliesCheckBox.Text = "Оружие";
-            this.suppliesCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // rankCheckBox
-            // 
-            this.rankCheckBox.AutoSize = true;
-            this.rankCheckBox.Enabled = false;
-            this.rankCheckBox.Location = new System.Drawing.Point(12, 313);
-            this.rankCheckBox.Name = "rankCheckBox";
-            this.rankCheckBox.Size = new System.Drawing.Size(50, 17);
-            this.rankCheckBox.TabIndex = 15;
-            this.rankCheckBox.Text = "Ранг";
-            this.rankCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // reputationCheckBox
-            // 
-            this.reputationCheckBox.AutoSize = true;
-            this.reputationCheckBox.Enabled = false;
-            this.reputationCheckBox.Location = new System.Drawing.Point(12, 337);
-            this.reputationCheckBox.Name = "reputationCheckBox";
-            this.reputationCheckBox.Size = new System.Drawing.Size(79, 17);
-            this.reputationCheckBox.TabIndex = 16;
-            this.reputationCheckBox.Text = "Репутация";
-            this.reputationCheckBox.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -1255,18 +956,6 @@ namespace RandomizerSoC
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 17;
             this.label4.Text = "Что генерировать:";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Enabled = false;
-            this.linkLabel1.Location = new System.Drawing.Point(9, 357);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(53, 13);
-            this.linkLabel1.TabIndex = 18;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Другое...";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // weatherCheckBox
             // 
@@ -1358,15 +1047,6 @@ namespace RandomizerSoC
             this.dialogsCheckBox.Text = "Диалоги";
             this.dialogsCheckBox.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(21, 373);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tabControl);
@@ -1381,7 +1061,8 @@ namespace RandomizerSoC
             // 
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.gameSoundCheckBox);
+            this.panel2.Controls.Add(this.texturesCheckBox);
             this.panel2.Controls.Add(this.saveButton);
             this.panel2.Controls.Add(this.dialogsCheckBox);
             this.panel2.Controls.Add(this.loadButton);
@@ -1401,25 +1082,11 @@ namespace RandomizerSoC
             this.panel2.Controls.Add(this.armorCheckBox);
             this.panel2.Controls.Add(this.weatherCheckBox);
             this.panel2.Controls.Add(this.npcCheckBox);
-            this.panel2.Controls.Add(this.linkLabel1);
-            this.panel2.Controls.Add(this.suppliesCheckBox);
-            this.panel2.Controls.Add(this.rankCheckBox);
-            this.panel2.Controls.Add(this.reputationCheckBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(518, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
-            // 
-            // soundTextureTab
-            // 
-            this.soundTextureTab.Location = new System.Drawing.Point(4, 40);
-            this.soundTextureTab.Name = "soundTextureTab";
-            this.soundTextureTab.Padding = new System.Windows.Forms.Padding(3);
-            this.soundTextureTab.Size = new System.Drawing.Size(510, 391);
-            this.soundTextureTab.TabIndex = 20;
-            this.soundTextureTab.Text = "Звуки/текстуры";
-            this.soundTextureTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1438,10 +1105,6 @@ namespace RandomizerSoC
             this.dialogsTab.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            this.advancedTab2.ResumeLayout(false);
-            this.advancedTab2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.threadsNumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundDurationNumeric)).EndInit();
             this.probabilityTab.ResumeLayout(false);
             this.probabilityTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).EndInit();
@@ -1454,7 +1117,6 @@ namespace RandomizerSoC
             ((System.ComponentModel.ISupportInitialize)(this.stashReplaceProbInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textureReplaceProbabilityInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundeplaceProbabilityInput)).EndInit();
-            this.tabPage3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1492,11 +1154,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.CheckBox shuffleTextCheckBox;
         private System.Windows.Forms.CheckBox advancedGulagCheckBox;
         private System.Windows.Forms.CheckBox gScriptCheckBox;
-        private System.Windows.Forms.CheckBox suppliesCheckBox;
-        private System.Windows.Forms.CheckBox rankCheckBox;
-        private System.Windows.Forms.CheckBox reputationCheckBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox weatherCheckBox;
         private System.Windows.Forms.CheckBox deathItemsCheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
@@ -1506,26 +1164,9 @@ namespace RandomizerSoC
         private System.Windows.Forms.CheckBox tradersCheckBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox consumablesCheckBox;
-        private System.Windows.Forms.TabPage advancedTab2;
-        private System.Windows.Forms.CheckBox stepRainCheckBox;
-        private System.Windows.Forms.Button soundsPathButton;
-        private System.Windows.Forms.TextBox soundsPathText;
-        private System.Windows.Forms.Label soundsPathLabel;
-        private System.Windows.Forms.Label threadsLabel;
-        private System.Windows.Forms.Label roundDurationLabel;
-        private System.Windows.Forms.NumericUpDown threadsNumeric;
-        private System.Windows.Forms.NumericUpDown roundDurationNumeric;
-        private System.Windows.Forms.Label soundsProgressLabel;
-        private System.Windows.Forms.Label texturesProgressLabel;
-        private System.Windows.Forms.CheckBox uiReplaceCheckBox;
-        private System.Windows.Forms.Button texturesPathButton;
-        private System.Windows.Forms.TextBox texturesPathText;
-        private System.Windows.Forms.Label texturesPathLabel;
         private System.Windows.Forms.CheckBox texturesCheckBox;
         private System.Windows.Forms.CheckBox gameSoundCheckBox;
-        private System.Windows.Forms.Label advanced2Label;
         private System.Windows.Forms.Label loadState;
-        private System.Windows.Forms.Label epilepsyLabel;
         private System.Windows.Forms.TabPage dialogsTab;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label actionsExceptionLabel;
@@ -1557,10 +1198,6 @@ namespace RandomizerSoC
         private System.Windows.Forms.NumericUpDown stashReplaceProbInput;
         private System.Windows.Forms.Label probabilityDescription;
         private System.Windows.Forms.CheckBox allRandomProbabilityCheckbox;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage stashTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

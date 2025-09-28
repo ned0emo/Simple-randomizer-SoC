@@ -22,6 +22,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         public bool Nullable { get; set; } = false;
         public List<T> Data { get; } = new List<T>();
         public ICollection<T> RawData { get; }
+        public Func<T, T> DataPreprocessor { get; set; }
 
         public ComplexListDialog(string title, ICollection<T> data, List<string> columnNames)
         {
@@ -125,6 +126,9 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 }
 
                 if (skip) continue;
+
+                if (DataPreprocessor != null) t = DataPreprocessor(t);
+
                 if (RowValidator != null && !RowValidator(t))
                 {
                     if (OnValidationError == null) continue;

@@ -8,16 +8,15 @@ namespace Simple_randomizer_SoC.Models.AppConfig
 {
     public class SoundTextureConfig : IConfig
     {
-        public string SoundPath { get; set; }
-        public HashSet<string> SoundFolderExceptions { get; set; } = new HashSet<string>();
-        public HashSet<string> SoundFileExceptions { get; set; } = new HashSet<string>();
+        public string SoundsPath { get; set; } = "";
+        public bool ReplaceStepsAndRain { get; set; } = false;
         public int SoundLengthRound { get; set; } = 1;
+        public int SoundProbability { get; set; } = 100;
 
-        public string TexturePath { get; set; }
-        public HashSet<string> TextureFolderExceptions { get; set; } = new HashSet<string>();
-        public HashSet<string> TextureFileExceptions { get; set; } = new HashSet<string>();
-
+        public string TexturesPath { get; set; } = "";
+        public bool ReplaceUI { get; set; } = false;
         public int ThreadCount { get; set; } = 4;
+        public int TextureProbability { get; set; } = 100;
 
         public string Path => MyEnvironment.stConfig;
     }

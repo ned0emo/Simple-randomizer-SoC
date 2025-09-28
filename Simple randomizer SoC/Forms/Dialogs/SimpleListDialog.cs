@@ -18,6 +18,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         public bool Nullable { get; set; } = false;
         public List<string> Data { get; } = new List<string>();
         public ICollection<string> RawData { get; }
+        public Func<string, string> DataPreprocessor { get; set; }
 
         public SimpleListDialog(string title, ICollection<string> data)
         {
@@ -41,6 +42,8 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             for (int i = 0; i < length; i++)
             {
                 var str = simpleListDataGrid.Rows[i].Cells[0].Value.ToString().Trim();
+
+                if (DataPreprocessor != null) str = DataPreprocessor(str);
 
                 if (RowValidator != null && !RowValidator(str))
                 {

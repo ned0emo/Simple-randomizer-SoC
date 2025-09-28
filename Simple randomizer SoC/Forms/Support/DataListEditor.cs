@@ -55,5 +55,15 @@ namespace Simple_randomizer_SoC.Forms
                 new InfoForm("Ошибка", ex).ShowDialog();
             }
         }
+
+        public void OpenEdit(SimpleListDialog dialog)
+        {
+            OpenEdit<SimpleListDialog, string>(dialog);
+        }
+
+        public async Task OpenEditThenSave(SimpleListDialog dialog, IConfig config)
+        {
+            await OpenEditThenSave<SimpleListDialog, string>(dialog, config);
+        }
     }
 }
