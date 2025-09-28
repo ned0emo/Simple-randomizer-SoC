@@ -47,7 +47,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 pc.DoOrSkip(() =>
                 {
-                    var c = CollectionUtils.GetRandomElements(stashConfig.Communities, rnd.Next(5) + 1);
+                    var c = CollectionUtils.GetRandomElements(stashConfig.Communities, rnd.Next(5) + 1, rnd);
                     if (c.Count == 0) return;
 
                     section.Params["community"] = c;

@@ -58,7 +58,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 var allStats0 = config.StatArtefactParameters0.GetParameterList();
                 var allStats1 = config.StatArtefactParameters1.GetParameterList();
-                var replacingStats = CollectionUtils.GetRandomElements(allStats0.Concat(allStats1).ToList(), statCount);
+                var replacingStats = CollectionUtils.GetRandomElements(allStats0.Concat(allStats1).ToList(), statCount, rnd);
 
                 HandleParameters(config.StatArtefactParameters0, mainSection, absorbationSection,
                     mainSectionsByShuffleParam, mainParamValuesByShuffleParam, absorbationSectionsByShuffleParam,

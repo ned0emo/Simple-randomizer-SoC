@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Models.AppConfig
@@ -28,7 +29,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public int ArtefactProbability { get; set; } = 100;
         public int ArmorProbability { get; set; } = 100;
         public int ConsumableProbability { get; set; } = 100;
-
+        [JsonIgnore]
         public string Path => MyEnvironment.itemConfig;
     }
 }

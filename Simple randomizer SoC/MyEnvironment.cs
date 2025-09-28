@@ -13,5 +13,6 @@
         public const string weatherConfig = "weather_config.json";
         public const string npcConfig = "npc_config.json";
         public const string stConfig = "st_config.json";
+        public const string dialogConfig = "dialog_config.json";
     }
 }

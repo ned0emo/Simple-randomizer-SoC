@@ -21,7 +21,7 @@ namespace Simple_randomizer_SoC.Tools
             return dict.Count == 0 ? default : dict.ToList()[GlobalRandom.Rnd.Next(dict.Count)];
         }
 
-        public static List<T> GetRandomElements<T>(T[] arr, int count)
+        public static List<T> GetRandomElements<T>(T[] arr, int count, Random rnd)
         {
             if (count >= arr.Length) return arr.ToList();
             if (count == 0) return new List<T>();
@@ -33,7 +33,7 @@ namespace Simple_randomizer_SoC.Tools
             var result = new List<T>();
             while (count-- > 0)
             {
-                var index = indexList[GlobalRandom.Rnd.Next(indexList.Count)];
+                var index = indexList[rnd.Next(indexList.Count)];
                 indexList.Remove(index);
 
                 result.Add(arr[index]);
@@ -42,7 +42,7 @@ namespace Simple_randomizer_SoC.Tools
             return result;
         }
 
-        public static List<T> GetRandomElements<T>(List<T> list, int count)
+        public static List<T> GetRandomElements<T>(List<T> list, int count, Random rnd)
         {
             if (count >= list.Count) return list;
             if (count == 0) return new List<T>();
@@ -54,7 +54,7 @@ namespace Simple_randomizer_SoC.Tools
             var result = new List<T>();
             while (count-- > 0)
             {
-                var index = indexList[GlobalRandom.Rnd.Next(indexList.Count)];
+                var index = indexList[rnd.Next(indexList.Count)];
                 indexList.Remove(index);
 
                 result.Add(list[index]);

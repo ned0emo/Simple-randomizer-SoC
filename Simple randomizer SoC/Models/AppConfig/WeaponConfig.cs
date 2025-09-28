@@ -19,6 +19,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public bool ShuffleShootSounds { get; set; } = true;
         public int WeaponStatProbability { get; set; } = 100;
         public int AmmoStatProbability { get; set; } = 100;
+        [JsonIgnore]
         public string Path => MyEnvironment.weaponConfig;
     }
 }

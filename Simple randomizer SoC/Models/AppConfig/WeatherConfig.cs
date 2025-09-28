@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Models.AppConfig
@@ -14,7 +15,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public int RainProbability { get; set; } = 0;
         public int ThunderProbability { get; set; } = 0;
         public int StatProbability { get; set; } = 100;
-
+        [JsonIgnore]
         public string Path => MyEnvironment.weatherConfig;
     }
 }

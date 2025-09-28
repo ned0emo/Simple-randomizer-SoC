@@ -42,12 +42,7 @@ namespace RandomizerSoC
             this.npcTab = new System.Windows.Forms.TabPage();
             this.weatherTab = new System.Windows.Forms.TabPage();
             this.soundTextureTab = new System.Windows.Forms.TabPage();
-            this.dialogsTab = new System.Windows.Forms.TabPage();
-            this.label18 = new System.Windows.Forms.Label();
-            this.actionsExceptionLabel = new System.Windows.Forms.Label();
-            this.actionsExceptionTextBox = new System.Windows.Forms.TextBox();
-            this.infosExceptionLabel = new System.Windows.Forms.Label();
-            this.infosExceptionTextBox = new System.Windows.Forms.TextBox();
+            this.dialogTab = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -112,7 +107,6 @@ namespace RandomizerSoC
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl.SuspendLayout();
-            this.dialogsTab.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.probabilityTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weatherReplaceProbInput)).BeginInit();
@@ -178,7 +172,7 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.npcTab);
             this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.soundTextureTab);
-            this.tabControl.Controls.Add(this.dialogsTab);
+            this.tabControl.Controls.Add(this.dialogTab);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.probabilityTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -249,71 +243,15 @@ namespace RandomizerSoC
             this.soundTextureTab.Text = "Звуки/текстуры";
             this.soundTextureTab.UseVisualStyleBackColor = true;
             // 
-            // dialogsTab
+            // dialogTab
             // 
-            this.dialogsTab.Controls.Add(this.label18);
-            this.dialogsTab.Controls.Add(this.actionsExceptionLabel);
-            this.dialogsTab.Controls.Add(this.actionsExceptionTextBox);
-            this.dialogsTab.Controls.Add(this.infosExceptionLabel);
-            this.dialogsTab.Controls.Add(this.infosExceptionTextBox);
-            this.dialogsTab.Location = new System.Drawing.Point(4, 40);
-            this.dialogsTab.Name = "dialogsTab";
-            this.dialogsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogsTab.Size = new System.Drawing.Size(510, 391);
-            this.dialogsTab.TabIndex = 12;
-            this.dialogsTab.Text = "Диалоги";
-            this.dialogsTab.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(508, 33);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(501, 477);
-            this.label18.TabIndex = 23;
-            this.label18.Text = "Изменение диалогов полностью ломает сюжет и большинство квестов, потому рекоменду" +
-    "ется включить разблокировку двери у Сидоровича со старта игры и дать главному ге" +
-    "рою нож (вкладка \"Дополнительно\")";
-            // 
-            // actionsExceptionLabel
-            // 
-            this.actionsExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.actionsExceptionLabel.Location = new System.Drawing.Point(257, 7);
-            this.actionsExceptionLabel.Name = "actionsExceptionLabel";
-            this.actionsExceptionLabel.Size = new System.Drawing.Size(245, 23);
-            this.actionsExceptionLabel.TabIndex = 22;
-            this.actionsExceptionLabel.Text = "Вырезанные действия";
-            this.actionsExceptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // actionsExceptionTextBox
-            // 
-            this.actionsExceptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.actionsExceptionTextBox.Location = new System.Drawing.Point(257, 33);
-            this.actionsExceptionTextBox.Multiline = true;
-            this.actionsExceptionTextBox.Name = "actionsExceptionTextBox";
-            this.actionsExceptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.actionsExceptionTextBox.Size = new System.Drawing.Size(245, 494);
-            this.actionsExceptionTextBox.TabIndex = 21;
-            // 
-            // infosExceptionLabel
-            // 
-            this.infosExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.infosExceptionLabel.Location = new System.Drawing.Point(6, 7);
-            this.infosExceptionLabel.Name = "infosExceptionLabel";
-            this.infosExceptionLabel.Size = new System.Drawing.Size(245, 23);
-            this.infosExceptionLabel.TabIndex = 20;
-            this.infosExceptionLabel.Text = "Вырезанные события";
-            this.infosExceptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // infosExceptionTextBox
-            // 
-            this.infosExceptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.infosExceptionTextBox.Location = new System.Drawing.Point(6, 33);
-            this.infosExceptionTextBox.Multiline = true;
-            this.infosExceptionTextBox.Name = "infosExceptionTextBox";
-            this.infosExceptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.infosExceptionTextBox.Size = new System.Drawing.Size(245, 494);
-            this.infosExceptionTextBox.TabIndex = 19;
+            this.dialogTab.Location = new System.Drawing.Point(4, 40);
+            this.dialogTab.Name = "dialogTab";
+            this.dialogTab.Padding = new System.Windows.Forms.Padding(3);
+            this.dialogTab.Size = new System.Drawing.Size(510, 391);
+            this.dialogTab.TabIndex = 21;
+            this.dialogTab.Text = "Диалоги";
+            this.dialogTab.UseVisualStyleBackColor = true;
             // 
             // tabPage8
             // 
@@ -1101,8 +1039,6 @@ namespace RandomizerSoC
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.tabControl.ResumeLayout(false);
-            this.dialogsTab.ResumeLayout(false);
-            this.dialogsTab.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.probabilityTab.ResumeLayout(false);
@@ -1167,12 +1103,6 @@ namespace RandomizerSoC
         private System.Windows.Forms.CheckBox texturesCheckBox;
         private System.Windows.Forms.CheckBox gameSoundCheckBox;
         private System.Windows.Forms.Label loadState;
-        private System.Windows.Forms.TabPage dialogsTab;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label actionsExceptionLabel;
-        private System.Windows.Forms.TextBox actionsExceptionTextBox;
-        private System.Windows.Forms.Label infosExceptionLabel;
-        private System.Windows.Forms.TextBox infosExceptionTextBox;
         private System.Windows.Forms.CheckBox dialogsCheckBox;
         private System.Windows.Forms.CheckBox unlockTraderDoorCheckBox;
         private System.Windows.Forms.TabPage probabilityTab;
@@ -1206,6 +1136,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.TabPage weatherTab;
         private System.Windows.Forms.TabPage npcTab;
         private System.Windows.Forms.TabPage soundTextureTab;
+        private System.Windows.Forms.TabPage dialogTab;
     }
 }
 

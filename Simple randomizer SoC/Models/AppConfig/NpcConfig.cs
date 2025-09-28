@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Models.AppConfig
@@ -34,7 +35,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public HashSet<string> KeepingSupplies { get; set; } = new HashSet<string>();
         public int Probability { get; set; } = 100;
         public bool ExtendCampsSettlement { get; set; } = false;
-
+        [JsonIgnore]
         public string Path => MyEnvironment.npcConfig;
     }
 }

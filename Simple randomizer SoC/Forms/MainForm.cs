@@ -24,17 +24,10 @@ namespace RandomizerSoC
     {
         readonly int progressBarStep = 9; // 100 / 11
 
-        //обработчик данных тектбоксов
-        readonly TextBoxesHandler textBoxesHandler;
-        //словарь текстбоксов и их имен файлов
-        readonly Dictionary<string, TextBox> fileTextBoxDictionary;
-        //словарь имен файлов и кэша
-        readonly Dictionary<string, string> cacheDictionary;
-
         //для чекбокса "Все"
         readonly List<CheckBox> generateTypeCheckBoxList;
 
-        readonly List<CheckBox> npcCheckBoxWithoutTextBoxList;
+        //readonly List<CheckBox> npcCheckBoxWithoutTextBoxList;
 
         readonly List<CheckBox> additionalParamsCheckBoxList;
 
@@ -50,13 +43,14 @@ namespace RandomizerSoC
         readonly ConsumableGenerator consumableGenerator = new ConsumableGenerator();
         readonly WeatherGenerator weatherGenerator = new WeatherGenerator();
         readonly NpcGenerator2 npcGenerator = new NpcGenerator2();
+        readonly DialogGenerator dialogGenerator = new DialogGenerator();
 
         readonly TextureRandomizer2 textureRandomizer = new TextureRandomizer2();
         readonly SoundRandomizer2 soundRandomizer = new SoundRandomizer2();
-        //readonly OutfitsGenerator outfitsGenerator;
+
+
         readonly DeathItemsGenerator deathItemsGenerator;
         readonly TradeGenerator tradeGenerator;
-        readonly DialogsGenerator dialogsGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -67,6 +61,7 @@ namespace RandomizerSoC
         private WeatherConfig weatherConfig;
         private NpcConfig npcConfig;
         private SoundTextureConfig soundTextureConfig;
+        private DialogConfig dialogConfig;
 
         //отображение формы
         private void MainForm_Shown(object sender, EventArgs e)
@@ -79,31 +74,6 @@ namespace RandomizerSoC
         {
             InitializeComponent();
             loadState.Text = "";
-
-            cacheDictionary = new Dictionary<string, string>();
-
-            fileTextBoxDictionary = new Dictionary<string, TextBox>
-            {
-                //["other"] = otherTextBox,
-                //["af"] = afTextBox,
-                //["ammo"] = ammoTextBox,
-                //["item"] = itemTextBox,
-                //["model"] = modelTextBox,
-                //["other"] = otherTextBox,
-                //["outfit"] = outfitTextBox,
-                //["sound"] = soundTextBox,
-                //["weapon"] = weaponTextBox,
-                //["npcexception"] = npcExecptTextBox,
-                //["community"] = communityTextBox,
-                //["names"] = namesTextBox,
-                //["icons"] = iconsTextBox,
-                //["skybox"] = skyTextBox,
-                //["thunderbolt"] = thunderTextBox,
-                //["weapon_snd_reload"] = reloadSoundsTextBox,
-                //["weapon_snd_shoot"] = shootSoundsTextBox,
-                ["dialog_infos_exceptions"] = infosExceptionTextBox,
-                ["dialog_actions_exceptions"] = actionsExceptionTextBox,
-            };
 
             probailityInputs = new List<NumericUpDown>() {artReplcaeProbInput, itemReplaceProbInput, deathItemReplaceProbInput,
             npcReplaceProbInput, outfitReplaceProbInput, stashReplaceProbInput, weaponReplaceProbInput, weatherReplaceProbInput,
@@ -118,22 +88,10 @@ namespace RandomizerSoC
 
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
-            //npcCheckBoxList = new List<CheckBox>() { modelsCheckBox, soundsCheckBox, iconsCheckBox, namesCheckBox };
-            npcCheckBoxWithoutTextBoxList = new List<CheckBox>() { suppliesCheckBox, rankCheckBox, reputationCheckBox };
-            /*foreach (CheckBox cb in npcCheckBoxList)
-            {
-                cb.Checked = true;
-            }*/
-
-            //outfitsGenerator = new OutfitsGenerator();
-            //weatherGenerator = new WeatherGenerator2();
             deathItemsGenerator = new DeathItemsGenerator();
             tradeGenerator = new TradeGenerator();
-            dialogsGenerator = new DialogsGenerator();
 
             additionalParams = new AdditionalParams();
-
-            textBoxesHandler = new TextBoxesHandler(fileTextBoxDictionary.Keys.ToArray());
 
             PostInit();
         }
@@ -148,6 +106,7 @@ namespace RandomizerSoC
                 weatherConfig = await ConfigHandler.LoadOrNew<WeatherConfig>();
                 npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>();
                 soundTextureConfig = await ConfigHandler.LoadOrNew<SoundTextureConfig>();
+                dialogConfig = await ConfigHandler.LoadOrNew<DialogConfig>();
 
                 var action = new Action(() =>
                 {
@@ -157,6 +116,7 @@ namespace RandomizerSoC
                     weatherTab.Controls.Add(new WeatherTab(weatherConfig));
                     npcTab.Controls.Add(new NpcTab(npcConfig));
                     soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
+                    dialogTab.Controls.Add(new DialogTab(dialogConfig));
 
                     if (Localization.IsFirstLoadEnglish())
                     {
@@ -190,33 +150,6 @@ namespace RandomizerSoC
         #region списки
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            var fileNameContentDictionary = new Dictionary<string, string>();
-
-            //проходим по всем спискам и ищем отличия от кешированных данных
-            foreach (string key in cacheDictionary.Keys)
-            {
-                if (cacheDictionary[key] != fileTextBoxDictionary[key].Text)
-                {
-                    fileNameContentDictionary.Add(key, fileTextBoxDictionary[key].Text);
-                }
-            }
-
-            if (fileNameContentDictionary.Count < 1) return;
-
-            if (MessageBox.Show(Localization.Get("overwritingFiles") + fileNameContentDictionary.Keys.Aggregate((v1, v2) => v1 + ", " + v2), Localization.Get("saveFormName"), MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                await textBoxesHandler.SaveData(fileNameContentDictionary);
-
-                foreach (string key in fileNameContentDictionary.Keys)
-                {
-                    cacheDictionary[key] = fileNameContentDictionary[key];
-                }
-
-                if (textBoxesHandler.errorMessage.Length > 0)
-                {
-                    new InfoForm(Localization.Get("saveError"), textBoxesHandler.errorMessage).ShowDialog();
-                }
-            }
         }
 
         //кнопка загрузки
@@ -228,26 +161,7 @@ namespace RandomizerSoC
         //загрузка списков редактируемых или дефолтных
         private async void LoadLists(bool isDefault = false)
         {
-            var textBoxesData = await textBoxesHandler.LoadData(isDefault);
-
-            foreach (string key in textBoxesData.Keys)
-            {
-                fileTextBoxDictionary[key].Text = textBoxesData[key];
-            }
-
-            if (!isDefault)
-            {
-                cacheDictionary.Clear();
-                foreach (string key in fileTextBoxDictionary.Keys)
-                {
-                    cacheDictionary.Add(key, textBoxesData.Keys.Contains(key) ? textBoxesData[key] : "");
-                }
-            }
-
-            if (textBoxesHandler.errorMessage.Length > 0)
-            {
-                new InfoForm(Localization.Get("loadError"), textBoxesHandler.errorMessage).ShowDialog();
-            }
+            
         }
         #endregion
 
@@ -439,10 +353,10 @@ namespace RandomizerSoC
             //диалоги
             if (dialogsCheckBox.Checked)
             {
-                dialogsGenerator.UpdateData(infosExceptionTextBox.Text, actionsExceptionTextBox.Text, newConfigPath);
+                dialogGenerator.UpdateData(dialogConfig, newConfigPath, randomProbability);
                 try
                 {
-                    await dialogsGenerator.Generate();
+                    await dialogGenerator.Generate();
                 }
                 catch (Exception ex)
                 {
@@ -600,23 +514,6 @@ namespace RandomizerSoC
             }
         }
 
-        #region справка
-        private void WeaponGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(Localization.Get("weaponGuide")).ShowDialog();
-        }
-
-        private void ItemGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(Localization.Get("ItemsGuide")).ShowDialog();
-        }
-
-        private void NpcGuideButton_Click(object sender, EventArgs e)
-        {
-            new GuideForm(Localization.Get("npcGuide")).ShowDialog();
-        }
-        #endregion
-
         //Отключение перемешивания текста при отключении перевода
         private void TranslateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -635,19 +532,6 @@ namespace RandomizerSoC
 
         private void NpcCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            communityCheckBox.Enabled = npcCheckBox.Checked;
-            if (!npcCheckBox.Checked)
-            {
-                communityCheckBox.Checked = false;
-            }
-
-            foreach (CheckBox cb in npcCheckBoxWithoutTextBoxList)
-            {
-                cb.Enabled = npcCheckBox.Checked;
-                cb.Checked = npcCheckBox.Checked;
-            }
-
-            linkLabel1.Enabled = npcCheckBox.Checked;
         }
         #endregion
 
@@ -728,11 +612,11 @@ namespace RandomizerSoC
             weaponCheckBox.Text = Localization.Get("weaponsTab");
             armorCheckBox.Text = Localization.Get("outfits");
             npcCheckBox.Text = Localization.Get("npcTab");
-            suppliesCheckBox.Text = Localization.Get("weaponsTab");
-            rankCheckBox.Text = Localization.Get("rank");
-            reputationCheckBox.Text = Localization.Get("reputation");
+            //suppliesCheckBox.Text = Localization.Get("weaponsTab");
+            //rankCheckBox.Text = Localization.Get("rank");
+            //reputationCheckBox.Text = Localization.Get("reputation");
             label4.Text = Localization.Get("whatGenerate");
-            linkLabel1.Text = Localization.Get("other");
+            //linkLabel1.Text = Localization.Get("other");
             weatherCheckBox.Text = Localization.Get("weatherTab");
             deathItemsCheckBox.Text = Localization.Get("deathItems");
             onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
@@ -753,12 +637,12 @@ namespace RandomizerSoC
             //epilepsyLabel.Text = Localization.Get("epilepsy");
 
             //1.8
-            dialogsTab.Text = Localization.Get("dialogs");
+            //dialogsTab.Text = Localization.Get("dialogs");
             dialogsCheckBox.Text = Localization.Get("dialogs");
-            infosExceptionLabel.Text = Localization.Get("incorrectInfos");
-            actionsExceptionLabel.Text = Localization.Get("incorrectActions");
+            //infosExceptionLabel.Text = Localization.Get("incorrectInfos");
+            //actionsExceptionLabel.Text = Localization.Get("incorrectActions");
             unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
-            label18.Text = Localization.Get("dialogsDescription");
+            //label18.Text = Localization.Get("dialogsDescription");
 
             //1.9
             probabilityTab.Text = Localization.Get("probabilityTab");
