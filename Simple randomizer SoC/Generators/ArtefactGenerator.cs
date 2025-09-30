@@ -87,7 +87,7 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             //копирование
-            copyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.GetParam(p.Item3)));
+            copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             await MyFile.Write(outPath, ltx.ToString());
         }
@@ -106,28 +106,28 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (absorbationSection.HasParam(parameter.Name) && mainSection.HasParam(parameter.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            mainSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                         });
 
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            absorbationSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                         });
                     }
                     else if (absorbationSection.HasParam(parameter.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            absorbationSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                         });
                     }
                     else
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                            mainSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                         });
                     }
                 });
@@ -136,28 +136,28 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (absorbationSection.HasParam(clp.Name) && mainSection.HasParam(clp.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            mainSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                         });
 
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            absorbationSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                         });
                     }
                     else if (absorbationSection.HasParam(clp.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            absorbationSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                         });
                     }
                     else
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
-                            mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                            mainSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                         });
                     }
                 });
@@ -169,11 +169,11 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (mainSection.HasParam(parameter.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             if (replacingStats.Contains(parameter.Name))
                             {
-                                mainSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                                mainSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                             }
                             else
                             {
@@ -184,11 +184,11 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (absorbationSection.HasParam(parameter.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             if (replacingStats.Contains(parameter.Name))
                             {
-                                absorbationSection.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                                absorbationSection.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                             }
                             else
                             {
@@ -202,11 +202,11 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (mainSection.HasParam(clp.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             if (replacingStats.Contains(clp.Name))
                             {
-                                mainSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                                mainSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                             }
                             else
                             {
@@ -217,11 +217,11 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (absorbationSection.HasParam(clp.Name))
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             if (replacingStats.Contains(clp.Name))
                             {
-                                absorbationSection.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                                absorbationSection.SetParam(clp.Name, clp.GenerateValues(rnd));
                             }
                             else
                             {
@@ -236,7 +236,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (mainSection.HasParam(shuffleParam.Name))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         shuffler.Prepare(mainSection, shuffleParam.Name, mainSectionsByShuffleParam, mainParamValuesByShuffleParam);
                     });
@@ -244,7 +244,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 if (absorbationSection.HasParam(shuffleParam.Name))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         shuffler.Prepare(absorbationSection, shuffleParam.Name, absorbationSectionsByShuffleParam, absorbationParamValuesByShuffleParam);
                     });
@@ -255,7 +255,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (mainSection.HasParam(copyParam.Name) && mainSection.HasParam(copyParam.CopyFrom))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         copyParameters.Add(new Tuple<LtxSection, string, string>(mainSection, copyParam.Name, copyParam.CopyFrom));
                     });
@@ -263,7 +263,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 if (absorbationSection.HasParam(copyParam.Name) && absorbationSection.HasParam(copyParam.CopyFrom))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         copyParameters.Add(new Tuple<LtxSection, string, string>(absorbationSection, copyParam.Name, copyParam.CopyFrom));
                     });

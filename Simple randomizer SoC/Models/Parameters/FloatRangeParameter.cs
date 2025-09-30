@@ -14,8 +14,8 @@ namespace Simple_randomizer_SoC.Models.Parameters
             ParameterType = Enums.ParameterType.FloatRange;
         }
 
-        public float MinValue { get; set; }
-        public float MaxValue { get; set; }
+        public double MinValue { get; set; }
+        public double MaxValue { get; set; }
         public int Precision { get; set; } = 2;
 
         public override List<string> GenerateValues(Random rnd)

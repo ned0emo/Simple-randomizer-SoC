@@ -140,6 +140,12 @@
     <Compile Include="Forms\Tabs\SoundTextureTab.Designer.cs">
       <DependentUpon>SoundTextureTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tabs\TraderTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\TraderTab.Designer.cs">
+      <DependentUpon>TraderTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tabs\WeatherTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,12 @@
     <Compile Include="Forms\Templates\NonScrollNumeric.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Templates\TraderItemsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Templates\TraderItemsControl.Designer.cs">
+      <DependentUpon>TraderItemsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generators\ArmorGenerator.cs" />
     <Compile Include="Generators\ConsumableGenerator.cs" />
     <Compile Include="Generators\DialogGenerator.cs" />
@@ -165,12 +177,15 @@
     <Compile Include="Generators\SoundRandomizer2.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
     <Compile Include="Generators\TextureRandomizer2.cs" />
+    <Compile Include="Generators\TradeGenerator2.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
     <Compile Include="Generators\WeatherGenerator.cs" />
     <Compile Include="Models\AppConfig\DialogConfig.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
     <Compile Include="Models\AppConfig\NpcConfig.cs" />
     <Compile Include="Models\AppConfig\SoundTextureConfig.cs" />
+    <Compile Include="Models\AppConfig\TraderItemsConfig.cs" />
+    <Compile Include="Models\AppConfig\TraderItemsParameters.cs" />
     <Compile Include="Models\AppConfig\WeaponAmmo.cs" />
     <Compile Include="Models\AppConfig\WeaponConfig.cs" />
     <Compile Include="Models\AppConfig\WeatherConfig.cs" />
@@ -207,7 +222,6 @@
     <Compile Include="Generators\IGenerator.cs" />
     <Compile Include="Generators\Support\ProbabilityChecker.cs" />
     <Compile Include="Generators\StashGenerator.cs" />
-    <Compile Include="Generators\TradeGenerator.cs" />
     <Compile Include="Language\en_local.Designer.cs">
       <DependentUpon>en_local.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -287,6 +301,9 @@
     <EmbeddedResource Include="Forms\Tabs\StashTab.resx">
       <DependentUpon>StashTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\TraderTab.resx">
+      <DependentUpon>TraderTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\WeaponTab.resx">
       <DependentUpon>WeaponTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Templates\FormClosingControl.resx">
       <DependentUpon>FormClosingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Templates\TraderItemsControl.resx">
+      <DependentUpon>TraderItemsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Language\en_local.resx">
       <Generator>ResXFileCodeGenerator</Generator>

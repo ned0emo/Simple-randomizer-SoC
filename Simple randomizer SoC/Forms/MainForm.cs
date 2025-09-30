@@ -13,6 +13,7 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -47,10 +48,10 @@ namespace RandomizerSoC
 
         readonly TextureRandomizer2 textureRandomizer = new TextureRandomizer2();
         readonly SoundRandomizer2 soundRandomizer = new SoundRandomizer2();
+        readonly TradeGenerator2 tradeGenerator = new TradeGenerator2();
 
 
         readonly DeathItemsGenerator deathItemsGenerator;
-        readonly TradeGenerator tradeGenerator;
 
         readonly AdditionalParams additionalParams;
 
@@ -65,13 +66,7 @@ namespace RandomizerSoC
         private NpcConfig npcConfig;
         private SoundTextureConfig soundTextureConfig;
         private DialogConfig dialogConfig;
-
-        //отображение формы
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            UpdateText();
-            LoadLists();
-        }
+        private TraderItemsConfig traderItemsConfig;
 
         public MainForm()
         {
@@ -92,17 +87,17 @@ namespace RandomizerSoC
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
             deathItemsGenerator = new DeathItemsGenerator();
-            tradeGenerator = new TradeGenerator();
 
             additionalParams = new AdditionalParams();
-
-            PostInit();
         }
 
-        private async void PostInit()
+        private async void MainForm_Load(object sender, EventArgs e)
         {
+            Enabled = false;
             try
             {
+                UpdateText();
+
                 stashConfig = await ConfigHandler.LoadOrNew<StashConfig>();
                 weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>();
                 itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>();
@@ -110,44 +105,35 @@ namespace RandomizerSoC
                 npcConfig = await ConfigHandler.LoadOrNew<NpcConfig>();
                 soundTextureConfig = await ConfigHandler.LoadOrNew<SoundTextureConfig>();
                 dialogConfig = await ConfigHandler.LoadOrNew<DialogConfig>();
+                traderItemsConfig = await ConfigHandler.LoadOrNew<TraderItemsConfig>();
 
-                var action = new Action(() =>
+                stashTab.Controls.Add(new StashTab(stashConfig));
+                weaponTab.Controls.Add(new WeaponTab(weaponConfig));
+                itemTab.Controls.Add(new ItemTab(itemConfig));
+                weatherTab.Controls.Add(new WeatherTab(weatherConfig));
+                npcTab.Controls.Add(new NpcTab(npcConfig));
+                soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
+                dialogTab.Controls.Add(new DialogTab(dialogConfig));
+                traderTab.Controls.Add(new TraderTab(traderItemsConfig));
+
+                if (Localization.IsFirstLoadEnglish())
                 {
-                    stashTab.Controls.Add(new StashTab(stashConfig));
-                    weaponTab.Controls.Add(new WeaponTab(weaponConfig));
-                    itemTab.Controls.Add(new ItemTab(itemConfig));
-                    weatherTab.Controls.Add(new WeatherTab(weatherConfig));
-                    npcTab.Controls.Add(new NpcTab(npcConfig));
-                    soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
-                    dialogTab.Controls.Add(new DialogTab(dialogConfig));
-
-                    if (Localization.IsFirstLoadEnglish())
-                    {
-                        engRadioButton.Checked = true;
-                        translateCheckBox.Checked = false;
-                        translateCheckBox.Enabled = false;
-                    }
-                    else
-                    {
-                        rusRadioButton.Checked = true;
-                    }
-                    rusRadioButton.Click += RusRadioButton_Click;
-                    engRadioButton.Click += EngRadioButton_Click;
-                });
-
-                if (InvokeRequired)
-                {
-                    Invoke(action);
+                    engRadioButton.Checked = true;
+                    translateCheckBox.Checked = false;
+                    translateCheckBox.Enabled = false;
                 }
                 else
                 {
-                    action();
+                    rusRadioButton.Checked = true;
                 }
+                rusRadioButton.Click += RusRadioButton_Click;
+                engRadioButton.Click += EngRadioButton_Click;
             }
             catch (Exception ex)
             {
                 new InfoForm("Ошибка загрузки данных", ex).ShowDialog();
             }
+            Enabled = true;
         }
 
         #region списки
@@ -322,11 +308,9 @@ namespace RandomizerSoC
             }*/
             incrementProgressBar();
             //торговцы
-            /*if (tradersCheckBox.Checked)
+            if (tradersCheckBox.Checked)
             {
-                tradeGenerator.UpdateData(weapons: weaponTextBox.Text, ammos: ammoTextBox.Text, outfits: outfitTextBox.Text,
-                    artefacts: afTextBox.Text, items: itemTextBox.Text, others: otherTextBox.Text, newConfigPath: newConfigPath);
-
+                tradeGenerator.UpdateData(traderItemsConfig, newConfigPath, randomProbability);
                 try
                 {
                     await tradeGenerator.Generate();
@@ -336,7 +320,7 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("tradersError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }*/
+            }
             incrementProgressBar();
             //расходники
             if (consumablesCheckBox.Checked)
@@ -722,6 +706,27 @@ namespace RandomizerSoC
         {
             var value = !allRandomProbabilityCheckbox.Checked;
             probailityInputs.ForEach(i => { i.Enabled = value; });
+        }
+
+        //заморозка перерисовки при изменении размера окна
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_ENTERSIZEMOVE = 0x0231;
+            const int WM_EXITSIZEMOVE = 0x0232;
+
+            switch (m.Msg)
+            {
+                case WM_ENTERSIZEMOVE:
+                    SuspendLayout();
+                    break;
+
+                case WM_EXITSIZEMOVE:
+                    ResumeLayout();
+                    Refresh();
+                    break;
+            }
+
+            base.WndProc(ref m);
         }
     }
 }

@@ -43,24 +43,24 @@ namespace Simple_randomizer_SoC.Generators
 
             foreach (var section in ltx.Sections)
             {
-                if (!section.HasAnyParam) continue;
+                if (!section.HasParam("items")) continue;
 
-                pc.DoOrSkip(() =>
+                pc.DoOrSkip(rnd, () =>
                 {
                     var c = CollectionUtils.GetRandomElements(stashConfig.Communities, rnd.Next(5) + 1, rnd);
                     if (c.Count == 0) return;
 
-                    section.Params["community"] = c;
+                    section.SetParam("community", c);
                 });
 
-                pc.DoOrSkip(() =>
+                pc.DoOrSkip(rnd, () =>
                 {
-                    section.Params["condlist"] = new List<string> { (rnd.Next(5) + 1).ToString() };
+                    section.SetParam("condlist", new List<string> { (rnd.Next(5) + 1).ToString() });
                 });
 
-                pc.DoOrSkip(() =>
+                pc.DoOrSkip(rnd, () =>
                 {
-                    if (section.Params.TryGetValue("name", out List<string> p))
+                    if (section.TryGetParam("name", out List<string> p))
                     {
                         if (p.Count > 0)
                         {
@@ -71,9 +71,9 @@ namespace Simple_randomizer_SoC.Generators
                 });
 
 
-                pc.DoOrSkip(() =>
+                pc.DoOrSkip(rnd, () =>
                 {
-                    if (section.Params.TryGetValue("description", out List<string> p))
+                    if (section.TryGetParam("description", out List<string> p))
                     {
                         if (p.Count > 0)
                         {
@@ -83,19 +83,19 @@ namespace Simple_randomizer_SoC.Generators
                     }
                 });
 
-                pc.DoOrSkip(() =>
+                pc.DoOrSkip(rnd, () =>
                 {
                     int itemCount = rnd.Next(7) + 1;
-                    if (section.Params.TryGetValue("items", out List<string> p))
+                    if (section.TryGetParam("items", out List<string> p))
                     {
                         p.Clear();
                     }
                     else
                     {
-                        section.Params["items"] = new List<string>();
+                        section.SetParam("items", new List<string>());
                     }
 
-                    var list = section.Params["items"];
+                    var list = section.GetParam("items");
 
                     for (int i = 0; i < itemCount; i++)
                     {

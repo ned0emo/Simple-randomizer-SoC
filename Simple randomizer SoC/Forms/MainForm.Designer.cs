@@ -106,6 +106,7 @@ namespace RandomizerSoC
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.traderTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.probabilityTab.SuspendLayout();
@@ -172,6 +173,7 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.npcTab);
             this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.soundTextureTab);
+            this.tabControl.Controls.Add(this.traderTab);
             this.tabControl.Controls.Add(this.dialogTab);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.probabilityTab);
@@ -195,50 +197,50 @@ namespace RandomizerSoC
             // 
             // weaponTab
             // 
-            this.weaponTab.Location = new System.Drawing.Point(4, 40);
+            this.weaponTab.Location = new System.Drawing.Point(4, 22);
             this.weaponTab.Name = "weaponTab";
             this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(510, 391);
+            this.weaponTab.Size = new System.Drawing.Size(510, 409);
             this.weaponTab.TabIndex = 16;
             this.weaponTab.Text = "Оружие";
             this.weaponTab.UseVisualStyleBackColor = true;
             // 
             // itemTab
             // 
-            this.itemTab.Location = new System.Drawing.Point(4, 40);
+            this.itemTab.Location = new System.Drawing.Point(4, 22);
             this.itemTab.Name = "itemTab";
             this.itemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.itemTab.Size = new System.Drawing.Size(510, 391);
+            this.itemTab.Size = new System.Drawing.Size(510, 409);
             this.itemTab.TabIndex = 17;
             this.itemTab.Text = "Предметы";
             this.itemTab.UseVisualStyleBackColor = true;
             // 
             // npcTab
             // 
-            this.npcTab.Location = new System.Drawing.Point(4, 40);
+            this.npcTab.Location = new System.Drawing.Point(4, 22);
             this.npcTab.Name = "npcTab";
             this.npcTab.Padding = new System.Windows.Forms.Padding(3);
-            this.npcTab.Size = new System.Drawing.Size(510, 391);
+            this.npcTab.Size = new System.Drawing.Size(510, 409);
             this.npcTab.TabIndex = 19;
             this.npcTab.Text = "НПС";
             this.npcTab.UseVisualStyleBackColor = true;
             // 
             // weatherTab
             // 
-            this.weatherTab.Location = new System.Drawing.Point(4, 40);
+            this.weatherTab.Location = new System.Drawing.Point(4, 22);
             this.weatherTab.Name = "weatherTab";
             this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weatherTab.Size = new System.Drawing.Size(510, 391);
+            this.weatherTab.Size = new System.Drawing.Size(510, 409);
             this.weatherTab.TabIndex = 18;
             this.weatherTab.Text = "Погода";
             this.weatherTab.UseVisualStyleBackColor = true;
             // 
             // soundTextureTab
             // 
-            this.soundTextureTab.Location = new System.Drawing.Point(4, 40);
+            this.soundTextureTab.Location = new System.Drawing.Point(4, 22);
             this.soundTextureTab.Name = "soundTextureTab";
             this.soundTextureTab.Padding = new System.Windows.Forms.Padding(3);
-            this.soundTextureTab.Size = new System.Drawing.Size(510, 391);
+            this.soundTextureTab.Size = new System.Drawing.Size(510, 409);
             this.soundTextureTab.TabIndex = 20;
             this.soundTextureTab.Text = "Звуки/текстуры";
             this.soundTextureTab.UseVisualStyleBackColor = true;
@@ -1026,6 +1028,16 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
+            // traderTab
+            // 
+            this.traderTab.Location = new System.Drawing.Point(4, 40);
+            this.traderTab.Name = "traderTab";
+            this.traderTab.Padding = new System.Windows.Forms.Padding(3);
+            this.traderTab.Size = new System.Drawing.Size(510, 391);
+            this.traderTab.TabIndex = 22;
+            this.traderTab.Text = "Ассортимент торговцев";
+            this.traderTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1037,7 +1049,7 @@ namespace RandomizerSoC
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Рандомайзер Тень Чернобыля";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
@@ -1137,6 +1149,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.TabPage npcTab;
         private System.Windows.Forms.TabPage soundTextureTab;
         private System.Windows.Forms.TabPage dialogTab;
+        private System.Windows.Forms.TabPage traderTab;
     }
 }
 

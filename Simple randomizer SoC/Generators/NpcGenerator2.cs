@@ -73,7 +73,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (names.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("name", character, doc);
                             node.InnerText = CollectionUtils.GetRandomElement(names, rnd);
@@ -82,7 +82,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseIcons && _config.Icons.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("icon", character, doc);
                             node.InnerText = CollectionUtils.GetRandomElement(_config.Icons, rnd);
@@ -91,7 +91,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseSounds && _config.Sounds.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("snd_config", character, doc);
                             node.InnerText = CollectionUtils.GetRandomElement(_config.Sounds, rnd);
@@ -100,7 +100,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseCommunities && _config.Communities.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("community", character, doc);
                             node.InnerText = CollectionUtils.GetRandomElement(_config.Communities, rnd);
@@ -109,7 +109,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseRank && _config.RankParameter.SimpleValidate())
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("rank", character, doc);
                             node.InnerText = _config.RankParameter.GenerateValues(rnd)[0].ToString();
@@ -118,7 +118,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseMoney && _config.MoneyParameter.SimpleValidate())
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("money", character, doc);
                             node.SetAttribute("min", _config.MoneyParameter.MinValue.ToString());
@@ -132,7 +132,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (_config.UseModels && _config.Models.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("visual", character, doc);
                             node.InnerText = CollectionUtils.GetRandomElement(_config.Models, rnd);
@@ -141,7 +141,7 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (singleWeaponList.Count > 0)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("supplies", character, doc);
                             var supplies = suppliesSplitter.Split(node.InnerText);
@@ -157,7 +157,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     else if (useMainWeapons && useAdditionalWeapons)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("supplies", character, doc);
                             var supplies = suppliesSplitter.Split(node.InnerText);
@@ -177,7 +177,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     else if (useMainWeapons)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("supplies", character, doc);
                             var supplies = suppliesSplitter.Split(node.InnerText);
@@ -193,7 +193,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
                     else if (useAdditionalWeapons)
                     {
-                        probabilityChecker.DoOrSkip(() =>
+                        probabilityChecker.DoOrSkip(rnd, () =>
                         {
                             var node = GetOrAddElement("supplies", character, doc);
                             var supplies = suppliesSplitter.Split(node.InnerText);

@@ -115,6 +115,10 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                     {
                         f.SetValue(t, (float)cellValue);
                     }
+                    else if (f.FieldType == typeof(double))
+                    {
+                        f.SetValue(t, (double)cellValue);
+                    }
                     else if (f.FieldType == typeof(bool))
                     {
                         f.SetValue(t, (bool)cellValue);

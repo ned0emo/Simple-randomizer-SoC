@@ -63,7 +63,7 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             //копирование
-            copyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.GetParam(p.Item3)));
+            copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             await MyFile.Write(outPath, ltx.ToString());
         }
@@ -74,17 +74,17 @@ namespace Simple_randomizer_SoC.Generators
         {
             parameterContainer.ForEachParameter((parameter) =>
             {
-                probabilityChecker.DoOrSkip(() =>
+                probabilityChecker.DoOrSkip(rnd, () =>
                 {
-                    section.SetParamValues(parameter.Name, parameter.GenerateValues(rnd));
+                    section.SetParam(parameter.Name, parameter.GenerateValues(rnd));
                 });
             });
 
             parameterContainer.CustomListParameters.ForEach(clp =>
             {
-                probabilityChecker.DoOrSkip(() =>
+                probabilityChecker.DoOrSkip(rnd, () =>
                 {
-                    section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                    section.SetParam(clp.Name, clp.GenerateValues(rnd));
                 });
             });
 
@@ -92,7 +92,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (section.HasParam(shuffleParam.Name))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         shuffler.Prepare(section, shuffleParam.Name, sectionsByShuffleParam, paramValuesByShuffleParam);
                     });
@@ -103,7 +103,7 @@ namespace Simple_randomizer_SoC.Generators
             {
                 if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                 {
-                    probabilityChecker.DoOrSkip(() =>
+                    probabilityChecker.DoOrSkip(rnd, () =>
                     {
                         copyParameters.Add(new Tuple<LtxSection, string, string>(section, copyParam.Name, copyParam.CopyFrom));
                     });

@@ -53,7 +53,7 @@ namespace Simple_randomizer_SoC.Generators
                 var docDialogs = doc.GetElementsByTagName("dialog");
                 foreach (XmlElement dialog in docDialogs)
                 {
-                    if (_probabilityChecker.Skip()) continue;
+                    if (_probabilityChecker.Skip(rnd)) continue;
 
                     dialogs.Add(dialog);
 

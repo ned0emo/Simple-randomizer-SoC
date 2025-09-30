@@ -8,44 +8,33 @@ namespace Simple_randomizer_SoC.Model
 {
     public class LtxSection
     {
+        private Dictionary<string, List<string>> _params = new Dictionary<string, List<string>>();
+
         public string Name { get; set; }
         public string ParentName { get; set; }
-        public Dictionary<string, List<string>> Params { get; set; } = new Dictionary<string, List<string>>();
-        public bool HasAnyParam { get; set; } = false;
 
         public override string ToString()
         {
             return "[" + Name + "]" + (ParentName == null ? string.Empty : (":" + ParentName)) + "\r\n" +
-                (Params.Count == 0 ? "" : Params.Select(p =>
+                (_params.Count == 0 ? "" : _params.Select(p =>
                 {
                     return p.Key + (p.Value.Count == 0 ? "" : (" = " + p.Value.Aggregate((v1, v2) => v1 + ", " + v2)));
                 }).Aggregate((p1, p2) => p1 + "\r\n" + p2));
         }
 
-        public string GetParamString(string paramName)
-        {
-            if (Params.TryGetValue(paramName, out List<string> paramList))
-            {
-                if (paramList.Count == 0) return string.Empty;
-                return paramList.Aggregate((p1, p2) => p1 + "," + p2);
-            }
-
-            return null;
-        }
-
         public void SetParam(string name, string value)
         {
-            Params[name] = new List<string> { value };
+            _params[name] = new List<string> { value };
         }
 
-        public void SetParamValues(string name, List<string> values)
+        public void SetParam(string name, List<string> values)
         {
-            Params[name] = values;
+            _params[name] = values;
         }
 
         public void AddParam(string name, string value)
         {
-            if (Params.TryGetValue(name, out var p))
+            if (_params.TryGetValue(name, out var p))
             {
                 p.Add(value);
             }
@@ -57,12 +46,24 @@ namespace Simple_randomizer_SoC.Model
 
         public List<string> GetParam(string name)
         {
-            return Params[name];
+            return _params[name];
+        }
+
+        public List<string> GetParamOrNull(string name)
+        {
+            return _params.ContainsKey(name) ? _params[name] : null;
+        }
+
+        public bool TryGetParam(string name, out List<string> values)
+        {
+            return _params.TryGetValue(name, out values);
         }
 
         public bool HasParam(string name)
         {
-            return Params.ContainsKey(name);
+            return _params.ContainsKey(name);
         }
+
+        public bool HasAnyParam() => _params.Count > 0;
     }
 }

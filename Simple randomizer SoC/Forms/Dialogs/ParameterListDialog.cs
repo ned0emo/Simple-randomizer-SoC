@@ -249,7 +249,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 minInput.Value = (decimal)parameter.MinValue;
                 minInput.ValueChanged += (s, e) =>
                 {
-                    parameter.MinValue = (float)minInput.Value;
+                    parameter.MinValue = (double)minInput.Value;
                 };
 
                 var maxInput = new NonScrollNumeric();
@@ -260,7 +260,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 maxInput.Value = (decimal)parameter.MaxValue;
                 maxInput.ValueChanged += (s, e) =>
                 {
-                    parameter.MaxValue = (float)maxInput.Value;
+                    parameter.MaxValue = (double)maxInput.Value;
                 };
 
                 var precisionInput = new NonScrollNumeric();

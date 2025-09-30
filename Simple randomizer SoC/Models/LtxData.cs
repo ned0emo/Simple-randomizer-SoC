@@ -105,12 +105,11 @@ namespace Simple_randomizer_SoC.Model
                             else
                                 paramValues = new List<string>() { paramData[1].Trim() };
 
-                            currentSection.HasAnyParam = true;
-                            currentSection.Params[paramName] = paramValues;
+                            currentSection.SetParam(paramName, paramValues);
                         }
                         else
                         {
-                            currentSection.Params[line] = new List<string>();
+                            currentSection.SetParam(line, new List<string>());
                         }
                     }
                 }

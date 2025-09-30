@@ -67,24 +67,24 @@ namespace Simple_randomizer_SoC.Generators
                         //стандартные параметры
                         weaponParameters.ForEachParameter((p) =>
                         {
-                            weaponProbabilityChecker.DoOrSkip(() =>
+                            weaponProbabilityChecker.DoOrSkip(rnd, () =>
                             {
-                                section.Params[p.Name] = p.GenerateValues(rnd);
+                                section.SetParam(p.Name, p.GenerateValues(rnd));
                             });
                         });
 
                         weaponParameters.CustomListParameters.ForEach(clp =>
                         {
-                            weaponProbabilityChecker.DoOrSkip(() =>
+                            weaponProbabilityChecker.DoOrSkip(rnd, () =>
                             {
-                                section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                                section.SetParam(clp.Name, clp.GenerateValues(rnd));
                             });
                         });
 
                         //подготовока к перемешиванию
                         weaponParameters.ShuffleParameters.ForEach((shuffleParam) =>
                         {
-                            weaponProbabilityChecker.DoOrSkip(() =>
+                            weaponProbabilityChecker.DoOrSkip(rnd, () =>
                             {
                                 if (section.HasParam(shuffleParam.Name))
                                 {
@@ -105,7 +105,7 @@ namespace Simple_randomizer_SoC.Generators
                         //подготовка к копированию
                         weaponParameters.CopyParameters.ForEach((copyParam) =>
                         {
-                            weaponProbabilityChecker.DoOrSkip(() =>
+                            weaponProbabilityChecker.DoOrSkip(rnd, () =>
                             {
                                 if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                                 {
@@ -121,24 +121,24 @@ namespace Simple_randomizer_SoC.Generators
                         //стандартные параметры
                         ammoParameters.ForEachParameter((p) =>
                         {
-                            ammoProbabilityChecker.DoOrSkip(() =>
+                            ammoProbabilityChecker.DoOrSkip(rnd, () =>
                             {
-                                section.SetParamValues(p.Name, p.GenerateValues(rnd));
+                                section.SetParam(p.Name, p.GenerateValues(rnd));
                             });
                         });
 
                         ammoParameters.CustomListParameters.ForEach(clp =>
                         {
-                            ammoProbabilityChecker.DoOrSkip(() =>
+                            ammoProbabilityChecker.DoOrSkip(rnd, () =>
                             {
-                                section.SetParamValues(clp.Name, clp.GenerateValues(rnd));
+                                section.SetParam(clp.Name, clp.GenerateValues(rnd));
                             });
                         });
 
                         //подготовка к перемешиванию
                         ammoParameters.ShuffleParameters.ForEach((shuffleParam) =>
                         {
-                            ammoProbabilityChecker.DoOrSkip(() =>
+                            ammoProbabilityChecker.DoOrSkip(rnd, () =>
                             {
                                 if (section.HasParam(shuffleParam.Name))
                                 {
@@ -159,7 +159,7 @@ namespace Simple_randomizer_SoC.Generators
                         //подготовка к копированию
                         ammoParameters.CopyParameters.ForEach((copyParam) =>
                         {
-                            ammoProbabilityChecker.DoOrSkip(() =>
+                            ammoProbabilityChecker.DoOrSkip(rnd, () =>
                             {
                                 if (section.HasParam(copyParam.Name) && section.HasParam(copyParam.CopyFrom))
                                 {
@@ -192,8 +192,8 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             //копирование статов оружия и патронов
-            weaponCopyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.Params[p.Item3]));
-            ammoCopyParameters.ForEach(p => p.Item1.SetParamValues(p.Item2, p.Item1.Params[p.Item3]));
+            weaponCopyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
+            ammoCopyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             foreach (var f in files)
             {

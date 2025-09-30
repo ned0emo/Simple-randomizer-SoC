@@ -23,20 +23,20 @@ namespace Simple_randomizer_SoC.Generators
         {
             LtxData ltx = await LtxData.Load(config.FilePath);
 
-            foreach (var p in config.Parameters)
+            /*foreach (var p in config.Parameters)
             {
-                DoOrSkip(() =>
+                DoOrSkip(rnd, () =>
                 {
                     foreach (var s in ltx.Sections)
                     {
-                        if (s.Params.ContainsKey(p.Name))
+                        if (s.HasParam(p.Name))
                         {
-                            s.Params[p.Name] = p.GenerateValues(GlobalRandom.Rnd);
+                            s.SetParam(p.Name, p.GenerateValues(GlobalRandom.Rnd));
                             break;
                         }
                     }
                 });
-            }
+            }*/
         }
 
         public void UpdateData(SingleFileGeneratorConfig config, string baseOutPath, bool randomProbability)

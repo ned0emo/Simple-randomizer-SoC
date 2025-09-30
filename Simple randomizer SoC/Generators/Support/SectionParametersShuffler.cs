@@ -39,7 +39,7 @@ namespace Simple_randomizer_SoC.Generators.Support
                 var item = values[itemIndex];
                 var section = sections[sectionIndex];
 
-                section.SetParamValues(paramName, item);
+                section.SetParam(paramName, item);
 
                 values.RemoveAt(itemIndex);
                 sections.RemoveAt(sectionIndex);

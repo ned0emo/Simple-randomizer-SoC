@@ -136,7 +136,7 @@ namespace Simple_randomizer_SoC.Generators
                     }
 
                     //вероятность перемешивания
-                    if (_probabilityChecker.Skip())
+                    if (_probabilityChecker.Skip(rnd))
                     {
                         continue;
                     }

@@ -139,7 +139,7 @@ namespace Simple_randomizer_SoC.Generators
                         if (file.Contains(_bump) || file.Contains("font")) continue;
 
                         //вероятность перемешивания
-                        if (_probabilityChecker.Skip())
+                        if (_probabilityChecker.Skip(rnd))
                         {
                             continue;
                         }
