@@ -10,13 +10,13 @@ namespace Simple_randomizer_SoC.Generators.Support
 {
     public class SectionParametersShuffler
     {
-        public void ShuffleSingle(List<string> values, List<LtxSection> sections, string paramName)
+        public void ShuffleSingle(List<string> values, List<LtxSection> sections, string paramName, Random rnd)
         {
             if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
             while (values.Count > 0)
             {
-                var itemIndex = GlobalRandom.Rnd.Next(values.Count);
-                var sectionIndex = GlobalRandom.Rnd.Next(sections.Count);
+                var itemIndex = rnd.Next(values.Count);
+                var sectionIndex = rnd.Next(sections.Count);
 
                 var item = values[itemIndex];
                 var section = sections[sectionIndex];
@@ -28,13 +28,13 @@ namespace Simple_randomizer_SoC.Generators.Support
             }
         }
 
-        public void Shuffle(List<List<string>> values, List<LtxSection> sections, string paramName)
+        public void Shuffle(List<List<string>> values, List<LtxSection> sections, string paramName, Random rnd)
         {
             if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
             while (values.Count > 0)
             {
-                var itemIndex = GlobalRandom.Rnd.Next(values.Count);
-                var sectionIndex = GlobalRandom.Rnd.Next(sections.Count);
+                var itemIndex = rnd.Next(values.Count);
+                var sectionIndex = rnd.Next(sections.Count);
 
                 var item = values[itemIndex];
                 var section = sections[sectionIndex];

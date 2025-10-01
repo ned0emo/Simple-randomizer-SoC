@@ -42,6 +42,7 @@ namespace RandomizerSoC
             this.npcTab = new System.Windows.Forms.TabPage();
             this.weatherTab = new System.Windows.Forms.TabPage();
             this.soundTextureTab = new System.Windows.Forms.TabPage();
+            this.traderTab = new System.Windows.Forms.TabPage();
             this.dialogTab = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.unlockTraderDoorCheckBox = new System.Windows.Forms.CheckBox();
@@ -106,7 +107,7 @@ namespace RandomizerSoC
             this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.traderTab = new System.Windows.Forms.TabPage();
+            this.deathTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.probabilityTab.SuspendLayout();
@@ -174,6 +175,7 @@ namespace RandomizerSoC
             this.tabControl.Controls.Add(this.weatherTab);
             this.tabControl.Controls.Add(this.soundTextureTab);
             this.tabControl.Controls.Add(this.traderTab);
+            this.tabControl.Controls.Add(this.deathTab);
             this.tabControl.Controls.Add(this.dialogTab);
             this.tabControl.Controls.Add(this.tabPage8);
             this.tabControl.Controls.Add(this.probabilityTab);
@@ -244,6 +246,16 @@ namespace RandomizerSoC
             this.soundTextureTab.TabIndex = 20;
             this.soundTextureTab.Text = "Звуки/текстуры";
             this.soundTextureTab.UseVisualStyleBackColor = true;
+            // 
+            // traderTab
+            // 
+            this.traderTab.Location = new System.Drawing.Point(4, 22);
+            this.traderTab.Name = "traderTab";
+            this.traderTab.Padding = new System.Windows.Forms.Padding(3);
+            this.traderTab.Size = new System.Drawing.Size(510, 409);
+            this.traderTab.TabIndex = 22;
+            this.traderTab.Text = "Ассортимент торговцев";
+            this.traderTab.UseVisualStyleBackColor = true;
             // 
             // dialogTab
             // 
@@ -1028,15 +1040,15 @@ namespace RandomizerSoC
             this.panel2.Size = new System.Drawing.Size(180, 435);
             this.panel2.TabIndex = 42;
             // 
-            // traderTab
+            // deathTab
             // 
-            this.traderTab.Location = new System.Drawing.Point(4, 40);
-            this.traderTab.Name = "traderTab";
-            this.traderTab.Padding = new System.Windows.Forms.Padding(3);
-            this.traderTab.Size = new System.Drawing.Size(510, 391);
-            this.traderTab.TabIndex = 22;
-            this.traderTab.Text = "Ассортимент торговцев";
-            this.traderTab.UseVisualStyleBackColor = true;
+            this.deathTab.Location = new System.Drawing.Point(4, 40);
+            this.deathTab.Name = "deathTab";
+            this.deathTab.Padding = new System.Windows.Forms.Padding(3);
+            this.deathTab.Size = new System.Drawing.Size(510, 391);
+            this.deathTab.TabIndex = 23;
+            this.deathTab.Text = "Вещи убитых НПС";
+            this.deathTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1150,6 +1162,7 @@ namespace RandomizerSoC
         private System.Windows.Forms.TabPage soundTextureTab;
         private System.Windows.Forms.TabPage dialogTab;
         private System.Windows.Forms.TabPage traderTab;
+        private System.Windows.Forms.TabPage deathTab;
     }
 }
 

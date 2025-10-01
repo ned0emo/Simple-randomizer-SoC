@@ -79,7 +79,7 @@ namespace Simple_randomizer_SoC.Generators
                 var sections = sectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(paramValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(paramValuesByShuffleParam[shuffleParam], sections, shuffleParam, rnd);
                 }
             }
 

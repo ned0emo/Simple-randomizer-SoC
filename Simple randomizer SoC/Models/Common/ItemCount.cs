@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Models.AppConfig
 {
-    public class AmmoCount
+    public class ItemCount
     {
         public string Name { get; set; }
         public int Count { get; set; } = 1;

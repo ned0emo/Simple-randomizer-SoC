@@ -12,7 +12,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public List<string> Weapons { get; set; } = new List<string>();
         public List<string> Armors { get; set; } = new List<string>();
         public List<string> Artefacts { get; set; } = new List<string>();
-        public List<AmmoCount> Ammos { get; set; } = new List<AmmoCount>();
+        public List<ItemCount> Ammos { get; set; } = new List<ItemCount>();
         public List<string> Items { get; set; } = new List<string>();
         public List<string> Others { get; set; } = new List<string>();
         public List<string> Communities { get; set; } = new List<string>();

@@ -131,12 +131,12 @@ namespace Simple_randomizer_SoC.Generators
 
             if (sectionsToShuffleNames.Count > 1)
             {
-                shuffler.ShuffleSingle(names, sectionsToShuffleNames, "name");
+                shuffler.ShuffleSingle(names, sectionsToShuffleNames, "name", rnd);
             }
 
             if (sectionsToShuffleDescriptions.Count > 1)
             {
-                shuffler.ShuffleSingle(descriptions, sectionsToShuffleDescriptions, "description");
+                shuffler.ShuffleSingle(descriptions, sectionsToShuffleDescriptions, "description", rnd);
             }
 
             await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", ltx.ToString());
@@ -155,7 +155,7 @@ namespace Simple_randomizer_SoC.Generators
             return new List<string>() { CollectionUtils.GetRandomElement(itemList, rnd), count.ToString() };
         }
 
-        private List<string> GenerateItem(List<AmmoCount> itemList, int maxItemCount)
+        private List<string> GenerateItem(List<ItemCount> itemList, int maxItemCount)
         {
             if (itemList.Count < 1)
             {

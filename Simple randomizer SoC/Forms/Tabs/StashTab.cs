@@ -55,8 +55,8 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editAmmosButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ComplexListDialog<AmmoCount>("Патроны для заполнения тайников", _config.Ammos, _ammoCountColumns);
-            await _listEditComponent.OpenEditThenSave<ComplexListDialog<AmmoCount>, AmmoCount>(dialog, _config);
+            var dialog = new ComplexListDialog<ItemCount>("Патроны для заполнения тайников", _config.Ammos, _ammoCountColumns);
+            await _listEditComponent.OpenEditThenSave<ComplexListDialog<ItemCount>, ItemCount>(dialog, _config);
         }
 
         private async void editItemsButton_Click(object sender, EventArgs e)

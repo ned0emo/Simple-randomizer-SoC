@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class TextureRandomizer2 : MultiThreadGenerator<SoundTextureConfig>
+    public class TextureRandomizer2 : IMultiThreadGenerator<SoundTextureConfig>
     {
         const string _bump = "_bump";
 

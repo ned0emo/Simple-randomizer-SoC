@@ -46,11 +46,6 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             parametersPanel.Controls.Add(new TraderItemsControl(title, parameters, _config), 0, rowIndex);
         }
 
-        private void probabilityInput_ValueChanged(object sender, EventArgs e)
-        {
-            _config.Probability = (int)probabilityInput.Value;
-        }
-
         private async void countProbabilityButton_Click(object sender, EventArgs e)
         {
             await dataListEditor.OpenEditThenSave(new SimpleListDialog("Секции количества и вероятности появления у торговца", _config.SuppliesSections), _config);
@@ -64,6 +59,11 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private async void buyButton_Click(object sender, EventArgs e)
         {
             await dataListEditor.OpenEditThenSave(new SimpleListDialog("Секции множителей цен покупки у игрока", _config.BuySections), _config);
+        }
+
+        private void probabilityInput_ValueChanged_1(object sender, EventArgs e)
+        {
+            _config.Probability = (int)probabilityInput.Value;
         }
     }
 }

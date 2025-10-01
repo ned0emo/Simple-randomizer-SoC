@@ -6,40 +6,10 @@ namespace Simple_randomizer_SoC.Tools
 {
     public class CollectionUtils
     {
-        public static T GetRandomElement<T>(T[] arr)
-        {
-            return arr.Length == 0 ? default : arr[GlobalRandom.Rnd.Next(arr.Length)];
-        }
 
         public static T GetRandomElement<T>(List<T> list, Random rnd)
         {
             return list.Count == 0 ? default : list[rnd.Next(list.Count)];
-        }
-
-        public static KeyValuePair<T, V> GetRandomElement<T, V>(Dictionary<T, V> dict)
-        {
-            return dict.Count == 0 ? default : dict.ToList()[GlobalRandom.Rnd.Next(dict.Count)];
-        }
-
-        public static List<T> GetRandomElements<T>(T[] arr, int count, Random rnd)
-        {
-            if (count >= arr.Length) return arr.ToList();
-            if (count == 0) return new List<T>();
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
-
-            var indexList = new List<int>();
-            for (int i = 0; i < count; i++) indexList.Add(i);
-
-            var result = new List<T>();
-            while (count-- > 0)
-            {
-                var index = indexList[rnd.Next(indexList.Count)];
-                indexList.Remove(index);
-
-                result.Add(arr[index]);
-            }
-
-            return result;
         }
 
         public static List<T> GetRandomElements<T>(List<T> list, int count, Random rnd)

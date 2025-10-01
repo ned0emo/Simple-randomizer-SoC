@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simple_randomizer_SoC.Models
+namespace Simple_randomizer_SoC.Models.Common
 {
-    public class DataList
+    public class ItemMinMax
     {
         public string Name { get; set; }
-        public List<string> Values { get; set; }
+        public int MinCount { get; set; }
+        public int MaxCount { get; set; }
     }
 }

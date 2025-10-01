@@ -42,10 +42,12 @@ namespace Simple_randomizer_SoC.Generators
                         {
                             foreach (var item in p.Items)
                             {
-                                section.SetParam(item, new List<string>
+                                _probabilityChecker.DoOrSkip(_rnd, () =>
                                 {
-                                    p.Count.GenerateValues(_rnd)[0],
-                                    p.SpawnProbability.GenerateValues(_rnd)[0]
+                                    section.SetParam(item, new List<string> {
+                                        p.Count.GenerateValues(_rnd)[0],
+                                        p.SpawnProbability.GenerateValues(_rnd)[0]
+                                    });
                                 });
                             }
                         });
@@ -57,14 +59,17 @@ namespace Simple_randomizer_SoC.Generators
                         {
                             foreach (var item in p.Items)
                             {
-                                var price1 = GenerateDoubleValue(p.SellPrice);
-                                var price2 = GenerateDoubleValue(p.SellPrice);
-                                if (price1 < price2) (price1, price2) = (price2, price1);
-
-                                section.SetParam(item, new List<string>
+                                _probabilityChecker.DoOrSkip(_rnd, () =>
                                 {
-                                    price1.ToString(),
-                                    price2.ToString()
+                                    var price1 = GenerateDoubleValue(p.SellPrice);
+                                    var price2 = GenerateDoubleValue(p.SellPrice);
+                                    if (price1 < price2) (price1, price2) = (price2, price1);
+
+                                    section.SetParam(item, new List<string>
+                                    {
+                                        price1.ToString(),
+                                        price2.ToString()
+                                    });
                                 });
                             }
                         });

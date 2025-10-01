@@ -14,6 +14,7 @@ namespace Simple_randomizer_SoC
         /// где префикс будет меняться при копировании на новый путь
         /// </summary>
         readonly Dictionary<string, Tuple<string, string>> paramTypeToPrefixAndPathDictionary;
+        private readonly Random _rnd = new Random();
 
         public AdditionalParams()
         {
@@ -94,7 +95,7 @@ namespace Simple_randomizer_SoC
                 foreach (string textSection in textData)
                 {
                     string roundedLength = textSection.Substring(0, textSection.IndexOf("</text>"));
-                    int index = GlobalRandom.Rnd.Next(classifiedTextByLengthMap[roundedLength].Count);
+                    int index = _rnd.Next(classifiedTextByLengthMap[roundedLength].Count);
                     newTextData += "<text>" + textSection.Replace(roundedLength + "</text>", classifiedTextByLengthMap[roundedLength][index] + "</text>");
                     classifiedTextByLengthMap[roundedLength].RemoveAt(index);
                 }

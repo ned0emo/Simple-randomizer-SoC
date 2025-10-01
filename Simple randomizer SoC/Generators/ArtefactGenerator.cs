@@ -74,7 +74,7 @@ namespace Simple_randomizer_SoC.Generators
                 var sections = mainSectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(mainParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(mainParamValuesByShuffleParam[shuffleParam], sections, shuffleParam, rnd);
                 }
             }
             foreach (var shuffleParam in absorbationSectionsByShuffleParam.Keys)
@@ -82,7 +82,7 @@ namespace Simple_randomizer_SoC.Generators
                 var sections = absorbationSectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(absorbationParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(absorbationParamValuesByShuffleParam[shuffleParam], sections, shuffleParam, rnd);
                 }
             }
 

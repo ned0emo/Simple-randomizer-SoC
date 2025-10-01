@@ -11,4 +11,10 @@ namespace Simple_randomizer_SoC.Models
         public List<DataList> DataLists { get; set; }
         public List<SingleFileGeneratorConfig> SingleFileGeneratorConfigs { get; set; }
     }
+
+    public class DataList
+    {
+        public string Name { get; set; }
+        public List<string> Values { get; set; }
+    }
 }

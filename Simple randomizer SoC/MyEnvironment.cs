@@ -15,5 +15,6 @@
         public const string stConfig = "st_config.json";
         public const string dialogConfig = "dialog_config.json";
         public const string traderItemsConfig = "trader_items_config.json";
+        public const string deathItemsConfig = "death_items_config.json";
     }
 }

@@ -49,9 +49,7 @@ namespace RandomizerSoC
         readonly TextureRandomizer2 textureRandomizer = new TextureRandomizer2();
         readonly SoundRandomizer2 soundRandomizer = new SoundRandomizer2();
         readonly TradeGenerator2 tradeGenerator = new TradeGenerator2();
-
-
-        readonly DeathItemsGenerator deathItemsGenerator;
+        readonly DeathItemsGenerator2 deathItemsGenerator = new DeathItemsGenerator2();
 
         readonly AdditionalParams additionalParams;
 
@@ -67,6 +65,7 @@ namespace RandomizerSoC
         private SoundTextureConfig soundTextureConfig;
         private DialogConfig dialogConfig;
         private TraderItemsConfig traderItemsConfig;
+        private DeathItemsConfig deathItemsConfig;
 
         public MainForm()
         {
@@ -86,8 +85,6 @@ namespace RandomizerSoC
 
             recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
 
-            deathItemsGenerator = new DeathItemsGenerator();
-
             additionalParams = new AdditionalParams();
         }
 
@@ -106,6 +103,7 @@ namespace RandomizerSoC
                 soundTextureConfig = await ConfigHandler.LoadOrNew<SoundTextureConfig>();
                 dialogConfig = await ConfigHandler.LoadOrNew<DialogConfig>();
                 traderItemsConfig = await ConfigHandler.LoadOrNew<TraderItemsConfig>();
+                deathItemsConfig = await ConfigHandler.LoadOrNew<DeathItemsConfig>();
 
                 stashTab.Controls.Add(new StashTab(stashConfig));
                 weaponTab.Controls.Add(new WeaponTab(weaponConfig));
@@ -115,6 +113,7 @@ namespace RandomizerSoC
                 soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
                 dialogTab.Controls.Add(new DialogTab(dialogConfig));
                 traderTab.Controls.Add(new TraderTab(traderItemsConfig));
+                deathTab.Controls.Add(new DeathTab(deathItemsConfig));
 
                 if (Localization.IsFirstLoadEnglish())
                 {
@@ -163,8 +162,6 @@ namespace RandomizerSoC
             }
 
             var randomProbability = allRandomProbabilityCheckbox.Checked;
-
-            GlobalRandom.Init(null);
 
             //var lists = new TextBoxData(weaponTextBox.Text, ammoTextBox.Text, outfitTextBox.Text, afTextBox.Text, itemTextBox.Text, otherTextBox.Text, communityTextBox.Text);
 
@@ -292,10 +289,9 @@ namespace RandomizerSoC
             }
             incrementProgressBar();
             //трупы
-            /*if (deathItemsCheckBox.Checked)
+            if (deathItemsCheckBox.Checked)
             {
-                deathItemsGenerator.UpdateData(weapons: weaponTextBox.Text, newConfigPath: newConfigPath);
-                deathItemsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : deathItemReplaceProbInput.Value);
+                deathItemsGenerator.UpdateData(deathItemsConfig, newConfigPath, randomProbability);
                 try
                 {
                     await deathItemsGenerator.Generate();
@@ -305,7 +301,7 @@ namespace RandomizerSoC
                     new InfoForm(Localization.Get("deathItemsError"), ex).ShowDialog();
                     changeButtonsStatus(true); return;
                 }
-            }*/
+            }
             incrementProgressBar();
             //торговцы
             if (tradersCheckBox.Checked)

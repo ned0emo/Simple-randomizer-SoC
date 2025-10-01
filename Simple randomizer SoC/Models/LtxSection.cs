@@ -22,6 +22,11 @@ namespace Simple_randomizer_SoC.Model
                 }).Aggregate((p1, p2) => p1 + "\r\n" + p2));
         }
 
+        public void SetParam(string name)
+        {
+            _params[name] = new List<string>();
+        }
+
         public void SetParam(string name, string value)
         {
             _params[name] = new List<string> { value };
@@ -64,6 +69,14 @@ namespace Simple_randomizer_SoC.Model
             return _params.ContainsKey(name);
         }
 
-        public bool HasAnyParam() => _params.Count > 0;
+        public void RemoveParam(string name)
+        {
+            _params.Remove(name);
+        }
+
+        public void ClearParams()
+        {
+            _params.Clear();
+        }
     }
 }

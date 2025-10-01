@@ -177,7 +177,7 @@ namespace Simple_randomizer_SoC.Generators
                 var sections = weaponSectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(weaponParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(weaponParamValuesByShuffleParam[shuffleParam], sections, shuffleParam, rnd);
                 }
             }
 
@@ -187,7 +187,7 @@ namespace Simple_randomizer_SoC.Generators
                 var sections = ammoSectionsByShuffleParam[shuffleParam];
                 if (sections.Count > 1)
                 {
-                    shuffler.Shuffle(ammoParamValuesByShuffleParam[shuffleParam], sections, shuffleParam);
+                    shuffler.Shuffle(ammoParamValuesByShuffleParam[shuffleParam], sections, shuffleParam, rnd);
                 }
             }
 
