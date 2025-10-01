@@ -31,7 +31,7 @@ namespace Simple_randomizer_SoC.Generators
         }
         public async Task Generate()
         {
-            var outPath = _outPath + "\\misc\\";
+            var outPath = _outPath + "\\config\\misc\\";
             var prefix = MyEnvironment.configPath + "\\misc_death\\";
 
             //количество по сложности
@@ -195,6 +195,11 @@ namespace Simple_randomizer_SoC.Generators
             await MyFile.Write(outPath + deathItemsByLevelsName, levelsLtx.ToString());
             await MyFile.Write(outPath + deathItemsByCommunitiesName, communitiesLtx.ToString());
             await MyFile.Write(outPath + deathGenericName, genericLtx.ToString());
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("deathItemsGen");
         }
     }
 }

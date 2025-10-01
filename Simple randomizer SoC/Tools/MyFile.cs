@@ -24,7 +24,7 @@ namespace Simple_randomizer_SoC
         public static async Task Write(string path, string content)
         {
             path = path.Replace("/", "\\");
-            await CreateDirectory(path.Substring(0, path.LastIndexOf('\\')));
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
             using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
             {
                 await sw.WriteAsync(content);
@@ -35,6 +35,12 @@ namespace Simple_randomizer_SoC
         public static async Task CopyFileAsync(string sourcePath, string destinationPath,
             int bufferSize = 4096, CancellationToken cancellationToken = default)
         {
+            var dir = Path.GetDirectoryName(destinationPath);
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
             using (var sourceStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read,
                 bufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan))
             {
@@ -45,18 +51,6 @@ namespace Simple_randomizer_SoC
                     await sourceStream.CopyToAsync(destinationStream, bufferSize, cancellationToken);
                 }
             }
-
-        }
-
-        //TODO: переделать асинхронность
-        public static async Task<string[]> GetFiles(string path)
-        {
-            return await Task.Run(() => Directory.GetFiles(path));
-        }
-
-        public static async Task<DirectoryInfo> CreateDirectory(string path)
-        {
-            return await Task.Run(() => Directory.CreateDirectory(path));
         }
     }
 }

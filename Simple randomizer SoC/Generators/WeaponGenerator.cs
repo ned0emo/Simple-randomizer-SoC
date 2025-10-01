@@ -20,11 +20,11 @@ namespace Simple_randomizer_SoC.Generators
         private readonly Random rnd = new Random();
 
         private WeaponConfig weaponConfig = null;
-        private string newConfigPath = null;
+        private string _outPath = null;
 
-        public void UpdateData(WeaponConfig weaponConfig, string newConfigPath, bool randomProbability)
+        public void UpdateData(WeaponConfig weaponConfig, string baseOutPath, bool randomProbability)
         {
-            this.newConfigPath = newConfigPath;
+            this._outPath = baseOutPath;
             this.weaponConfig = weaponConfig;
             weaponProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.WeaponStatProbability);
             ammoProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.AmmoStatProbability);
@@ -33,7 +33,7 @@ namespace Simple_randomizer_SoC.Generators
         public async Task Generate()
         {
             var dir = new DirectoryInfo($"{MyEnvironment.configPath}\\weapons");
-            var outPath = newConfigPath + "\\weapons\\";
+            var outPath = _outPath + "\\config\\weapons\\";
 
             var files = new List<LtxData>();
 
@@ -199,6 +199,11 @@ namespace Simple_randomizer_SoC.Generators
             {
                 await MyFile.Write(outPath + f.FileName, f.ToString());
             }
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("weaponsGen");
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Simple_randomizer_SoC.Generators
         public async Task Generate()
         {
             var path = MyEnvironment.configPath + "\\gameplay";
-            var outPath = _baseOutPath + "\\gameplay\\";
+            var outPath = _baseOutPath + "\\config\\gameplay\\";
 
             var outDocs = new Dictionary<string, XmlDocument>();
 
@@ -269,6 +269,11 @@ namespace Simple_randomizer_SoC.Generators
             }
 
             return newSupplies;
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("npcGen");
         }
     }
 }

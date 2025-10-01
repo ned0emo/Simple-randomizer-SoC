@@ -21,12 +21,12 @@ namespace Simple_randomizer_SoC.Generators
         private readonly Random rnd = new Random();
 
         private StashConfig stashConfig;
-        private string newConfigPath;
+        private string _outPath;
 
-        public void UpdateData(StashConfig stashConfig, string newConfigPath, bool randomProbability)
+        public void UpdateData(StashConfig stashConfig, string baseOutPath, bool randomProbability)
         {
             this.stashConfig = stashConfig;
-            this.newConfigPath = newConfigPath;
+            this._outPath = baseOutPath;
             pc.SetProbability(randomProbability ? rnd.Next(100) + 1 : stashConfig.Probability);
         }
 
@@ -139,7 +139,7 @@ namespace Simple_randomizer_SoC.Generators
                 shuffler.ShuffleSingle(descriptions, sectionsToShuffleDescriptions, "description", rnd);
             }
 
-            await MyFile.Write($"{newConfigPath}\\misc\\treasure_manager.ltx", ltx.ToString());
+            await MyFile.Write($"{_outPath}\\config\\misc\\treasure_manager.ltx", ltx.ToString());
         }
 
         //Предмет и количество для добавления в тайник
@@ -166,6 +166,11 @@ namespace Simple_randomizer_SoC.Generators
             var item = CollectionUtils.GetRandomElement(itemList, rnd);
 
             return new List<string>() { item.Name, (item.Count * count).ToString() };
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("stashesGen");
         }
     }
 }

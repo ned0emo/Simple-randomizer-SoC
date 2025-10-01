@@ -14,7 +14,7 @@ namespace Simple_randomizer_SoC.Generators
     {
         public override async Task Generate()
         {
-            var outPath = newConfigPath + "\\misc\\outfit.ltx";
+            var outPath = base.outPath + "\\config\\misc\\outfit.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\outfit.ltx")
                 ?? throw new CustomException("Ошибка чтения файла с данными о броне");
 
@@ -66,6 +66,11 @@ namespace Simple_randomizer_SoC.Generators
             copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             await MyFile.Write(outPath, ltx.ToString());
+        }
+
+        public override string StatusText()
+        {
+            return Localization.Get("armorGen");
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection section,

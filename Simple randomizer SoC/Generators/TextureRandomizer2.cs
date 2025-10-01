@@ -37,7 +37,7 @@ namespace Simple_randomizer_SoC.Generators
             set => _stop = value;
         }
         public Exception Error { get; private set; }
-        public Action<int> OnProgress { get; set; } = (_) => { };
+        public Action<string> OnStatusChange { get; set; } = (_) => { };
 
         public async Task Generate()
         {
@@ -128,7 +128,7 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (Stop) return;
 
-                    if (!_config.ReplaceUI & file.Contains("\\ui") || file.Contains("ui_icon_equipment.dds"))
+                    if (!_config.ReplaceUI && file.Contains("\\ui") || file.Contains("ui_icon_equipment.dds"))
                     {
                         continue;
                     }
@@ -146,7 +146,10 @@ namespace Simple_randomizer_SoC.Generators
 
                         _textures.Add(file);
 
-                        FilesCount++;
+                        if (FilesCount++ % 100 == 0)
+                        {
+                            OnStatusChange(StatusText() + ": " + file);
+                        }
                     }
                 }
             }
@@ -176,6 +179,7 @@ namespace Simple_randomizer_SoC.Generators
         private void CopyAndRename()
         {
             if (FilesCount == 0) return;
+            OnStatusChange(StatusText() + ": " + Localization.Get("copying"));
 
             int progress = 0;
             try
@@ -196,18 +200,21 @@ namespace Simple_randomizer_SoC.Generators
                         copy.Remove(newFile);
 
                         progress++;
-                        OnProgress(progress);
                     }
                 }
 
                 progress = FilesCount;
-                OnProgress(progress);
             }
             catch (Exception ex)
             {
                 Stop = true;
                 Error = ex;
             }
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("texturesGen");
         }
     }
 }

@@ -20,12 +20,12 @@ namespace Simple_randomizer_SoC.Generators
         private readonly Random rnd = new Random();
 
         private WeatherConfig _config = null;
-        private string _newConfigPath = null;
+        private string _outPath = null;
 
-        public void UpdateData(WeatherConfig config, string newConfigPath, bool randomProbability)
+        public void UpdateData(WeatherConfig config, string baseOutPath, bool randomProbability)
         {
             _config = config;
-            _newConfigPath = newConfigPath;
+            _outPath = baseOutPath;
 
             probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.StatProbability);
         }
@@ -33,7 +33,7 @@ namespace Simple_randomizer_SoC.Generators
         public async Task Generate()
         {
             var dir = new DirectoryInfo($"{MyEnvironment.configPath}\\weathers");
-            var outPath = _newConfigPath + "\\weathers\\";
+            var outPath = _outPath + "\\config\\weathers\\";
 
             var files = new List<LtxData>();
 
@@ -133,6 +133,11 @@ namespace Simple_randomizer_SoC.Generators
                     });
                 }
             });
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("weatherGen");
         }
     }
 }

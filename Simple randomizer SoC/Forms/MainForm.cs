@@ -1,5 +1,6 @@
 ﻿using Simple_randomizer_SoC;
 using Simple_randomizer_SoC.Forms;
+using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Tabs;
 using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Generators;
@@ -9,6 +10,7 @@ using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
@@ -21,21 +23,8 @@ using System.Windows.Forms;
 
 namespace RandomizerSoC
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, ILocalizable
     {
-        readonly int progressBarStep = 9; // 100 / 11
-
-        //для чекбокса "Все"
-        readonly List<CheckBox> generateTypeCheckBoxList;
-
-        //readonly List<CheckBox> npcCheckBoxWithoutTextBoxList;
-
-        readonly List<CheckBox> additionalParamsCheckBoxList;
-
-        readonly List<Label> recommendLabelList;
-
-        readonly List<NumericUpDown> probailityInputs;
-
         //Генераторы
         readonly StashGenerator stashGenerator = new StashGenerator();
         readonly WeaponGenerator weaponGenerator = new WeaponGenerator();
@@ -50,12 +39,14 @@ namespace RandomizerSoC
         readonly SoundRandomizer2 soundRandomizer = new SoundRandomizer2();
         readonly TradeGenerator2 tradeGenerator = new TradeGenerator2();
         readonly DeathItemsGenerator2 deathItemsGenerator = new DeathItemsGenerator2();
-
-        readonly AdditionalParams additionalParams;
+        readonly TextGenerator textGenerator = new TextGenerator();
+        readonly AdditionalParameters additionalParameters = new AdditionalParameters();
 
         private bool isClosing = false;
         private volatile bool _isForceClosed = false;
         public bool IsForceClosed { get => _isForceClosed; set => _isForceClosed = value; }
+
+        private AppConfig appConfig;
 
         private StashConfig stashConfig;
         private WeaponConfig weaponConfig;
@@ -66,26 +57,13 @@ namespace RandomizerSoC
         private DialogConfig dialogConfig;
         private TraderItemsConfig traderItemsConfig;
         private DeathItemsConfig deathItemsConfig;
+        private AdditionalConfig additionalConfig;
+
+        private readonly List<IConfig> _configs = new List<IConfig>();
 
         public MainForm()
         {
             InitializeComponent();
-            loadState.Text = "";
-
-            probailityInputs = new List<NumericUpDown>() {artReplcaeProbInput, itemReplaceProbInput, deathItemReplaceProbInput,
-            npcReplaceProbInput, outfitReplaceProbInput, stashReplaceProbInput, weaponReplaceProbInput, weatherReplaceProbInput,
-            soundeplaceProbabilityInput, textureReplaceProbabilityInput};
-
-            generateTypeCheckBoxList = new List<CheckBox>() { treasureCheckBox, afCheckBox,
-                weaponCheckBox, armorCheckBox, npcCheckBox, weatherCheckBox, deathItemsCheckBox, tradersCheckBox, consumablesCheckBox, dialogsCheckBox };
-
-            additionalParamsCheckBoxList = new List<CheckBox>() { advancedGulagCheckBox, equipWeaponEverywhereCheckBox, barAlarmCheckBox,
-                giveKnifeCheckBox, disableFreedomAgressionCheckBox,moreRespawnCheckBox, gScriptCheckBox, translateCheckBox, shuffleTextCheckBox,
-                gameSoundCheckBox, texturesCheckBox, unlockTraderDoorCheckBox};
-
-            recommendLabelList = new List<Label>() { recommendLabel1, recommendLabel2, recommendLabel3, recommendLabel4 };
-
-            additionalParams = new AdditionalParams();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -93,8 +71,6 @@ namespace RandomizerSoC
             Enabled = false;
             try
             {
-                UpdateText();
-
                 stashConfig = await ConfigHandler.LoadOrNew<StashConfig>();
                 weaponConfig = await ConfigHandler.LoadOrNew<WeaponConfig>();
                 itemConfig = await ConfigHandler.LoadOrNew<ItemConfig>();
@@ -104,6 +80,20 @@ namespace RandomizerSoC
                 dialogConfig = await ConfigHandler.LoadOrNew<DialogConfig>();
                 traderItemsConfig = await ConfigHandler.LoadOrNew<TraderItemsConfig>();
                 deathItemsConfig = await ConfigHandler.LoadOrNew<DeathItemsConfig>();
+                additionalConfig = await ConfigHandler.LoadOrNew<AdditionalConfig>();
+                appConfig = await ConfigHandler.LoadOrNew<AppConfig>();
+
+                _configs.Add(stashConfig);
+                _configs.Add(weaponConfig);
+                _configs.Add(itemConfig);
+                _configs.Add(weatherConfig);
+                _configs.Add(npcConfig);
+                _configs.Add(soundTextureConfig);
+                _configs.Add(dialogConfig);
+                _configs.Add(traderItemsConfig);
+                _configs.Add(deathItemsConfig);
+                _configs.Add(additionalConfig);
+                _configs.Add(appConfig);
 
                 stashTab.Controls.Add(new StashTab(stashConfig));
                 weaponTab.Controls.Add(new WeaponTab(weaponConfig));
@@ -114,19 +104,33 @@ namespace RandomizerSoC
                 dialogTab.Controls.Add(new DialogTab(dialogConfig));
                 traderTab.Controls.Add(new TraderTab(traderItemsConfig));
                 deathTab.Controls.Add(new DeathTab(deathItemsConfig));
+                additionalTab.Controls.Add(new AdditionalTab(additionalConfig));
+
+                soundRandomizer.OnStatusChange = (s) =>
+                {
+                    Invoke(new Action(() =>
+                    {
+                        statusLabel.Text = s;
+                    }));
+                };
+                textureRandomizer.OnStatusChange = (s) =>
+                {
+                    Invoke(new Action(() =>
+                    {
+                        statusLabel.Text = s;
+                    }));
+                };
 
                 if (Localization.IsFirstLoadEnglish())
                 {
-                    engRadioButton.Checked = true;
-                    translateCheckBox.Checked = false;
-                    translateCheckBox.Enabled = false;
+                    //engRadioButton.Checked = true;
                 }
                 else
                 {
-                    rusRadioButton.Checked = true;
+                    //rusRadioButton.Checked = true;
                 }
-                rusRadioButton.Click += RusRadioButton_Click;
-                engRadioButton.Click += EngRadioButton_Click;
+                //rusRadioButton.Click += RusRadioButton_Click;
+                //engRadioButton.Click += EngRadioButton_Click;
             }
             catch (Exception ex)
             {
@@ -135,400 +139,10 @@ namespace RandomizerSoC
             Enabled = true;
         }
 
-        #region списки
-        private async void SaveButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        //кнопка загрузки
-        private void LoadButton_Click(object sender, EventArgs e) => LoadLists();
-
-        //загрузка списков по умолчанию
-        private void LoadDefaultButton_Click(object sender, EventArgs e) => LoadLists(true);
-
-        //загрузка списков редактируемых или дефолтных
-        private async void LoadLists(bool isDefault = false)
-        {
-
-        }
-        #endregion
-
-        //генерация всего
-        private async void GenerateButton_Click(object sender, EventArgs e)
-        {
-            if (additionalParamsCheckBoxList.All(all => !all.Checked) && generateTypeCheckBoxList.All(all => !all.Checked))
-            {
-                return;
-            }
-
-            var randomProbability = allRandomProbabilityCheckbox.Checked;
-
-            //var lists = new TextBoxData(weaponTextBox.Text, ammoTextBox.Text, outfitTextBox.Text, afTextBox.Text, itemTextBox.Text, otherTextBox.Text, communityTextBox.Text);
-
-            ///<summary>
-            ///Увеличивает значения прогрессбара на указанное параметром progressBarStep.
-            ///Если значение больше макс, оставляет его равным макс
-            ///</summary>
-            void incrementProgressBar()
-            {
-                progressBar1.Value = Math.Min(progressBar1.Value + progressBarStep, progressBar1.Maximum);
-            }
-
-            void changeButtonsStatus(bool enabled)
-            {
-                generateButton.Enabled = enabled;
-                saveButton.Enabled = enabled;
-                loadButton.Enabled = enabled;
-                loadDefaultButton.Enabled = enabled;
-
-                progressBar1.Value = 0;
-            }
-
-            changeButtonsStatus(false);
-
-            string newGamedataPath = $".\\gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
-            string newConfigPath = $"{newGamedataPath}\\config";
-            string newScriptsPath = $"{newGamedataPath}\\scripts";
-            string newSpawnsPath = $"{newGamedataPath}\\spawns";
-
-            #region основа
-            //тайники
-            if (treasureCheckBox.Checked)
-            {
-                stashGenerator.UpdateData(stashConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await stashGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("cachesError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            incrementProgressBar();
-            //артефакты
-            if (afCheckBox.Checked)
-            {
-                artefactGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await artefactGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("artefactsError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            incrementProgressBar();
-            //оружие
-            if (weaponCheckBox.Checked)
-            {
-                weaponGenerator.UpdateData(weaponConfig, newConfigPath, randomProbability);
-                //weaponsGenerator.UpdateData(reloadSounds: reloadSoundsTextBox.Text, shootSounds: shootSoundsTextBox.Text, newConfigPath: newConfigPath);
-                //weaponsGenerator.SetProbability(randomProbability ? GlobalRandom.Rnd.Next(100) + 1 : weaponReplaceProbInput.Value);
-                try
-                {
-                    await weaponGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("weaponsError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            incrementProgressBar();
-            //бронь
-            if (armorCheckBox.Checked)
-            {
-                armorGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await armorGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("outfitsError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            incrementProgressBar();
-            //нпс
-            if (npcCheckBox.Checked)
-            {
-                npcGenerator.UpdateData(npcConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await npcGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("npcError"), ex).ShowDialog();
-                    changeButtonsStatus(true); return;
-                }
-            }
-            incrementProgressBar();
-            //погода
-            if (weatherCheckBox.Checked)
-            {
-                weatherGenerator.UpdateData(weatherConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await weatherGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("weatherError"), ex).ShowDialog();
-                    changeButtonsStatus(true); return;
-                }
-            }
-            incrementProgressBar();
-            //трупы
-            if (deathItemsCheckBox.Checked)
-            {
-                deathItemsGenerator.UpdateData(deathItemsConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await deathItemsGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("deathItemsError"), ex).ShowDialog();
-                    changeButtonsStatus(true); return;
-                }
-            }
-            incrementProgressBar();
-            //торговцы
-            if (tradersCheckBox.Checked)
-            {
-                tradeGenerator.UpdateData(traderItemsConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await tradeGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("tradersError"), ex).ShowDialog();
-                    changeButtonsStatus(true); return;
-                }
-            }
-            incrementProgressBar();
-            //расходники
-            if (consumablesCheckBox.Checked)
-            {
-                consumableGenerator.UpdateData(itemConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await consumableGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("consumablesError"), ex).ShowDialog();
-                    changeButtonsStatus(true); return;
-                }
-            }
-            incrementProgressBar();
-            //диалоги
-            if (dialogsCheckBox.Checked)
-            {
-                dialogGenerator.UpdateData(dialogConfig, newConfigPath, randomProbability);
-                try
-                {
-                    await dialogGenerator.Generate();
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("dialogsError"), ex).ShowDialog();
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            #endregion
-
-            //доп функции
-            #region additionalParams
-            Dictionary<string, string> paramTypeToNewPrefixDictionary = new Dictionary<string, string>();
-            if (advancedGulagCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("advancedGulag1", newScriptsPath);
-                paramTypeToNewPrefixDictionary.Add("advancedGulag2", newScriptsPath);
-            }
-
-            if (equipWeaponEverywhereCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("equipWeaponEverywhere", newScriptsPath);
-            }
-
-            if (barAlarmCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("barAlarm", newConfigPath);
-            }
-
-            if (giveKnifeCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("giveKnife", newSpawnsPath);
-            }
-
-            if (disableFreedomAgressionCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("disableFreedomAgression", newScriptsPath);
-            }
-
-            if (moreRespawnCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("moreRespawn", newScriptsPath);
-            }
-
-            if (gScriptCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("gScript", newScriptsPath);
-            }
-
-            if (unlockTraderDoorCheckBox.Checked)
-            {
-                paramTypeToNewPrefixDictionary.Add("escTraderDoor", newConfigPath);
-            }
-
-            await additionalParams.CopyParams(paramTypeToNewPrefixDictionary);
-
-            if (translateCheckBox.Checked)
-            {
-                try
-                {
-                    if (shuffleTextCheckBox.Checked)
-                    {
-                        await additionalParams.ShuffleAndCopyText(newConfigPath);
-                    }
-                    else
-                    {
-                        await additionalParams.CopyText(newConfigPath);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    new InfoForm(Localization.Get("textDataReadError"), ex);
-                    changeButtonsStatus(true);
-                    return;
-                }
-            }
-            #endregion
-
-            //звуки
-            if (gameSoundCheckBox.Checked)
-            {
-                soundRandomizer.UpdateData(soundTextureConfig, newGamedataPath, randomProbability);
-
-                try
-                {
-                    await soundRandomizer.Generate();
-                    if (soundRandomizer.Error != null)
-                    {
-                        new InfoForm(Localization.Get("soundsError"), soundRandomizer.Error).ShowDialog();
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    soundRandomizer.Stop = true;
-                    new InfoForm(Localization.Get("soundsError"), ex).ShowDialog();
-                    return;
-                }
-            }
-            if (isClosing) return;
-
-            //текстуры
-            if (texturesCheckBox.Checked)
-            {
-                textureRandomizer.UpdateData(soundTextureConfig, newGamedataPath, randomProbability);
-                try
-                {
-                    await textureRandomizer.Generate();
-                    if (textureRandomizer.Error != null)
-                    {
-                        new InfoForm(Localization.Get("texturesError"), textureRandomizer.Error).ShowDialog();
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    textureRandomizer.Stop = true;
-                    new InfoForm(Localization.Get("texturesError"), ex).ShowDialog();
-                    return;
-                }
-            }
-            if (isClosing) return;
-
-            progressBar1.Value = 0;
-            progressBar1.Maximum = 100;
-            loadState.Text = "";
-
-            new InfoForm(Localization.Get("savedIn") + " " + newGamedataPath).ShowDialog();
-
-            changeButtonsStatus(true);
-        }
-
-        private void AllCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (CheckBox cb in generateTypeCheckBoxList)
-            {
-                cb.Checked = allCheckBox.Checked;
-            }
-
-            if (!npcCheckBox.Enabled)
-            {
-                npcCheckBox.Checked = false;
-            }
-        }
-
-        private void CommunityCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (communityCheckBox.Checked)
-            {
-                advancedGulagCheckBox.Checked = true;
-                advancedGulagCheckBox.Enabled = false;
-            }
-            else
-            {
-                advancedGulagCheckBox.Checked = false;
-                advancedGulagCheckBox.Enabled = true;
-            }
-        }
-
-        //Отключение перемешивания текста при отключении перевода
-        private void TranslateCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (translateCheckBox.Checked)
-            {
-                shuffleTextCheckBox.Enabled = true;
-            }
-            else
-            {
-                shuffleTextCheckBox.Checked = false;
-                shuffleTextCheckBox.Enabled = false;
-            }
-        }
-
-        #region Чекбоксы вкладки неписей
-
-        private void NpcCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-        #endregion
-
-        //ссылка другое под НПС
-        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => tabControl.SelectedTab = npcTab;
-
-        #region локализация
         private void RusRadioButton_Click(object sender, EventArgs e)
         {
             Localization.ChangeLanguage(false);
-            translateCheckBox.Enabled = true;
-            UpdateText();
+            Localize();
 
             Localization.SaveDefault("rus");
         }
@@ -536,128 +150,14 @@ namespace RandomizerSoC
         private void EngRadioButton_Click(object sender, EventArgs e)
         {
             Localization.ChangeLanguage(true);
-            translateCheckBox.Checked = false;
-            translateCheckBox.Enabled = false;
-            UpdateText();
+            Localize();
 
             Localization.SaveDefault("eng");
         }
 
-        private void UpdateText()
-        {
-            this.Text = Localization.Get("mainFormName");
-            //tabPage1.Text = Localization.Get("weaponsTab");
-            //tabPage6.Text = Localization.Get("ItemsTab");
-            //tabPage9.Text = Localization.Get("npcTab");
-            //tabPage2.Text = Localization.Get("weatherTab");
-            tabPage8.Text = Localization.Get("advancedTab");
-            //advancedTab2.Text = Localization.Get("advancedTab") + " 2";
-            saveButton.Text = Localization.Get("saveLists");
-            loadButton.Text = Localization.Get("loadLists");
-            generateButton.Text = Localization.Get("generate");
-            loadDefaultButton.Text = Localization.Get("defaultLists");
-            //label17.Text = Localization.Get("reloadSoundListTitle");
-            //label10.Text = Localization.Get("ammoListTitle");
-            //label1.Text = Localization.Get("weaponListTitle");
-            //label19.Text = Localization.Get("shootSoundListTitle");
-            //label12.Text = Localization.Get("outfits");
-            //label11.Text = Localization.Get("artefacts");
-            //label9.Text = Localization.Get("otherListTitle");
-            //label7.Text = Localization.Get("consumableListTitle");
-            //label2.Text = Localization.Get("communityListTitle");
-            //namesCheckBox.Text = Localization.Get("nameListTitle");
-            //iconsCheckBox.Text = Localization.Get("iconListTitle");
-            //soundsCheckBox.Text = Localization.Get("soundListTitle");
-            //modelsCheckBox.Text = Localization.Get("modelListTitle");
-            //onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
-            //label3.Text = Localization.Get("exceptionListTitle");
-            //label16.Text = Localization.Get("thunderProbability");
-            //label15.Text = Localization.Get("rainProbability");
-            //label14.Text = Localization.Get("weatherHelp");
-            //label5.Text = Localization.Get("thunderListTitle");
-            //label13.Text = Localization.Get("skyboxListTitle");
-            gScriptCheckBox.Text = Localization.Get("gScriptFix");
-            advancedGulagCheckBox.Text = Localization.Get("moreGulag");
-            shuffleTextCheckBox.Text = Localization.Get("shuffleText");
-            translateCheckBox.Text = Localization.Get("funnyTranslate");
-            label6.Text = Localization.Get("advancedText");
-            disableFreedomAgressionCheckBox.Text = Localization.Get("freedomAgression");
-            recommendLabel1.Text = Localization.Get("recommended");
-            recommendLabel2.Text = Localization.Get("recommended");
-            recommendLabel3.Text = Localization.Get("recommended");
-            recommendLabel4.Text = Localization.Get("recommended");
-            giveKnifeCheckBox.Text = Localization.Get("knifeAtStart");
-            moreRespawnCheckBox.Text = Localization.Get("moreRespawn");
-            barAlarmCheckBox.Text = Localization.Get("barAlarm");
-            equipWeaponEverywhereCheckBox.Text = Localization.Get("weaponEverywhere");
-            communityCheckBox.Text = Localization.Get("changeCommunity");
-            allCheckBox.Text = Localization.Get("selectAll");
-            treasureCheckBox.Text = Localization.Get("caches");
-            afCheckBox.Text = Localization.Get("artefacts");
-            weaponCheckBox.Text = Localization.Get("weaponsTab");
-            armorCheckBox.Text = Localization.Get("outfits");
-            npcCheckBox.Text = Localization.Get("npcTab");
-            //suppliesCheckBox.Text = Localization.Get("weaponsTab");
-            //rankCheckBox.Text = Localization.Get("rank");
-            //reputationCheckBox.Text = Localization.Get("reputation");
-            label4.Text = Localization.Get("whatGenerate");
-            //linkLabel1.Text = Localization.Get("other");
-            weatherCheckBox.Text = Localization.Get("weatherTab");
-            deathItemsCheckBox.Text = Localization.Get("deathItems");
-            onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
-            tradersCheckBox.Text = Localization.Get("traderItems");
-            consumablesCheckBox.Text = Localization.Get("consumables");
-
-            //advanced2Label.Text = Localization.Get("soundTexturesDescription");
-            //threadsLabel.Text = Localization.Get("maxThreads");
-            gameSoundCheckBox.Text = Localization.Get("gameSounds");
-            //soundsPathButton.Text = Localization.Get("open");
-            //texturesPathButton.Text = Localization.Get("open");
-            //soundsPathLabel.Text = Localization.Get("soundsPath");
-            //stepRainCheckBox.Text = Localization.Get("stepRainSounds");
-            //roundDurationLabel.Text = Localization.Get("soundsRoundStep");
-            texturesCheckBox.Text = Localization.Get("textures");
-            //texturesPathLabel.Text = Localization.Get("texturesPath");
-            //uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
-            //epilepsyLabel.Text = Localization.Get("epilepsy");
-
-            //1.8
-            //dialogsTab.Text = Localization.Get("dialogs");
-            dialogsCheckBox.Text = Localization.Get("dialogs");
-            //infosExceptionLabel.Text = Localization.Get("incorrectInfos");
-            //actionsExceptionLabel.Text = Localization.Get("incorrectActions");
-            unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
-            //label18.Text = Localization.Get("dialogsDescription");
-
-            //1.9
-            probabilityTab.Text = Localization.Get("probabilityTab");
-            probabilityDescription.Text = Localization.Get("probabilityDescription");
-            allRandomProbabilityCheckbox.Text = Localization.Get("allRandomProbabilityCheckbox");
-
-            artReplaceProbLabel.Text = Localization.Get("artReplcaeProbInput");
-            itemReplaceProbLabel.Text = Localization.Get("itemReplaceProbInput");
-            deathItemReplaceProbLabel.Text = Localization.Get("deathItemReplaceProbInput");
-            npcReplaceProbLabel.Text = Localization.Get("npcReplaceProbInput");
-            outfitReplaceProbLabel.Text = Localization.Get("outfitReplaceProbInput");
-            stashReplaceProbLabel.Text = Localization.Get("stashReplaceProbInput");
-            weaponReplaceProbLabel.Text = Localization.Get("weaponReplaceProbInput");
-            weatherReplaceProbLabel.Text = Localization.Get("weatherReplaceProbInput");
-            soundReplaceProbabilityLabel.Text = Localization.Get("soundReplaceProbabilityInput");
-            textureReplaceProbabilityLabel.Text = Localization.Get("textureReplaceProbabilityInput");
-        }
-        #endregion
-
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new InfoForm(Localization.Get("twoWords"), Localization.Get("onePointFourAdvertise")).ShowDialog();
-        }
-
-        private void AdvancedGulagCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (Label label in recommendLabelList)
-            {
-                label.Visible = advancedGulagCheckBox.Checked;
-            }
         }
 
         #region звуки текстуры
@@ -678,7 +178,7 @@ namespace RandomizerSoC
             try
             {
                 e.Cancel = true;
-                generateButton.Enabled = false;
+                //generateButton.Enabled = false;
 
                 if (soundRandomizer.IsProcessing() || textureRandomizer.IsProcessing())
                 {
@@ -696,12 +196,6 @@ namespace RandomizerSoC
             {
                 if (!IsForceClosed) Close();
             }
-        }
-
-        private void AllRandomProbabilityCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            var value = !allRandomProbabilityCheckbox.Checked;
-            probailityInputs.ForEach(i => { i.Enabled = value; });
         }
 
         //заморозка перерисовки при изменении размера окна
@@ -723,6 +217,341 @@ namespace RandomizerSoC
             }
 
             base.WndProc(ref m);
+        }
+
+        public void Localize()
+        {
+            this.Text = Localization.Get("mainFormName");
+            //tabPage1.Text = Localization.Get("weaponsTab");
+            //tabPage6.Text = Localization.Get("ItemsTab");
+            //tabPage9.Text = Localization.Get("npcTab");
+            //tabPage2.Text = Localization.Get("weatherTab");
+            additionalTab.Text = Localization.Get("advancedTab");
+            //advancedTab2.Text = Localization.Get("advancedTab") + " 2";
+            //saveButton.Text = Localization.Get("saveLists");
+            //loadButton.Text = Localization.Get("loadLists");
+            //generateButton.Text = Localization.Get("generate");
+            //loadDefaultButton.Text = Localization.Get("defaultLists");
+            //label17.Text = Localization.Get("reloadSoundListTitle");
+            //label10.Text = Localization.Get("ammoListTitle");
+            //label1.Text = Localization.Get("weaponListTitle");
+            //label19.Text = Localization.Get("shootSoundListTitle");
+            //label12.Text = Localization.Get("outfits");
+            //label11.Text = Localization.Get("artefacts");
+            //label9.Text = Localization.Get("otherListTitle");
+            //label7.Text = Localization.Get("consumableListTitle");
+            //label2.Text = Localization.Get("communityListTitle");
+            //namesCheckBox.Text = Localization.Get("nameListTitle");
+            //iconsCheckBox.Text = Localization.Get("iconListTitle");
+            //soundsCheckBox.Text = Localization.Get("soundListTitle");
+            //modelsCheckBox.Text = Localization.Get("modelListTitle");
+            //onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
+            //label3.Text = Localization.Get("exceptionListTitle");
+            //label16.Text = Localization.Get("thunderProbability");
+            //label15.Text = Localization.Get("rainProbability");
+            //label14.Text = Localization.Get("weatherHelp");
+            //label5.Text = Localization.Get("thunderListTitle");
+            //label13.Text = Localization.Get("skyboxListTitle");
+            //gScriptCheckBox.Text = Localization.Get("gScriptFix");
+            //advancedGulagCheckBox.Text = Localization.Get("moreGulag");
+            //shuffleTextCheckBox.Text = Localization.Get("shuffleText");
+            //translateCheckBox.Text = Localization.Get("funnyTranslate");
+            //label6.Text = Localization.Get("advancedText");
+            //disableFreedomAgressionCheckBox.Text = Localization.Get("freedomAgression");
+            //recommendLabel1.Text = Localization.Get("recommended");
+            //recommendLabel2.Text = Localization.Get("recommended");
+            //recommendLabel3.Text = Localization.Get("recommended");
+            //recommendLabel4.Text = Localization.Get("recommended");
+            //giveKnifeCheckBox.Text = Localization.Get("knifeAtStart");
+            //moreRespawnCheckBox.Text = Localization.Get("moreRespawn");
+            //barAlarmCheckBox.Text = Localization.Get("barAlarm");
+            //equipWeaponEverywhereCheckBox.Text = Localization.Get("weaponEverywhere");
+            //communityCheckBox.Text = Localization.Get("changeCommunity");
+            //allCheckBox.Text = Localization.Get("selectAll");
+            //treasureCheckBox.Text = Localization.Get("caches");
+            //afCheckBox.Text = Localization.Get("artefacts");
+            //weaponCheckBox.Text = Localization.Get("weaponsTab");
+            //armorCheckBox.Text = Localization.Get("outfits");
+            //npcCheckBox.Text = Localization.Get("npcTab");
+            //suppliesCheckBox.Text = Localization.Get("weaponsTab");
+            //rankCheckBox.Text = Localization.Get("rank");
+            //reputationCheckBox.Text = Localization.Get("reputation");
+            //label4.Text = Localization.Get("whatGenerate");
+            //linkLabel1.Text = Localization.Get("other");
+            //weatherCheckBox.Text = Localization.Get("weatherTab");
+            //deathItemsCheckBox.Text = Localization.Get("deathItems");
+            //onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
+            //tradersCheckBox.Text = Localization.Get("traderItems");
+            //consumablesCheckBox.Text = Localization.Get("consumables");
+
+            //advanced2Label.Text = Localization.Get("soundTexturesDescription");
+            //threadsLabel.Text = Localization.Get("maxThreads");
+            //gameSoundCheckBox.Text = Localization.Get("gameSounds");
+            //soundsPathButton.Text = Localization.Get("open");
+            //texturesPathButton.Text = Localization.Get("open");
+            //soundsPathLabel.Text = Localization.Get("soundsPath");
+            //stepRainCheckBox.Text = Localization.Get("stepRainSounds");
+            //roundDurationLabel.Text = Localization.Get("soundsRoundStep");
+            //texturesCheckBox.Text = Localization.Get("textures");
+            //texturesPathLabel.Text = Localization.Get("texturesPath");
+            //uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
+            //epilepsyLabel.Text = Localization.Get("epilepsy");
+
+            //1.8
+            //dialogsTab.Text = Localization.Get("dialogs");
+            //dialogsCheckBox.Text = Localization.Get("dialogs");
+            //infosExceptionLabel.Text = Localization.Get("incorrectInfos");
+            //actionsExceptionLabel.Text = Localization.Get("incorrectActions");
+            //unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
+            //label18.Text = Localization.Get("dialogsDescription");
+
+            //1.9
+            //probabilityTab.Text = Localization.Get("probabilityTab");
+            //probabilityDescription.Text = Localization.Get("probabilityDescription");
+            //allRandomProbabilityCheckbox.Text = Localization.Get("allRandomProbabilityCheckbox");
+
+            //artReplaceProbLabel.Text = Localization.Get("artReplcaeProbInput");
+            //itemReplaceProbLabel.Text = Localization.Get("itemReplaceProbInput");
+            //deathItemReplaceProbLabel.Text = Localization.Get("deathItemReplaceProbInput");
+            //npcReplaceProbLabel.Text = Localization.Get("npcReplaceProbInput");
+            //outfitReplaceProbLabel.Text = Localization.Get("outfitReplaceProbInput");
+            //stashReplaceProbLabel.Text = Localization.Get("stashReplaceProbInput");
+            //weaponReplaceProbLabel.Text = Localization.Get("weaponReplaceProbInput");
+            //weatherReplaceProbLabel.Text = Localization.Get("weatherReplaceProbInput");
+            //soundReplaceProbabilityLabel.Text = Localization.Get("soundReplaceProbabilityInput");
+            //textureReplaceProbabilityLabel.Text = Localization.Get("textureReplaceProbabilityInput");
+
+            /*tabControl.TabPages.Cast<TabPage>()
+                .Where(tp => tp is ILocalizable).Cast<ILocalizable>().ToList()
+                .ForEach(tp => tp.Localize());*/
+        }
+
+        private void langComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (langComboBox.SelectedIndex == 0)
+            {
+                appConfig.Language = "ru";
+            }
+            else
+            {
+                appConfig.Language = "en";
+            }
+        }
+
+        private async void generateButton_Click(object sender, EventArgs e)
+        {
+            if (new GenerateDialog(appConfig).ShowDialog() == DialogResult.OK)
+            {
+                foreach (var c in _configs)
+                {
+                    await ConfigHandler.Save(c);
+                }
+
+                DirectoryInfo outputDir;
+                try
+                {
+                    var path = appConfig.GamedataPath.Replace("/", "\\");
+                    var gamedata = path.EndsWith("\\") ? $"gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}" : $"\\gamedata {DateTime.Now:dd.MM.yyyy HH.mm.ss}";
+                    outputDir = await Task.Run(() => Directory.CreateDirectory(appConfig.GamedataPath + gamedata));
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm("", ex).ShowDialog();
+                    return;
+                }
+
+                var outPath = outputDir.FullName;
+                var randomProbability = appConfig.RandomProbability;
+
+                void changeElementsStatus(bool enabled)
+                {
+                    generateButton.Enabled = enabled;
+                    tabControl.Enabled = enabled;
+                    langComboBox.Enabled = enabled;
+                }
+
+                changeElementsStatus(false);
+
+                var usedGenerators = new List<IGenerator>();
+
+                //тайники
+                if (appConfig.GenerateStashes)
+                {
+                    stashGenerator.UpdateData(stashConfig, outPath, randomProbability);
+                    usedGenerators.Add(stashGenerator);
+                }
+                //артефакты
+                if (appConfig.GenerateArtefacts)
+                {
+                    artefactGenerator.UpdateData(itemConfig, outPath, randomProbability);
+                    usedGenerators.Add(artefactGenerator);
+                }
+                //оружие
+                if (appConfig.GenerateWeapons)
+                {
+                    weaponGenerator.UpdateData(weaponConfig, outPath, randomProbability);
+                    usedGenerators.Add(weaponGenerator);
+                }
+                //бронь
+                if (appConfig.GenerateArmors)
+                {
+                    armorGenerator.UpdateData(itemConfig, outPath, randomProbability);
+                    usedGenerators.Add(armorGenerator);
+                }
+                //нпс
+                if (appConfig.GenerateNpc)
+                {
+                    npcGenerator.UpdateData(npcConfig, outPath, randomProbability);
+                    usedGenerators.Add(npcGenerator);
+                }
+                //погода
+                if (appConfig.GenerateWeather)
+                {
+                    weatherGenerator.UpdateData(weatherConfig, outPath, randomProbability);
+                    usedGenerators.Add(weatherGenerator);
+                }
+                //трупы
+                if (appConfig.GenerateDeathItems)
+                {
+                    deathItemsGenerator.UpdateData(deathItemsConfig, outPath, randomProbability);
+                    usedGenerators.Add(deathItemsGenerator);
+                }
+                //торговцы
+                if (appConfig.GenerateTraderItems)
+                {
+                    tradeGenerator.UpdateData(traderItemsConfig, outPath, randomProbability);
+                    usedGenerators.Add(tradeGenerator);
+                }
+                //расходники
+                if (appConfig.GenerateConsumables)
+                {
+                    consumableGenerator.UpdateData(itemConfig, outPath, randomProbability);
+                    usedGenerators.Add(consumableGenerator);
+                }
+                //диалоги
+                if (appConfig.GenerateDialogs)
+                {
+                    dialogGenerator.UpdateData(dialogConfig, outPath, randomProbability);
+                    usedGenerators.Add(dialogGenerator);
+                }
+
+                //доп функции
+                if (appConfig.GenerateAdditional)
+                {
+                    if (additionalConfig.UseBrokenTranslate || additionalConfig.ShuffleText)
+                    {
+                        textGenerator.UpdateData(additionalConfig, outPath, randomProbability);
+                        usedGenerators.Add(textGenerator);
+                    }
+
+                    if (additionalConfig.AnyCopyEnabled())
+                    {
+                        additionalParameters.UpdateData(additionalConfig, outPath, randomProbability);
+                        usedGenerators.Add(additionalParameters);
+                    }
+                }
+
+                var maxProgress = usedGenerators.Count;
+                if (appConfig.GenerateSounds) maxProgress++;
+                if (appConfig.GenerateTextures) maxProgress++;
+
+                progressBar.Maximum = maxProgress;
+                progressBar.Value = 0;
+
+                var status = true;
+                foreach (var g in usedGenerators)
+                {
+                    statusLabel.Text = g.StatusText();
+                    status = await HandleGenerator(g);
+                    if (!status) break;
+                    progressBar.Value++;
+                }
+
+                if (!status)
+                {
+                    changeElementsStatus(true);
+                    return;
+                }
+
+                //звуки
+                if (appConfig.GenerateSounds)
+                {
+                    soundRandomizer.UpdateData(soundTextureConfig, outPath, randomProbability);
+                    statusLabel.Text = soundRandomizer.StatusText();
+                    try
+                    {
+                        await soundRandomizer.Generate();
+                        if (soundRandomizer.Error != null)
+                        {
+                            new InfoForm(Localization.Get("soundsError"), soundRandomizer.Error).ShowDialog();
+                            status = false;
+                        }
+                        else
+                        {
+                            progressBar.Value++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        soundRandomizer.Stop = true;
+                        new InfoForm(Localization.Get("soundsError"), ex).ShowDialog();
+                        status = false;
+                    }
+                }
+                if (isClosing) return;
+
+                //текстуры
+                if (appConfig.GenerateTextures)
+                {
+                    textureRandomizer.UpdateData(soundTextureConfig, outPath, randomProbability);
+                    statusLabel.Text = textureRandomizer.StatusText();
+                    try
+                    {
+                        await textureRandomizer.Generate();
+                        if (textureRandomizer.Error != null)
+                        {
+                            new InfoForm(Localization.Get("texturesError"), textureRandomizer.Error).ShowDialog();
+                            status = false;
+                        }
+                        else
+                        {
+                            progressBar.Value++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        textureRandomizer.Stop = true;
+                        new InfoForm(Localization.Get("texturesError"), ex).ShowDialog();
+                        status = false;
+                    }
+                }
+                if (isClosing) return;
+
+                if (!status)
+                {
+                    changeElementsStatus(true);
+                    return;
+                }
+
+                new InfoForm(Localization.Get("savedIn") + " " + outPath).ShowDialog();
+                changeElementsStatus(true);
+                statusLabel.Text = "";
+                progressBar.Value = 0;
+            }
+        }
+
+        private async Task<bool> HandleGenerator(IGenerator generator)
+        {
+            try
+            {
+                await generator.Generate();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                new InfoForm("", ex).ShowDialog();
+                return false;
+            }
         }
     }
 }

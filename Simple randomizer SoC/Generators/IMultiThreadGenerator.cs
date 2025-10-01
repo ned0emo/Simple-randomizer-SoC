@@ -11,7 +11,7 @@ namespace Simple_randomizer_SoC.Generators
     {
         bool Stop { get; set; }
         Exception Error { get; }
-        Action<int> OnProgress { get; set; }
+        Action<string> OnStatusChange { get; set; }
         bool IsProcessing();
         Task StopProcessing();
     }

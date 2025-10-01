@@ -23,7 +23,7 @@ namespace Simple_randomizer_SoC.Generators
                 throw new ArgumentOutOfRangeException(nameof(config.MinArtefactStatCount), "Минимальное значение количества статов артефактов не может быть больше максимального");
             }
 
-            var outPath = newConfigPath + "\\misc\\artefacts.ltx";
+            var outPath = base.outPath + "\\config\\misc\\artefacts.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\artefacts.ltx")
                 ?? throw new CustomException("Ошибка чтения файла с данными об артефактах");
 
@@ -90,6 +90,11 @@ namespace Simple_randomizer_SoC.Generators
             copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             await MyFile.Write(outPath, ltx.ToString());
+        }
+
+        public override string StatusText()
+        {
+            return Localization.Get("artefactsGen");
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection mainSection, LtxSection absorbationSection,

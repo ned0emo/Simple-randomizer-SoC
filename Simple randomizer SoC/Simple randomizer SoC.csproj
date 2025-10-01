@@ -81,7 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Additional\AdditionalParams.cs" />
     <Compile Include="Enums\ParameterType.cs" />
     <Compile Include="Forms\Dialogs\AddOrderableParameterDialog.cs">
       <SubType>Form</SubType>
@@ -101,7 +100,14 @@
     <Compile Include="Forms\Dialogs\ComplexListDialog.Designer.cs">
       <DependentUpon>ComplexListDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\GenerateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\GenerateDialog.Designer.cs">
+      <DependentUpon>GenerateDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\IListDialog.cs" />
+    <Compile Include="Forms\Dialogs\ILocalizable.cs" />
     <Compile Include="Forms\Dialogs\OrderableParameterListDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,12 @@
     </Compile>
     <Compile Include="Forms\Support\DataListEditor.cs" />
     <Compile Include="Forms\Support\ParametersEditor.cs" />
+    <Compile Include="Forms\Tabs\AdditionalTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Tabs\AdditionalTab.Designer.cs">
+      <DependentUpon>AdditionalTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tabs\DialogTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -179,6 +191,7 @@
     <Compile Include="Forms\Templates\TraderItemsControl.Designer.cs">
       <DependentUpon>TraderItemsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generators\AdditionalParameters.cs" />
     <Compile Include="Generators\ArmorGenerator.cs" />
     <Compile Include="Generators\ConsumableGenerator.cs" />
     <Compile Include="Generators\DeathItemsGenerator2.cs" />
@@ -189,10 +202,12 @@
     <Compile Include="Generators\NpcGenerator2.cs" />
     <Compile Include="Generators\SoundRandomizer2.cs" />
     <Compile Include="Generators\Support\SectionParametersShuffler.cs" />
+    <Compile Include="Generators\TextGenerator.cs" />
     <Compile Include="Generators\TextureRandomizer2.cs" />
     <Compile Include="Generators\TradeGenerator2.cs" />
     <Compile Include="Generators\WeaponGenerator.cs" />
     <Compile Include="Generators\WeatherGenerator.cs" />
+    <Compile Include="Models\AppConfig\AdditionalConfig.cs" />
     <Compile Include="Models\AppConfig\DeathItemsConfig.cs" />
     <Compile Include="Models\AppConfig\DialogConfig.cs" />
     <Compile Include="Models\AppConfig\ItemConfig.cs" />
@@ -289,6 +304,9 @@
     <EmbeddedResource Include="Forms\Dialogs\ComplexListDialog.resx">
       <DependentUpon>ComplexListDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\GenerateDialog.resx">
+      <DependentUpon>GenerateDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\OrderableParameterListDialog.resx">
       <DependentUpon>OrderableParameterListDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\SimpleListDialog.resx">
       <DependentUpon>SimpleListDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tabs\AdditionalTab.resx">
+      <DependentUpon>AdditionalTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tabs\DialogTab.resx">
       <DependentUpon>DialogTab.cs</DependentUpon>

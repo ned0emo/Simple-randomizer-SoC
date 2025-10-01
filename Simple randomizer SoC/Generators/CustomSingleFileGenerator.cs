@@ -39,6 +39,11 @@ namespace Simple_randomizer_SoC.Generators
             }*/
         }
 
+        public string StatusText()
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateData(SingleFileGeneratorConfig config, string baseOutPath, bool randomProbability)
         {
             throw new NotImplementedException();

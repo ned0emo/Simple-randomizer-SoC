@@ -29,7 +29,7 @@ namespace Simple_randomizer_SoC.Generators
         public async Task Generate()
         {
             var path = MyEnvironment.configPath + "\\gameplay_dialogs";
-            var outPath = _outPath + "\\gameplay\\";
+            var outPath = _outPath + "\\config\\gameplay\\";
 
             var outDocs = new Dictionary<string, XmlDocument>();
 
@@ -320,6 +320,11 @@ namespace Simple_randomizer_SoC.Generators
                     }
                 }
             }
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("dialogsGen");
         }
 
         public void UpdateData(DialogConfig config, string baseOutPath, bool randomProbability)

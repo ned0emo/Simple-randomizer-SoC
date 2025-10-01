@@ -13,7 +13,7 @@ namespace Simple_randomizer_SoC.Generators
     {
         public override async Task Generate()
         {
-            var outPath = newConfigPath + "\\misc\\items.ltx";
+            var outPath = base.outPath + "\\config\\misc\\items.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\items.ltx")
                 ?? throw new CustomException("Ошибка чтения файла с данными о расходниках");
 
@@ -45,6 +45,11 @@ namespace Simple_randomizer_SoC.Generators
             copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
             await MyFile.Write(outPath, ltx.ToString());
+        }
+
+        public override string StatusText()
+        {
+            return Localization.Get("consumablesGen");
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection section,

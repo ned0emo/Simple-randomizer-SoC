@@ -37,8 +37,7 @@ namespace Simple_randomizer_SoC.Generators
         }
 
         public Exception Error { get; private set; }
-
-        public Action<int> OnProgress { get; set; } = (_) => { };
+        public Action<string> OnStatusChange { get; set; } = (_) => { };
 
         public async Task Generate()
         {
@@ -149,7 +148,11 @@ namespace Simple_randomizer_SoC.Generators
                             duration = (int)vorbis.TotalTime.TotalSeconds / _config.SoundLengthRound * _config.SoundLengthRound;
                         }
 
-                        FilesCount++;
+                        if (FilesCount++ % 100 == 0)
+                        {
+                            OnStatusChange(StatusText() + ": " + file);
+                        }
+
                         lock (_classifiedFiles)
                         {
                             if (_classifiedFiles.Keys.Contains(duration))
@@ -192,6 +195,7 @@ namespace Simple_randomizer_SoC.Generators
         void CopyAndRename()
         {
             if (FilesCount == 0) return;
+            OnStatusChange(StatusText() + ": " + Localization.Get("copying"));
 
             int progress = 0;
             try
@@ -202,7 +206,6 @@ namespace Simple_randomizer_SoC.Generators
 
                     if (files.Count == 1)
                     {
-                        OnProgress(++progress);
                         continue;
                     }
 
@@ -223,14 +226,17 @@ namespace Simple_randomizer_SoC.Generators
                         progress++;
                     }
                 }
-
-                OnProgress(FilesCount);
             }
             catch (Exception ex)
             {
                 Stop = true;
                 Error = ex;
             }
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("soundsGen");
         }
     }
 }

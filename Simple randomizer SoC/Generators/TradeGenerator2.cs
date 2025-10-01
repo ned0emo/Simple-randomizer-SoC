@@ -21,7 +21,7 @@ namespace Simple_randomizer_SoC.Generators
 
         public async Task Generate()
         {
-            var outPath = _outPath + "\\misc\\";
+            var outPath = _outPath + "\\config\\misc\\";
             var dir = new DirectoryInfo(MyEnvironment.configPath + "\\misc_traders");
 
             var files = new List<LtxData>();
@@ -99,6 +99,11 @@ namespace Simple_randomizer_SoC.Generators
             {
                 await MyFile.Write(outPath + file.FileName, file.ToString());
             }
+        }
+
+        public string StatusText()
+        {
+            return Localization.Get("tradersGen");
         }
 
         public void UpdateData(TraderItemsConfig config, string baseOutPath, bool randomProbability)

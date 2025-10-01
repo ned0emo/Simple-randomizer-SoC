@@ -7,6 +7,8 @@
         public const string scriptsPath = ".\\rndata\\gamedata\\scripts";
         public const string spawnsPath = ".\\rndata\\gamedata\\spawns";
 
+        public const string appConfig = "app_config.json";
+
         public const string stashConfig = "stash_config.json";
         public const string weaponConfig = "weapon_config.json";
         public const string itemConfig = "item_config.json";
@@ -16,5 +18,6 @@
         public const string dialogConfig = "dialog_config.json";
         public const string traderItemsConfig = "trader_items_config.json";
         public const string deathItemsConfig = "death_items_config.json";
+        public const string additionalConfig = "additional_config.json";
     }
 }
