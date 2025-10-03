@@ -19,13 +19,7 @@ namespace Simple_randomizer_SoC.Generators
         protected ItemConfig config = null;
         protected string outPath = null;
 
-        public void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
-        {
-            this.config = config;
-            this.outPath = newConfigPath;
-
-            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArtefactProbability);
-        }
+        public abstract void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability);
 
         public abstract Task Generate();
 

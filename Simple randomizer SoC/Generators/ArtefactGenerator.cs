@@ -5,6 +5,7 @@ using Simple_randomizer_SoC.Models.Parameters;
 using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -37,13 +38,10 @@ namespace Simple_randomizer_SoC.Generators
 
             foreach (var afSec in config.ArtefactSections)
             {
-                var mainSection = ltx.GetSectionByName(afSec);
+                var mainSection = ltx.GetSectionByName(afSec.Name);
                 if (!mainSection.HasParam("hit_absorbation_sect")) continue;
 
-                var absorbationSectionInList = mainSection.GetParam("hit_absorbation_sect");
-                if (absorbationSectionInList.Count == 0) continue;
-
-                var absorbationSection = ltx.GetSectionByName(absorbationSectionInList[0]);
+                var absorbationSection = ltx.GetSectionByName(afSec.AbsorbationSection);
                 if (absorbationSection == null) continue;
 
                 if (mainSection == null || absorbationSection == null) continue;
@@ -66,6 +64,132 @@ namespace Simple_randomizer_SoC.Generators
                 HandleParameters(config.StatArtefactParameters1, mainSection, absorbationSection,
                     mainSectionsByShuffleParam, mainParamValuesByShuffleParam, absorbationSectionsByShuffleParam,
                     absorbationParamValuesByShuffleParam, copyParameters, replacingStats, "1.0");
+
+                //убеждаемся, что статов не больше указанного макс количества
+                var nonZeroParams = new Dictionary<LtxSection, List<string>>();
+                var nonOneParams = new Dictionary<LtxSection, List<string>>();
+                int count = 0;
+
+                var sections = new List<LtxSection> { mainSection, absorbationSection };
+
+                config.StatArtefactParameters0.ForEachParameter(p =>
+                {
+                    foreach (var section in sections)
+                    {
+                        //секция имеет параметр
+                        if (section.HasParam(p.Name))
+                        {
+                            //параметр не пустой
+                            var paramValue = section.GetParam(p.Name).FirstOrDefault();
+                            if (string.IsNullOrWhiteSpace(paramValue)) return;
+
+                            //параметр число, которое не равно 0 (округляя)
+                            if (double.TryParse(paramValue, NumberStyles.Float, CultureInfo.InvariantCulture, out var number))
+                            {
+                                if (number < 0.000001 && number > -0.000001) return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+
+                            //добавляем в список существующих параметров
+                            if (nonZeroParams.TryGetValue(section, out var list))
+                            {
+                                list.Add(p.Name);
+                            }
+                            else
+                            {
+                                nonZeroParams[section] = new List<string> { p.Name };
+                            }
+                            count++;
+                        }
+                    }
+                });
+
+                config.StatArtefactParameters1.ForEachParameter(p =>
+                {
+                    foreach (var section in sections)
+                    {
+                        //секция имеет параметр
+                        if (section.HasParam(p.Name))
+                        {
+                            //параметр не пустой
+                            var paramValue = section.GetParam(p.Name).FirstOrDefault();
+                            if (string.IsNullOrWhiteSpace(paramValue)) return;
+
+                            //параметр число, которое не равно 0 (округляя)
+                            if (double.TryParse(paramValue, NumberStyles.Float, CultureInfo.InvariantCulture, out var number))
+                            {
+                                if (number < 1.001 && number > 0.99) return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+
+                            //добавляем в список существующих параметров
+                            if (nonOneParams.TryGetValue(section, out var list))
+                            {
+                                list.Add(p.Name);
+                            }
+                            else
+                            {
+                                nonOneParams[section] = new List<string> { p.Name };
+                            }
+                            count++;
+                        }
+                    }
+                });
+
+                while (count > config.MaxArtefactStatCount)
+                {
+                    Dictionary<LtxSection, List<string>> removingDict;
+                    string defValue;
+
+                    if (nonOneParams.Count > 0 && nonZeroParams.Count > 0)
+                    {
+                        if (rnd.Next(2) == 0)
+                        {
+                            removingDict = nonOneParams;
+                            defValue = "1.0";
+                        }
+                        else
+                        {
+                            removingDict = nonZeroParams;
+                            defValue = "0.0";
+                        }
+                    }
+                    else if (nonOneParams.Count > 0)
+                    {
+                        removingDict = nonOneParams;
+                        defValue = "1.0";
+                    }
+                    else
+                    {
+                        removingDict = nonZeroParams;
+                        defValue = "0.0";
+                    }
+
+                    LtxSection removingSection;
+                    if (removingDict.Count > 1)
+                    {
+                        removingSection = rnd.Next(2) == 0 ? mainSection : absorbationSection;
+                    }
+                    else if (removingDict.ContainsKey(mainSection))
+                    {
+                        removingSection = mainSection;
+                    }
+                    else
+                    {
+                        removingSection = absorbationSection;
+                    }
+
+                    var removingParam = CollectionUtils.GetRandomElement(removingDict[removingSection], rnd);
+                    removingDict[removingSection].Remove(removingParam);
+                    removingSection.SetParam(removingParam, defValue);
+                    count--;
+                }
             }
 
             //перемешивание
@@ -96,6 +220,14 @@ namespace Simple_randomizer_SoC.Generators
         public override string StatusText()
         {
             return Localization.Get("artefactsGen");
+        }
+
+        public override void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
+        {
+            this.config = config;
+            this.outPath = newConfigPath;
+
+            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArtefactProbability);
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection mainSection, LtxSection absorbationSection,

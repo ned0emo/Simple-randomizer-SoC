@@ -11,7 +11,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
 {
     public class ItemConfig : IConfig
     {
-        public List<string> ArtefactSections { get; set; } = new List<string>();
+        public List<ArtefactStats> ArtefactSections { get; set; } = new List<ArtefactStats>();
         public ParameterContainer StandardArtefactParameters { get; set; } = new ParameterContainer();
         public ParameterContainer StatArtefactParameters0 { get; set; } = new ParameterContainer();
         public ParameterContainer StatArtefactParameters1 { get; set; } = new ParameterContainer();
@@ -31,5 +31,11 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public int ConsumableProbability { get; set; } = 100;
         [JsonIgnore]
         public string Path => MyEnvironment.itemConfig;
+    }
+
+    public class ArtefactStats
+    {
+        public string Name { get; set; }
+        public string AbsorbationSection { get; set; }
     }
 }

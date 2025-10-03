@@ -1,4 +1,5 @@
 ﻿using Simple_randomizer_SoC.Model;
+using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Models.Parameters;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -13,6 +14,14 @@ namespace Simple_randomizer_SoC.Generators
 {
     public class ArmorGenerator : ItemGenerator
     {
+        public override void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
+        {
+            this.config = config;
+            this.outPath = newConfigPath;
+
+            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArmorProbability);
+        }
+
         public override async Task Generate()
         {
             var outPath = base.outPath + "\\config\\misc\\outfit.ltx";

@@ -38,7 +38,10 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void artefactSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции артефактов", config.ArtefactSections), config);
+            var dialog = new ComplexListDialog<ArtefactStats>("Секции артефактов", config.ArtefactSections, new List<string> { "Артефакт", "Секция характеристик" });
+            dialog.RowValidator = (afStat) => !string.IsNullOrWhiteSpace(afStat.Name) && !string.IsNullOrWhiteSpace(afStat.AbsorbationSection);
+
+            await listEditComponent.OpenEditThenSave<ComplexListDialog<ArtefactStats>, ArtefactStats>(dialog, config);
         }
 
         private async void artefactParametersButton_Click(object sender, EventArgs e)
