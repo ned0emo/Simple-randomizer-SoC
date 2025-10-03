@@ -1,6 +1,7 @@
 ﻿using Simple_randomizer_SoC.Models.AppConfig;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace Simple_randomizer_SoC.Generators
             var outConfigPath = _outPath + "\\config\\scripts\\";
             var outSciptsPath = _outPath + "\\scripts\\";
             var outSpawnPath = _outPath + "\\spawns\\";
+
+            Directory.CreateDirectory(outConfigPath);
+            Directory.CreateDirectory(outSciptsPath);
+            Directory.CreateDirectory(outSpawnPath);
 
             if (_config.IncreaseNpcRespawn)
             {

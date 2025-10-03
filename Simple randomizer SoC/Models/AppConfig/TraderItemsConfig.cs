@@ -22,7 +22,7 @@ namespace Simple_randomizer_SoC.Models.AppConfig
         public int Probability { get; set; } = 100;
 
         [JsonIgnore]
-        public string Path => MyEnvironment.deathItemsConfig;
+        public string Path => MyEnvironment.traderItemsConfig;
 
         public void ForEachParameter(Action<TraderItemsParameters> action)
         {

@@ -43,47 +43,9 @@ namespace Simple_randomizer_SoC.Generators
             //оружие для патронов и прочее
             var genericLtx = await LtxData.Load(prefix + deathGenericName);
 
+            var requierdParams = new HashSet<string>();
             _config.ForEachParameter((p) =>
             {
-                p.ItemCountsByDifficulty.ForEach(c =>
-                {
-                    var section = difficultyLtx.GetSectionByName(c.Name);
-                    if (section == null) return;
-
-                    p.Items.ForEach(i =>
-                    {
-                        _probabilityChecker.DoOrSkip(_rnd, () =>
-                        {
-                            var value1 = _rnd.Next(c.MinCount, c.MaxCount + 1);
-                            var value2 = _rnd.Next(c.MinCount, c.MaxCount + 1);
-
-                            if (value1 == value2)
-                            {
-                                section.SetParam(i, value1.ToString());
-                            }
-                            else
-                            {
-                                if (value1 > value2) (value1, value2) = (value2, value1);
-                                section.SetParam(i, new List<string> { value1.ToString(), value2.ToString() });
-                            }
-                        });
-                    });
-                });
-
-                p.ItemCountsByLevel.ForEach(c =>
-                {
-                    var section = levelsLtx.GetSectionByName(c.Name);
-                    if (section == null) return;
-
-                    p.Items.ForEach(i =>
-                    {
-                        _probabilityChecker.DoOrSkip(_rnd, () =>
-                        {
-                            section.SetParam(i, _rnd.Next(c.MinCount, c.MaxCount + 1).ToString());
-                        });
-                    });
-                });
-
                 p.ItemProbabilitiesByCommunity.ForEach(c =>
                 {
                     var section = communitiesLtx.GetSectionByName(c.Name);
@@ -99,7 +61,76 @@ namespace Simple_randomizer_SoC.Generators
                         });
                     });
                 });
+
+                //все параметры с файла группировок должны быть в остальных файлах по сложности и по уровню
+                foreach (var section in communitiesLtx.Sections)
+                {
+                    foreach (var param in section.ParamNames())
+                    {
+                        requierdParams.Add(param);
+                    }
+                }
+
+                p.ItemCountsByDifficulty.ForEach(c =>
+                {
+                    var section = difficultyLtx.GetSectionByName(c.Name);
+                    if (section == null) return;
+
+                    p.Items.ForEach(i =>
+                    {
+                        if (requierdParams.Contains(i) && section.ParentName == null || !_probabilityChecker.Skip(_rnd))
+                        {
+                            var value1 = _rnd.Next(c.MinCount, c.MaxCount + 1);
+                            var value2 = _rnd.Next(c.MinCount, c.MaxCount + 1);
+
+                            if (value1 == value2)
+                            {
+                                section.SetParam(i, value1.ToString());
+                            }
+                            else
+                            {
+                                if (value1 > value2) (value1, value2) = (value2, value1);
+                                section.SetParam(i, new List<string> { value1.ToString(), value2.ToString() });
+                            }
+                        }
+                    });
+                });
+
+                p.ItemCountsByLevel.ForEach(c =>
+                {
+                    var section = levelsLtx.GetSectionByName(c.Name);
+                    if (section == null) return;
+
+                    p.Items.ForEach(i =>
+                    {
+                        if (requierdParams.Contains(i) && section.ParentName == null || !_probabilityChecker.Skip(_rnd))
+                        {
+                            section.SetParam(i, _rnd.Next(c.MinCount, c.MaxCount + 1).ToString());
+                        }
+                    });
+                });
             });
+
+            foreach (var section in levelsLtx.Sections)
+            {
+                foreach (var rp in requierdParams)
+                {
+                    if (!section.HasParam(rp) && section.ParentName == null)
+                    {
+                        section.SetParam(rp, "0");
+                    }
+                }
+            }
+            foreach (var section in difficultyLtx.Sections)
+            {
+                foreach (var rp in requierdParams)
+                {
+                    if (!section.HasParam(rp) && section.ParentName == null)
+                    {
+                        section.SetParam(rp, "0");
+                    }
+                }
+            }
 
             //count1 - мин кол-во для сложности
             //count2 - макс колво для сложности
@@ -190,6 +221,8 @@ namespace Simple_randomizer_SoC.Generators
             var communitiesLtx = await LtxData.Load(prefix + deathItemsByCommunitiesName);
             //оружие для патронов и прочее
             var genericLtx = await LtxData.Load(prefix + deathGenericName);*/
+
+            Directory.CreateDirectory(outPath);
 
             await MyFile.Write(outPath + deathItemsCountName, difficultyLtx.ToString());
             await MyFile.Write(outPath + deathItemsByLevelsName, levelsLtx.ToString());

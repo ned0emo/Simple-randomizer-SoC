@@ -64,6 +64,11 @@ namespace Simple_randomizer_SoC.Model
             return _params.TryGetValue(name, out values);
         }
 
+        public ICollection<string> ParamNames()
+        {
+            return _params.Keys;
+        }
+
         public bool HasParam(string name)
         {
             return _params.ContainsKey(name);

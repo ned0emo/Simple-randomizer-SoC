@@ -24,8 +24,6 @@ namespace RandomizerSoC
         {
             InitializeComponent();
 
-            this.Text = Localization.Get("infoFornName");
-
             label1.Text = errorTitle;
 
             if (errorMessage.Length > 0)
@@ -42,8 +40,6 @@ namespace RandomizerSoC
         public InfoForm(string errorTitle, Exception ex)
         {
             InitializeComponent();
-
-            this.Text = Localization.Get("infoFornName");
 
             label1.Text = errorTitle;
 

@@ -70,10 +70,30 @@ namespace Simple_randomizer_SoC.Generators
                 else outPath += "eng";
                 Directory.CreateDirectory(outPath);
 
+                var settings = new XmlWriterSettings
+                {
+                    Indent = true,
+                    IndentChars = "\t",
+                    NewLineChars = Environment.NewLine,
+                    OmitXmlDeclaration = true
+                };
+
                 foreach (var doc in docs)
                 {
-                    var text = doc.Value.OuterXml;
-                    await MyFile.Write(outPath + doc.Key, text.Replace(_prefix, "").Replace(_postfix, ""));
+                    string text = doc.Value.OuterXml;
+
+                    using (var sw = new StringWriter())
+                    using (var xw = XmlWriter.Create(sw, settings))
+                    {
+                        doc.Value.Save(xw);
+                        text = sw.ToString();
+                    }
+
+                    if (text.Contains(_prefix))
+                    {
+                        text = text.Replace(_prefix, "").Replace(_postfix, "");
+                    }
+                    await MyFile.Write(outPath + doc.Key, text);
                 }
             }
         }
@@ -153,7 +173,10 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     if (brokenTextById.ContainsKey(mainText.Key))
                     {
-                        mainText.Value.InnerText = brokenTextById[mainText.Key].InnerText;
+                        var text = brokenTextById[mainText.Key].InnerText;
+                        if (string.IsNullOrWhiteSpace(text)) return;
+
+                        mainText.Value.InnerText = text;
                     }
                 });
             }
@@ -171,6 +194,8 @@ namespace Simple_randomizer_SoC.Generators
                 {
                     _shuffleProbabilityChecker.DoOrSkip(_rnd, () =>
                     {
+                        if (string.IsNullOrWhiteSpace(el.InnerText)) return;
+
                         var length = el.InnerText.Length / 5 * 5;
                         if (elementsByLength.TryGetValue(length, out var list))
                         {

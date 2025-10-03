@@ -139,7 +139,9 @@ namespace Simple_randomizer_SoC.Generators
                 shuffler.ShuffleSingle(descriptions, sectionsToShuffleDescriptions, "description", rnd);
             }
 
-            await MyFile.Write($"{_outPath}\\config\\misc\\treasure_manager.ltx", ltx.ToString());
+            var outPath = $"{_outPath}\\config\\misc\\treasure_manager.ltx";
+            Directory.CreateDirectory(Path.GetDirectoryName(outPath));
+            await MyFile.Write(outPath, ltx.ToString());
         }
 
         //Предмет и количество для добавления в тайник

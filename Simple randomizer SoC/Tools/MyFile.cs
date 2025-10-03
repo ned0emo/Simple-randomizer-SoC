@@ -23,8 +23,8 @@ namespace Simple_randomizer_SoC
 
         public static async Task Write(string path, string content)
         {
-            path = path.Replace("/", "\\");
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            //path = path.Replace("/", "\\");
+            //Directory.CreateDirectory(Path.GetDirectoryName(path));
             using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
             {
                 await sw.WriteAsync(content);
@@ -32,15 +32,12 @@ namespace Simple_randomizer_SoC
             }
         }
 
+        /// <summary>
+        /// Перед вызовом обязательно создать папку, куда будет скопирован файл
+        /// </summary>
         public static async Task CopyFileAsync(string sourcePath, string destinationPath,
             int bufferSize = 4096, CancellationToken cancellationToken = default)
         {
-            var dir = Path.GetDirectoryName(destinationPath);
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-
             using (var sourceStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read,
                 bufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan))
             {

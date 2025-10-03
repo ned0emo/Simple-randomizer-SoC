@@ -121,16 +121,17 @@ namespace RandomizerSoC
                     }));
                 };
 
-                if (Localization.IsFirstLoadEnglish())
+                if (appConfig.Language == null || appConfig.Language == "ru")
                 {
-                    //engRadioButton.Checked = true;
+                    langComboBox.SelectedIndex = 0;
                 }
                 else
                 {
-                    //rusRadioButton.Checked = true;
+                    langComboBox.SelectedIndex = 1;
                 }
-                //rusRadioButton.Click += RusRadioButton_Click;
-                //engRadioButton.Click += EngRadioButton_Click;
+                //это вызовется в событии на изменение индекса
+                //Localization.ChangeLanguage(appConfig.Language);
+                //Localize();
             }
             catch (Exception ex)
             {
@@ -138,37 +139,6 @@ namespace RandomizerSoC
             }
             Enabled = true;
         }
-
-        private void RusRadioButton_Click(object sender, EventArgs e)
-        {
-            Localization.ChangeLanguage(false);
-            Localize();
-
-            Localization.SaveDefault("rus");
-        }
-
-        private void EngRadioButton_Click(object sender, EventArgs e)
-        {
-            Localization.ChangeLanguage(true);
-            Localize();
-
-            Localization.SaveDefault("eng");
-        }
-
-        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            new InfoForm(Localization.Get("twoWords"), Localization.Get("onePointFourAdvertise")).ShowDialog();
-        }
-
-        #region звуки текстуры
-        private void GameSoundCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void TexturesCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-        #endregion
 
         private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -178,7 +148,7 @@ namespace RandomizerSoC
             try
             {
                 e.Cancel = true;
-                //generateButton.Enabled = false;
+                generateButton.Enabled = false;
 
                 if (soundRandomizer.IsProcessing() || textureRandomizer.IsProcessing())
                 {
@@ -222,111 +192,21 @@ namespace RandomizerSoC
         public void Localize()
         {
             this.Text = Localization.Get("mainFormName");
-            //tabPage1.Text = Localization.Get("weaponsTab");
-            //tabPage6.Text = Localization.Get("ItemsTab");
-            //tabPage9.Text = Localization.Get("npcTab");
-            //tabPage2.Text = Localization.Get("weatherTab");
-            additionalTab.Text = Localization.Get("advancedTab");
-            //advancedTab2.Text = Localization.Get("advancedTab") + " 2";
-            //saveButton.Text = Localization.Get("saveLists");
-            //loadButton.Text = Localization.Get("loadLists");
-            //generateButton.Text = Localization.Get("generate");
-            //loadDefaultButton.Text = Localization.Get("defaultLists");
-            //label17.Text = Localization.Get("reloadSoundListTitle");
-            //label10.Text = Localization.Get("ammoListTitle");
-            //label1.Text = Localization.Get("weaponListTitle");
-            //label19.Text = Localization.Get("shootSoundListTitle");
-            //label12.Text = Localization.Get("outfits");
-            //label11.Text = Localization.Get("artefacts");
-            //label9.Text = Localization.Get("otherListTitle");
-            //label7.Text = Localization.Get("consumableListTitle");
-            //label2.Text = Localization.Get("communityListTitle");
-            //namesCheckBox.Text = Localization.Get("nameListTitle");
-            //iconsCheckBox.Text = Localization.Get("iconListTitle");
-            //soundsCheckBox.Text = Localization.Get("soundListTitle");
-            //modelsCheckBox.Text = Localization.Get("modelListTitle");
-            //onlyGenerateCheckBox.Text = Localization.Get("generateNameOnlyCheckBox");
-            //label3.Text = Localization.Get("exceptionListTitle");
-            //label16.Text = Localization.Get("thunderProbability");
-            //label15.Text = Localization.Get("rainProbability");
-            //label14.Text = Localization.Get("weatherHelp");
-            //label5.Text = Localization.Get("thunderListTitle");
-            //label13.Text = Localization.Get("skyboxListTitle");
-            //gScriptCheckBox.Text = Localization.Get("gScriptFix");
-            //advancedGulagCheckBox.Text = Localization.Get("moreGulag");
-            //shuffleTextCheckBox.Text = Localization.Get("shuffleText");
-            //translateCheckBox.Text = Localization.Get("funnyTranslate");
-            //label6.Text = Localization.Get("advancedText");
-            //disableFreedomAgressionCheckBox.Text = Localization.Get("freedomAgression");
-            //recommendLabel1.Text = Localization.Get("recommended");
-            //recommendLabel2.Text = Localization.Get("recommended");
-            //recommendLabel3.Text = Localization.Get("recommended");
-            //recommendLabel4.Text = Localization.Get("recommended");
-            //giveKnifeCheckBox.Text = Localization.Get("knifeAtStart");
-            //moreRespawnCheckBox.Text = Localization.Get("moreRespawn");
-            //barAlarmCheckBox.Text = Localization.Get("barAlarm");
-            //equipWeaponEverywhereCheckBox.Text = Localization.Get("weaponEverywhere");
-            //communityCheckBox.Text = Localization.Get("changeCommunity");
-            //allCheckBox.Text = Localization.Get("selectAll");
-            //treasureCheckBox.Text = Localization.Get("caches");
-            //afCheckBox.Text = Localization.Get("artefacts");
-            //weaponCheckBox.Text = Localization.Get("weaponsTab");
-            //armorCheckBox.Text = Localization.Get("outfits");
-            //npcCheckBox.Text = Localization.Get("npcTab");
-            //suppliesCheckBox.Text = Localization.Get("weaponsTab");
-            //rankCheckBox.Text = Localization.Get("rank");
-            //reputationCheckBox.Text = Localization.Get("reputation");
-            //label4.Text = Localization.Get("whatGenerate");
-            //linkLabel1.Text = Localization.Get("other");
-            //weatherCheckBox.Text = Localization.Get("weatherTab");
-            //deathItemsCheckBox.Text = Localization.Get("deathItems");
-            //onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
-            //tradersCheckBox.Text = Localization.Get("traderItems");
-            //consumablesCheckBox.Text = Localization.Get("consumables");
-
-            //advanced2Label.Text = Localization.Get("soundTexturesDescription");
-            //threadsLabel.Text = Localization.Get("maxThreads");
-            //gameSoundCheckBox.Text = Localization.Get("gameSounds");
-            //soundsPathButton.Text = Localization.Get("open");
-            //texturesPathButton.Text = Localization.Get("open");
-            //soundsPathLabel.Text = Localization.Get("soundsPath");
-            //stepRainCheckBox.Text = Localization.Get("stepRainSounds");
-            //roundDurationLabel.Text = Localization.Get("soundsRoundStep");
-            //texturesCheckBox.Text = Localization.Get("textures");
-            //texturesPathLabel.Text = Localization.Get("texturesPath");
-            //uiReplaceCheckBox.Text = Localization.Get("uiReplacement");
-            //epilepsyLabel.Text = Localization.Get("epilepsy");
-
-            //1.8
-            //dialogsTab.Text = Localization.Get("dialogs");
-            //dialogsCheckBox.Text = Localization.Get("dialogs");
-            //infosExceptionLabel.Text = Localization.Get("incorrectInfos");
-            //actionsExceptionLabel.Text = Localization.Get("incorrectActions");
-            //unlockTraderDoorCheckBox.Text = Localization.Get("traderDoor");
-            //label18.Text = Localization.Get("dialogsDescription");
-
-            //1.9
-            //probabilityTab.Text = Localization.Get("probabilityTab");
-            //probabilityDescription.Text = Localization.Get("probabilityDescription");
-            //allRandomProbabilityCheckbox.Text = Localization.Get("allRandomProbabilityCheckbox");
-
-            //artReplaceProbLabel.Text = Localization.Get("artReplcaeProbInput");
-            //itemReplaceProbLabel.Text = Localization.Get("itemReplaceProbInput");
-            //deathItemReplaceProbLabel.Text = Localization.Get("deathItemReplaceProbInput");
-            //npcReplaceProbLabel.Text = Localization.Get("npcReplaceProbInput");
-            //outfitReplaceProbLabel.Text = Localization.Get("outfitReplaceProbInput");
-            //stashReplaceProbLabel.Text = Localization.Get("stashReplaceProbInput");
-            //weaponReplaceProbLabel.Text = Localization.Get("weaponReplaceProbInput");
-            //weatherReplaceProbLabel.Text = Localization.Get("weatherReplaceProbInput");
-            //soundReplaceProbabilityLabel.Text = Localization.Get("soundReplaceProbabilityInput");
-            //textureReplaceProbabilityLabel.Text = Localization.Get("textureReplaceProbabilityInput");
-
-            /*tabControl.TabPages.Cast<TabPage>()
-                .Where(tp => tp is ILocalizable).Cast<ILocalizable>().ToList()
-                .ForEach(tp => tp.Localize());*/
+            stashTab.Text = Localization.Get("stashesTab");
+            weaponTab.Text = Localization.Get("weaponsTab");
+            itemTab.Text = Localization.Get("itemsTab");
+            npcTab.Text = Localization.Get("npcTab");
+            weatherTab.Text = Localization.Get("weatherTab");
+            soundTextureTab.Text = Localization.Get("soundsTexturesTab");
+            traderTab.Text = Localization.Get("tradersTab");
+            deathTab.Text = Localization.Get("deathItemsTab");
+            dialogTab.Text = Localization.Get("dialogsTab");
+            additionalTab.Text = Localization.Get("additionalTab");
+            aboutTab.Text = Localization.Get("aboutTab");
+            generateButton.Text = Localization.Get("generateButton");
         }
 
-        private void langComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void langComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (langComboBox.SelectedIndex == 0)
             {
@@ -335,6 +215,18 @@ namespace RandomizerSoC
             else
             {
                 appConfig.Language = "en";
+            }
+
+            Localization.ChangeLanguage(appConfig.Language);
+            Localize();
+
+            try
+            {
+                await ConfigHandler.Save(appConfig);
+            }
+            catch (Exception ex)
+            {
+                new InfoForm(Localization.Get("appConfigSaveError"), ex).ShowDialog();
             }
         }
 

@@ -19,7 +19,6 @@ namespace RandomizerSoC
         [STAThread]
         static void Main()
         {
-            new Localization().LoadDefault();
             ConfigHandler.InitConfigDir();
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");

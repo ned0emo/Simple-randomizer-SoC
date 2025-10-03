@@ -95,6 +95,7 @@ namespace Simple_randomizer_SoC.Generators
                 }
             }
 
+            Directory.CreateDirectory(outPath);
             foreach (var file in files)
             {
                 await MyFile.Write(outPath + file.FileName, file.ToString());

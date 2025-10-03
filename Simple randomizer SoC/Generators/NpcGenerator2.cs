@@ -17,7 +17,7 @@ namespace Simple_randomizer_SoC.Generators
 
         private static readonly Regex suppliesSplitter = new Regex("\\\\n");
         private static readonly Regex suppliesItemFinder = new Regex("^\\s*\\S+(?=[,\\s])");
-        private static readonly Regex commentFinder = new Regex("<!--.*-->\\s*");
+        private static readonly Regex commentFinder = new Regex("<!--.*-->\\s*|\\s*;.*");
 
         private readonly Random rnd = new Random();
 
@@ -35,6 +35,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             var path = MyEnvironment.configPath + "\\gameplay";
             var outPath = _baseOutPath + "\\config\\gameplay\\";
+            var scriptsOutPath = _baseOutPath + "\\scripts\\";
 
             var outDocs = new Dictionary<string, XmlDocument>();
 
@@ -212,17 +213,30 @@ namespace Simple_randomizer_SoC.Generators
                 outDocs.Add(file.Name, doc);
             }
 
-            await Task.Run(() =>
+            var settings = new XmlWriterSettings
             {
-                Directory.CreateDirectory(outPath);
-                foreach (var doc in outDocs)
+                Indent = true,
+                IndentChars = "\t",
+                NewLineChars = Environment.NewLine,
+                OmitXmlDeclaration = true
+            };
+
+            Directory.CreateDirectory(outPath);
+            foreach (var doc in outDocs)
+            {
+                using (var sw = new StreamWriter(outPath + doc.Key, false, Encoding.Default))
+                using (var xw = XmlWriter.Create(sw, settings))
                 {
-                    using (var sw = new StreamWriter(outPath + doc.Key, false, Encoding.Default))
-                    {
-                        doc.Value.Save(sw);
-                    }
+                    doc.Value.Save(xw);
                 }
-            });
+            }
+
+            if (_config.UseCommunities || _config.ExtendCampsSettlement)
+            {
+                Directory.CreateDirectory(scriptsOutPath);
+                await MyFile.CopyFileAsync(MyEnvironment.scriptsPath + "\\smart_terrain.script", scriptsOutPath + "smart_terrain.script");
+                await MyFile.CopyFileAsync(MyEnvironment.scriptsPath + "\\xr_gulag.script", scriptsOutPath + "xr_gulag.script");
+            }
         }
 
         private XmlElement GetOrAddElement(string nodeName, XmlElement parent, XmlDocument document, string defalutValue = "")

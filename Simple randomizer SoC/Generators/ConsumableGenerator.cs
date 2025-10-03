@@ -3,6 +3,7 @@ using Simple_randomizer_SoC.Models.Parameters;
 using Simple_randomizer_SoC.Tools;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace Simple_randomizer_SoC.Generators
             //копирование
             copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
+            Directory.CreateDirectory(Path.GetDirectoryName(outPath));
             await MyFile.Write(outPath, ltx.ToString());
         }
 

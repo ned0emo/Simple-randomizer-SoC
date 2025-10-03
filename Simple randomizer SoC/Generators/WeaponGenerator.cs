@@ -195,6 +195,7 @@ namespace Simple_randomizer_SoC.Generators
             weaponCopyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
             ammoCopyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
+            Directory.CreateDirectory(outPath);
             foreach (var f in files)
             {
                 await MyFile.Write(outPath + f.FileName, f.ToString());

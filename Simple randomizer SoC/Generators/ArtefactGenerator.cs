@@ -89,6 +89,7 @@ namespace Simple_randomizer_SoC.Generators
             //копирование
             copyParameters.ForEach(p => p.Item1.SetParam(p.Item2, p.Item1.GetParam(p.Item3)));
 
+            Directory.CreateDirectory(Path.GetDirectoryName(outPath));
             await MyFile.Write(outPath, ltx.ToString());
         }
 
