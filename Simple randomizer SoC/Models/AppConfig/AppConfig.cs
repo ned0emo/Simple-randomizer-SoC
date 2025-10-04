@@ -34,7 +34,8 @@ namespace Simple_randomizer_SoC.Models.AppConfig
             return GenerateStashes || GenerateArtefacts || GenerateWeapons ||
                 GenerateArmors || GenerateWeather || GenerateDeathItems ||
                 GenerateTraderItems || GenerateConsumables || GenerateNpc ||
-                GenerateAdditional || GenerateTextures || GenerateSounds;
+                GenerateAdditional || GenerateTextures || GenerateSounds ||
+                GenerateDialogs;
         }
     }
 }

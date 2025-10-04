@@ -347,8 +347,8 @@ namespace RandomizerSoC
                 if (appConfig.GenerateSounds) maxProgress++;
                 if (appConfig.GenerateTextures) maxProgress++;
 
-                progressBar.Maximum = maxProgress;
                 progressBar.Value = 0;
+                progressBar.Maximum = maxProgress;
 
                 var status = true;
                 foreach (var g in usedGenerators)

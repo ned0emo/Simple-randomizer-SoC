@@ -69,8 +69,16 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            Close();
+            if (_config.AnySelected())
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Localization.Get("noGenerateCheckBoxSelected"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //DialogResult = DialogResult.Cancel;
+            }
         }
 
         private void selectAllCheckBox_CheckedChanged(object sender, EventArgs e)
