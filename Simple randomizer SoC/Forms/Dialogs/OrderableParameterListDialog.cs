@@ -44,7 +44,25 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 AddFloatRangeRow(p);
             }
 
-            //parameterContainer.ForEachParameter((p) => parameterByOrder.Add(p.Order, p));
+            Text = Localization.Get("parameterDialog");
+
+            fromListParamsLabel.Text = Localization.Get("fromListParams");
+            valueListLabel.Text = Localization.Get("valueList");
+            fromListOrderLabel.Text = Localization.Get("order");
+
+            intRangeParamsLabel.Text = Localization.Get("intRangeParams");
+            intRangeMinValueLabel.Text = Localization.Get("minValue");
+            intRangeMaxValueLabel.Text = Localization.Get("maxValue");
+            intRangeOrderLabel.Text = Localization.Get("order");
+
+            floatRangeParamsLabel.Text = Localization.Get("floatRangeParams");
+            floatRangeMinValueLabel.Text = Localization.Get("minValue");
+            floatRangeMaxValueLabel.Text = Localization.Get("maxValue");
+            precisionLabel.Text = Localization.Get("precision");
+            floatRangeOrderLabel.Text = Localization.Get("order");
+
+            cancelButton.Text = Localization.Get("cancel");
+            saveButton.Text = Localization.Get("save");
 
             DialogResult = DialogResult.Cancel;
         }
@@ -69,14 +87,14 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 orderInputByParameter[parameter] = orderControl;
 
                 var setListButton = new Button();
-                setListButton.Text = "Настроить список";
+                setListButton.Text = Localization.Get("editList");
                 setListButton.Click += (s, e) =>
                 {
-                    listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog("Настройка списка элементов", parameter.Values));
+                    listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("fromListValuesEdit"), parameter.Values));
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = fromListPanel.RowCount;
                 var rs = new RowStyle();
@@ -112,7 +130,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -157,7 +175,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = intRangePanel.RowCount;
                 var rs = new RowStyle();
@@ -196,7 +214,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -256,7 +274,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = floatRangePanel.RowCount;
                 var rs = new RowStyle();
@@ -298,7 +316,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -351,12 +369,12 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         {
             if (ParameterContainer.IntRangeParameters.Any(p => !p.Validate()))
             {
-                MessageBox.Show("Не все поля целочисленных параметров заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("intRangeValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (ParameterContainer.FloatRangeParameters.Any(p => !p.Validate()))
             {
-                MessageBox.Show("Не все поля параметров с плавающей точкой заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("floatRangeValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

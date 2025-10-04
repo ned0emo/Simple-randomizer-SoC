@@ -23,6 +23,13 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             DialogResult = DialogResult.Cancel;
 
             typeSelect.DataSource = ParameterTypeDataSource.Get();
+
+            Text = Localization.Get("addParameterDialog");
+            parameterNameLabel.Text = Localization.Get("parameterName");
+            valueTypeLabel.Text = Localization.Get("valueType");
+            valueCountLabel.Text = Localization.Get("valueCount");
+            cancelButton.Text = Localization.Get("cancel");
+            addButton.Text = Localization.Get("add");
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -35,7 +42,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         {
             if (string.IsNullOrWhiteSpace(ParameterName))
             {
-                MessageBox.Show("Не все поля заполнены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("notAllFieldsComplete"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             ParameterName = ParameterName.Trim();

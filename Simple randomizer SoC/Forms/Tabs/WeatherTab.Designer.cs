@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.rootContentPanel = new System.Windows.Forms.Panel();
             this.mainContentPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.weatherParamsLabel = new System.Windows.Forms.Label();
             this.weatherSectionsButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.weatherSectionsLabel = new System.Windows.Forms.Label();
             this.weatherParametersButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.bottomPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.weatherProbabilityLabel = new System.Windows.Forms.Label();
+            this.thunderProbabilityLabel = new System.Windows.Forms.Label();
             this.weatherProbabilityInput = new System.Windows.Forms.NumericUpDown();
             this.thunderProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
+            this.rainProbabilityLabel = new System.Windows.Forms.Label();
             this.rainProbabilityInput = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.rootContentPanel.SuspendLayout();
@@ -59,7 +59,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rootContentPanel, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -71,18 +71,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(513, 381);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(513, 26);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Настройка генерации параметров погоды";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.titleLabel.Location = new System.Drawing.Point(0, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.titleLabel.Size = new System.Drawing.Size(513, 26);
+            this.titleLabel.TabIndex = 2;
+            this.titleLabel.Text = "Настройка генерации параметров погоды";
             // 
             // rootContentPanel
             // 
@@ -117,9 +117,9 @@
             this.topPanel.ColumnCount = 2;
             this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.topPanel.Controls.Add(this.label11, 0, 1);
+            this.topPanel.Controls.Add(this.weatherParamsLabel, 0, 1);
             this.topPanel.Controls.Add(this.weatherSectionsButton, 1, 0);
-            this.topPanel.Controls.Add(this.label2, 0, 0);
+            this.topPanel.Controls.Add(this.weatherSectionsLabel, 0, 0);
             this.topPanel.Controls.Add(this.weatherParametersButton, 1, 1);
             this.topPanel.Controls.Add(this.tableLayoutPanel4, 1, 2);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -143,17 +143,17 @@
             this.topPanel.Size = new System.Drawing.Size(507, 58);
             this.topPanel.TabIndex = 0;
             // 
-            // label11
+            // weatherParamsLAbel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(3, 29);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(237, 29);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "Генерируемые параметры";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.weatherParamsLabel.AutoSize = true;
+            this.weatherParamsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.weatherParamsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.weatherParamsLabel.Location = new System.Drawing.Point(3, 29);
+            this.weatherParamsLabel.Name = "weatherParamsLAbel";
+            this.weatherParamsLabel.Size = new System.Drawing.Size(237, 29);
+            this.weatherParamsLabel.TabIndex = 38;
+            this.weatherParamsLabel.Text = "Генерируемые параметры";
+            this.weatherParamsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // weatherSectionsButton
             // 
@@ -165,17 +165,17 @@
             this.weatherSectionsButton.UseVisualStyleBackColor = true;
             this.weatherSectionsButton.Click += new System.EventHandler(this.weatherSectionsButton_Click);
             // 
-            // label2
+            // weatherSectionsLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(237, 29);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Секции для генерации параметров";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.weatherSectionsLabel.AutoSize = true;
+            this.weatherSectionsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.weatherSectionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.weatherSectionsLabel.Location = new System.Drawing.Point(3, 0);
+            this.weatherSectionsLabel.Name = "weatherSectionsLabel";
+            this.weatherSectionsLabel.Size = new System.Drawing.Size(237, 29);
+            this.weatherSectionsLabel.TabIndex = 1;
+            this.weatherSectionsLabel.Text = "Секции для генерации параметров";
+            this.weatherSectionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // weatherParametersButton
             // 
@@ -209,11 +209,11 @@
             this.bottomPanel.ColumnCount = 2;
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.bottomPanel.Controls.Add(this.label9, 1, 2);
-            this.bottomPanel.Controls.Add(this.label3, 1, 1);
+            this.bottomPanel.Controls.Add(this.weatherProbabilityLabel, 1, 2);
+            this.bottomPanel.Controls.Add(this.thunderProbabilityLabel, 1, 1);
             this.bottomPanel.Controls.Add(this.weatherProbabilityInput, 0, 2);
             this.bottomPanel.Controls.Add(this.thunderProbabilityInput, 0, 1);
-            this.bottomPanel.Controls.Add(this.label8, 1, 0);
+            this.bottomPanel.Controls.Add(this.rainProbabilityLabel, 1, 0);
             this.bottomPanel.Controls.Add(this.rainProbabilityInput, 0, 0);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.bottomPanel.Location = new System.Drawing.Point(0, 58);
@@ -226,27 +226,27 @@
             this.bottomPanel.Size = new System.Drawing.Size(507, 78);
             this.bottomPanel.TabIndex = 1;
             // 
-            // label9
+            // weatherProbabilityLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(62, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(442, 26);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "Вероятность генерации каждого параметра погоды";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.weatherProbabilityLabel.AutoSize = true;
+            this.weatherProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.weatherProbabilityLabel.Location = new System.Drawing.Point(62, 52);
+            this.weatherProbabilityLabel.Name = "weatherProbabilityLabel";
+            this.weatherProbabilityLabel.Size = new System.Drawing.Size(442, 26);
+            this.weatherProbabilityLabel.TabIndex = 51;
+            this.weatherProbabilityLabel.Text = "Вероятность генерации каждого параметра погоды";
+            this.weatherProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // thunderProbabilityLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(62, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(442, 26);
-            this.label3.TabIndex = 50;
-            this.label3.Text = "Вероятность грозы для каждой секции погоды";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.thunderProbabilityLabel.AutoSize = true;
+            this.thunderProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thunderProbabilityLabel.Location = new System.Drawing.Point(62, 26);
+            this.thunderProbabilityLabel.Name = "thunderProbabilityLabel";
+            this.thunderProbabilityLabel.Size = new System.Drawing.Size(442, 26);
+            this.thunderProbabilityLabel.TabIndex = 50;
+            this.thunderProbabilityLabel.Text = "Вероятность грозы для каждой секции погоды";
+            this.thunderProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // weatherProbabilityInput
             // 
@@ -279,16 +279,16 @@
             0});
             this.thunderProbabilityInput.ValueChanged += new System.EventHandler(this.thunderProbabilityInput_ValueChanged);
             // 
-            // label8
+            // rainProbabilityLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(62, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(442, 26);
-            this.label8.TabIndex = 46;
-            this.label8.Text = "Вероятность дождя для каждой секции погоды";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rainProbabilityLabel.AutoSize = true;
+            this.rainProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rainProbabilityLabel.Location = new System.Drawing.Point(62, 0);
+            this.rainProbabilityLabel.Name = "rainProbabilityLabel";
+            this.rainProbabilityLabel.Size = new System.Drawing.Size(442, 26);
+            this.rainProbabilityLabel.TabIndex = 46;
+            this.rainProbabilityLabel.Text = "Вероятность дождя для каждой секции погоды";
+            this.rainProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rainProbabilityInput
             // 
@@ -330,20 +330,20 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel rootContentPanel;
         private System.Windows.Forms.TableLayoutPanel mainContentPanel;
         private System.Windows.Forms.TableLayoutPanel topPanel;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label weatherParamsLabel;
         private System.Windows.Forms.Button weatherSectionsButton;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label weatherSectionsLabel;
         private System.Windows.Forms.Button weatherParametersButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel bottomPanel;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label rainProbabilityLabel;
         private System.Windows.Forms.NumericUpDown rainProbabilityInput;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label weatherProbabilityLabel;
+        private System.Windows.Forms.Label thunderProbabilityLabel;
         private System.Windows.Forms.NumericUpDown weatherProbabilityInput;
         private System.Windows.Forms.NumericUpDown thunderProbabilityInput;
     }

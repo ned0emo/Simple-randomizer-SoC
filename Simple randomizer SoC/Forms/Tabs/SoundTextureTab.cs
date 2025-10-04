@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class SoundTextureTab : UserControl
+    public partial class SoundTextureTab : UserControl, ILocalizable
     {
         private readonly SoundTextureConfig _config;
 
@@ -139,6 +139,22 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void texturesProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
             _config.TextureProbability = (int)texturesProbabilityInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("soundsTexturesTitle");
+            soundsPathLabel.Text = Localization.Get("soudnsPath");
+            soundsRoundLabel.Text = Localization.Get("soundsRound");
+            soundsProbabilityLabel.Text = Localization.Get("soundsProbability");
+            soundsStepCheckBox.Text = Localization.Get("soundsStepRainReplace");
+            texturesPathLabel.Text = Localization.Get("texturesPath");
+            texturesProbabilityLabel.Text = Localization.Get("texturesProbability");
+            texturesUICheckBox.Text = Localization.Get("texturesUiReplace");
+            threadsCountLabel.Text = Localization.Get("threadsCount");
+
+            texturesDirButton.Text = Localization.Get("select");
+            soundsDirButton.Text = Localization.Get("select");
         }
     }
 }

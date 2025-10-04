@@ -26,6 +26,12 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             typeSelect.DataSource = ParameterTypeDataSource.GetLess();
 
             this.existingOrders = existingOrders;
+
+            Text = Localization.Get("addParameterDialog");
+            valueTypeLabel.Text = Localization.Get("valueType");
+            orderLabel.Text = Localization.Get("numberInOrder");
+            cancelButton.Text = Localization.Get("cancel");
+            addButton.Text = Localization.Get("add");
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -38,13 +44,13 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         {
             if (existingOrders.Contains(Order))
             {
-                MessageBox.Show("Указанный номер по порядку уже существует", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("orderAlreadyExists"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             DialogResult = DialogResult.OK;
             Close();
         }
-        
+
         private void typeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             ParameterType = (ParameterType)typeSelect.SelectedValue;

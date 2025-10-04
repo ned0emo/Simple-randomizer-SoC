@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.deathTitleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.parametersPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.probabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.probabilityLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.keepItemsButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.keepItemsLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -49,7 +49,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.deathTitleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -62,18 +62,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 330);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label1
+            // deathTitleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(459, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Настройки генерации вещей убитых НПС";
+            this.deathTitleLabel.AutoSize = true;
+            this.deathTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deathTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deathTitleLabel.Location = new System.Drawing.Point(0, 0);
+            this.deathTitleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.deathTitleLabel.Name = "deathTitleLabel";
+            this.deathTitleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.deathTitleLabel.Size = new System.Drawing.Size(459, 26);
+            this.deathTitleLabel.TabIndex = 0;
+            this.deathTitleLabel.Text = "Настройки генерации вещей убитых НПС";
             // 
             // tableLayoutPanel2
             // 
@@ -107,7 +107,7 @@
             this.parametersPanel.RowCount = 2;
             this.parametersPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.parametersPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.parametersPanel.Size = new System.Drawing.Size(537, 1);
+            this.parametersPanel.Size = new System.Drawing.Size(518, 1);
             this.parametersPanel.TabIndex = 8;
             // 
             // tableLayoutPanel3
@@ -118,14 +118,14 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.probabilityInput, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label5, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.probabilityLabel, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 29);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(537, 26);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(518, 26);
             this.tableLayoutPanel3.TabIndex = 9;
             // 
             // probabilityInput
@@ -146,16 +146,16 @@
             0});
             this.probabilityInput.ValueChanged += new System.EventHandler(this.probabilityInput_ValueChanged_1);
             // 
-            // label5
+            // probabilityLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(62, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(472, 26);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Вероятность генерации наличия каждого предмета";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.probabilityLabel.AutoSize = true;
+            this.probabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probabilityLabel.Location = new System.Drawing.Point(62, 0);
+            this.probabilityLabel.Name = "probabilityLabel";
+            this.probabilityLabel.Size = new System.Drawing.Size(453, 26);
+            this.probabilityLabel.TabIndex = 1;
+            this.probabilityLabel.Text = "Вероятность генерации наличия каждого предмета";
+            this.probabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
             // 
@@ -164,7 +164,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.keepItemsButton, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.keepItemsLabel, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -173,7 +173,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(537, 29);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(518, 29);
             this.tableLayoutPanel4.TabIndex = 10;
             // 
             // keepItemsButton
@@ -187,17 +187,17 @@
             this.keepItemsButton.UseVisualStyleBackColor = true;
             this.keepItemsButton.Click += new System.EventHandler(this.keepItemsButton_Click);
             // 
-            // label3
+            // keepItemsLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(373, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Предметы, которые нужно оставлять при убийстве НПС";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.keepItemsLabel.AutoSize = true;
+            this.keepItemsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.keepItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.keepItemsLabel.Location = new System.Drawing.Point(3, 0);
+            this.keepItemsLabel.Name = "keepItemsLabel";
+            this.keepItemsLabel.Size = new System.Drawing.Size(373, 29);
+            this.keepItemsLabel.TabIndex = 1;
+            this.keepItemsLabel.Text = "Предметы, которые нужно оставлять при убийстве НПС";
+            this.keepItemsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeathTab
             // 
@@ -222,14 +222,14 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label deathTitleLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel parametersPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.NumericUpDown probabilityInput;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label probabilityLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label keepItemsLabel;
         private System.Windows.Forms.Button keepItemsButton;
     }
 }

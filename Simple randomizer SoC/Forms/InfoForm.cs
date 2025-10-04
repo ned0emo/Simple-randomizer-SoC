@@ -24,6 +24,7 @@ namespace RandomizerSoC
         {
             InitializeComponent();
 
+            Text = Localization.Get("warning");
             label1.Text = errorTitle;
 
             if (errorMessage.Length > 0)
@@ -42,6 +43,7 @@ namespace RandomizerSoC
             InitializeComponent();
 
             label1.Text = errorTitle;
+            Text = Localization.Get("warning");
 
             textBox1.Visible = true;
             textBox1.Height += 150;

@@ -31,29 +31,29 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.minBuyPriceInput = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.minBuyMultiplierLabel = new System.Windows.Forms.Label();
+            this.maxBuyMultiplierLabel = new System.Windows.Forms.Label();
             this.maxBuyPriceInput = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.maxSellMultiplierLabel = new System.Windows.Forms.Label();
+            this.minSellMultiplierLabel = new System.Windows.Forms.Label();
             this.minSellPriceInput = new System.Windows.Forms.NumericUpDown();
             this.maxSellPriceInput = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.maxProbabilityLabel = new System.Windows.Forms.Label();
+            this.minProbabilityLabel = new System.Windows.Forms.Label();
             this.minProbabilityInput = new System.Windows.Forms.NumericUpDown();
             this.maxProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tradeCountLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.itemsLabel = new System.Windows.Forms.Label();
             this.editListButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.probabilityLabel = new System.Windows.Forms.Label();
+            this.sellMultiplierLabel = new System.Windows.Forms.Label();
+            this.buyMultiplierLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.maxTradeCountLabel = new System.Windows.Forms.Label();
+            this.minTradeCountLabel = new System.Windows.Forms.Label();
             this.minCountInput = new System.Windows.Forms.NumericUpDown();
             this.maxCountInput = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
@@ -81,13 +81,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tradeCountLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.itemsLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.editListButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.probabilityLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.sellMultiplierLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.buyMultiplierLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -113,8 +113,8 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.Controls.Add(this.minBuyPriceInput, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label12, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.minBuyMultiplierLabel, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.maxBuyMultiplierLabel, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.maxBuyPriceInput, 3, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(241, 123);
@@ -144,27 +144,27 @@
             this.minBuyPriceInput.TabIndex = 0;
             this.minBuyPriceInput.ValueChanged += new System.EventHandler(this.minBuyPriceInput_ValueChanged);
             // 
-            // label11
+            // minBuyMultiplierLabel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 26);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Мин. значение";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minBuyMultiplierLabel.AutoSize = true;
+            this.minBuyMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minBuyMultiplierLabel.Location = new System.Drawing.Point(3, 0);
+            this.minBuyMultiplierLabel.Name = "minBuyMultiplierLabel";
+            this.minBuyMultiplierLabel.Size = new System.Drawing.Size(81, 26);
+            this.minBuyMultiplierLabel.TabIndex = 1;
+            this.minBuyMultiplierLabel.Text = "Мин. значение";
+            this.minBuyMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label12
+            // maxBuyMultiplierLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(156, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 26);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Макс. значение";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxBuyMultiplierLabel.AutoSize = true;
+            this.maxBuyMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxBuyMultiplierLabel.Location = new System.Drawing.Point(156, 0);
+            this.maxBuyMultiplierLabel.Name = "maxBuyMultiplierLabel";
+            this.maxBuyMultiplierLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxBuyMultiplierLabel.TabIndex = 2;
+            this.maxBuyMultiplierLabel.Text = "Макс. значение";
+            this.maxBuyMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // maxBuyPriceInput
             // 
@@ -193,8 +193,8 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.Controls.Add(this.label6, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.maxSellMultiplierLabel, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.minSellMultiplierLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.minSellPriceInput, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.maxSellPriceInput, 3, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -206,27 +206,27 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(468, 26);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
-            // label6
+            // maxSellMultiplierLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(156, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 26);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Макс. значение";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxSellMultiplierLabel.AutoSize = true;
+            this.maxSellMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxSellMultiplierLabel.Location = new System.Drawing.Point(156, 0);
+            this.maxSellMultiplierLabel.Name = "maxSellMultiplierLabel";
+            this.maxSellMultiplierLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxSellMultiplierLabel.TabIndex = 5;
+            this.maxSellMultiplierLabel.Text = "Макс. значение";
+            this.maxSellMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // minSellMultiplierLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 26);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Мин. значение";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minSellMultiplierLabel.AutoSize = true;
+            this.minSellMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minSellMultiplierLabel.Location = new System.Drawing.Point(3, 0);
+            this.minSellMultiplierLabel.Name = "minSellMultiplierLabel";
+            this.minSellMultiplierLabel.Size = new System.Drawing.Size(81, 26);
+            this.minSellMultiplierLabel.TabIndex = 4;
+            this.minSellMultiplierLabel.Text = "Мин. значение";
+            this.minSellMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // minSellPriceInput
             // 
@@ -274,8 +274,8 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.label8, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.maxProbabilityLabel, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.minProbabilityLabel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.minProbabilityInput, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.maxProbabilityInput, 3, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -287,27 +287,27 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(468, 26);
             this.tableLayoutPanel3.TabIndex = 8;
             // 
-            // label8
+            // maxProbabilityLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(156, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 26);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Макс. значение";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxProbabilityLabel.AutoSize = true;
+            this.maxProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxProbabilityLabel.Location = new System.Drawing.Point(156, 0);
+            this.maxProbabilityLabel.Name = "maxProbabilityLabel";
+            this.maxProbabilityLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxProbabilityLabel.TabIndex = 5;
+            this.maxProbabilityLabel.Text = "Макс. значение";
+            this.maxProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // minProbabilityLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 26);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Мин. значение";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minProbabilityLabel.AutoSize = true;
+            this.minProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minProbabilityLabel.Location = new System.Drawing.Point(3, 0);
+            this.minProbabilityLabel.Name = "minProbabilityLabel";
+            this.minProbabilityLabel.Size = new System.Drawing.Size(81, 26);
+            this.minProbabilityLabel.TabIndex = 4;
+            this.minProbabilityLabel.Text = "Мин. значение";
+            this.minProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // minProbabilityInput
             // 
@@ -347,17 +347,17 @@
             this.maxProbabilityInput.TabIndex = 3;
             this.maxProbabilityInput.ValueChanged += new System.EventHandler(this.maxProbabilityInput_ValueChanged);
             // 
-            // label1
+            // tradeCountLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 26);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Количество в продаже";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tradeCountLabel.AutoSize = true;
+            this.tradeCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tradeCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tradeCountLabel.Location = new System.Drawing.Point(3, 45);
+            this.tradeCountLabel.Name = "tradeCountLabel";
+            this.tradeCountLabel.Size = new System.Drawing.Size(235, 26);
+            this.tradeCountLabel.TabIndex = 3;
+            this.tradeCountLabel.Text = "Количество в продаже";
+            this.tradeCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // titleLabel
             // 
@@ -395,41 +395,41 @@
             this.editListButton.UseVisualStyleBackColor = true;
             this.editListButton.Click += new System.EventHandler(this.editListButton_Click);
             // 
-            // label2
+            // probabilityLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(235, 26);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Вероятность появления в продаже";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.probabilityLabel.AutoSize = true;
+            this.probabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probabilityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.probabilityLabel.Location = new System.Drawing.Point(3, 71);
+            this.probabilityLabel.Name = "probabilityLabel";
+            this.probabilityLabel.Size = new System.Drawing.Size(235, 26);
+            this.probabilityLabel.TabIndex = 4;
+            this.probabilityLabel.Text = "Вероятность появления в продаже";
+            this.probabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // sellMultiplierLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 26);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Множитель цены продажи игроку";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sellMultiplierLabel.AutoSize = true;
+            this.sellMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sellMultiplierLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sellMultiplierLabel.Location = new System.Drawing.Point(3, 97);
+            this.sellMultiplierLabel.Name = "sellMultiplierLabel";
+            this.sellMultiplierLabel.Size = new System.Drawing.Size(235, 26);
+            this.sellMultiplierLabel.TabIndex = 5;
+            this.sellMultiplierLabel.Text = "Множитель цены продажи игроку";
+            this.sellMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // buyMultiplierLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(3, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(235, 26);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Множитель цены покупки у игрока";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buyMultiplierLabel.AutoSize = true;
+            this.buyMultiplierLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buyMultiplierLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buyMultiplierLabel.Location = new System.Drawing.Point(3, 123);
+            this.buyMultiplierLabel.Name = "buyMultiplierLabel";
+            this.buyMultiplierLabel.Size = new System.Drawing.Size(235, 26);
+            this.buyMultiplierLabel.TabIndex = 6;
+            this.buyMultiplierLabel.Text = "Множитель цены покупки у игрока";
+            this.buyMultiplierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -439,8 +439,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.label10, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.maxTradeCountLabel, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.minTradeCountLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.minCountInput, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.maxCountInput, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -452,27 +452,27 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(468, 26);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
-            // label10
+            // maxTradeCountLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(156, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(87, 26);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Макс. значение";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxTradeCountLabel.AutoSize = true;
+            this.maxTradeCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxTradeCountLabel.Location = new System.Drawing.Point(156, 0);
+            this.maxTradeCountLabel.Name = "maxTradeCountLabel";
+            this.maxTradeCountLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxTradeCountLabel.TabIndex = 5;
+            this.maxTradeCountLabel.Text = "Макс. значение";
+            this.maxTradeCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // minTradeCountLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 26);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Мин. значение";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minTradeCountLabel.AutoSize = true;
+            this.minTradeCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minTradeCountLabel.Location = new System.Drawing.Point(3, 0);
+            this.minTradeCountLabel.Name = "minTradeCountLabel";
+            this.minTradeCountLabel.Size = new System.Drawing.Size(81, 26);
+            this.minTradeCountLabel.TabIndex = 4;
+            this.minTradeCountLabel.Text = "Мин. значение";
+            this.minTradeCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // minCountInput
             // 
@@ -553,17 +553,17 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label itemsLabel;
         private System.Windows.Forms.Button editListButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label tradeCountLabel;
+        private System.Windows.Forms.Label probabilityLabel;
+        private System.Windows.Forms.Label sellMultiplierLabel;
+        private System.Windows.Forms.Label buyMultiplierLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.NumericUpDown minCountInput;
         private System.Windows.Forms.NumericUpDown maxCountInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.NumericUpDown minBuyPriceInput;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label minBuyMultiplierLabel;
+        private System.Windows.Forms.Label maxBuyMultiplierLabel;
         private System.Windows.Forms.NumericUpDown maxBuyPriceInput;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.NumericUpDown minSellPriceInput;
@@ -571,11 +571,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.NumericUpDown minProbabilityInput;
         private System.Windows.Forms.NumericUpDown maxProbabilityInput;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label maxSellMultiplierLabel;
+        private System.Windows.Forms.Label minSellMultiplierLabel;
+        private System.Windows.Forms.Label maxProbabilityLabel;
+        private System.Windows.Forms.Label minProbabilityLabel;
+        private System.Windows.Forms.Label maxTradeCountLabel;
+        private System.Windows.Forms.Label minTradeCountLabel;
     }
 }

@@ -60,6 +60,7 @@ namespace RandomizerSoC
         private AdditionalConfig additionalConfig;
 
         private readonly List<IConfig> _configs = new List<IConfig>();
+        private readonly List<ILocalizable> _tabs = new List<ILocalizable>();
 
         public MainForm()
         {
@@ -95,32 +96,55 @@ namespace RandomizerSoC
                 _configs.Add(additionalConfig);
                 _configs.Add(appConfig);
 
-                stashTab.Controls.Add(new StashTab(stashConfig));
-                weaponTab.Controls.Add(new WeaponTab(weaponConfig));
-                itemTab.Controls.Add(new ItemTab(itemConfig));
-                weatherTab.Controls.Add(new WeatherTab(weatherConfig));
-                npcTab.Controls.Add(new NpcTab(npcConfig));
-                soundTextureTab.Controls.Add(new SoundTextureTab(soundTextureConfig));
-                dialogTab.Controls.Add(new DialogTab(dialogConfig));
-                traderTab.Controls.Add(new TraderTab(traderItemsConfig));
-                deathTab.Controls.Add(new DeathTab(deathItemsConfig));
-                additionalTab.Controls.Add(new AdditionalTab(additionalConfig));
+                var additTab = new AdditionalTab(additionalConfig);
+                var deathTabControl = new DeathTab(deathItemsConfig);
+                var dialogTabControl = new DialogTab(dialogConfig);
+                var itemsTabControl = new ItemTab(itemConfig);
+                var npcTabControl = new NpcTab(npcConfig);
+                var soundsTexturesTabControl = new SoundTextureTab(soundTextureConfig);
+                var stashTabControl = new StashTab(stashConfig);
+                var traderTabControl = new TraderTab(traderItemsConfig);
+                var weaponsTabControl = new WeaponTab(weaponConfig);
+                var weatherTabControl = new WeatherTab(weatherConfig);
+                _tabs.Add(additTab);
+                _tabs.Add(deathTabControl);
+                _tabs.Add(dialogTabControl);
+                _tabs.Add(itemsTabControl);
+                _tabs.Add(npcTabControl);
+                _tabs.Add(soundsTexturesTabControl);
+                _tabs.Add(stashTabControl);
+                _tabs.Add(traderTabControl);
+                _tabs.Add(weaponsTabControl);
+                _tabs.Add(weatherTabControl);
+
+                additionalTab.Controls.Add(additTab);
+                deathTab.Controls.Add(deathTabControl);
+                dialogTab.Controls.Add(dialogTabControl);
+                itemTab.Controls.Add(itemsTabControl);
+                npcTab.Controls.Add(npcTabControl);
+                soundTextureTab.Controls.Add(soundsTexturesTabControl);
+                stashTab.Controls.Add(stashTabControl);
+                traderTab.Controls.Add(traderTabControl);
+                weaponTab.Controls.Add(weaponsTabControl);
+                weatherTab.Controls.Add(weatherTabControl);
 
                 soundRandomizer.OnStatusChange = (s) =>
                 {
-                    Invoke(new Action(() =>
+                    Invoke((Action)(() =>
                     {
                         statusLabel.Text = s;
                     }));
                 };
                 textureRandomizer.OnStatusChange = (s) =>
                 {
-                    Invoke(new Action(() =>
+                    Invoke((Action)(() =>
                     {
                         statusLabel.Text = s;
                     }));
                 };
 
+                //await Task.Yield();
+                //язык обрабатывать в самом конце, чтоб все контролы прогрузились
                 if (appConfig.Language == null || appConfig.Language == "ru")
                 {
                     langComboBox.SelectedIndex = 0;
@@ -191,9 +215,12 @@ namespace RandomizerSoC
 
         public void Localize()
         {
+            Enabled = false;
+            SuspendLayout();
+
             this.Text = Localization.Get("mainFormName");
             stashTab.Text = Localization.Get("stashesTab");
-            weaponTab.Text = Localization.Get("weaponsTab");
+            weaponTab.Text = Localization.Get("weapons");
             itemTab.Text = Localization.Get("itemsTab");
             npcTab.Text = Localization.Get("npcTab");
             weatherTab.Text = Localization.Get("weatherTab");
@@ -203,7 +230,15 @@ namespace RandomizerSoC
             dialogTab.Text = Localization.Get("dialogsTab");
             additionalTab.Text = Localization.Get("additionalTab");
             aboutTab.Text = Localization.Get("aboutTab");
-            generateButton.Text = Localization.Get("generateButton");
+            generateButton.Text = Localization.Get("generate");
+
+            foreach (var tab in _tabs)
+            {
+                tab.Localize();
+            }
+
+            ResumeLayout();
+            Enabled = true;
         }
 
         private async void langComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -425,7 +460,7 @@ namespace RandomizerSoC
                     return;
                 }
 
-                new InfoForm(Localization.Get("savedIn") + " " + outPath).ShowDialog();
+                MessageBox.Show(Localization.Get("savedIn") + " " + outPath, Localization.Get("success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 changeElementsStatus(true);
                 statusLabel.Text = "";
                 progressBar.Value = 0;

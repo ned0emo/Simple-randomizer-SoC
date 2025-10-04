@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class ItemTab : UserControl
+    public partial class ItemTab : UserControl, ILocalizable
     {
         private readonly ItemConfig config;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
@@ -46,47 +46,47 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void artefactParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Стандартные параметры артефактов", config.StandardArtefactParameters, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("artefactsStandardParamsShort"), config.StandardArtefactParameters, config);
         }
 
         private async void artefactStatParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры характеристик артефактов, с базовым значением 0.0", config.StatArtefactParameters0, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("artefactsParams0Full"), config.StatArtefactParameters0, config);
         }
 
         private async void artefactStatParameters1Button_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры характеристик артефактов, с базовым значением 1.0", config.StatArtefactParameters1, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("artefactsParams1Full"), config.StatArtefactParameters1, config);
         }
 
         private async void armorSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции брони", config.ArmorSections), config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("armorSections"), config.ArmorSections), config);
         }
 
         private async void armorImmunitySectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции износа брони", config.ArmorImmunitySections), config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("armorImmunitySectionsShort"), config.ArmorImmunitySections), config);
         }
 
         private async void armorParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры брони", config.ArmorParameters, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("armorParams"), config.ArmorParameters, config);
         }
 
         private async void armorImmunityParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры износа брони", config.ArmorImmunityParameters, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("armorImmunityParamsShort"), config.ArmorImmunityParameters, config);
         }
 
         private async void itemSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции расходников", config.ConsumableSections), config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("consumablesSections"), config.ConsumableSections), config);
         }
 
         private async void itemParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры расходников", config.ConsumableParameters, config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("consumablesParamsShort"), config.ConsumableParameters, config);
         }
 
         private void artefactProbabilityInput_ValueChanged(object sender, EventArgs e)
@@ -112,6 +112,40 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void maxArtefactStatCountInput_ValueChanged(object sender, EventArgs e)
         {
             config.MaxArtefactStatCount = (int)maxArtefactStatCountInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("itemsTitle");
+            artefcatsGenerateSectionsLabel.Text = Localization.Get("artefactsGenerateSection");
+            artefcatsStandardParamsLabel.Text = Localization.Get("artefactsStandardParams");
+            artefactsStatsLabel.Text = Localization.Get("artefcatsStats");
+            artefactStatParameters0Button.Text = Localization.Get("artefactsParams0");
+            artefactStatParameters1Button.Text = Localization.Get("artefactsParams1");
+            minArtefactsStatsLabel.Text = Localization.Get("minArtefactStats");
+            maxArtefactsStatsLabel.Text = Localization.Get("maxArtefactStats");
+
+            armorGenerateSectionsLabel.Text = Localization.Get("armorGenerateSections");
+            armorImmunitySectionsLabel.Text = Localization.Get("armorImmunitySections");
+            armorMainStatsLabel.Text = Localization.Get("armorMainParams");
+            armorImmunityStatsLabel.Text = Localization.Get("armorImmunityParams");
+
+            consumablesGenerateSectionsLabel.Text = Localization.Get("consumablesGenerateSections");
+            consumablesStatsLabel.Text = Localization.Get("consumablesParams");
+
+            artefactsProbabilityLabel.Text = Localization.Get("artefactsProbability");
+            armorProbabilityLabel.Text = Localization.Get("armorProbability");
+            consumablesProbabilityLabel.Text = Localization.Get("consumablesProbability");
+
+            artefactSectionsButton.Text = Localization.Get("editList");
+            artefactParametersButton.Text = Localization.Get("editList");
+            armorParametersButton.Text = Localization.Get("editList");
+            armorSectionsButton.Text = Localization.Get("editList");
+            armorImmunitySectionsButton.Text = Localization.Get("editList");
+            armorParametersButton.Text = Localization.Get("editList");
+            armorImmunityParametersButton.Text = Localization.Get("editList");
+            itemSectionsButton.Text = Localization.Get("editList");
+            itemParametersButton.Text = Localization.Get("editList");
         }
     }
 }

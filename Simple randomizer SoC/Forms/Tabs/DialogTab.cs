@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class DialogTab : UserControl
+    public partial class DialogTab : UserControl, ILocalizable
     {
         private readonly DialogConfig _config;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
@@ -35,17 +35,29 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void infoExceptionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave(new SimpleListDialog("Список исключенных событий диалогов", _config.InfoExceptions), _config);
+            await listEditComponent.OpenEditThenSave(new SimpleListDialog(Localization.Get("dialogInfoExceptions"), _config.InfoExceptions), _config);
         }
 
         private async void actionExceptionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave(new SimpleListDialog("Список исключенных действий диалогов", _config.ActionExceptions), _config);
+            await listEditComponent.OpenEditThenSave(new SimpleListDialog(Localization.Get("dialogActionExceptions"), _config.ActionExceptions), _config);
         }
 
         private async void preconditionExceptionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave(new SimpleListDialog("Список исключенных условий диалогов", _config.PreconditionExceptions), _config);
+            await listEditComponent.OpenEditThenSave(new SimpleListDialog(Localization.Get("dialogPreconditionExceptions"), _config.PreconditionExceptions), _config);
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("dialogsTitle");
+            infoExceptionsLabel.Text = Localization.Get("dialogInfoExceptions");
+            actionExceptionsLabel.Text = Localization.Get("dialogActionExceptions");
+            preconditionExceptionaLabel.Text = Localization.Get("dialogPreconditionExceptions");
+            probabilityLabel.Text = Localization.Get("dialogProbability");
+            infoExceptionsButton.Text = Localization.Get("editList");
+            actionExceptionsButton.Text = Localization.Get("editList");
+            preconditionExceptionsButton.Text = Localization.Get("editList");
         }
     }
 }

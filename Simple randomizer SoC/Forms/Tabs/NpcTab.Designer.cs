@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.rootContentPanel = new System.Windows.Forms.Panel();
             this.mainContentPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.exceptionsLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.minMoneyInput = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
+            this.minMoneyLabel = new System.Windows.Forms.Label();
             this.maxMoneyInput = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.maxMoneyLabel = new System.Windows.Forms.Label();
             this.moneyCheckBox = new System.Windows.Forms.CheckBox();
             this.rankCheckBox = new System.Windows.Forms.CheckBox();
             this.keepSupplieButton = new System.Windows.Forms.Button();
@@ -63,13 +64,12 @@
             this.keepSupplieLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.minRankInput = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.minRankLabel = new System.Windows.Forms.Label();
             this.maxRankInput = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
+            this.maxRankLabel = new System.Windows.Forms.Label();
             this.bottomPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.probabilityLabel = new System.Windows.Forms.Label();
             this.npcProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.rootContentPanel.SuspendLayout();
             this.mainContentPanel.SuspendLayout();
@@ -88,7 +88,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rootContentPanel, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -100,18 +100,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(513, 381);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(513, 26);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Настройка генерации НПС";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.titleLabel.Location = new System.Drawing.Point(0, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.titleLabel.Size = new System.Drawing.Size(513, 26);
+            this.titleLabel.TabIndex = 2;
+            this.titleLabel.Text = "Настройка генерации НПС";
             // 
             // rootContentPanel
             // 
@@ -147,7 +147,7 @@
             this.topPanel.ColumnCount = 2;
             this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.topPanel.Controls.Add(this.label6, 0, 6);
+            this.topPanel.Controls.Add(this.exceptionsLabel, 0, 6);
             this.topPanel.Controls.Add(this.tableLayoutPanel3, 1, 13);
             this.topPanel.Controls.Add(this.moneyCheckBox, 0, 13);
             this.topPanel.Controls.Add(this.rankCheckBox, 0, 12);
@@ -195,6 +195,18 @@
             this.topPanel.Size = new System.Drawing.Size(545, 388);
             this.topPanel.TabIndex = 0;
             // 
+            // exceptionsLabel
+            // 
+            this.exceptionsLabel.AutoSize = true;
+            this.exceptionsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exceptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.exceptionsLabel.Location = new System.Drawing.Point(3, 174);
+            this.exceptionsLabel.Name = "exceptionsLabel";
+            this.exceptionsLabel.Size = new System.Drawing.Size(189, 29);
+            this.exceptionsLabel.TabIndex = 80;
+            this.exceptionsLabel.Text = "Исключения";
+            this.exceptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.AutoSize = true;
@@ -204,9 +216,9 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.minMoneyInput, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.minMoneyLabel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.maxMoneyInput, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label5, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.maxMoneyLabel, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(195, 362);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -229,16 +241,16 @@
             this.minMoneyInput.TabIndex = 0;
             this.minMoneyInput.ValueChanged += new System.EventHandler(this.minMoneyInput_ValueChanged);
             // 
-            // label4
+            // minMoneyLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 26);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Мин. значение";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minMoneyLabel.AutoSize = true;
+            this.minMoneyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minMoneyLabel.Location = new System.Drawing.Point(3, 0);
+            this.minMoneyLabel.Name = "minMoneyLabel";
+            this.minMoneyLabel.Size = new System.Drawing.Size(81, 26);
+            this.minMoneyLabel.TabIndex = 2;
+            this.minMoneyLabel.Text = "Мин. значение";
+            this.minMoneyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // maxMoneyInput
             // 
@@ -263,16 +275,16 @@
             0});
             this.maxMoneyInput.ValueChanged += new System.EventHandler(this.maxMoneyInput_ValueChanged);
             // 
-            // label5
+            // maxMoneyLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(175, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 26);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Макс. значение";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxMoneyLabel.AutoSize = true;
+            this.maxMoneyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxMoneyLabel.Location = new System.Drawing.Point(175, 0);
+            this.maxMoneyLabel.Name = "maxMoneyLabel";
+            this.maxMoneyLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxMoneyLabel.TabIndex = 3;
+            this.maxMoneyLabel.Text = "Макс. значение";
+            this.maxMoneyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // moneyCheckBox
             // 
@@ -549,9 +561,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.minRankInput, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.minRankLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.maxRankInput, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.maxRankLabel, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(195, 336);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -584,16 +596,16 @@
             0});
             this.minRankInput.ValueChanged += new System.EventHandler(this.minRankInput_ValueChanged);
             // 
-            // label2
+            // minRankLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 26);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Мин. значение";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minRankLabel.AutoSize = true;
+            this.minRankLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.minRankLabel.Location = new System.Drawing.Point(3, 0);
+            this.minRankLabel.Name = "minRankLabel";
+            this.minRankLabel.Size = new System.Drawing.Size(81, 26);
+            this.minRankLabel.TabIndex = 2;
+            this.minRankLabel.Text = "Мин. значение";
+            this.minRankLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // maxRankInput
             // 
@@ -618,16 +630,16 @@
             0});
             this.maxRankInput.ValueChanged += new System.EventHandler(this.maxRankInput_ValueChanged);
             // 
-            // label3
+            // maxRankLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(175, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 26);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Макс. значение";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.maxRankLabel.AutoSize = true;
+            this.maxRankLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxRankLabel.Location = new System.Drawing.Point(175, 0);
+            this.maxRankLabel.Name = "maxRankLabel";
+            this.maxRankLabel.Size = new System.Drawing.Size(87, 26);
+            this.maxRankLabel.TabIndex = 3;
+            this.maxRankLabel.Text = "Макс. значение";
+            this.maxRankLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bottomPanel
             // 
@@ -635,7 +647,7 @@
             this.bottomPanel.ColumnCount = 2;
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.bottomPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.bottomPanel.Controls.Add(this.label9, 1, 2);
+            this.bottomPanel.Controls.Add(this.probabilityLabel, 1, 2);
             this.bottomPanel.Controls.Add(this.npcProbabilityInput, 0, 2);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.bottomPanel.Location = new System.Drawing.Point(0, 388);
@@ -648,16 +660,16 @@
             this.bottomPanel.Size = new System.Drawing.Size(545, 26);
             this.bottomPanel.TabIndex = 1;
             // 
-            // label9
+            // probabilityLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(62, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(480, 26);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "Вероятность генерации каждого параметра НПС";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.probabilityLabel.AutoSize = true;
+            this.probabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probabilityLabel.Location = new System.Drawing.Point(62, 0);
+            this.probabilityLabel.Name = "probabilityLabel";
+            this.probabilityLabel.Size = new System.Drawing.Size(480, 26);
+            this.probabilityLabel.TabIndex = 51;
+            this.probabilityLabel.Text = "Вероятность генерации каждого параметра НПС";
+            this.probabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // npcProbabilityInput
             // 
@@ -676,18 +688,6 @@
             0,
             0});
             this.npcProbabilityInput.ValueChanged += new System.EventHandler(this.npcProbabilityInput_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(3, 174);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(189, 29);
-            this.label6.TabIndex = 80;
-            this.label6.Text = "Исключения";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // NpcTab
             // 
@@ -722,14 +722,14 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel rootContentPanel;
         private System.Windows.Forms.TableLayoutPanel mainContentPanel;
         private System.Windows.Forms.TableLayoutPanel topPanel;
         private System.Windows.Forms.Button modelButon;
         private System.Windows.Forms.Button soundButton;
         private System.Windows.Forms.TableLayoutPanel bottomPanel;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label probabilityLabel;
         private System.Windows.Forms.NumericUpDown npcProbabilityInput;
         private System.Windows.Forms.Button exceptionButton;
         private System.Windows.Forms.Button communityButton;
@@ -755,13 +755,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.NumericUpDown maxRankInput;
         private System.Windows.Forms.NumericUpDown minRankInput;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label minRankLabel;
+        private System.Windows.Forms.Label maxRankLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.NumericUpDown minMoneyInput;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label minMoneyLabel;
         private System.Windows.Forms.NumericUpDown maxMoneyInput;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label maxMoneyLabel;
+        private System.Windows.Forms.Label exceptionsLabel;
     }
 }

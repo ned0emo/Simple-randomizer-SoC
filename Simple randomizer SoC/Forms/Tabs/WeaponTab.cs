@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class WeaponTab : UserControl
+    public partial class WeaponTab : UserControl, ILocalizable
     {
         private readonly WeaponConfig weaponConfig;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
@@ -33,22 +33,22 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editWeaponSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции оружия", weaponConfig.WeaponSections), weaponConfig);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("weaponsSectionsShort"), weaponConfig.WeaponSections), weaponConfig);
         }
 
         private async void editWeaponParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры оружия", weaponConfig.WeaponParameterContainer, weaponConfig);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("weaponsParamsShort"), weaponConfig.WeaponParameterContainer, weaponConfig);
         }
 
         private async void editAmmoSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции патронов", weaponConfig.AmmoSections), weaponConfig);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("ammoSectionsShort"), weaponConfig.AmmoSections), weaponConfig);
         }
 
         private async void editAmmoParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры патронов", weaponConfig.AmmoParameterContainer, weaponConfig);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("ammoParamsShort"), weaponConfig.AmmoParameterContainer, weaponConfig);
         }
 
         private void probabilityInput_ValueChanged(object sender, EventArgs e)
@@ -59,6 +59,22 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void ammoProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
             weaponConfig.AmmoStatProbability = (int)ammoProbabilityInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("weaponsTitle");
+            weaponsSectionLabel.Text = Localization.Get("weaponsSections");
+            weaponsParamsLabel.Text = Localization.Get("weaponsParams");
+            ammoSectionsLabel.Text = Localization.Get("ammoSections");
+            ammoParamsLabel.Text = Localization.Get("ammoParams");
+            weaponsProbabilityLabel.Text = Localization.Get("weaponsProbability");
+            ammoProbabilityLabel.Text = Localization.Get("ammoProbability");
+
+            editWeaponSectionsButton.Text = Localization.Get("editList");
+            editWeaponParametersButton.Text = Localization.Get("editList");
+            editAmmoSectionsButton.Text = Localization.Get("editList");
+            editAmmoParametersButton.Text = Localization.Get("editList");
         }
     }
 }

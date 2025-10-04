@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.texturesCheckBox = new System.Windows.Forms.CheckBox();
             this.randomProbabilityCheckBox = new System.Windows.Forms.CheckBox();
             this.selectAllCheckBox = new System.Windows.Forms.CheckBox();
             this.stashesCheckBox = new System.Windows.Forms.CheckBox();
@@ -45,12 +47,10 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.saveInLabel = new System.Windows.Forms.Label();
             this.outputPathTextBox = new System.Windows.Forms.TextBox();
             this.selectPathButton = new System.Windows.Forms.Button();
-            this.texturesCheckBox = new System.Windows.Forms.CheckBox();
             this.soundsCheckBox = new System.Windows.Forms.CheckBox();
-            this.dialogsCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -98,6 +98,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(464, 321);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // dialogsCheckBox
+            // 
+            this.dialogsCheckBox.AutoSize = true;
+            this.dialogsCheckBox.Location = new System.Drawing.Point(6, 167);
+            this.dialogsCheckBox.Name = "dialogsCheckBox";
+            this.dialogsCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.dialogsCheckBox.TabIndex = 16;
+            this.dialogsCheckBox.Text = "Диалоги";
+            this.dialogsCheckBox.UseVisualStyleBackColor = true;
+            this.dialogsCheckBox.CheckedChanged += new System.EventHandler(this.dialogsCheckBox_CheckedChanged);
+            // 
+            // texturesCheckBox
+            // 
+            this.texturesCheckBox.AutoSize = true;
+            this.texturesCheckBox.Location = new System.Drawing.Point(6, 144);
+            this.texturesCheckBox.Name = "texturesCheckBox";
+            this.texturesCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.texturesCheckBox.TabIndex = 14;
+            this.texturesCheckBox.Text = "Текстуры";
+            this.texturesCheckBox.UseVisualStyleBackColor = true;
+            this.texturesCheckBox.CheckedChanged += new System.EventHandler(this.texturesCheckBox_CheckedChanged);
             // 
             // randomProbabilityCheckBox
             // 
@@ -280,7 +302,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.saveInLabel, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.outputPathTextBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.selectPathButton, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -292,16 +314,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(458, 29);
             this.tableLayoutPanel3.TabIndex = 12;
             // 
-            // label1
+            // saveInLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Сохранить gamedata в:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveInLabel.AutoSize = true;
+            this.saveInLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.saveInLabel.Location = new System.Drawing.Point(3, 0);
+            this.saveInLabel.Name = "saveInLabel";
+            this.saveInLabel.Size = new System.Drawing.Size(122, 29);
+            this.saveInLabel.TabIndex = 0;
+            this.saveInLabel.Text = "Сохранить gamedata в:";
+            this.saveInLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // outputPathTextBox
             // 
@@ -322,17 +344,6 @@
             this.selectPathButton.UseVisualStyleBackColor = true;
             this.selectPathButton.Click += new System.EventHandler(this.selectPathButton_Click);
             // 
-            // texturesCheckBox
-            // 
-            this.texturesCheckBox.AutoSize = true;
-            this.texturesCheckBox.Location = new System.Drawing.Point(6, 144);
-            this.texturesCheckBox.Name = "texturesCheckBox";
-            this.texturesCheckBox.Size = new System.Drawing.Size(75, 17);
-            this.texturesCheckBox.TabIndex = 14;
-            this.texturesCheckBox.Text = "Текстуры";
-            this.texturesCheckBox.UseVisualStyleBackColor = true;
-            this.texturesCheckBox.CheckedChanged += new System.EventHandler(this.texturesCheckBox_CheckedChanged);
-            // 
             // soundsCheckBox
             // 
             this.soundsCheckBox.AutoSize = true;
@@ -343,17 +354,6 @@
             this.soundsCheckBox.Text = "Звуки";
             this.soundsCheckBox.UseVisualStyleBackColor = true;
             this.soundsCheckBox.CheckedChanged += new System.EventHandler(this.soundsCheckBox_CheckedChanged);
-            // 
-            // dialogsCheckBox
-            // 
-            this.dialogsCheckBox.AutoSize = true;
-            this.dialogsCheckBox.Location = new System.Drawing.Point(6, 167);
-            this.dialogsCheckBox.Name = "dialogsCheckBox";
-            this.dialogsCheckBox.Size = new System.Drawing.Size(70, 17);
-            this.dialogsCheckBox.TabIndex = 16;
-            this.dialogsCheckBox.Text = "Диалоги";
-            this.dialogsCheckBox.UseVisualStyleBackColor = true;
-            this.dialogsCheckBox.CheckedChanged += new System.EventHandler(this.dialogsCheckBox_CheckedChanged);
             // 
             // GenerateDialog
             // 
@@ -394,7 +394,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label saveInLabel;
         private System.Windows.Forms.TextBox outputPathTextBox;
         private System.Windows.Forms.Button selectPathButton;
         private System.Windows.Forms.CheckBox randomProbabilityCheckBox;

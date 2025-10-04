@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.parametersPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.probabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.probabilityLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.buyButton = new System.Windows.Forms.Button();
             this.sellButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.countProbabilitySectionsLabel = new System.Windows.Forms.Label();
+            this.sellMultiplierSectionsLabel = new System.Windows.Forms.Label();
+            this.buyMultiplierSectionsLabel = new System.Windows.Forms.Label();
             this.countProbabilityButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -66,18 +66,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 330);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(459, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Настройки генерации ассортимента торговцев";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.titleLabel.Location = new System.Drawing.Point(0, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.titleLabel.Size = new System.Drawing.Size(459, 26);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "Настройки генерации ассортимента торговцев";
             // 
             // tableLayoutPanel2
             // 
@@ -122,7 +122,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.probabilityInput, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label5, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.probabilityLabel, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 87);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -150,16 +150,16 @@
             0});
             this.probabilityInput.ValueChanged += new System.EventHandler(this.probabilityInput_ValueChanged_1);
             // 
-            // label5
+            // probabilityLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(62, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(388, 26);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Вероятность генерации наличия каждого предмета";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.probabilityLabel.AutoSize = true;
+            this.probabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probabilityLabel.Location = new System.Drawing.Point(62, 0);
+            this.probabilityLabel.Name = "probabilityLabel";
+            this.probabilityLabel.Size = new System.Drawing.Size(388, 26);
+            this.probabilityLabel.TabIndex = 1;
+            this.probabilityLabel.Text = "Вероятность генерации наличия каждого предмета";
+            this.probabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
             // 
@@ -169,9 +169,9 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.buyButton, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.sellButton, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label4, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.countProbabilitySectionsLabel, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.sellMultiplierSectionsLabel, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.buyMultiplierSectionsLabel, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.countProbabilityButton, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
@@ -206,41 +206,41 @@
             this.sellButton.UseVisualStyleBackColor = true;
             this.sellButton.Click += new System.EventHandler(this.sellButton_Click);
             // 
-            // label2
+            // countProbabilitySectionsLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 29);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Секции количества и вероятности появления";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.countProbabilitySectionsLabel.AutoSize = true;
+            this.countProbabilitySectionsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.countProbabilitySectionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.countProbabilitySectionsLabel.Location = new System.Drawing.Point(3, 0);
+            this.countProbabilitySectionsLabel.Name = "countProbabilitySectionsLabel";
+            this.countProbabilitySectionsLabel.Size = new System.Drawing.Size(306, 29);
+            this.countProbabilitySectionsLabel.TabIndex = 0;
+            this.countProbabilitySectionsLabel.Text = "Секции количества и вероятности появления";
+            this.countProbabilitySectionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // sellMultiplierSectionsLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(306, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Секции множителей цен продажи игроку";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sellMultiplierSectionsLabel.AutoSize = true;
+            this.sellMultiplierSectionsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sellMultiplierSectionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sellMultiplierSectionsLabel.Location = new System.Drawing.Point(3, 29);
+            this.sellMultiplierSectionsLabel.Name = "sellMultiplierSectionsLabel";
+            this.sellMultiplierSectionsLabel.Size = new System.Drawing.Size(306, 29);
+            this.sellMultiplierSectionsLabel.TabIndex = 1;
+            this.sellMultiplierSectionsLabel.Text = "Секции множителей цен продажи игроку";
+            this.sellMultiplierSectionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // buyMultiplierSectionsLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(3, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(306, 29);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Секции множителей цен покупки у игрока";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buyMultiplierSectionsLabel.AutoSize = true;
+            this.buyMultiplierSectionsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buyMultiplierSectionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buyMultiplierSectionsLabel.Location = new System.Drawing.Point(3, 58);
+            this.buyMultiplierSectionsLabel.Name = "buyMultiplierSectionsLabel";
+            this.buyMultiplierSectionsLabel.Size = new System.Drawing.Size(306, 29);
+            this.buyMultiplierSectionsLabel.TabIndex = 2;
+            this.buyMultiplierSectionsLabel.Text = "Секции множителей цен покупки у игрока";
+            this.buyMultiplierSectionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // countProbabilityButton
             // 
@@ -276,18 +276,18 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel parametersPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.NumericUpDown probabilityInput;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label countProbabilitySectionsLabel;
+        private System.Windows.Forms.Label sellMultiplierSectionsLabel;
+        private System.Windows.Forms.Label buyMultiplierSectionsLabel;
         private System.Windows.Forms.Button buyButton;
         private System.Windows.Forms.Button sellButton;
         private System.Windows.Forms.Button countProbabilityButton;
+        private System.Windows.Forms.Label probabilityLabel;
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class WeatherTab : UserControl
+    public partial class WeatherTab : UserControl, ILocalizable
     {
         private readonly WeatherConfig _config;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
@@ -34,12 +34,12 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void weatherSectionsButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Секции погоды", _config.Sections), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("weatherSectionsShort"), _config.Sections), _config);
         }
 
         private async void weatherParametersButton_Click(object sender, EventArgs e)
         {
-            await parametersEditor.ParametersEditAndSave("Параметры для генерации погоды", _config.Parameters, _config);
+            await parametersEditor.ParametersEditAndSave(Localization.Get("weatherParamsFull"), _config.Parameters, _config);
         }
 
         private void rainProbabilityInput_ValueChanged(object sender, EventArgs e)
@@ -55,6 +55,19 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void weatherProbabilityInput_ValueChanged(object sender, EventArgs e)
         {
             _config.StatProbability = (int)weatherProbabilityInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("weatherTitle");
+            weatherSectionsLabel.Text = Localization.Get("weatherSections");
+            weatherParamsLabel.Text = Localization.Get("weatherParams");
+            rainProbabilityLabel.Text = Localization.Get("rainProbability");
+            thunderProbabilityLabel.Text = Localization.Get("thunderProbability");
+            weatherProbabilityLabel.Text = Localization.Get("weatherProbability");
+
+            weatherSectionsButton.Text = Localization.Get("editList");
+            weatherParametersButton.Text = Localization.Get("editList");
         }
     }
 }

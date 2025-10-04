@@ -1,4 +1,5 @@
 ﻿using RandomizerSoC;
+using Simple_randomizer_SoC.Forms.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,9 @@ namespace Simple_randomizer_SoC.Forms.Templates
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+
+            mainLabel.Text = Localization.Get("programClosing");
+            forceCloseButton.Text = Localization.Get("forceCloseButton");
 
             EnableButton();
         }

@@ -15,10 +15,11 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class DeathTab : UserControl
+    public partial class DeathTab : UserControl, ILocalizable
     {
         private readonly DataListEditor dataListEditor = Singleton<DataListEditor>.Instance;
-        private DeathItemsConfig _config;
+        private readonly DeathItemsConfig _config;
+        private readonly List<ILocalizable> _controls = new List<ILocalizable>();
 
         public DeathTab(DeathItemsConfig config)
         {
@@ -27,14 +28,27 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
             _config = config;
 
-            AddCategoryParam("Оружие", config.WeaponParameters, null);
-            AddCategoryParam("Броня", config.ArmorParameters, null);
-            AddCategoryParam("Артефакты", config.ArtefactParameters, null);
-            AddCategoryParam("Патроны", config.AmmoParameters, _config.AmmoCounts);
-            AddCategoryParam("Расходники", config.ItemParameters, null);
-            AddCategoryParam("Прочее", config.OtherParameters, null);
+            AddCategoryParam("weapons", config.WeaponParameters, null);
+            AddCategoryParam("armor", config.ArmorParameters, null);
+            AddCategoryParam("artefacts", config.ArtefactParameters, null);
+            AddCategoryParam("ammo", config.AmmoParameters, _config.AmmoCounts);
+            AddCategoryParam("consumables", config.ItemParameters, null);
+            AddCategoryParam("other", config.OtherParameters, null);
 
             probabilityInput.Value = _config.Probability;
+        }
+
+        public void Localize()
+        {
+            deathTitleLabel.Text = Localization.Get("deathTitle");
+            keepItemsLabel.Text = Localization.Get("keepDeathItems");
+            keepItemsButton.Text = Localization.Get("editList");
+            probabilityLabel.Text = Localization.Get("deathProbability");
+
+            foreach (var item in _controls)
+            {
+                item.Localize();
+            }
         }
 
         private void AddCategoryParam(string title, DeathItemsParameters parameters, List<ItemThreeCount> ammoCounts)
@@ -43,7 +57,9 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             parametersPanel.RowStyles.Add(new RowStyle());
             var rowIndex = parametersPanel.RowCount++;
 
-            parametersPanel.Controls.Add(new DeathItemsControl(title, parameters, _config, ammoCounts), 0, rowIndex);
+            var c = new DeathItemsControl(title, parameters, _config, ammoCounts);
+            _controls.Add(c);
+            parametersPanel.Controls.Add(c, 0, rowIndex);
         }
 
         private async void keepItemsButton_Click(object sender, EventArgs e)

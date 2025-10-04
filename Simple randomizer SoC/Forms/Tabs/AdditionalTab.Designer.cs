@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.knifeCheckBox = new System.Windows.Forms.CheckBox();
             this.disableBarAlarmCheckBox = new System.Windows.Forms.CheckBox();
@@ -43,10 +43,10 @@
             this.crashFixCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.translateProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.translateProbabilityLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.shuffleProbabilityInput = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
+            this.shuffleProbabilityLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -60,7 +60,7 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -71,18 +71,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 357);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(3);
-            this.label1.Size = new System.Drawing.Size(610, 26);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Дополнительные параметры";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.titleLabel.Location = new System.Drawing.Point(0, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.titleLabel.Size = new System.Drawing.Size(610, 26);
+            this.titleLabel.TabIndex = 3;
+            this.titleLabel.Text = "Дополнительные параметры";
             // 
             // tableLayoutPanel2
             // 
@@ -249,7 +249,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.translateProbabilityInput, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.translateProbabilityLabel, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 233);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -277,16 +277,16 @@
             0});
             this.translateProbabilityInput.ValueChanged += new System.EventHandler(this.translateProbabilityInput_ValueChanged);
             // 
-            // label2
+            // translateProbabilityLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(69, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(538, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Вероятность замены каждого текстового блока";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.translateProbabilityLabel.AutoSize = true;
+            this.translateProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.translateProbabilityLabel.Location = new System.Drawing.Point(69, 0);
+            this.translateProbabilityLabel.Name = "translateProbabilityLabel";
+            this.translateProbabilityLabel.Size = new System.Drawing.Size(538, 26);
+            this.translateProbabilityLabel.TabIndex = 1;
+            this.translateProbabilityLabel.Text = "Вероятность замены каждого текстового блока";
+            this.translateProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel4
             // 
@@ -296,7 +296,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.shuffleProbabilityInput, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.shuffleProbabilityLabel, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 282);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -324,16 +324,16 @@
             0});
             this.shuffleProbabilityInput.ValueChanged += new System.EventHandler(this.shuffleProbabilityInput_ValueChanged);
             // 
-            // label3
+            // shuffleProbabilityLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(69, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(538, 26);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Вероятность перемешивания каждого текстового блока";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.shuffleProbabilityLabel.AutoSize = true;
+            this.shuffleProbabilityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shuffleProbabilityLabel.Location = new System.Drawing.Point(69, 0);
+            this.shuffleProbabilityLabel.Name = "shuffleProbabilityLabel";
+            this.shuffleProbabilityLabel.Size = new System.Drawing.Size(538, 26);
+            this.shuffleProbabilityLabel.TabIndex = 1;
+            this.shuffleProbabilityLabel.Text = "Вероятность перемешивания каждого текстового блока";
+            this.shuffleProbabilityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AdditionalTab
             // 
@@ -361,7 +361,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.LinkLabel onePointFourLinkLabel;
         private System.Windows.Forms.CheckBox crashFixCheckBox;
@@ -375,9 +375,9 @@
         private System.Windows.Forms.CheckBox shuffleTextCheckBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.NumericUpDown translateProbabilityInput;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label translateProbabilityLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.NumericUpDown shuffleProbabilityInput;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label shuffleProbabilityLabel;
     }
 }

@@ -33,8 +33,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.valueTypeLabel = new System.Windows.Forms.Label();
+            this.orderLabel = new System.Windows.Forms.Label();
             this.typeSelect = new System.Windows.Forms.ComboBox();
             this.orderInput = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
@@ -100,8 +100,8 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.valueTypeLabel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.orderLabel, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.typeSelect, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.orderInput, 1, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -114,25 +114,25 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(298, 160);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // label2
+            // valueTypeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Тип значения";
+            this.valueTypeLabel.AutoSize = true;
+            this.valueTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.valueTypeLabel.Location = new System.Drawing.Point(3, 0);
+            this.valueTypeLabel.Name = "valueTypeLabel";
+            this.valueTypeLabel.Size = new System.Drawing.Size(98, 16);
+            this.valueTypeLabel.TabIndex = 1;
+            this.valueTypeLabel.Text = "Тип значения";
             // 
-            // label3
+            // orderLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Номер по порядку";
+            this.orderLabel.AutoSize = true;
+            this.orderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderLabel.Location = new System.Drawing.Point(3, 27);
+            this.orderLabel.Name = "orderLabel";
+            this.orderLabel.Size = new System.Drawing.Size(126, 16);
+            this.orderLabel.TabIndex = 2;
+            this.orderLabel.Text = "Номер по порядку";
             // 
             // typeSelect
             // 
@@ -183,8 +183,8 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label valueTypeLabel;
+        private System.Windows.Forms.Label orderLabel;
         private System.Windows.Forms.ComboBox typeSelect;
         private System.Windows.Forms.NumericUpDown orderInput;
     }

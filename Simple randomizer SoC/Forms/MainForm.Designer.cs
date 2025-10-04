@@ -42,8 +42,9 @@ namespace RandomizerSoC
             this.dialogTab = new System.Windows.Forms.TabPage();
             this.additionalTab = new System.Windows.Forms.TabPage();
             this.aboutTab = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.generateButton = new System.Windows.Forms.Button();
@@ -52,13 +53,12 @@ namespace RandomizerSoC
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl.SuspendLayout();
             this.aboutTab.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -87,7 +87,7 @@ namespace RandomizerSoC
             this.stashTab.Location = new System.Drawing.Point(4, 40);
             this.stashTab.Name = "stashTab";
             this.stashTab.Padding = new System.Windows.Forms.Padding(3);
-            this.stashTab.Size = new System.Drawing.Size(684, 356);
+            this.stashTab.Size = new System.Drawing.Size(684, 350);
             this.stashTab.TabIndex = 15;
             this.stashTab.Text = "Тайники";
             this.stashTab.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@ namespace RandomizerSoC
             this.weaponTab.Location = new System.Drawing.Point(4, 40);
             this.weaponTab.Name = "weaponTab";
             this.weaponTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponTab.Size = new System.Drawing.Size(684, 356);
+            this.weaponTab.Size = new System.Drawing.Size(684, 350);
             this.weaponTab.TabIndex = 16;
             this.weaponTab.Text = "Оружие";
             this.weaponTab.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@ namespace RandomizerSoC
             this.itemTab.Location = new System.Drawing.Point(4, 40);
             this.itemTab.Name = "itemTab";
             this.itemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.itemTab.Size = new System.Drawing.Size(684, 356);
+            this.itemTab.Size = new System.Drawing.Size(684, 350);
             this.itemTab.TabIndex = 17;
             this.itemTab.Text = "Предметы";
             this.itemTab.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@ namespace RandomizerSoC
             this.npcTab.Location = new System.Drawing.Point(4, 40);
             this.npcTab.Name = "npcTab";
             this.npcTab.Padding = new System.Windows.Forms.Padding(3);
-            this.npcTab.Size = new System.Drawing.Size(684, 356);
+            this.npcTab.Size = new System.Drawing.Size(684, 350);
             this.npcTab.TabIndex = 19;
             this.npcTab.Text = "НПС";
             this.npcTab.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@ namespace RandomizerSoC
             this.weatherTab.Location = new System.Drawing.Point(4, 40);
             this.weatherTab.Name = "weatherTab";
             this.weatherTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weatherTab.Size = new System.Drawing.Size(684, 356);
+            this.weatherTab.Size = new System.Drawing.Size(684, 350);
             this.weatherTab.TabIndex = 18;
             this.weatherTab.Text = "Погода";
             this.weatherTab.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@ namespace RandomizerSoC
             this.soundTextureTab.Location = new System.Drawing.Point(4, 40);
             this.soundTextureTab.Name = "soundTextureTab";
             this.soundTextureTab.Padding = new System.Windows.Forms.Padding(3);
-            this.soundTextureTab.Size = new System.Drawing.Size(684, 356);
+            this.soundTextureTab.Size = new System.Drawing.Size(684, 350);
             this.soundTextureTab.TabIndex = 20;
             this.soundTextureTab.Text = "Звуки/текстуры";
             this.soundTextureTab.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@ namespace RandomizerSoC
             this.traderTab.Location = new System.Drawing.Point(4, 40);
             this.traderTab.Name = "traderTab";
             this.traderTab.Padding = new System.Windows.Forms.Padding(3);
-            this.traderTab.Size = new System.Drawing.Size(684, 356);
+            this.traderTab.Size = new System.Drawing.Size(684, 350);
             this.traderTab.TabIndex = 22;
             this.traderTab.Text = "Ассортимент торговцев";
             this.traderTab.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@ namespace RandomizerSoC
             this.deathTab.Location = new System.Drawing.Point(4, 40);
             this.deathTab.Name = "deathTab";
             this.deathTab.Padding = new System.Windows.Forms.Padding(3);
-            this.deathTab.Size = new System.Drawing.Size(684, 356);
+            this.deathTab.Size = new System.Drawing.Size(684, 350);
             this.deathTab.TabIndex = 23;
             this.deathTab.Text = "Вещи убитых НПС";
             this.deathTab.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@ namespace RandomizerSoC
             this.dialogTab.Location = new System.Drawing.Point(4, 40);
             this.dialogTab.Name = "dialogTab";
             this.dialogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dialogTab.Size = new System.Drawing.Size(684, 356);
+            this.dialogTab.Size = new System.Drawing.Size(684, 350);
             this.dialogTab.TabIndex = 21;
             this.dialogTab.Text = "Диалоги";
             this.dialogTab.UseVisualStyleBackColor = true;
@@ -178,7 +178,7 @@ namespace RandomizerSoC
             this.additionalTab.Name = "additionalTab";
             this.additionalTab.Padding = new System.Windows.Forms.Padding(3);
             this.additionalTab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.additionalTab.Size = new System.Drawing.Size(684, 356);
+            this.additionalTab.Size = new System.Drawing.Size(684, 350);
             this.additionalTab.TabIndex = 9;
             this.additionalTab.Text = "Дополнительно";
             this.additionalTab.UseVisualStyleBackColor = true;
@@ -194,6 +194,33 @@ namespace RandomizerSoC
             this.aboutTab.Text = "О программе";
             this.aboutTab.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(678, 344);
+            this.tableLayoutPanel3.TabIndex = 23;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(2, 97);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(314, 20);
+            this.textBox1.TabIndex = 21;
+            this.textBox1.Text = "https://github.com/ned0emo/Simple-randomizer-SoC";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -206,17 +233,6 @@ namespace RandomizerSoC
             this.label8.Text = "©ned0emo, ver 2.0\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPrettyBin by Andrey" +
     " Ershov";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(2, 97);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(314, 20);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.Text = "https://github.com/ned0emo/Simple-randomizer-SoC";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tableLayoutPanel1
             // 
@@ -273,9 +289,9 @@ namespace RandomizerSoC
             this.langComboBox.Items.AddRange(new object[] {
             "Русский/Russian",
             "Английский/English"});
-            this.langComboBox.Location = new System.Drawing.Point(455, 3);
+            this.langComboBox.Location = new System.Drawing.Point(436, 3);
             this.langComboBox.Name = "langComboBox";
-            this.langComboBox.Size = new System.Drawing.Size(121, 21);
+            this.langComboBox.Size = new System.Drawing.Size(140, 21);
             this.langComboBox.TabIndex = 1;
             this.langComboBox.SelectedIndexChanged += new System.EventHandler(this.langComboBox_SelectedIndexChanged);
             // 
@@ -283,7 +299,7 @@ namespace RandomizerSoC
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(358, 0);
+            this.label1.Location = new System.Drawing.Point(339, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 29);
             this.label1.TabIndex = 2;
@@ -299,7 +315,7 @@ namespace RandomizerSoC
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(355, 29);
+            this.panel1.Size = new System.Drawing.Size(336, 29);
             this.panel1.TabIndex = 3;
             // 
             // statusLabel
@@ -316,24 +332,8 @@ namespace RandomizerSoC
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(0, 0);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(355, 29);
+            this.progressBar.Size = new System.Drawing.Size(336, 29);
             this.progressBar.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(678, 344);
-            this.tableLayoutPanel3.TabIndex = 23;
             // 
             // MainForm
             // 
@@ -349,14 +349,14 @@ namespace RandomizerSoC
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.aboutTab.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -103,7 +103,19 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         public void Localize()
         {
-
+            titleLabel.Text = Localization.Get("additionalTitle");
+            onePointFourLinkLabel.Text = Localization.Get("onePointFourLink");
+            respawnCheckBox.Text = Localization.Get("increaseRespawn");
+            disableHidingWeaponCheckBox.Text = Localization.Get("disableHidingWeapons");
+            disableBarAlarmCheckBox.Text = Localization.Get("disableBarAlarm");
+            knifeCheckBox.Text = Localization.Get("giveKnife");
+            traderDoorCheckBox.Text = Localization.Get("unlockTraderDoor");
+            freedomBaseCheckBox.Text = Localization.Get("disableFreedomAngry");
+            translateCheckBox.Text = Localization.Get("brokenTranslate");
+            translateProbabilityLabel.Text = Localization.Get("brokenTranslateProbability");
+            shuffleTextCheckBox.Text = Localization.Get("shuffleText");
+            shuffleProbabilityLabel.Text = Localization.Get("shuffleTextProbability");
+            crashFixCheckBox.Text = Localization.Get("crashFix");
         }
     }
 }

@@ -33,9 +33,9 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.parameterNameLabel = new System.Windows.Forms.Label();
+            this.valueTypeLabel = new System.Windows.Forms.Label();
+            this.valueCountLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.typeSelect = new System.Windows.Forms.ComboBox();
             this.countInput = new System.Windows.Forms.NumericUpDown();
@@ -102,9 +102,9 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.parameterNameLabel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.valueTypeLabel, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.valueCountLabel, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.nameTextBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.typeSelect, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.countInput, 1, 2);
@@ -118,35 +118,35 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(298, 160);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // label1
+            // parameterNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Название параметра";
+            this.parameterNameLabel.AutoSize = true;
+            this.parameterNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.parameterNameLabel.Location = new System.Drawing.Point(3, 0);
+            this.parameterNameLabel.Name = "parameterNameLabel";
+            this.parameterNameLabel.Size = new System.Drawing.Size(148, 16);
+            this.parameterNameLabel.TabIndex = 0;
+            this.parameterNameLabel.Text = "Название параметра";
             // 
-            // label2
+            // valueTypeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Тип значения";
+            this.valueTypeLabel.AutoSize = true;
+            this.valueTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.valueTypeLabel.Location = new System.Drawing.Point(3, 26);
+            this.valueTypeLabel.Name = "valueTypeLabel";
+            this.valueTypeLabel.Size = new System.Drawing.Size(98, 16);
+            this.valueTypeLabel.TabIndex = 1;
+            this.valueTypeLabel.Text = "Тип значения";
             // 
-            // label3
+            // valueCountLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Количество значений";
+            this.valueCountLabel.AutoSize = true;
+            this.valueCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.valueCountLabel.Location = new System.Drawing.Point(3, 53);
+            this.valueCountLabel.Name = "valueCountLabel";
+            this.valueCountLabel.Size = new System.Drawing.Size(152, 16);
+            this.valueCountLabel.TabIndex = 2;
+            this.valueCountLabel.Text = "Количество значений";
             // 
             // nameTextBox
             // 
@@ -211,9 +211,9 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label parameterNameLabel;
+        private System.Windows.Forms.Label valueTypeLabel;
+        private System.Windows.Forms.Label valueCountLabel;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.ComboBox typeSelect;
         private System.Windows.Forms.NumericUpDown countInput;

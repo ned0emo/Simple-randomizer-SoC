@@ -32,12 +32,12 @@
             this.communityProbabilityButton = new System.Windows.Forms.Button();
             this.levelCountButton = new System.Windows.Forms.Button();
             this.difficultyCountButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.countByDifficultyLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.itemsLabel = new System.Windows.Forms.Label();
             this.editListButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.multiplierByLevelLabel = new System.Windows.Forms.Label();
+            this.probabilityByCommunityLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,12 +51,12 @@
             this.tableLayoutPanel1.Controls.Add(this.communityProbabilityButton, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.levelCountButton, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.difficultyCountButton, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.countByDifficultyLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.itemsLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.editListButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.multiplierByLevelLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.probabilityByCommunityLabel, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -105,17 +105,17 @@
             this.difficultyCountButton.UseVisualStyleBackColor = true;
             this.difficultyCountButton.Click += new System.EventHandler(this.difficultyCountButton_Click);
             // 
-            // label1
+            // countByDifficultyLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(326, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Количество в зависимости от уровня сложности";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.countByDifficultyLabel.AutoSize = true;
+            this.countByDifficultyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.countByDifficultyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.countByDifficultyLabel.Location = new System.Drawing.Point(3, 45);
+            this.countByDifficultyLabel.Name = "countByDifficultyLabel";
+            this.countByDifficultyLabel.Size = new System.Drawing.Size(326, 29);
+            this.countByDifficultyLabel.TabIndex = 3;
+            this.countByDifficultyLabel.Text = "Количество в зависимости от уровня сложности";
+            this.countByDifficultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // titleLabel
             // 
@@ -153,29 +153,29 @@
             this.editListButton.UseVisualStyleBackColor = true;
             this.editListButton.Click += new System.EventHandler(this.editListButton_Click);
             // 
-            // label2
+            // multiplierByLevel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(326, 29);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Множитель в зависимости от локации";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.multiplierByLevelLabel.AutoSize = true;
+            this.multiplierByLevelLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiplierByLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.multiplierByLevelLabel.Location = new System.Drawing.Point(3, 74);
+            this.multiplierByLevelLabel.Name = "multiplierByLevel";
+            this.multiplierByLevelLabel.Size = new System.Drawing.Size(326, 29);
+            this.multiplierByLevelLabel.TabIndex = 4;
+            this.multiplierByLevelLabel.Text = "Множитель в зависимости от локации";
+            this.multiplierByLevelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // probabilityByCommunity
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(3, 103);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(326, 29);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Вероятность в зависимости от группировки";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.probabilityByCommunityLabel.AutoSize = true;
+            this.probabilityByCommunityLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probabilityByCommunityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.probabilityByCommunityLabel.Location = new System.Drawing.Point(3, 103);
+            this.probabilityByCommunityLabel.Name = "probabilityByCommunity";
+            this.probabilityByCommunityLabel.Size = new System.Drawing.Size(326, 29);
+            this.probabilityByCommunityLabel.TabIndex = 5;
+            this.probabilityByCommunityLabel.Text = "Вероятность в зависимости от группировки";
+            this.probabilityByCommunityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeathItemsControl
             // 
@@ -199,9 +199,9 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label itemsLabel;
         private System.Windows.Forms.Button editListButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label countByDifficultyLabel;
+        private System.Windows.Forms.Label multiplierByLevelLabel;
+        private System.Windows.Forms.Label probabilityByCommunityLabel;
         private System.Windows.Forms.Button communityProbabilityButton;
         private System.Windows.Forms.Button levelCountButton;
         private System.Windows.Forms.Button difficultyCountButton;

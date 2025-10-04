@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class StashTab : UserControl
+    public partial class StashTab : UserControl, ILocalizable
     {
         private readonly StashConfig _config;
         private readonly DataListEditor _listEditComponent = Singleton<DataListEditor>.Instance;
-        private readonly List<string> _ammoCountColumns = new List<string>() { "Значение", "Количество в пачке" };
+        private readonly List<string> _ammoCountColumns = new List<string>() { Localization.Get("ammoType"), Localization.Get("ammoBoxCount") };
 
         public StashTab(StashConfig stashConfig)
         {
@@ -40,38 +40,38 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void editWeaponsButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список оружия для заполнения тайников", _config.Weapons), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("weapons"), _config.Weapons), _config);
         }
 
         private async void editArmorsButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список брони для заполнения тайников", _config.Armors), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("armor"), _config.Armors), _config);
         }
 
         private async void editArtefactsButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список артефактов для заполнения тайников", _config.Artefacts), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("artefacts"), _config.Artefacts), _config);
         }
 
         private async void editAmmosButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ComplexListDialog<ItemCount>("Патроны для заполнения тайников", _config.Ammos, _ammoCountColumns);
+            var dialog = new ComplexListDialog<ItemCount>(Localization.Get("ammo"), _config.Ammos, _ammoCountColumns);
             await _listEditComponent.OpenEditThenSave<ComplexListDialog<ItemCount>, ItemCount>(dialog, _config);
         }
 
         private async void editItemsButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список расходников для заполнения тайников", _config.Items), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("consumables"), _config.Items), _config);
         }
 
         private async void editOthersButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список прочего для заполнения тайников", _config.Others), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("other"), _config.Others), _config);
         }
 
         private async void editCommunitiesButton_Click(object sender, EventArgs e)
         {
-            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Список группировок для выдачи тайников", _config.Communities), _config);
+            await _listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcCommunities"), _config.Communities), _config);
         }
 
         private void maxWeponsInput_ValueChanged(object sender, EventArgs e)
@@ -111,6 +111,34 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void probabilityInput_ValueChanged(object sender, EventArgs e)
         {
             _config.Probability = (int)probabilityInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("stashesTitle");
+            weaponsLabel.Text = Localization.Get("weapons");
+            weaponsMaxCountLabel.Text = Localization.Get("maxCount");
+            armorLabel.Text = Localization.Get("armor");
+            armorMaxCountLabel.Text = Localization.Get("maxCount");
+            artefactsLabel.Text = Localization.Get("artefacts");
+            artefactsMaxCountLabel.Text = Localization.Get("maxCount");
+            ammoLabel.Text = Localization.Get("ammo");
+            ammoMaxCountLabel.Text = Localization.Get("maxCount");
+            consumablesLabel.Text = Localization.Get("consumables");
+            consumablesMaxCountLabel.Text = Localization.Get("maxCount");
+            otherLabel.Text = Localization.Get("other");
+            otherMaxCountLabel.Text = Localization.Get("maxCount");
+            communitiesLabel.Text = Localization.Get("npcCommunities");
+            communitiesMaxCountLabel.Text = Localization.Get("maxCount");
+            probabilityLabel.Text = Localization.Get("stashesProbability");
+
+            editWeaponsButton.Text = Localization.Get("editList");
+            editArmorsButton.Text = Localization.Get("editList");
+            editArtefactsButton.Text = Localization.Get("editList");
+            editAmmosButton.Text = Localization.Get("editList");
+            editItemsButton.Text = Localization.Get("editList");
+            editOthersButton.Text = Localization.Get("editList");
+            editCommunitiesButton.Text = Localization.Get("editList");
         }
     }
 }

@@ -30,11 +30,6 @@ namespace Simple_randomizer_SoC
 
         public static string Get(string code)
         {
-            if (_rm == null)
-            {
-                ChangeLanguage("ru");
-            }
-
             try
             {
                 return _rm.GetString(code) ?? code;

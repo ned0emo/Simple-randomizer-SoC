@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Tabs
 {
-    public partial class NpcTab : UserControl
+    public partial class NpcTab : UserControl, ILocalizable
     {
         private readonly NpcConfig _config;
         private readonly DataListEditor listEditComponent = Singleton<DataListEditor>.Instance;
@@ -51,48 +51,54 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void modelButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Модели НПС", _config.Models), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcModels"), _config.Models), _config);
         }
 
         private async void soundButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Озвучка НПС", _config.Sounds), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcSounds"), _config.Sounds), _config);
         }
 
         private async void iconButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Миниатюры НПС", _config.Icons), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcIcons"), _config.Icons), _config);
         }
 
         private async void generateNameButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Генерируемые имена НПС", _config.GenerateNames), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcGenNames"), _config.GenerateNames), _config);
         }
 
         private async void uniqueNameButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Уникальные имена НПС", _config.UniqueNames), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcUniqueNames"), _config.UniqueNames), _config);
         }
 
         private async void communityButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Группировки", _config.Communities), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcCommunities"), _config.Communities), _config);
         }
 
         private async void exceptionButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("НПС, исключенные из генерации", _config.Exceptions), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcExceptions"), _config.Exceptions), _config);
         }
 
         private async void mainWeaponButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ComplexListDialog<WeaponAmmo>("Основное оружие НПС", _config.MainWeapons,
-                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" })
+            var dialog = new ComplexListDialog<WeaponAmmo>(Localization.Get("npcMainWeapons"), _config.MainWeapons,
+                new List<string> {
+                    Localization.Get("weapons"),
+                    Localization.Get("useAmmo") + " 1",
+                    Localization.Get("useAmmo") + " 2",
+                    Localization.Get("useAmmo") + " 3",
+                    Localization.Get("useAmmo") + " 4",
+                    Localization.Get("useAmmo") + " 5" })
             {
                 RowValidator = (wa) => wa.Validate(),
                 OnValidationError = (_) =>
                 {
-                    MessageBox.Show("Ошибка", "Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Localization.Get("warning"), Localization.Get("weaponAmmoValidation"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 },
                 Nullable = true
             };
@@ -101,13 +107,19 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void additionalWeaponButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ComplexListDialog<WeaponAmmo>("Дополнительное оружие НПС", _config.AdditionalWeapons,
-                new List<string> { "Оружие", "Используемые патроны 1", "Используемые патроны 2", "Используемые патроны 3", "Используемые патроны 4", "Используемые патроны 5" })
+            var dialog = new ComplexListDialog<WeaponAmmo>(Localization.Get("npcAdditionalWeapons"), _config.AdditionalWeapons,
+                new List<string> {
+                    Localization.Get("weapons"),
+                    Localization.Get("useAmmo") + " 1",
+                    Localization.Get("useAmmo") + " 2",
+                    Localization.Get("useAmmo") + " 3",
+                    Localization.Get("useAmmo") + " 4",
+                    Localization.Get("useAmmo") + " 5" })
             {
                 RowValidator = (wa) => wa.Validate(),
                 OnValidationError = (_) =>
                 {
-                    MessageBox.Show("Ошибка", "Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Localization.Get("warning"), Localization.Get("weaponAmmoValidation"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 },
                 Nullable = true
             };
@@ -116,7 +128,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void keepSupplieButton_Click(object sender, EventArgs e)
         {
-            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog("Предметы, которые не нужно убирать при генерации НПС", _config.KeepingSupplies), _config);
+            await listEditComponent.OpenEditThenSave<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("npcKeepSuppliesSingleLine"), _config.KeepingSupplies), _config);
         }
 
         private void singleWeaponCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -208,6 +220,41 @@ namespace Simple_randomizer_SoC.Forms.Tabs
         private void moneyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             _config.UseMoney = moneyCheckBox.Checked;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get("npcTitle");
+            modelCheckBox.Text = Localization.Get("npcModels");
+            soundCheckBox.Text = Localization.Get("npcSounds");
+            iconCheckBox.Text = Localization.Get("npcIcons");
+            generateNameCheckBox.Text = Localization.Get("npcGenNames");
+            uniqueNameCheckBox.Text = Localization.Get("npcUniqueNames");
+            communityCheckBox.Text = Localization.Get("npcCommunities");
+            exceptionsLabel.Text = Localization.Get("npcExceptions");
+            mainWeaponCheckBox.Text = Localization.Get("npcMainWeapons");
+            additionalWeaponCheckBox.Text = Localization.Get("npcAdditionalWeapons");
+            singleWeaponCheckBox.Text = Localization.Get("npcSingleWeapon");
+            keepSupplieLabel.Text = Localization.Get("npcKeepSupplies");
+            extendCampCheckBox.Text = Localization.Get("npcExtendCamp");
+            rankCheckBox.Text = Localization.Get("npcRank");
+            minRankLabel.Text = Localization.Get("minValue");
+            maxRankLabel.Text = Localization.Get("maxValue");
+            moneyCheckBox.Text = Localization.Get("npcMoney");
+            minMoneyLabel.Text = Localization.Get("minValue");
+            maxMoneyLabel.Text = Localization.Get("maxValue");
+            probabilityLabel.Text = Localization.Get("npcProbability");
+
+            modelButon.Text = Localization.Get("editList");
+            soundButton.Text = Localization.Get("editList");
+            iconButton.Text = Localization.Get("editList");
+            generateNameButton.Text = Localization.Get("editList");
+            uniqueNameButton.Text = Localization.Get("editList");
+            communityButton.Text = Localization.Get("editList");
+            exceptionButton.Text = Localization.Get("editList");
+            mainWeaponButton.Text = Localization.Get("editList");
+            additionalWeaponButton.Text = Localization.Get("editList");
+            keepSupplieButton.Text = Localization.Get("editList");
         }
     }
 }

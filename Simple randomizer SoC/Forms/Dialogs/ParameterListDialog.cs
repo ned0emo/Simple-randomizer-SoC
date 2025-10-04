@@ -57,6 +57,39 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 AddCustomListParameter(p);
             }
 
+            Text = Localization.Get("parameterDialog");
+
+            fromListParamsLabel.Text = Localization.Get("fromListParams");
+            fromListParamNameLabel.Text = Localization.Get("name");
+            fromListValueCountLabel.Text = Localization.Get("valueCount");
+            valueListLabel.Text = Localization.Get("valueList");
+
+            intRangeParamsLabel.Text = Localization.Get("intRangeParams");
+            intRangeParamNameLabel.Text = Localization.Get("name");
+            intRangeValueCountLabel.Text = Localization.Get("valueCount");
+            intRangeMinValueLabel.Text = Localization.Get("minValue");
+            intRangeMaxValueLabel.Text = Localization.Get("maxValue");
+
+            floatRangeParamsLabel.Text = Localization.Get("floatRangeParams");
+            floatRangeParamNameLabel.Text = Localization.Get("name");
+            floatRangeValueCountLabel.Text = Localization.Get("valueCount");
+            floatRangeMinValueLabel.Text = Localization.Get("minValue");
+            floatRangeMaxValueLabel.Text = Localization.Get("maxValue");
+            precisionLabel.Text = Localization.Get("precision");
+
+            orderListParamsLabel.Text = Localization.Get("orderListParams");
+            orderListParamNameLabel.Text = Localization.Get("name");
+
+            shuffleParamsLabel.Text = Localization.Get("shuffleParams");
+            shuffleParamNameLabel.Text = Localization.Get("name");
+
+            copyParamsLabel.Text = Localization.Get("copyParams");
+            copyParamNameLabel.Text = Localization.Get("name");
+            copyFromParamNameLabel.Text = Localization.Get("copyFromName");
+
+            cancelButton.Text = Localization.Get("cancel");
+            saveButton.Text = Localization.Get("save");
+
             DialogResult = DialogResult.Cancel;
         }
 
@@ -84,14 +117,14 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var setListButton = new Button();
-                setListButton.Text = "Настроить список";
+                setListButton.Text = Localization.Get("editList");
                 setListButton.Click += (s, e) =>
                 {
-                    listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog("Настройка списка элементов параметра " + parameter.Name, parameter.Values));
+                    listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("fromListValuesEdit") + " " + parameter.Name, parameter.Values));
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = fromListPanel.RowCount;
                 var rs = new RowStyle();
@@ -124,7 +157,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -174,7 +207,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = intRangePanel.RowCount;
                 var rs = new RowStyle();
@@ -210,7 +243,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -275,7 +308,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = floatRangePanel.RowCount;
                 var rs = new RowStyle();
@@ -314,7 +347,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -338,11 +371,11 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var editButton = new Button();
-                editButton.Text = "Редактировать";
+                editButton.Text = Localization.Get("edit");
                 editButton.AutoSize = true;
                 editButton.Click += (s, e) =>
                 {
-                    var dialog = new OrderableParameterListDialog("Редкатирование параметра " + parameter.Name, parameter.ParameterContainer);
+                    var dialog = new OrderableParameterListDialog(Localization.Get("paramEdit") + " " + parameter.Name, parameter.ParameterContainer);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         parameter.ParameterContainer.Update(dialog.ParameterContainer);
@@ -350,7 +383,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = customListPanel.RowCount;
                 var rs = new RowStyle();
@@ -380,7 +413,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -404,7 +437,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = shufflePanel.RowCount;
                 var rs = new RowStyle();
@@ -431,7 +464,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -463,7 +496,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
                 };
 
                 var removeButton = new Button();
-                removeButton.Text = "Удалить";
+                removeButton.Text = Localization.Get("delete");
 
                 var rc = copyPanel.RowCount;
                 var rs = new RowStyle();
@@ -493,7 +526,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {
@@ -569,27 +602,27 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         {
             if (ParameterContainer.IntRangeParameters.Any(p => !p.Validate()))
             {
-                MessageBox.Show("Не все поля целочисленных параметров заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("intRangeValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (ParameterContainer.FloatRangeParameters.Any(p => !p.Validate()))
             {
-                MessageBox.Show("Не все поля параметров с плавающей точкой заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("floatRangeValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (ParameterContainer.FromListParameters.Any(p => !p.Validate()))
             {
-                MessageBox.Show("Не все поля параметров, выбираемых из списка, заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("fromListValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (ParameterContainer.ShuffleParameters.Any(s => !s.Validate()))
             {
-                MessageBox.Show("Не все поля параметров для перемешивания заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("shuffleValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (ParameterContainer.CopyParameters.Any(s => !s.Validate()))
             {
-                MessageBox.Show("Не все поля параметров для копирования заполнены корректно", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.Get("copyValidationError"), Localization.Get("warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

@@ -70,11 +70,479 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить.
+        /// </summary>
+        internal static string add {
+            get {
+                return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дополнительно.
         /// </summary>
         internal static string additionalTab {
             get {
                 return ResourceManager.GetString("additionalTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дополнительные параметры.
+        /// </summary>
+        internal static string additionalTitle {
+            get {
+                return ResourceManager.GetString("additionalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить параметр.
+        /// </summary>
+        internal static string addParameterDialog {
+            get {
+                return ResourceManager.GetString("addParameterDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Патроны.
+        /// </summary>
+        internal static string ammo {
+            get {
+                return ResourceManager.GetString("ammo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество в пачке.
+        /// </summary>
+        internal static string ammoBoxCount {
+            get {
+                return ResourceManager.GetString("ammoBoxCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры патронов.
+        /// </summary>
+        internal static string ammoParams {
+            get {
+                return ResourceManager.GetString("ammoParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры патронов.
+        /// </summary>
+        internal static string ammoParamsShort {
+            get {
+                return ResourceManager.GetString("ammoParamsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра патронов.
+        /// </summary>
+        internal static string ammoProbability {
+            get {
+                return ResourceManager.GetString("ammoProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров патронов.
+        /// </summary>
+        internal static string ammoSections {
+            get {
+                return ResourceManager.GetString("ammoSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции патронов.
+        /// </summary>
+        internal static string ammoSectionsShort {
+            get {
+                return ResourceManager.GetString("ammoSectionsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип патронов.
+        /// </summary>
+        internal static string ammoType {
+            get {
+                return ResourceManager.GetString("ammoType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Броня.
+        /// </summary>
+        internal static string armor {
+            get {
+                return ResourceManager.GetString("armor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров брони.
+        /// </summary>
+        internal static string armorGenerateSections {
+            get {
+                return ResourceManager.GetString("armorGenerateSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры износа брони.
+        /// </summary>
+        internal static string armorImmunityParams {
+            get {
+                return ResourceManager.GetString("armorImmunityParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры износа брони.
+        /// </summary>
+        internal static string armorImmunityParamsShort {
+            get {
+                return ResourceManager.GetString("armorImmunityParamsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров износа брони.
+        /// </summary>
+        internal static string armorImmunitySections {
+            get {
+                return ResourceManager.GetString("armorImmunitySections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции износа брони.
+        /// </summary>
+        internal static string armorImmunitySectionsShort {
+            get {
+                return ResourceManager.GetString("armorImmunitySectionsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры брони.
+        /// </summary>
+        internal static string armorMainParams {
+            get {
+                return ResourceManager.GetString("armorMainParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры брони.
+        /// </summary>
+        internal static string armorParams {
+            get {
+                return ResourceManager.GetString("armorParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра брони.
+        /// </summary>
+        internal static string armorProbability {
+            get {
+                return ResourceManager.GetString("armorProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции брони.
+        /// </summary>
+        internal static string armorSections {
+            get {
+                return ResourceManager.GetString("armorSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Артефакты.
+        /// </summary>
+        internal static string artefacts {
+            get {
+                return ResourceManager.GetString("artefacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров артефактов.
+        /// </summary>
+        internal static string artefactsGenerateSection {
+            get {
+                return ResourceManager.GetString("artefactsGenerateSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с базовым значением 0.0.
+        /// </summary>
+        internal static string artefactsParams0 {
+            get {
+                return ResourceManager.GetString("artefactsParams0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры характеристик артефактов с базовым значением 0.0.
+        /// </summary>
+        internal static string artefactsParams0Full {
+            get {
+                return ResourceManager.GetString("artefactsParams0Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с базовым значением 1.0.
+        /// </summary>
+        internal static string artefactsParams1 {
+            get {
+                return ResourceManager.GetString("artefactsParams1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры характеристик артефактов, с базовым значением 1.0.
+        /// </summary>
+        internal static string artefactsParams1Full {
+            get {
+                return ResourceManager.GetString("artefactsParams1Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра артефакта.
+        /// </summary>
+        internal static string artefactsProbability {
+            get {
+                return ResourceManager.GetString("artefactsProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции артефактов.
+        /// </summary>
+        internal static string artefactsSections {
+            get {
+                return ResourceManager.GetString("artefactsSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Стандартные генерируемые параметры артефактов.
+        /// </summary>
+        internal static string artefactsStandardParams {
+            get {
+                return ResourceManager.GetString("artefactsStandardParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Стандартные параметры артефактов.
+        /// </summary>
+        internal static string artefactsStandardParamsShort {
+            get {
+                return ResourceManager.GetString("artefactsStandardParamsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры характеристик артефактов.
+        /// </summary>
+        internal static string artefcatsStats {
+            get {
+                return ResourceManager.GetString("artefcatsStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заменить игровой текст на прогнанный переводчиком через 10 языков.
+        /// </summary>
+        internal static string brokenTranslate {
+            get {
+                return ResourceManager.GetString("brokenTranslate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность замены каждого текстового блока.
+        /// </summary>
+        internal static string brokenTranslateProbability {
+            get {
+                return ResourceManager.GetString("brokenTranslateProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Множитель цены покупки у игрока.
+        /// </summary>
+        internal static string buyMultiplier {
+            get {
+                return ResourceManager.GetString("buyMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции множителей цен покупки у игрока.
+        /// </summary>
+        internal static string buyMultiplierSections {
+            get {
+                return ResourceManager.GetString("buyMultiplierSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отмена.
+        /// </summary>
+        internal static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Группировка.
+        /// </summary>
+        internal static string community {
+            get {
+                return ResourceManager.GetString("community", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Расходники.
+        /// </summary>
+        internal static string consumables {
+            get {
+                return ResourceManager.GetString("consumables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров расходников.
+        /// </summary>
+        internal static string consumablesGenerateSections {
+            get {
+                return ResourceManager.GetString("consumablesGenerateSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры расходников.
+        /// </summary>
+        internal static string consumablesParams {
+            get {
+                return ResourceManager.GetString("consumablesParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры расходников.
+        /// </summary>
+        internal static string consumablesParamsShort {
+            get {
+                return ResourceManager.GetString("consumablesParamsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра расходников.
+        /// </summary>
+        internal static string consumablesProbability {
+            get {
+                return ResourceManager.GetString("consumablesProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции расходников.
+        /// </summary>
+        internal static string consumablesSections {
+            get {
+                return ResourceManager.GetString("consumablesSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметр, значение которого будет скопировано.
+        /// </summary>
+        internal static string copyFromName {
+            get {
+                return ResourceManager.GetString("copyFromName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, которые будут скопированы.
+        /// </summary>
+        internal static string copyParams {
+            get {
+                return ResourceManager.GetString("copyParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля параметров для копирования заполнены корректно.
+        /// </summary>
+        internal static string copyValidationError {
+            get {
+                return ResourceManager.GetString("copyValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество в зависимости от уровня сложности.
+        /// </summary>
+        internal static string countByDifficulty {
+            get {
+                return ResourceManager.GetString("countByDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции количества и вероятности появления.
+        /// </summary>
+        internal static string countProbabilitySections {
+            get {
+                return ResourceManager.GetString("countProbabilitySections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фикс некоторых вылетов игры из-за манипуляций с НПС (_g.script, xr_statistic.script).
+        /// </summary>
+        internal static string crashFix {
+            get {
+                return ResourceManager.GetString("crashFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Патроны убитого НПС.
+        /// </summary>
+        internal static string deadNpcAmmo {
+            get {
+                return ResourceManager.GetString("deadNpcAmmo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предметы в рюкзкае убитого НПС: .
+        /// </summary>
+        internal static string deadNpcItems {
+            get {
+                return ResourceManager.GetString("deadNpcItems", resourceCulture);
             }
         }
         
@@ -88,6 +556,69 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации наличия каждого предмета.
+        /// </summary>
+        internal static string deathProbability {
+            get {
+                return ResourceManager.GetString("deathProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройки генерации вещей убитых НПС.
+        /// </summary>
+        internal static string deathTitle {
+            get {
+                return ResourceManager.GetString("deathTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить.
+        /// </summary>
+        internal static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Исключенные действия.
+        /// </summary>
+        internal static string dialogActionExceptions {
+            get {
+                return ResourceManager.GetString("dialogActionExceptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Исключенные события.
+        /// </summary>
+        internal static string dialogInfoExceptions {
+            get {
+                return ResourceManager.GetString("dialogInfoExceptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Исключенные условия.
+        /// </summary>
+        internal static string dialogPreconditionExceptions {
+            get {
+                return ResourceManager.GetString("dialogPreconditionExceptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого диалога.
+        /// </summary>
+        internal static string dialogProbability {
+            get {
+                return ResourceManager.GetString("dialogProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Диалоги.
         /// </summary>
         internal static string dialogsTab {
@@ -97,11 +628,182 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройки генерации диалогов.
+        /// </summary>
+        internal static string dialogsTitle {
+            get {
+                return ResourceManager.GetString("dialogsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Уровень сложности.
+        /// </summary>
+        internal static string difficultyLevel {
+            get {
+                return ResourceManager.GetString("difficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отключить тревогу в Баре при убийстве НПС игроком.
+        /// </summary>
+        internal static string disableBarAlarm {
+            get {
+                return ResourceManager.GetString("disableBarAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отключить автоматическое ухудшение отношений со Свободой, когда на их базе есть враждебные к игроку НПС.
+        /// </summary>
+        internal static string disableFreedomAngry {
+            get {
+                return ResourceManager.GetString("disableFreedomAngry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отключить автоматическое убирание оружия в некоторых местах.
+        /// </summary>
+        internal static string disableHidingWeapons {
+            get {
+                return ResourceManager.GetString("disableHidingWeapons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Редактировать.
+        /// </summary>
+        internal static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Редактировать список.
+        /// </summary>
+        internal static string editList {
+            get {
+                return ResourceManager.GetString("editList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с плавающей точкой.
+        /// </summary>
+        internal static string floatRangeParams {
+            get {
+                return ResourceManager.GetString("floatRangeParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля параметров с плавающей точкой заполнены корректно.
+        /// </summary>
+        internal static string floatRangeValidationError {
+            get {
+                return ResourceManager.GetString("floatRangeValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Закрыть принудительно.
+        /// </summary>
+        internal static string forceCloseButton {
+            get {
+                return ResourceManager.GetString("forceCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, выбираемые из списка.
+        /// </summary>
+        internal static string fromListParams {
+            get {
+                return ResourceManager.GetString("fromListParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля параметров, выбираемых из списка, заполнены корректно.
+        /// </summary>
+        internal static string fromListValidationError {
+            get {
+                return ResourceManager.GetString("fromListValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка списка элементов параметра:.
+        /// </summary>
+        internal static string fromListValuesEdit {
+            get {
+                return ResourceManager.GetString("fromListValuesEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Сгенерировать.
         /// </summary>
-        internal static string generateButton {
+        internal static string generate {
             get {
-                return ResourceManager.GetString("generateButton", resourceCulture);
+                return ResourceManager.GetString("generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерация gamedata.
+        /// </summary>
+        internal static string generateDialog {
+            get {
+                return ResourceManager.GetString("generateDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дать игроку нож в начале игры.
+        /// </summary>
+        internal static string giveKnife {
+            get {
+                return ResourceManager.GetString("giveKnife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Увеличить частоту респавна НПС.
+        /// </summary>
+        internal static string increaseRespawn {
+            get {
+                return ResourceManager.GetString("increaseRespawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Целочисленные параметры.
+        /// </summary>
+        internal static string intRangeParams {
+            get {
+                return ResourceManager.GetString("intRangeParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля целочисленных параметров заполнены корректно.
+        /// </summary>
+        internal static string intRangeValidationError {
+            get {
+                return ResourceManager.GetString("intRangeValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Список предметов.
+        /// </summary>
+        internal static string itemsList {
+            get {
+                return ResourceManager.GetString("itemsList", resourceCulture);
             }
         }
         
@@ -115,11 +817,300 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка генерации параметров предметов.
+        /// </summary>
+        internal static string itemsTitle {
+            get {
+                return ResourceManager.GetString("itemsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предметы, которые нужно оставлять при убийстве НПС.
+        /// </summary>
+        internal static string keepDeathItems {
+            get {
+                return ResourceManager.GetString("keepDeathItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Локация.
+        /// </summary>
+        internal static string level {
+            get {
+                return ResourceManager.GetString("level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Простой рандомайзер для S.T.A.L.K.E.R. Тень Чернобыля.
         /// </summary>
         internal static string mainFormName {
             get {
                 return ResourceManager.GetString("mainFormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Максимальное количество статов артефактов.
+        /// </summary>
+        internal static string maxArtefactStats {
+            get {
+                return ResourceManager.GetString("maxArtefactStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Макс. количество.
+        /// </summary>
+        internal static string maxCount {
+            get {
+                return ResourceManager.GetString("maxCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Макс. множитель.
+        /// </summary>
+        internal static string maxMultiplier {
+            get {
+                return ResourceManager.GetString("maxMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Макс. вероятность (от 0 до 1).
+        /// </summary>
+        internal static string maxProbability0to1 {
+            get {
+                return ResourceManager.GetString("maxProbability0to1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Макс. значение.
+        /// </summary>
+        internal static string maxValue {
+            get {
+                return ResourceManager.GetString("maxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Макс. количество оружия для появления патронов у убитого НПС.
+        /// </summary>
+        internal static string maxWeaponToSpawnAmmo {
+            get {
+                return ResourceManager.GetString("maxWeaponToSpawnAmmo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Минимальное количество статов артефактов.
+        /// </summary>
+        internal static string minArtefactStats {
+            get {
+                return ResourceManager.GetString("minArtefactStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мин. количество.
+        /// </summary>
+        internal static string minCount {
+            get {
+                return ResourceManager.GetString("minCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мин. множитель.
+        /// </summary>
+        internal static string minMultiplier {
+            get {
+                return ResourceManager.GetString("minMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мин. вероятность (от 0 до 1).
+        /// </summary>
+        internal static string minProbability0to1 {
+            get {
+                return ResourceManager.GetString("minProbability0to1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мин. значение.
+        /// </summary>
+        internal static string minValue {
+            get {
+                return ResourceManager.GetString("minValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Множитель в зависимости от локации.
+        /// </summary>
+        internal static string multiplierByLevel {
+            get {
+                return ResourceManager.GetString("multiplierByLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Название.
+        /// </summary>
+        internal static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля заполнены.
+        /// </summary>
+        internal static string notAllFieldsComplete {
+            get {
+                return ResourceManager.GetString("notAllFieldsComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дополнительное оружие.
+        /// </summary>
+        internal static string npcAdditionalWeapons {
+            get {
+                return ResourceManager.GetString("npcAdditionalWeapons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Группировки.
+        /// </summary>
+        internal static string npcCommunities {
+            get {
+                return ResourceManager.GetString("npcCommunities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Исключения.
+        /// </summary>
+        internal static string npcExceptions {
+            get {
+                return ResourceManager.GetString("npcExceptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Расширить присоединение НПС к лагерям (ломает некоторые скрипты).
+        /// </summary>
+        internal static string npcExtendCamp {
+            get {
+                return ResourceManager.GetString("npcExtendCamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые имена.
+        /// </summary>
+        internal static string npcGenNames {
+            get {
+                return ResourceManager.GetString("npcGenNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Миниатюры.
+        /// </summary>
+        internal static string npcIcons {
+            get {
+                return ResourceManager.GetString("npcIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предметы, которые не нужно
+        ///убирать у НПС при генерации.
+        /// </summary>
+        internal static string npcKeepSupplies {
+            get {
+                return ResourceManager.GetString("npcKeepSupplies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предметы, которые не нужно убирать у НПС при генерации.
+        /// </summary>
+        internal static string npcKeepSuppliesSingleLine {
+            get {
+                return ResourceManager.GetString("npcKeepSuppliesSingleLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Основное оружие.
+        /// </summary>
+        internal static string npcMainWeapons {
+            get {
+                return ResourceManager.GetString("npcMainWeapons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Модели.
+        /// </summary>
+        internal static string npcModels {
+            get {
+                return ResourceManager.GetString("npcModels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Деньги.
+        /// </summary>
+        internal static string npcMoney {
+            get {
+                return ResourceManager.GetString("npcMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра НПС.
+        /// </summary>
+        internal static string npcProbability {
+            get {
+                return ResourceManager.GetString("npcProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ранг.
+        /// </summary>
+        internal static string npcRank {
+            get {
+                return ResourceManager.GetString("npcRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Использовать одно случайное оружие из обоих списков.
+        /// </summary>
+        internal static string npcSingleWeapon {
+            get {
+                return ResourceManager.GetString("npcSingleWeapon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Озвучка.
+        /// </summary>
+        internal static string npcSounds {
+            get {
+                return ResourceManager.GetString("npcSounds", resourceCulture);
             }
         }
         
@@ -133,11 +1124,317 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка генерации НПС.
+        /// </summary>
+        internal static string npcTitle {
+            get {
+                return ResourceManager.GetString("npcTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Уникальные имена.
+        /// </summary>
+        internal static string npcUniqueNames {
+            get {
+                return ResourceManager.GetString("npcUniqueNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Номер по порядку.
+        /// </summary>
+        internal static string numberInOrder {
+            get {
+                return ResourceManager.GetString("numberInOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Версия игры 1.0004 при манипуляциях с группировкой и частотой респавна НПС работает стабильнне, чем 1.0006. Но почему?.
+        /// </summary>
+        internal static string onePointFourLink {
+            get {
+                return ResourceManager.GetString("onePointFourLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Порядок.
+        /// </summary>
+        internal static string order {
+            get {
+                return ResourceManager.GetString("order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Указанный номер по порядку уже существует.
+        /// </summary>
+        internal static string orderAlreadyExists {
+            get {
+                return ResourceManager.GetString("orderAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с несколькими разными типами значений.
+        /// </summary>
+        internal static string orderListParams {
+            get {
+                return ResourceManager.GetString("orderListParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Прочее.
+        /// </summary>
+        internal static string other {
+            get {
+                return ResourceManager.GetString("other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Редкатирование параметра:.
+        /// </summary>
+        internal static string paramEdit {
+            get {
+                return ResourceManager.GetString("paramEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Правила генерации параметров.
+        /// </summary>
+        internal static string parameterDialog {
+            get {
+                return ResourceManager.GetString("parameterDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Название параметра.
+        /// </summary>
+        internal static string parameterName {
+            get {
+                return ResourceManager.GetString("parameterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Точность.
+        /// </summary>
+        internal static string precision {
+            get {
+                return ResourceManager.GetString("precision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность в зависимости от группировки.
+        /// </summary>
+        internal static string probabilityByCommunity {
+            get {
+                return ResourceManager.GetString("probabilityByCommunity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Завершение работы....
+        /// </summary>
+        internal static string programClosing {
+            get {
+                return ResourceManager.GetString("programClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность дождя для каждой секции погоды.
+        /// </summary>
+        internal static string rainProbability {
+            get {
+                return ResourceManager.GetString("rainProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Случайная вероятность каждой генерации.
+        /// </summary>
+        internal static string randomProbability {
+            get {
+                return ResourceManager.GetString("randomProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить.
+        /// </summary>
+        internal static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранено в.
+        /// </summary>
+        internal static string savedIn {
+            get {
+                return ResourceManager.GetString("savedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить gamedata в:.
+        /// </summary>
+        internal static string saveIn {
+            get {
+                return ResourceManager.GetString("saveIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выбрать.
+        /// </summary>
+        internal static string select {
+            get {
+                return ResourceManager.GetString("select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Множитель цены продажи игроку.
+        /// </summary>
+        internal static string sellMultiplier {
+            get {
+                return ResourceManager.GetString("sellMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции множителей цен продажи игроку.
+        /// </summary>
+        internal static string sellMultiplierSections {
+            get {
+                return ResourceManager.GetString("sellMultiplierSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, которые будут перемешаны между секциями.
+        /// </summary>
+        internal static string shuffleParams {
+            get {
+                return ResourceManager.GetString("shuffleParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Перемешать весь игровой текст.
+        /// </summary>
+        internal static string shuffleText {
+            get {
+                return ResourceManager.GetString("shuffleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждого текстового блока.
+        /// </summary>
+        internal static string shuffleTextProbability {
+            get {
+                return ResourceManager.GetString("shuffleTextProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не все поля параметров для перемешивания заполнены корректно.
+        /// </summary>
+        internal static string shuffleValidationError {
+            get {
+                return ResourceManager.GetString("shuffleValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Путь к папке sounds.
+        /// </summary>
+        internal static string soudnsPath {
+            get {
+                return ResourceManager.GetString("soudnsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Звуки.
+        /// </summary>
+        internal static string sounds {
+            get {
+                return ResourceManager.GetString("sounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждого звука.
+        /// </summary>
+        internal static string soundsProbability {
+            get {
+                return ResourceManager.GetString("soundsProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Шаг округления длительности звуковых файлов (сек.).
+        /// </summary>
+        internal static string soundsRound {
+            get {
+                return ResourceManager.GetString("soundsRound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заменять звуки шагов и дождя.
+        /// </summary>
+        internal static string soundsStepRainReplace {
+            get {
+                return ResourceManager.GetString("soundsStepRainReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Звуки/текстуры.
         /// </summary>
         internal static string soundsTexturesTab {
             get {
                 return ResourceManager.GetString("soundsTexturesTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка перемешивания звуков и текстур.
+        /// </summary>
+        internal static string soundsTexturesTitle {
+            get {
+                return ResourceManager.GetString("soundsTexturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Начать генерацию.
+        /// </summary>
+        internal static string startGenerate {
+            get {
+                return ResourceManager.GetString("startGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра тайника.
+        /// </summary>
+        internal static string stashesProbability {
+            get {
+                return ResourceManager.GetString("stashesProbability", resourceCulture);
             }
         }
         
@@ -151,6 +1448,114 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка заполнения тайников.
+        /// </summary>
+        internal static string stashesTitle {
+            get {
+                return ResourceManager.GetString("stashesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Успех.
+        /// </summary>
+        internal static string success {
+            get {
+                return ResourceManager.GetString("success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Текстуры.
+        /// </summary>
+        internal static string textures {
+            get {
+                return ResourceManager.GetString("textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Путь к папке textures.
+        /// </summary>
+        internal static string texturesPath {
+            get {
+                return ResourceManager.GetString("texturesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждой текстуры.
+        /// </summary>
+        internal static string texturesProbability {
+            get {
+                return ResourceManager.GetString("texturesProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заменять элементы интерфейса.
+        /// </summary>
+        internal static string texturesUiReplace {
+            get {
+                return ResourceManager.GetString("texturesUiReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество потоков для обработки.
+        /// </summary>
+        internal static string threadsCount {
+            get {
+                return ResourceManager.GetString("threadsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность грозы для каждой секции погоды.
+        /// </summary>
+        internal static string thunderProbability {
+            get {
+                return ResourceManager.GetString("thunderProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество в продаже.
+        /// </summary>
+        internal static string tradeCount {
+            get {
+                return ResourceManager.GetString("tradeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Список предметов в ассортименте торговца: .
+        /// </summary>
+        internal static string traderItemList {
+            get {
+                return ResourceManager.GetString("traderItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность появления в продаже.
+        /// </summary>
+        internal static string traderItemProbability {
+            get {
+                return ResourceManager.GetString("traderItemProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации наличия каждого предмета.
+        /// </summary>
+        internal static string tradersProbability {
+            get {
+                return ResourceManager.GetString("tradersProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ассортимент торговцев.
         /// </summary>
         internal static string tradersTab {
@@ -160,11 +1565,191 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройки генерации ассортимента торговцев.
+        /// </summary>
+        internal static string tradersTitle {
+            get {
+                return ResourceManager.GetString("tradersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Разблокировать дверь у Сидоровича.
+        /// </summary>
+        internal static string unlockTraderDoor {
+            get {
+                return ResourceManager.GetString("unlockTraderDoor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Используемые патроны.
+        /// </summary>
+        internal static string useAmmo {
+            get {
+                return ResourceManager.GetString("useAmmo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Значение.
+        /// </summary>
+        internal static string value {
+            get {
+                return ResourceManager.GetString("value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество значений.
+        /// </summary>
+        internal static string valueCount {
+            get {
+                return ResourceManager.GetString("valueCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Список значений.
+        /// </summary>
+        internal static string valueList {
+            get {
+                return ResourceManager.GetString("valueList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип значения.
+        /// </summary>
+        internal static string valueType {
+            get {
+                return ResourceManager.GetString("valueType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Внимание.
+        /// </summary>
+        internal static string warning {
+            get {
+                return ResourceManager.GetString("warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов.
+        /// </summary>
+        internal static string weaponAmmoValidation {
+            get {
+                return ResourceManager.GetString("weaponAmmoValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Оружие.
         /// </summary>
-        internal static string weaponsTab {
+        internal static string weapons {
             get {
-                return ResourceManager.GetString("weaponsTab", resourceCulture);
+                return ResourceManager.GetString("weapons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры оружия.
+        /// </summary>
+        internal static string weaponsParams {
+            get {
+                return ResourceManager.GetString("weaponsParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры оружия.
+        /// </summary>
+        internal static string weaponsParamsShort {
+            get {
+                return ResourceManager.GetString("weaponsParamsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра оружия.
+        /// </summary>
+        internal static string weaponsProbability {
+            get {
+                return ResourceManager.GetString("weaponsProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров оружия.
+        /// </summary>
+        internal static string weaponsSections {
+            get {
+                return ResourceManager.GetString("weaponsSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции оружия.
+        /// </summary>
+        internal static string weaponsSectionsShort {
+            get {
+                return ResourceManager.GetString("weaponsSectionsShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка генерации параметров оружия и патронов.
+        /// </summary>
+        internal static string weaponsTitle {
+            get {
+                return ResourceManager.GetString("weaponsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Генерируемые параметры.
+        /// </summary>
+        internal static string weatherParams {
+            get {
+                return ResourceManager.GetString("weatherParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры для генерации погоды.
+        /// </summary>
+        internal static string weatherParamsFull {
+            get {
+                return ResourceManager.GetString("weatherParamsFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра погоды.
+        /// </summary>
+        internal static string weatherProbability {
+            get {
+                return ResourceManager.GetString("weatherProbability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции для генерации параметров.
+        /// </summary>
+        internal static string weatherSections {
+            get {
+                return ResourceManager.GetString("weatherSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Секции погоды.
+        /// </summary>
+        internal static string weatherSectionsShort {
+            get {
+                return ResourceManager.GetString("weatherSectionsShort", resourceCulture);
             }
         }
         
@@ -174,6 +1759,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string weatherTab {
             get {
                 return ResourceManager.GetString("weatherTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройка генерации параметров погоды.
+        /// </summary>
+        internal static string weatherTitle {
+            get {
+                return ResourceManager.GetString("weatherTitle", resourceCulture);
             }
         }
     }

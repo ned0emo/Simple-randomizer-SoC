@@ -27,6 +27,8 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             DialogResult = DialogResult.Cancel;
             RawData = data;
 
+            simpleListDataGrid.Columns[0].HeaderText = Localization.Get("value");
+
             foreach (var d in data)
             {
                 simpleListDataGrid.Rows.Add(d);

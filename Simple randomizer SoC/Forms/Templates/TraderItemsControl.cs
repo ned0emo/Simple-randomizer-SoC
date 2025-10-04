@@ -13,21 +13,22 @@ using System.Windows.Forms;
 
 namespace Simple_randomizer_SoC.Forms.Templates
 {
-    public partial class TraderItemsControl : UserControl
+    public partial class TraderItemsControl : UserControl, ILocalizable
     {
         private readonly TraderItemsParameters _parameters;
         private readonly TraderItemsConfig _config;
+        private readonly string _titleResx;
 
         private readonly DataListEditor _dataListEditor = Singleton<DataListEditor>.Instance;
 
-        public TraderItemsControl(string title, TraderItemsParameters parameters, TraderItemsConfig config)
+        public TraderItemsControl(string titleResx, TraderItemsParameters parameters, TraderItemsConfig config)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            titleLabel.Text = title;
 
             _parameters = parameters;
             _config = config;
+            _titleResx = titleResx;
 
             minCountInput.Value = _parameters.Count.MinValue;
             maxCountInput.Value = _parameters.Count.MaxValue;
@@ -44,7 +45,7 @@ namespace Simple_randomizer_SoC.Forms.Templates
 
         private async void editListButton_Click(object sender, EventArgs e)
         {
-            await _dataListEditor.OpenEditThenSave(new SimpleListDialog("Список предметов в ассортименте торговца: " + titleLabel.Text, _parameters.Items), _config);
+            await _dataListEditor.OpenEditThenSave(new SimpleListDialog("traderItemList" + titleLabel.Text, _parameters.Items), _config);
         }
 
         private void minCountInput_ValueChanged(object sender, EventArgs e)
@@ -85,6 +86,25 @@ namespace Simple_randomizer_SoC.Forms.Templates
         private void maxBuyPriceInput_ValueChanged(object sender, EventArgs e)
         {
             _parameters.BuyPrice.MaxValue = (double)maxBuyPriceInput.Value;
+        }
+
+        public void Localize()
+        {
+            titleLabel.Text = Localization.Get(_titleResx);
+            itemsLabel.Text = Localization.Get("itemsList");
+            tradeCountLabel.Text = Localization.Get("tradeCount");
+            minTradeCountLabel.Text = Localization.Get("minValue");
+            maxTradeCountLabel.Text = Localization.Get("maxValue");
+            probabilityLabel.Text = Localization.Get("traderItemProbability");
+            minProbabilityLabel.Text = Localization.Get("minValue");
+            maxProbabilityLabel.Text = Localization.Get("maxValue");
+            sellMultiplierLabel.Text = Localization.Get("sellMultiplier");
+            minSellMultiplierLabel.Text = Localization.Get("minValue");
+            maxSellMultiplierLabel.Text = Localization.Get("maxValue");
+            buyMultiplierLabel.Text = Localization.Get("buyMultiplier");
+            minBuyMultiplierLabel.Text = Localization.Get("minValue");
+            maxBuyMultiplierLabel.Text = Localization.Get("maxValue");
+            editListButton.Text = Localization.Get("editList");
         }
     }
 }

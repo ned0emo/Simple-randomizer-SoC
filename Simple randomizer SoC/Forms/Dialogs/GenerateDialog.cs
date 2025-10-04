@@ -43,10 +43,33 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
             consumablesCheckBox.Checked = config.GenerateConsumables;
             npcCheckBox.Checked = config.GenerateNpc;
             additionalParamsCheckBox.Checked = config.GenerateAdditional;
-            randomProbabilityCheckBox.Checked = config.RandomProbability;
             texturesCheckBox.Checked = config.GenerateTextures;
             soundsCheckBox.Checked = config.GenerateSounds;
             dialogsCheckBox.Checked = config.GenerateDialogs;
+
+            randomProbabilityCheckBox.Checked = config.RandomProbability;
+
+            Text = Localization.Get("generateDialog");
+            stashesCheckBox.Text = Localization.Get("stashesTab");
+            artefactsCheckBox.Text = Localization.Get("artefacts");
+            weaponsCheckBox.Text = Localization.Get("weapons");
+            armorCheckBox.Text = Localization.Get("armor");
+            weatherCheckBox.Text = Localization.Get("weatherTab");
+            deathItemsCheckBox.Text = Localization.Get("deathItemsTab");
+            traderItemsCheckBox.Text = Localization.Get("tradersTab");
+            consumablesCheckBox.Text = Localization.Get("consumables");
+            npcCheckBox.Text = Localization.Get("npcTab");
+            additionalParamsCheckBox.Text = Localization.Get("additionalTitle");
+            texturesCheckBox.Text = Localization.Get("textures");
+            soundsCheckBox.Text = Localization.Get("sounds");
+            dialogsCheckBox.Text = Localization.Get("dialogsTab");
+
+            randomProbabilityCheckBox.Text = Localization.Get("randomProbability");
+
+            saveInLabel.Text = Localization.Get("saveIn");
+            selectPathButton.Text = Localization.Get("select");
+            cancelButton.Text = Localization.Get("cancel");
+            startButton.Text = Localization.Get("startGenerate");
 
             UpdateSelectAll(true);
         }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.forceCloseButton = new System.Windows.Forms.Button();
+            this.mainLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +41,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.forceCloseButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.mainLabel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -50,17 +50,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(338, 240);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(99, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Завершение работы...";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // forceCloseButton
             // 
@@ -74,6 +63,17 @@
             this.forceCloseButton.Text = "Закрыть принудительно";
             this.forceCloseButton.UseVisualStyleBackColor = true;
             this.forceCloseButton.Click += new System.EventHandler(this.forceCloseButton_Click);
+            // 
+            // mainLabel
+            // 
+            this.mainLabel.AutoSize = true;
+            this.mainLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.mainLabel.Location = new System.Drawing.Point(99, 107);
+            this.mainLabel.Name = "mainLabel";
+            this.mainLabel.Size = new System.Drawing.Size(140, 13);
+            this.mainLabel.TabIndex = 0;
+            this.mainLabel.Text = "Завершение работы...";
+            this.mainLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // FormClosingControl
             // 
@@ -92,6 +92,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button forceCloseButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mainLabel;
     }
 }
