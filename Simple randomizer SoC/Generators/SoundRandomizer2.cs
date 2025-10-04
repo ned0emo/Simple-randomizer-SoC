@@ -54,6 +54,7 @@ namespace Simple_randomizer_SoC.Generators
             Error = null;
 
             copyThread = new Thread(CopyAndRename);
+            //нужен, чтоб не было миллисиекундного интервала, когда все потоки в IsProcessing неактивны
             searchThread = new Thread(Search);
 
             searchThread.Start();
@@ -61,6 +62,10 @@ namespace Simple_randomizer_SoC.Generators
             while (IsProcessing())
             {
                 await Task.Delay(1000);
+                lock (_threads)
+                {
+                    _threads.RemoveAll(t => !t.IsAlive);
+                }
             }
         }
 
@@ -150,7 +155,15 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (FilesCount++ % 100 == 0)
                         {
-                            OnStatusChange(StatusText() + ": " + file);
+                            var index = file.IndexOf("\\sounds\\");
+                            if (index >= 0)
+                            {
+                                OnStatusChange(StatusText() + ": " + file.Substring(index + 7));
+                            }
+                            else
+                            {
+                                OnStatusChange(StatusText() + ": " + file);
+                            }
                         }
 
                         lock (_classifiedFiles)

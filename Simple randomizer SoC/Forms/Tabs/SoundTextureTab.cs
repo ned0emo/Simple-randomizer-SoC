@@ -34,10 +34,11 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             texturesUICheckBox.Checked = config.ReplaceUI;
             texturesProbabilityInput.Value = config.TextureProbability;
 
-            config.ThreadCount = Math.Max(1, Math.Min(config.ThreadCount, Math.Min(Environment.ProcessorCount, 16)));
+            var pc = Math.Min(Environment.ProcessorCount * 3, 64);
+            config.ThreadCount = Math.Max(1, Math.Min(config.ThreadCount, pc));
 
-            threadCountInput.Value = config.ThreadCount;
-            threadCountInput.Maximum = Math.Max(1, Environment.ProcessorCount);
+            threadCountInput.Maximum = Math.Max(1, pc);
+            threadCountInput.Value = Math.Min(config.ThreadCount, pc);
         }
 
         private void soundsDirTextBox_TextChanged(object sender, EventArgs e)

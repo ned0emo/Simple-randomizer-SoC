@@ -61,6 +61,10 @@ namespace Simple_randomizer_SoC.Generators
             while (IsProcessing())
             {
                 await Task.Delay(1000);
+                lock (_threads)
+                {
+                    _threads.RemoveAll(t => !t.IsAlive);
+                }
             }
         }
 
@@ -105,7 +109,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 while (_threads.Any(t => t.IsAlive))
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
 
                 copyThread.Start();
@@ -148,7 +152,15 @@ namespace Simple_randomizer_SoC.Generators
 
                         if (FilesCount++ % 100 == 0)
                         {
-                            OnStatusChange(StatusText() + ": " + file);
+                            var index = file.IndexOf("\\textures\\");
+                            if (index >= 0)
+                            {
+                                OnStatusChange(StatusText() + ": " + file.Substring(index + 9));
+                            }
+                            else
+                            {
+                                OnStatusChange(StatusText() + ": " + file);
+                            }
                         }
                     }
                 }
