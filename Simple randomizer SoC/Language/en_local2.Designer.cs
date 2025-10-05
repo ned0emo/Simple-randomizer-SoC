@@ -22,14 +22,14 @@ namespace Simple_randomizer_SoC.Language {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ru_local2 {
+    internal class en_local2 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ru_local2() {
+        internal en_local2() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Simple_randomizer_SoC.Language {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Simple_randomizer_SoC.Language.ru_local2", typeof(ru_local2).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Simple_randomizer_SoC.Language.en_local2", typeof(en_local2).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на О программе.
+        ///   Ищет локализованную строку, похожую на About.
         /// </summary>
         internal static string aboutTab {
             get {
@@ -70,7 +70,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавить.
+        ///   Ищет локализованную строку, похожую на Add.
         /// </summary>
         internal static string add {
             get {
@@ -79,7 +79,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дополнительно.
+        ///   Ищет локализованную строку, похожую на Additional parameters.
         /// </summary>
         internal static string additionalTab {
             get {
@@ -88,7 +88,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дополнительные параметры.
+        ///   Ищет локализованную строку, похожую на Additional parameters.
         /// </summary>
         internal static string additionalTitle {
             get {
@@ -97,7 +97,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавить параметр.
+        ///   Ищет локализованную строку, похожую на Add the parameter.
         /// </summary>
         internal static string addParameterDialog {
             get {
@@ -106,7 +106,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Патроны.
+        ///   Ищет локализованную строку, похожую на Cartridges.
         /// </summary>
         internal static string ammo {
             get {
@@ -115,7 +115,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество в пачке.
+        ///   Ищет локализованную строку, похожую на Quantity per pack.
         /// </summary>
         internal static string ammoBoxCount {
             get {
@@ -124,7 +124,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры патронов.
+        ///   Ищет локализованную строку, похожую на Generated cartridge parameters.
         /// </summary>
         internal static string ammoParams {
             get {
@@ -133,7 +133,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры патронов.
+        ///   Ищет локализованную строку, похожую на Cartridge parameters.
         /// </summary>
         internal static string ammoParamsShort {
             get {
@@ -142,7 +142,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра патронов.
+        ///   Ищет локализованную строку, похожую на The probability of generating each parameter of cartridges.
         /// </summary>
         internal static string ammoProbability {
             get {
@@ -151,7 +151,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров патронов.
+        ///   Ищет локализованную строку, похожую на Sections for generating cartridge parameters.
         /// </summary>
         internal static string ammoSections {
             get {
@@ -160,7 +160,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции патронов.
+        ///   Ищет локализованную строку, похожую на Cartridge sections.
         /// </summary>
         internal static string ammoSectionsShort {
             get {
@@ -169,7 +169,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Тип патронов.
+        ///   Ищет локализованную строку, похожую на Type of cartridges.
         /// </summary>
         internal static string ammoType {
             get {
@@ -178,7 +178,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Броня.
+        ///   Ищет локализованную строку, похожую на Armor.
         /// </summary>
         internal static string armor {
             get {
@@ -187,7 +187,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров брони.
+        ///   Ищет локализованную строку, похожую на Sections for generating armor parameters.
         /// </summary>
         internal static string armorGenerateSections {
             get {
@@ -196,7 +196,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры износа брони.
+        ///   Ищет локализованную строку, похожую на Generated armor wear parameters.
         /// </summary>
         internal static string armorImmunityParams {
             get {
@@ -205,7 +205,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры износа брони.
+        ///   Ищет локализованную строку, похожую на Armor wear parameters.
         /// </summary>
         internal static string armorImmunityParamsShort {
             get {
@@ -214,7 +214,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров износа брони.
+        ///   Ищет локализованную строку, похожую на Sections for generating armor wear parameters.
         /// </summary>
         internal static string armorImmunitySections {
             get {
@@ -223,7 +223,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции износа брони.
+        ///   Ищет локализованную строку, похожую на Armor wear sections.
         /// </summary>
         internal static string armorImmunitySectionsShort {
             get {
@@ -232,7 +232,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры брони.
+        ///   Ищет локализованную строку, похожую на Generated armor parameters.
         /// </summary>
         internal static string armorMainParams {
             get {
@@ -241,7 +241,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры брони.
+        ///   Ищет локализованную строку, похожую на Armor parameters.
         /// </summary>
         internal static string armorParams {
             get {
@@ -250,7 +250,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра брони.
+        ///   Ищет локализованную строку, похожую на The probability of generating each armor parameter.
         /// </summary>
         internal static string armorProbability {
             get {
@@ -259,7 +259,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными о броне.
+        ///   Ищет локализованную строку, похожую на Error reading the armor data file.
         /// </summary>
         internal static string armorReadError {
             get {
@@ -268,7 +268,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции брони.
+        ///   Ищет локализованную строку, похожую на Armor sections.
         /// </summary>
         internal static string armorSections {
             get {
@@ -277,7 +277,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Артефакт.
+        ///   Ищет локализованную строку, похожую на Artifact.
         /// </summary>
         internal static string artefact {
             get {
@@ -286,7 +286,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Артефакты.
+        ///   Ищет локализованную строку, похожую на Artifacts.
         /// </summary>
         internal static string artefacts {
             get {
@@ -295,7 +295,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров артефактов.
+        ///   Ищет локализованную строку, похожую на Sections for generating artifact parameters.
         /// </summary>
         internal static string artefactsGenerateSection {
             get {
@@ -304,7 +304,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры с базовым значением 0.0.
+        ///   Ищет локализованную строку, похожую на Parameters with a base value of 0.0.
         /// </summary>
         internal static string artefactsParams0 {
             get {
@@ -313,7 +313,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры характеристик артефактов с базовым значением 0.0.
+        ///   Ищет локализованную строку, похожую на Parameters of artifact characteristics with a base value of 0.0.
         /// </summary>
         internal static string artefactsParams0Full {
             get {
@@ -322,7 +322,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры с базовым значением 1.0.
+        ///   Ищет локализованную строку, похожую на Parameters with a base value of 1.0.
         /// </summary>
         internal static string artefactsParams1 {
             get {
@@ -331,7 +331,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры характеристик артефактов, с базовым значением 1.0.
+        ///   Ищет локализованную строку, похожую на Parameters of artifact characteristics with a base value of 1.0.
         /// </summary>
         internal static string artefactsParams1Full {
             get {
@@ -340,7 +340,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра артефакта.
+        ///   Ищет локализованную строку, похожую на The probability of generating each artifact parameter.
         /// </summary>
         internal static string artefactsProbability {
             get {
@@ -349,7 +349,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными об артефактах.
+        ///   Ищет локализованную строку, похожую на Error reading the artifact data file.
         /// </summary>
         internal static string artefactsReadError {
             get {
@@ -358,7 +358,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции артефактов.
+        ///   Ищет локализованную строку, похожую на Artifact sections.
         /// </summary>
         internal static string artefactsSections {
             get {
@@ -367,7 +367,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Стандартные генерируемые параметры артефактов.
+        ///   Ищет локализованную строку, похожую на Standard generated artifact parameters.
         /// </summary>
         internal static string artefactsStandardParams {
             get {
@@ -376,7 +376,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Стандартные параметры артефактов.
+        ///   Ищет локализованную строку, похожую на Standard artifact parameters.
         /// </summary>
         internal static string artefactsStandardParamsShort {
             get {
@@ -385,7 +385,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры характеристик артефактов.
+        ///   Ищет локализованную строку, похожую на Generated parameters of artifact characteristics.
         /// </summary>
         internal static string artefcatsStats {
             get {
@@ -394,7 +394,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Заменить игровой текст на прогнанный переводчиком через 10 языков.
+        ///   Ищет локализованную строку, похожую на Replace the game text with the one sent by the translator through 10 languages (Russian only).
         /// </summary>
         internal static string brokenTranslate {
             get {
@@ -403,7 +403,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность замены каждого текстового блока.
+        ///   Ищет локализованную строку, похожую на The probability of replacing each text block.
         /// </summary>
         internal static string brokenTranslateProbability {
             get {
@@ -412,7 +412,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Множитель цены покупки у игрока.
+        ///   Ищет локализованную строку, похожую на The multiplier of the player&apos;s purchase price.
         /// </summary>
         internal static string buyMultiplier {
             get {
@@ -421,7 +421,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции множителей цен покупки у игрока.
+        ///   Ищет локализованную строку, похожую на Player&apos;s purchase price multiplier sections.
         /// </summary>
         internal static string buyMultiplierSections {
             get {
@@ -430,7 +430,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Отмена.
+        ///   Ищет локализованную строку, похожую на Cancellation.
         /// </summary>
         internal static string cancel {
             get {
@@ -439,7 +439,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Коллекции должны иметь одинаковый размер.
+        ///   Ищет локализованную строку, похожую на Collections must have the same size.
         /// </summary>
         internal static string collectionsMustHaveSameSize {
             get {
@@ -448,7 +448,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Группировка.
+        ///   Ищет локализованную строку, похожую на Community.
         /// </summary>
         internal static string community {
             get {
@@ -457,7 +457,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Расходники.
+        ///   Ищет локализованную строку, похожую на Consumables.
         /// </summary>
         internal static string consumables {
             get {
@@ -466,7 +466,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров расходников.
+        ///   Ищет локализованную строку, похожую на Sections for generating consumables parameters.
         /// </summary>
         internal static string consumablesGenerateSections {
             get {
@@ -475,7 +475,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры расходников.
+        ///   Ищет локализованную строку, похожую на Generated parameters of consumables.
         /// </summary>
         internal static string consumablesParams {
             get {
@@ -484,7 +484,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры расходников.
+        ///   Ищет локализованную строку, похожую на Consumables parameters.
         /// </summary>
         internal static string consumablesParamsShort {
             get {
@@ -493,7 +493,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра расходников.
+        ///   Ищет локализованную строку, похожую на The probability of generating each parameter of consumables.
         /// </summary>
         internal static string consumablesProbability {
             get {
@@ -502,7 +502,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными о расходниках.
+        ///   Ищет локализованную строку, похожую на Error reading the file with data on consumables.
         /// </summary>
         internal static string consumablesReadError {
             get {
@@ -511,7 +511,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции расходников.
+        ///   Ищет локализованную строку, похожую на Consumables sections.
         /// </summary>
         internal static string consumablesSections {
             get {
@@ -520,7 +520,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметр, значение которого будет скопировано.
+        ///   Ищет локализованную строку, похожую на The parameter whose value will be copied.
         /// </summary>
         internal static string copyFromName {
             get {
@@ -529,7 +529,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры, которые будут скопированы.
+        ///   Ищет локализованную строку, похожую на Parameters to be copied.
         /// </summary>
         internal static string copyParams {
             get {
@@ -538,7 +538,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля параметров для копирования заполнены корректно.
+        ///   Ищет локализованную строку, похожую на Not all fields of the parameters for copying are filled in correctly.
         /// </summary>
         internal static string copyValidationError {
             get {
@@ -547,7 +547,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество в зависимости от уровня сложности.
+        ///   Ищет локализованную строку, похожую на The amount depends on the difficulty level.
         /// </summary>
         internal static string countByDifficulty {
             get {
@@ -556,7 +556,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество значений параметра не может быть меньше 0.
+        ///   Ищет локализованную строку, похожую на The number of parameter values cannot be less than 0.
         /// </summary>
         internal static string countCantBeLessThen0 {
             get {
@@ -565,7 +565,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции количества и вероятности появления.
+        ///   Ищет локализованную строку, похожую на Sections on the number and probability of occurrence.
         /// </summary>
         internal static string countProbabilitySections {
             get {
@@ -574,7 +574,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Фикс некоторых вылетов игры из-за манипуляций с НПС (_g.script, xr_statistic.script).
+        ///   Ищет локализованную строку, похожую на Fixed some game crashes due to NPC manipulation (_g.script, xr_statistic.script).
         /// </summary>
         internal static string crashFix {
             get {
@@ -583,7 +583,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка загрузки данных.
+        ///   Ищет локализованную строку, похожую на Data loading error.
         /// </summary>
         internal static string dataLoadError {
             get {
@@ -592,7 +592,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Патроны убитого НПС.
+        ///   Ищет локализованную строку, похожую на Bullets of the killed NPC.
         /// </summary>
         internal static string deadNpcAmmo {
             get {
@@ -601,7 +601,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Предметы в рюкзкае убитого НПС: .
+        ///   Ищет локализованную строку, похожую на Items in the dead NPC&apos;s backpack: .
         /// </summary>
         internal static string deadNpcItems {
             get {
@@ -610,7 +610,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вещи убитых НПС.
+        ///   Ищет локализованную строку, похожую на Items of the killed NPCs.
         /// </summary>
         internal static string deathItemsTab {
             get {
@@ -619,7 +619,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации наличия каждого предмета.
+        ///   Ищет локализованную строку, похожую на The probability of generating the presence of each item.
         /// </summary>
         internal static string deathProbability {
             get {
@@ -628,7 +628,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройки генерации вещей убитых НПС.
+        ///   Ищет локализованную строку, похожую на Settings for generating items of killed NPCs.
         /// </summary>
         internal static string deathTitle {
             get {
@@ -637,7 +637,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Удалить.
+        ///   Ищет локализованную строку, похожую на Delete.
         /// </summary>
         internal static string delete {
             get {
@@ -646,7 +646,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Исключенные действия.
+        ///   Ищет локализованную строку, похожую на Excluded actions.
         /// </summary>
         internal static string dialogActionExceptions {
             get {
@@ -655,7 +655,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Исключенные события.
+        ///   Ищет локализованную строку, похожую на Excluded infos.
         /// </summary>
         internal static string dialogInfoExceptions {
             get {
@@ -664,7 +664,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Исключенные условия.
+        ///   Ищет локализованную строку, похожую на Excluded preconditions.
         /// </summary>
         internal static string dialogPreconditionExceptions {
             get {
@@ -673,7 +673,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого диалога.
+        ///   Ищет локализованную строку, похожую на The probability of generating each dialog.
         /// </summary>
         internal static string dialogProbability {
             get {
@@ -682,7 +682,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Диалоги.
+        ///   Ищет локализованную строку, похожую на Dialogues.
         /// </summary>
         internal static string dialogsTab {
             get {
@@ -691,7 +691,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройки генерации диалогов.
+        ///   Ищет локализованную строку, похожую на Dialog generation settings.
         /// </summary>
         internal static string dialogsTitle {
             get {
@@ -700,7 +700,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Уровень сложности.
+        ///   Ищет локализованную строку, похожую на Difficulty level.
         /// </summary>
         internal static string difficultyLevel {
             get {
@@ -709,7 +709,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Отключить тревогу в Баре при убийстве НПС игроком.
+        ///   Ищет локализованную строку, похожую на Disable the alarm in the Bar when an NPC is killed by a player.
         /// </summary>
         internal static string disableBarAlarm {
             get {
@@ -718,7 +718,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Отключить автоматическое ухудшение отношений со Свободой, когда на их базе есть враждебные к игроку НПС.
+        ///   Ищет локализованную строку, похожую на Disable the automatic deterioration of relations with Freedom when there are NPCs hostile to the player on their base.
         /// </summary>
         internal static string disableFreedomAngry {
             get {
@@ -727,7 +727,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Отключить автоматическое убирание оружия в некоторых местах.
+        ///   Ищет локализованную строку, похожую на Disable automatic weapon removal in some places.
         /// </summary>
         internal static string disableHidingWeapons {
             get {
@@ -736,7 +736,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Редактировать.
+        ///   Ищет локализованную строку, похожую на Edit.
         /// </summary>
         internal static string edit {
             get {
@@ -745,7 +745,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Редактировать список.
+        ///   Ищет локализованную строку, похожую на Edit the list.
         /// </summary>
         internal static string editList {
             get {
@@ -754,7 +754,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры с плавающей точкой.
+        ///   Ищет локализованную строку, похожую на Floating point parameters.
         /// </summary>
         internal static string floatRangeParams {
             get {
@@ -763,7 +763,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля параметров с плавающей точкой заполнены корректно.
+        ///   Ищет локализованную строку, похожую на Not all floating-point parameter fields are filled in correctly.
         /// </summary>
         internal static string floatRangeValidationError {
             get {
@@ -772,7 +772,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Закрыть принудительно.
+        ///   Ищет локализованную строку, похожую на Forced closure.
         /// </summary>
         internal static string forceCloseButton {
             get {
@@ -781,7 +781,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры, выбираемые из списка.
+        ///   Ищет локализованную строку, похожую на Parameters to select from the list.
         /// </summary>
         internal static string fromListParams {
             get {
@@ -790,7 +790,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля параметров, выбираемых из списка, заполнены корректно.
+        ///   Ищет локализованную строку, похожую на Not all fields of the parameters selected from the list are filled in correctly.
         /// </summary>
         internal static string fromListValidationError {
             get {
@@ -799,7 +799,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка списка элементов параметра:.
+        ///   Ищет локализованную строку, похожую на Setting up the list of parameter elements:.
         /// </summary>
         internal static string fromListValuesEdit {
             get {
@@ -808,7 +808,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Сгенерировать.
+        ///   Ищет локализованную строку, похожую на Generate.
         /// </summary>
         internal static string generate {
             get {
@@ -817,7 +817,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерация gamedata.
+        ///   Ищет локализованную строку, похожую на Gamedata generation.
         /// </summary>
         internal static string generateDialog {
             get {
@@ -826,7 +826,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дать игроку нож в начале игры.
+        ///   Ищет локализованную строку, похожую на Give the player a knife at the beginning of the game.
         /// </summary>
         internal static string giveKnife {
             get {
@@ -835,7 +835,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Увеличить частоту респавна НПС.
+        ///   Ищет локализованную строку, похожую на Increase the respawn frequency of NPCs.
         /// </summary>
         internal static string increaseRespawn {
             get {
@@ -844,7 +844,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Целочисленные параметры.
+        ///   Ищет локализованную строку, похожую на Integer parameters.
         /// </summary>
         internal static string intRangeParams {
             get {
@@ -853,7 +853,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля целочисленных параметров заполнены корректно.
+        ///   Ищет локализованную строку, похожую на Not all fields of integer parameters are filled in correctly.
         /// </summary>
         internal static string intRangeValidationError {
             get {
@@ -862,7 +862,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Список предметов.
+        ///   Ищет локализованную строку, похожую на List of items.
         /// </summary>
         internal static string itemsList {
             get {
@@ -871,7 +871,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Предметы.
+        ///   Ищет локализованную строку, похожую на Items.
         /// </summary>
         internal static string itemsTab {
             get {
@@ -880,7 +880,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка генерации параметров предметов.
+        ///   Ищет локализованную строку, похожую на Configuring the generation of item parameters.
         /// </summary>
         internal static string itemsTitle {
             get {
@@ -889,7 +889,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Предметы, которые нужно оставлять при убийстве НПС.
+        ///   Ищет локализованную строку, похожую на Items to leave behind when killing NPCs.
         /// </summary>
         internal static string keepDeathItems {
             get {
@@ -898,7 +898,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Локация.
+        ///   Ищет локализованную строку, похожую на Location.
         /// </summary>
         internal static string level {
             get {
@@ -907,7 +907,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Простой рандомайзер для S.T.A.L.K.E.R. Тень Чернобыля.
+        ///   Ищет локализованную строку, похожую на Simple randomizer for S.T.A.L.K.E.R. Shadow of Chernobyl.
         /// </summary>
         internal static string mainFormName {
             get {
@@ -916,7 +916,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Максимальное количество статов артефактов.
+        ///   Ищет локализованную строку, похожую на Maximum number of artifact stats.
         /// </summary>
         internal static string maxArtefactStats {
             get {
@@ -925,7 +925,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Макс. количество.
+        ///   Ищет локализованную строку, похожую на Max. quantity.
         /// </summary>
         internal static string maxCount {
             get {
@@ -934,7 +934,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Макс. множитель.
+        ///   Ищет локализованную строку, похожую на Max. multiplier.
         /// </summary>
         internal static string maxMultiplier {
             get {
@@ -943,7 +943,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Макс. вероятность (от 0 до 1).
+        ///   Ищет локализованную строку, похожую на Max. probability (from 0 to 1).
         /// </summary>
         internal static string maxProbability0to1 {
             get {
@@ -952,7 +952,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Макс. значение.
+        ///   Ищет локализованную строку, похожую на Max. value.
         /// </summary>
         internal static string maxValue {
             get {
@@ -961,7 +961,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Макс. количество оружия для появления патронов у убитого НПС.
+        ///   Ищет локализованную строку, похожую на Max. number of weapons for a dead NPC to have ammunition.
         /// </summary>
         internal static string maxWeaponToSpawnAmmo {
             get {
@@ -970,7 +970,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Минимальное количество статов артефактов.
+        ///   Ищет локализованную строку, похожую на Minimum number of artifact stats.
         /// </summary>
         internal static string minArtefactStats {
             get {
@@ -979,7 +979,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Мин. количество.
+        ///   Ищет локализованную строку, похожую на Min. quantity.
         /// </summary>
         internal static string minCount {
             get {
@@ -988,7 +988,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Мин. множитель.
+        ///   Ищет локализованную строку, похожую на Min. multiplier.
         /// </summary>
         internal static string minMultiplier {
             get {
@@ -997,7 +997,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Мин. вероятность (от 0 до 1).
+        ///   Ищет локализованную строку, похожую на Min. probability (from 0 to 1).
         /// </summary>
         internal static string minProbability0to1 {
             get {
@@ -1006,7 +1006,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Мин. значение.
+        ///   Ищет локализованную строку, похожую на Min. value.
         /// </summary>
         internal static string minValue {
             get {
@@ -1015,7 +1015,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Минимальное значение параметра не может быть больше максимального.
+        ///   Ищет локализованную строку, похожую на The minimum value of the parameter cannot be greater than the maximum.
         /// </summary>
         internal static string minValueCantBeMoreThenMaxValue {
             get {
@@ -1024,7 +1024,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Множитель в зависимости от локации.
+        ///   Ищет локализованную строку, похожую на Multiplier depending on location.
         /// </summary>
         internal static string multiplierByLevel {
             get {
@@ -1033,7 +1033,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Название.
+        ///   Ищет локализованную строку, похожую на Name.
         /// </summary>
         internal static string name {
             get {
@@ -1042,7 +1042,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля заполнены.
+        ///   Ищет локализованную строку, похожую на Not all fields are filled in.
         /// </summary>
         internal static string notAllFieldsComplete {
             get {
@@ -1051,7 +1051,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все потоки обработки звуковых файлов были завершены.
+        ///   Ищет локализованную строку, похожую на Not all audio file processing streams have been completed.
         /// </summary>
         internal static string notAllSoundThreadsCompleted {
             get {
@@ -1060,7 +1060,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все потоки обработки текстур были завершены.
+        ///   Ищет локализованную строку, похожую на Not all texture processing streams have been completed.
         /// </summary>
         internal static string notAllTextureThreadsCompleted {
             get {
@@ -1069,7 +1069,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дополнительное оружие.
+        ///   Ищет локализованную строку, похожую на Additional weapons.
         /// </summary>
         internal static string npcAdditionalWeapons {
             get {
@@ -1078,7 +1078,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Группировки.
+        ///   Ищет локализованную строку, похожую на Communities.
         /// </summary>
         internal static string npcCommunities {
             get {
@@ -1087,7 +1087,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Исключения.
+        ///   Ищет локализованную строку, похожую на Exceptions.
         /// </summary>
         internal static string npcExceptions {
             get {
@@ -1096,7 +1096,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Расширить присоединение НПС к лагерям (ломает некоторые скрипты).
+        ///   Ищет локализованную строку, похожую на Expand NPC joining camps (breaks some scripts).
         /// </summary>
         internal static string npcExtendCamp {
             get {
@@ -1105,7 +1105,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые имена.
+        ///   Ищет локализованную строку, похожую на Generated names.
         /// </summary>
         internal static string npcGenNames {
             get {
@@ -1114,7 +1114,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Миниатюры.
+        ///   Ищет локализованную строку, похожую на Thumbnails.
         /// </summary>
         internal static string npcIcons {
             get {
@@ -1123,8 +1123,8 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Предметы, которые не нужно
-        ///убирать у НПС при генерации.
+        ///   Ищет локализованную строку, похожую на Items that do not need
+        ///to be removed from NPCs when generating.
         /// </summary>
         internal static string npcKeepSupplies {
             get {
@@ -1133,7 +1133,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Предметы, которые не нужно убирать у НПС при генерации.
+        ///   Ищет локализованную строку, похожую на Items that do not need to be removed from NPCs when generating.
         /// </summary>
         internal static string npcKeepSuppliesSingleLine {
             get {
@@ -1142,7 +1142,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Основное оружие.
+        ///   Ищет локализованную строку, похожую на Main weapon.
         /// </summary>
         internal static string npcMainWeapons {
             get {
@@ -1151,7 +1151,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Модели.
+        ///   Ищет локализованную строку, похожую на Models.
         /// </summary>
         internal static string npcModels {
             get {
@@ -1160,7 +1160,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Деньги.
+        ///   Ищет локализованную строку, похожую на Money.
         /// </summary>
         internal static string npcMoney {
             get {
@@ -1169,7 +1169,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра НПС.
+        ///   Ищет локализованную строку, похожую на The probability of generating each NPC parameter.
         /// </summary>
         internal static string npcProbability {
             get {
@@ -1178,7 +1178,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ранг.
+        ///   Ищет локализованную строку, похожую на Rank.
         /// </summary>
         internal static string npcRank {
             get {
@@ -1187,7 +1187,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Использовать одно случайное оружие из обоих списков.
+        ///   Ищет локализованную строку, похожую на Use one random weapon from both lists.
         /// </summary>
         internal static string npcSingleWeapon {
             get {
@@ -1196,7 +1196,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Озвучка.
+        ///   Ищет локализованную строку, похожую на Voice acting.
         /// </summary>
         internal static string npcSounds {
             get {
@@ -1205,7 +1205,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на НПС.
+        ///   Ищет локализованную строку, похожую на NPCs.
         /// </summary>
         internal static string npcTab {
             get {
@@ -1214,7 +1214,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка генерации НПС.
+        ///   Ищет локализованную строку, похожую на Configuring NPC generation.
         /// </summary>
         internal static string npcTitle {
             get {
@@ -1223,7 +1223,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Уникальные имена.
+        ///   Ищет локализованную строку, похожую на Unique names.
         /// </summary>
         internal static string npcUniqueNames {
             get {
@@ -1232,7 +1232,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Номер по порядку.
+        ///   Ищет локализованную строку, похожую на Number in order.
         /// </summary>
         internal static string numberInOrder {
             get {
@@ -1241,15 +1241,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Если верить парням с Metacognix, то &quot;в игровом движке версии 1.0006 внесены изменения в код, которые приводят к сбоям, когда оружие, боеприпасы или другие предметы уничтожаются во время их использования...&quot;
-        ///Также ошибка &quot;может возникать в модах, которые изменяют боеприпасы и/или оружие&quot;
+        ///   Ищет локализованную строку, похожую на The guys from Metacognix write: &quot;The 1.0006 game engine has code changes that cause crashes when weapons, ammo or other items are destroyed while they are still being used...&quot;
+        ///And &quot;This error can also happen in mods that change ammo and/or weapons&quot;
         ///
         ///https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
         ///
-        ///Сама ошибка выглядит так:
+        ///The error itself looks like this:
         ///
         ///sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
-        ///sv reject [остаток строки не уместился]&quot;;.
+        ///sv reject.id_parent[21043][mil_freedom_r [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string onePointFourAdvertise {
             get {
@@ -1258,7 +1258,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Версия игры 1.0004 при манипуляциях с группировкой и частотой респавна НПС работает стабильнне, чем 1.0006. Но почему?.
+        ///   Ищет локализованную строку, похожую на The 1.0004 version of the game is more stable than 1.0006 when manipulating the communities and respawn frequency of NPCs. But why?.
         /// </summary>
         internal static string onePointFourLink {
             get {
@@ -1267,7 +1267,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Порядок.
+        ///   Ищет локализованную строку, похожую на Order.
         /// </summary>
         internal static string order {
             get {
@@ -1276,7 +1276,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Указанный номер по порядку уже существует.
+        ///   Ищет локализованную строку, похожую на The specified number already exists in the order.
         /// </summary>
         internal static string orderAlreadyExists {
             get {
@@ -1285,7 +1285,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры с несколькими разными типами значений.
+        ///   Ищет локализованную строку, похожую на Parameters with several different types of values.
         /// </summary>
         internal static string orderListParams {
             get {
@@ -1294,7 +1294,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Прочее.
+        ///   Ищет локализованную строку, похожую на Other.
         /// </summary>
         internal static string other {
             get {
@@ -1303,7 +1303,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Редкатирование параметра:.
+        ///   Ищет локализованную строку, похожую на Parameter reduction:.
         /// </summary>
         internal static string paramEdit {
             get {
@@ -1312,7 +1312,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Правила генерации параметров.
+        ///   Ищет локализованную строку, похожую на Rules for generating parameters.
         /// </summary>
         internal static string parameterDialog {
             get {
@@ -1321,7 +1321,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Название параметра.
+        ///   Ищет локализованную строку, похожую на Parameter name.
         /// </summary>
         internal static string parameterName {
             get {
@@ -1330,7 +1330,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Указанный к игровым звукам путь не содержит папку &apos;sounds&apos;.
+        ///   Ищет локализованную строку, похожую на The path specified for the game sounds does not contain the &apos;sounds&apos; folder.
         /// </summary>
         internal static string pathDoesNotContainsSounds {
             get {
@@ -1339,7 +1339,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Указанный к игровым текстурам путь не содержит папку &apos;textures&apos;.
+        ///   Ищет локализованную строку, похожую на The path specified for the game textures does not contain the folder &apos;textures&apos;.
         /// </summary>
         internal static string pathDoesNotContainsTextures {
             get {
@@ -1348,7 +1348,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Точность.
+        ///   Ищет локализованную строку, похожую на Accuracy.
         /// </summary>
         internal static string precision {
             get {
@@ -1357,7 +1357,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Точность значения параметра не может быть меньше 0.
+        ///   Ищет локализованную строку, похожую на The accuracy of the parameter value cannot be less than 0.
         /// </summary>
         internal static string precisionCantBeLessThen0 {
             get {
@@ -1366,7 +1366,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность в зависимости от группировки.
+        ///   Ищет локализованную строку, похожую на Probability depending on the community.
         /// </summary>
         internal static string probabilityByCommunity {
             get {
@@ -1375,7 +1375,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Завершение работы....
+        ///   Ищет локализованную строку, похожую на Shutdown....
         /// </summary>
         internal static string programClosing {
             get {
@@ -1384,7 +1384,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность дождя для каждой секции погоды.
+        ///   Ищет локализованную строку, похожую на The probability of rain for each weather section.
         /// </summary>
         internal static string rainProbability {
             get {
@@ -1393,7 +1393,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Случайная вероятность каждой генерации.
+        ///   Ищет локализованную строку, похожую на Random probability of each generation.
         /// </summary>
         internal static string randomProbability {
             get {
@@ -1402,7 +1402,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Сохранить.
+        ///   Ищет локализованную строку, похожую на Save.
         /// </summary>
         internal static string save {
             get {
@@ -1411,7 +1411,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Сохранено в.
+        ///   Ищет локализованную строку, похожую на Saved in .
         /// </summary>
         internal static string savedIn {
             get {
@@ -1420,7 +1420,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Сохранить gamedata в:.
+        ///   Ищет локализованную строку, похожую на Save gamedata to:.
         /// </summary>
         internal static string saveIn {
             get {
@@ -1429,7 +1429,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Строка секции содержит больше одного символа &apos;:&apos;.
+        ///   Ищет локализованную строку, похожую на The section string contains more than one character &apos;:&apos;.
         /// </summary>
         internal static string sectionStringNotCorrect {
             get {
@@ -1438,7 +1438,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Выбрать.
+        ///   Ищет локализованную строку, похожую на Select.
         /// </summary>
         internal static string select {
             get {
@@ -1447,7 +1447,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Множитель цены продажи игроку.
+        ///   Ищет локализованную строку, похожую на The multiplier of the sale price to the player.
         /// </summary>
         internal static string sellMultiplier {
             get {
@@ -1456,7 +1456,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции множителей цен продажи игроку.
+        ///   Ищет локализованную строку, похожую на Multiplier sections for selling prices to the player.
         /// </summary>
         internal static string sellMultiplierSections {
             get {
@@ -1465,7 +1465,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры, которые будут перемешаны между секциями.
+        ///   Ищет локализованную строку, похожую на Parameters to be shuffled between sections.
         /// </summary>
         internal static string shuffleParams {
             get {
@@ -1474,7 +1474,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Перемешать весь игровой текст.
+        ///   Ищет локализованную строку, похожую на Shuffle the entire game text.
         /// </summary>
         internal static string shuffleText {
             get {
@@ -1483,7 +1483,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждого текстового блока.
+        ///   Ищет локализованную строку, похожую на The probability of shuffling each text block.
         /// </summary>
         internal static string shuffleTextProbability {
             get {
@@ -1492,7 +1492,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не все поля параметров для перемешивания заполнены корректно.
+        ///   Ищет локализованную строку, похожую на Not all fields of the mixing parameters are filled in correctly.
         /// </summary>
         internal static string shuffleValidationError {
             get {
@@ -1501,7 +1501,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Путь к папке sounds.
+        ///   Ищет локализованную строку, похожую на The path to the sounds folder.
         /// </summary>
         internal static string soudnsPath {
             get {
@@ -1510,7 +1510,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Звуки.
+        ///   Ищет локализованную строку, похожую на Sounds.
         /// </summary>
         internal static string sounds {
             get {
@@ -1519,7 +1519,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждого звука.
+        ///   Ищет локализованную строку, похожую на The probability of mixing each sound.
         /// </summary>
         internal static string soundsProbability {
             get {
@@ -1528,7 +1528,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Шаг округления длительности звуковых файлов (сек.).
+        ///   Ищет локализованную строку, похожую на The step of rounding the duration of audio files (sec.).
         /// </summary>
         internal static string soundsRound {
             get {
@@ -1537,7 +1537,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Заменять звуки шагов и дождя.
+        ///   Ищет локализованную строку, похожую на Replace the sounds of footsteps and rain.
         /// </summary>
         internal static string soundsStepRainReplace {
             get {
@@ -1546,7 +1546,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Звуки/текстуры.
+        ///   Ищет локализованную строку, похожую на Sounds/Textures.
         /// </summary>
         internal static string soundsTexturesTab {
             get {
@@ -1555,7 +1555,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка перемешивания звуков и текстур.
+        ///   Ищет локализованную строку, похожую на Setting up mixing of sounds and textures.
         /// </summary>
         internal static string soundsTexturesTitle {
             get {
@@ -1564,7 +1564,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Начать генерацию.
+        ///   Ищет локализованную строку, похожую на Start generating.
         /// </summary>
         internal static string startGenerate {
             get {
@@ -1573,7 +1573,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра тайника.
+        ///   Ищет локализованную строку, похожую на The probability of generating each cache parameter.
         /// </summary>
         internal static string stashesProbability {
             get {
@@ -1582,7 +1582,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными о тайниках.
+        ///   Ищет локализованную строку, похожую на Error reading the cache data file.
         /// </summary>
         internal static string stashesReadError {
             get {
@@ -1591,7 +1591,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Тайники.
+        ///   Ищет локализованную строку, похожую на Stashes.
         /// </summary>
         internal static string stashesTab {
             get {
@@ -1600,7 +1600,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка заполнения тайников.
+        ///   Ищет локализованную строку, похожую на Configuring cache filling.
         /// </summary>
         internal static string stashesTitle {
             get {
@@ -1609,7 +1609,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секция характеристик.
+        ///   Ищет локализованную строку, похожую на Characteristics section.
         /// </summary>
         internal static string statSection {
             get {
@@ -1618,7 +1618,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Строка имеет неверный формат.
+        ///   Ищет локализованную строку, похожую на The string has an incorrect format.
         /// </summary>
         internal static string stringHasWrongFormat {
             get {
@@ -1627,7 +1627,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Успех.
+        ///   Ищет локализованную строку, похожую на Success.
         /// </summary>
         internal static string success {
             get {
@@ -1636,7 +1636,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Текстуры.
+        ///   Ищет локализованную строку, похожую на Textures.
         /// </summary>
         internal static string textures {
             get {
@@ -1645,7 +1645,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Путь к папке textures.
+        ///   Ищет локализованную строку, похожую на The path to the textures folder.
         /// </summary>
         internal static string texturesPath {
             get {
@@ -1654,7 +1654,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность перемешивания каждой текстуры.
+        ///   Ищет локализованную строку, похожую на The probability of mixing each texture.
         /// </summary>
         internal static string texturesProbability {
             get {
@@ -1663,7 +1663,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Заменять элементы интерфейса.
+        ///   Ищет локализованную строку, похожую на Replace interface elements.
         /// </summary>
         internal static string texturesUiReplace {
             get {
@@ -1672,7 +1672,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество потоков для обработки.
+        ///   Ищет локализованную строку, похожую на Number of threads to process.
         /// </summary>
         internal static string threadsCount {
             get {
@@ -1681,7 +1681,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность грозы для каждой секции погоды.
+        ///   Ищет локализованную строку, похожую на The probability of thunderstorms for each weather section.
         /// </summary>
         internal static string thunderProbability {
             get {
@@ -1690,7 +1690,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество в продаже.
+        ///   Ищет локализованную строку, похожую на Quantity on sale.
         /// </summary>
         internal static string tradeCount {
             get {
@@ -1699,7 +1699,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Список предметов в ассортименте торговца: .
+        ///   Ищет локализованную строку, похожую на List of items in the merchant&apos;s assortment: .
         /// </summary>
         internal static string traderItemList {
             get {
@@ -1708,7 +1708,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность появления в продаже.
+        ///   Ищет локализованную строку, похожую на The probability of being on sale.
         /// </summary>
         internal static string traderItemProbability {
             get {
@@ -1717,7 +1717,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации наличия каждого предмета.
+        ///   Ищет локализованную строку, похожую на The probability of generating the presence of each item.
         /// </summary>
         internal static string tradersProbability {
             get {
@@ -1726,7 +1726,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не удалось загрузить файл с настройкой торговца:.
+        ///   Ищет локализованную строку, похожую на Failed to upload merchant&apos;s configuration file:.
         /// </summary>
         internal static string tradersReadError {
             get {
@@ -1735,7 +1735,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ассортимент торговцев.
+        ///   Ищет локализованную строку, похожую на The range of merchants.
         /// </summary>
         internal static string tradersTab {
             get {
@@ -1744,7 +1744,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройки генерации ассортимента торговцев.
+        ///   Ищет локализованную строку, похожую на Merchant assortment generation settings.
         /// </summary>
         internal static string tradersTitle {
             get {
@@ -1753,7 +1753,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на В двух словах: я не знаю, но....
+        ///   Ищет локализованную строку, похожую на In a nutshell: I do not know, but....
         /// </summary>
         internal static string twoWords {
             get {
@@ -1762,7 +1762,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Разблокировать дверь у Сидоровича.
+        ///   Ищет локализованную строку, похожую на Unlock Sidorovich&apos;s door.
         /// </summary>
         internal static string unlockTraderDoor {
             get {
@@ -1771,7 +1771,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Используемые патроны.
+        ///   Ищет локализованную строку, похожую на Used cartridges.
         /// </summary>
         internal static string useAmmo {
             get {
@@ -1780,7 +1780,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Значение.
+        ///   Ищет локализованную строку, похожую на Value.
         /// </summary>
         internal static string value {
             get {
@@ -1789,7 +1789,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Количество значений.
+        ///   Ищет локализованную строку, похожую на Number of values.
         /// </summary>
         internal static string valueCount {
             get {
@@ -1798,7 +1798,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Список значений.
+        ///   Ищет локализованную строку, похожую на List of values.
         /// </summary>
         internal static string valueList {
             get {
@@ -1807,7 +1807,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Тип значения.
+        ///   Ищет локализованную строку, похожую на Value type.
         /// </summary>
         internal static string valueType {
             get {
@@ -1816,7 +1816,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Внимание.
+        ///   Ищет локализованную строку, похожую на Warning.
         /// </summary>
         internal static string warning {
             get {
@@ -1825,7 +1825,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов.
+        ///   Ищет локализованную строку, похожую на All lines must have the name of the weapon and at least one type of ammunition.
         /// </summary>
         internal static string weaponAmmoValidation {
             get {
@@ -1834,7 +1834,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Оружие.
+        ///   Ищет локализованную строку, похожую на Weapons.
         /// </summary>
         internal static string weapons {
             get {
@@ -1843,7 +1843,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры оружия.
+        ///   Ищет локализованную строку, похожую на Generated weapon parameters.
         /// </summary>
         internal static string weaponsParams {
             get {
@@ -1852,7 +1852,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры оружия.
+        ///   Ищет локализованную строку, похожую на Weapon parameters.
         /// </summary>
         internal static string weaponsParamsShort {
             get {
@@ -1861,7 +1861,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра оружия.
+        ///   Ищет локализованную строку, похожую на The probability of generating each parameter of the weapon.
         /// </summary>
         internal static string weaponsProbability {
             get {
@@ -1870,7 +1870,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными об оружии:.
+        ///   Ищет локализованную строку, похожую на Error reading the weapon data file:.
         /// </summary>
         internal static string weaponsReadError {
             get {
@@ -1879,7 +1879,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров оружия.
+        ///   Ищет локализованную строку, похожую на Sections for generating weapon parameters.
         /// </summary>
         internal static string weaponsSections {
             get {
@@ -1888,7 +1888,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции оружия.
+        ///   Ищет локализованную строку, похожую на Weapon sections.
         /// </summary>
         internal static string weaponsSectionsShort {
             get {
@@ -1897,7 +1897,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка генерации параметров оружия и патронов.
+        ///   Ищет локализованную строку, похожую на Configuring the generation of weapon and ammo parameters.
         /// </summary>
         internal static string weaponsTitle {
             get {
@@ -1906,7 +1906,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Генерируемые параметры.
+        ///   Ищет локализованную строку, похожую на Generated parameters.
         /// </summary>
         internal static string weatherParams {
             get {
@@ -1915,7 +1915,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Параметры для генерации погоды.
+        ///   Ищет локализованную строку, похожую на Parameters for weather generation.
         /// </summary>
         internal static string weatherParamsFull {
             get {
@@ -1924,7 +1924,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вероятность генерации каждого параметра погоды.
+        ///   Ищет локализованную строку, похожую на The probability of generating each weather parameter.
         /// </summary>
         internal static string weatherProbability {
             get {
@@ -1933,7 +1933,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ошибка чтения файла с данными о погоде:.
+        ///   Ищет локализованную строку, похожую на Error reading the weather data file:.
         /// </summary>
         internal static string weatherReadError {
             get {
@@ -1942,7 +1942,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции для генерации параметров.
+        ///   Ищет локализованную строку, похожую на Sections for generating parameters.
         /// </summary>
         internal static string weatherSections {
             get {
@@ -1951,7 +1951,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секции погоды.
+        ///   Ищет локализованную строку, похожую на Weather sections.
         /// </summary>
         internal static string weatherSectionsShort {
             get {
@@ -1960,7 +1960,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Погода.
+        ///   Ищет локализованную строку, похожую на Weather.
         /// </summary>
         internal static string weatherTab {
             get {
@@ -1969,7 +1969,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройка генерации параметров погоды.
+        ///   Ищет локализованную строку, похожую на Configuring the generation of weather parameters.
         /// </summary>
         internal static string weatherTitle {
             get {

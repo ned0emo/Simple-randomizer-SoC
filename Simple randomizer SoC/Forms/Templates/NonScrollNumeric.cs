@@ -11,11 +11,18 @@ namespace Simple_randomizer_SoC.Forms.Templates
     {
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            var handledEventArgs = e as HandledMouseEventArgs;
-            if (handledEventArgs != null)
+            if (e is HandledMouseEventArgs handledEventArgs)
             {
                 handledEventArgs.Handled = true;
             }
         }
+
+        public static MouseEventHandler NonScrollEvent = (s, e) =>
+        {
+            if (e is HandledMouseEventArgs handledEventArgs)
+            {
+                handledEventArgs.Handled = true;
+            }
+        };
     }
 }

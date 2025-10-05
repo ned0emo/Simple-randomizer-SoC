@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (IsProcessing())
             {
-                throw new ThreadStateException("Не все потоки обработки звуковых файлов были завершены");
+                throw new ThreadStateException(Localization.Get("notAllSoundThreadsCompleted"));
             }
 
             _threads.Clear();
@@ -73,7 +73,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (IsProcessing())
             {
-                throw new ThreadStateException("Не все потоки обработки звуковых файлов были завершены");
+                throw new ThreadStateException(Localization.Get("notAllSoundThreadsCompleted"));
             }
 
             _config = config;

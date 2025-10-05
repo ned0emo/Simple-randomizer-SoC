@@ -1,5 +1,6 @@
 ﻿using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Support;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -30,6 +31,10 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             rainProbabilityInput.Value = config.RainProbability;
             thunderProbabilityInput.Value = config.ThunderProbability;
             weatherProbabilityInput.Value = config.StatProbability;
+
+            rainProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            thunderProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            weatherProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void weatherSectionsButton_Click(object sender, EventArgs e)

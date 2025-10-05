@@ -1,5 +1,6 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -34,8 +35,16 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             maxItemsInput.Value = stashConfig.ItemsMaxCount;
             maxOthersInput.Value = stashConfig.OthersMaxCount;
             maxCommunitiesInput.Value = stashConfig.CommunitiesMaxCount;
-
             probabilityInput.Value = stashConfig.Probability;
+
+            maxWeaponsInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxArmorsInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxArtefactsInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxAmmosInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxItemsInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxOthersInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxCommunitiesInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            probabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void editWeaponsButton_Click(object sender, EventArgs e)

@@ -36,6 +36,8 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             AddCategoryParam("other", config.OtherParameters);
 
             probabilityInput.Value = _config.Probability;
+
+            probabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private void AddCategoryParam(string title, TraderItemsParameters parameters)

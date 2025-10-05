@@ -1,6 +1,7 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Support;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -34,11 +35,18 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
             minArtefactStatCountInput.Value = config.MinArtefactStatCount;
             maxArtefactStatCountInput.Value = config.MaxArtefactStatCount;
+
+            artefactProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            armorProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            itemProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            minArtefactStatCountInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxArtefactStatCountInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void artefactSectionsButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ComplexListDialog<ArtefactStats>("Секции артефактов", config.ArtefactSections, new List<string> { "Артефакт", "Секция характеристик" });
+            var dialog = new ComplexListDialog<ArtefactStats>(Localization.Get("artefactsSections"), config.ArtefactSections,
+                new List<string> { Localization.Get("artefact"), Localization.Get("statSection") });
             dialog.RowValidator = (afStat) => !string.IsNullOrWhiteSpace(afStat.Name) && !string.IsNullOrWhiteSpace(afStat.AbsorbationSection);
 
             await listEditComponent.OpenEditThenSave<ComplexListDialog<ArtefactStats>, ArtefactStats>(dialog, config);

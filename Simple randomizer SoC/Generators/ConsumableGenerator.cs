@@ -24,7 +24,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             var outPath = base.outPath + "\\config\\misc\\items.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\items.ltx")
-                ?? throw new CustomException("Ошибка чтения файла с данными о расходниках");
+                ?? throw new CustomException(Localization.Get("consumablesReadError"));
 
             var sectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
             var paramValuesByShuffleParam = new Dictionary<string, List<List<string>>>();

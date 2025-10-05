@@ -68,7 +68,7 @@ namespace Simple_randomizer_SoC.Model
                             var split = line.Split(':');
                             if (split.Length > 2)
                             {
-                                throw new CustomException("Строка секции содержит больше одного символа ':'");
+                                throw new CustomException(Localization.Get("sectionStringNotCorrect") + " - " + line);
                             }
 
                             section.Name = split[0].Substring(1, split[0].Length - 2);

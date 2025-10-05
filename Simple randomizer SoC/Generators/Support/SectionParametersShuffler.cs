@@ -12,7 +12,7 @@ namespace Simple_randomizer_SoC.Generators.Support
     {
         public void ShuffleSingle(List<string> values, List<LtxSection> sections, string paramName, Random rnd)
         {
-            if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
+            if (values.Count != sections.Count) throw new ArgumentException(Localization.Get("collectionsMustHaveSameSize"), nameof(values));
             while (values.Count > 0)
             {
                 var itemIndex = rnd.Next(values.Count);
@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC.Generators.Support
 
         public void Shuffle(List<List<string>> values, List<LtxSection> sections, string paramName, Random rnd)
         {
-            if (values.Count != sections.Count) throw new ArgumentException("Коллекции должны иметь одинаковый размер", nameof(values));
+            if (values.Count != sections.Count) throw new ArgumentException(Localization.Get("collectionsMustHaveSameSize"), nameof(values));
             while (values.Count > 0)
             {
                 var itemIndex = rnd.Next(values.Count);

@@ -29,7 +29,7 @@ namespace Simple_randomizer_SoC.Generators
             foreach (var file in dir.GetFiles())
             {
                 var ltx = await LtxData.Load(file.FullName)
-                    ?? throw new CustomException("Не удалось загрузить файл с настройкой торговца: " + file.Name);
+                    ?? throw new CustomException(Localization.Get("tradersReadError") + " " + file.Name);
 
                 files.Add(ltx);
 
@@ -117,7 +117,7 @@ namespace Simple_randomizer_SoC.Generators
         private double GenerateDoubleValue(FloatRangeParameter parameter)
         {
             if (parameter.MinValue > parameter.MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(parameter.MinValue), "Минимальное значение параметра не может быть больше максимального");
+                throw new ArgumentOutOfRangeException(nameof(parameter.MinValue), Localization.Get("minValueCantBeMoreThenMaxValue"));
 
             var diff = parameter.MaxValue - parameter.MinValue;
 

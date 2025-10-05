@@ -21,13 +21,13 @@ namespace Simple_randomizer_SoC.Models.Parameters
         public override List<string> GenerateValues(Random rnd)
         {
             if (ValuesCount == 0) return new List<string>();
-
+            //TODO
             if (ValuesCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(ValuesCount), "Количество значений параметра не может быть меньше 0");
+                throw new ArgumentOutOfRangeException(nameof(ValuesCount), Localization.Get("countCantBeLessThen0"));
             if (MinValue > MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(MinValue), "Минимальное значение параметра не может быть больше максимального");
+                throw new ArgumentOutOfRangeException(nameof(MinValue), Localization.Get("minValueCantBeMoreThenMaxValue"));
             if (Precision < 0)
-                throw new ArgumentOutOfRangeException(nameof(Precision), "Точность значения параметра не может быть меньше 0");
+                throw new ArgumentOutOfRangeException(nameof(Precision), Localization.Get("precisionCantBeLessThen0"));
 
             var diff = MaxValue - MinValue;
             var result = new List<string>();

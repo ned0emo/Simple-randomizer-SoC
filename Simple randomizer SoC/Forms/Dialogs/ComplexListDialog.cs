@@ -158,7 +158,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
         {
             if (e.Exception is FormatException)
             {
-                MessageBox.Show("Строка имеет неверный формат", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Localization.Get("stringHasWrongFormat"), Localization.Get("error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

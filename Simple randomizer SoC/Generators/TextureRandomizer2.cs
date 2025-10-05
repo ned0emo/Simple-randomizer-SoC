@@ -43,7 +43,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (IsProcessing())
             {
-                throw new ThreadStateException("Не все потоки обработки текстур были завершены");
+                throw new ThreadStateException(Localization.Get("notAllTextureThreadsCompleted"));
             }
 
             _threads.Clear();
@@ -72,7 +72,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (IsProcessing())
             {
-                throw new ThreadStateException("Не все потоки обработки текстур были завершены");
+                throw new ThreadStateException(Localization.Get("notAllTextureThreadsCompleted"));
             }
 
             _config = config;

@@ -21,12 +21,12 @@ namespace Simple_randomizer_SoC.Generators
         {
             if (config.MinArtefactStatCount > config.MaxArtefactStatCount)
             {
-                throw new ArgumentOutOfRangeException(nameof(config.MinArtefactStatCount), "Минимальное значение количества статов артефактов не может быть больше максимального");
+                throw new ArgumentOutOfRangeException(nameof(config.MinArtefactStatCount), Localization.Get("minValueCantBeMoreThenMaxValue"));
             }
 
             var outPath = base.outPath + "\\config\\misc\\artefacts.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\artefacts.ltx")
-                ?? throw new CustomException("Ошибка чтения файла с данными об артефактах");
+                ?? throw new CustomException(Localization.Get("artefactsReadError"));
 
             var mainSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
             var mainParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();

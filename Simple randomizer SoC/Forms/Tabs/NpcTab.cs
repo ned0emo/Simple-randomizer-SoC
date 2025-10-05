@@ -1,6 +1,7 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Support;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -47,6 +48,12 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             maxMoneyInput.Value = config.MoneyParameter.MaxValue;
 
             npcProbabilityInput.Value = config.Probability;
+
+            minRankInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxRankInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            minMoneyInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxMoneyInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            npcProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void modelButton_Click(object sender, EventArgs e)

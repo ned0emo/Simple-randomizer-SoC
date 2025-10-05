@@ -30,7 +30,7 @@ namespace Simple_randomizer_SoC.Forms
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
         }
 
@@ -52,7 +52,7 @@ namespace Simple_randomizer_SoC.Forms
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка", ex).ShowDialog();
+                new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
         }
 

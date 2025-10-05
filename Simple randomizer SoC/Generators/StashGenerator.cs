@@ -33,7 +33,7 @@ namespace Simple_randomizer_SoC.Generators
         public async Task Generate()
         {
             LtxData ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\treasure_manager.ltx")
-                ?? throw new CustomException("Ошибка чтения файла с данными о тайниках");
+                ?? throw new CustomException(Localization.Get("stashesReadError"));
 
             List<string> names = new List<string>();
             List<LtxSection> sectionsToShuffleNames = new List<LtxSection>();

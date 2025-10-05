@@ -36,6 +36,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             AddCategoryParam("other", config.OtherParameters, null);
 
             probabilityInput.Value = _config.Probability;
+            probabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         public void Localize()
@@ -64,7 +65,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
         private async void keepItemsButton_Click(object sender, EventArgs e)
         {
-            await dataListEditor.OpenEditThenSave(new SimpleListDialog("Предметы, которые нужно оставлять при убийстве НПС", _config.KeepItems), _config);
+            await dataListEditor.OpenEditThenSave(new SimpleListDialog(Localization.Get("keepDeathItems"), _config.KeepItems), _config);
         }
 
         private void probabilityInput_ValueChanged_1(object sender, EventArgs e)

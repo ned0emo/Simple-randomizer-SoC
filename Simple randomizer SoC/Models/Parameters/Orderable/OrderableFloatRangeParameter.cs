@@ -21,9 +21,9 @@ namespace Simple_randomizer_SoC.Models.Parameters
         public override string GenerateValue(Random rnd)
         {
             if (MinValue > MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(MinValue), "Минимальное значение параметра не может быть больше максимального");
+                throw new ArgumentOutOfRangeException(nameof(MinValue), Localization.Get("minValueCantBeMoreThenMaxValue"));
             if (Precision < 0)
-                throw new ArgumentOutOfRangeException(nameof(Precision), "Точность значения параметра не может быть меньше 0");
+                throw new ArgumentOutOfRangeException(nameof(Precision), Localization.Get("precisionCantBeLessThen0"));
 
             var diff = MaxValue - MinValue;
             return Math.Round(rnd.NextDouble() * diff + MinValue, Precision).ToString();

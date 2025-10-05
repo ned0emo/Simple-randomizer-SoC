@@ -118,646 +118,646 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="aboutTab" xml:space="preserve">
-    <value>О программе</value>
+    <value>About</value>
   </data>
   <data name="additionalTab" xml:space="preserve">
-    <value>Дополнительно</value>
+    <value>Additional parameters</value>
   </data>
   <data name="additionalTitle" xml:space="preserve">
-    <value>Дополнительные параметры</value>
+    <value>Additional parameters</value>
   </data>
   <data name="ammoType" xml:space="preserve">
-    <value>Тип патронов</value>
+    <value>Type of cartridges</value>
   </data>
   <data name="brokenTranslate" xml:space="preserve">
-    <value>Заменить игровой текст на прогнанный переводчиком через 10 языков</value>
+    <value>Replace the game text with the one sent by the translator through 10 languages (Russian only)</value>
   </data>
   <data name="brokenTranslateProbability" xml:space="preserve">
-    <value>Вероятность замены каждого текстового блока</value>
+    <value>The probability of replacing each text block</value>
   </data>
   <data name="community" xml:space="preserve">
-    <value>Группировка</value>
+    <value>Community</value>
   </data>
   <data name="countByDifficulty" xml:space="preserve">
-    <value>Количество в зависимости от уровня сложности</value>
+    <value>The amount depends on the difficulty level</value>
   </data>
   <data name="crashFix" xml:space="preserve">
-    <value>Фикс некоторых вылетов игры из-за манипуляций с НПС (_g.script, xr_statistic.script)</value>
+    <value>Fixed some game crashes due to NPC manipulation (_g.script, xr_statistic.script)</value>
   </data>
   <data name="deathItemsTab" xml:space="preserve">
-    <value>Вещи убитых НПС</value>
+    <value>Items of the killed NPCs</value>
   </data>
   <data name="deadNpcAmmo" xml:space="preserve">
-    <value>Патроны убитого НПС</value>
+    <value>Bullets of the killed NPC</value>
   </data>
   <data name="deathProbability" xml:space="preserve">
-    <value>Вероятность генерации наличия каждого предмета</value>
+    <value>The probability of generating the presence of each item</value>
   </data>
   <data name="deathTitle" xml:space="preserve">
-    <value>Настройки генерации вещей убитых НПС</value>
+    <value>Settings for generating items of killed NPCs</value>
   </data>
   <data name="dialogsTab" xml:space="preserve">
-    <value>Диалоги</value>
+    <value>Dialogues</value>
   </data>
   <data name="difficultyLevel" xml:space="preserve">
-    <value>Уровень сложности</value>
+    <value>Difficulty level</value>
   </data>
   <data name="disableBarAlarm" xml:space="preserve">
-    <value>Отключить тревогу в Баре при убийстве НПС игроком</value>
+    <value>Disable the alarm in the Bar when an NPC is killed by a player</value>
   </data>
   <data name="disableFreedomAngry" xml:space="preserve">
-    <value>Отключить автоматическое ухудшение отношений со Свободой, когда на их базе есть враждебные к игроку НПС</value>
+    <value>Disable the automatic deterioration of relations with Freedom when there are NPCs hostile to the player on their base</value>
   </data>
   <data name="disableHidingWeapons" xml:space="preserve">
-    <value>Отключить автоматическое убирание оружия в некоторых местах</value>
+    <value>Disable automatic weapon removal in some places</value>
   </data>
   <data name="editList" xml:space="preserve">
-    <value>Редактировать список</value>
+    <value>Edit the list</value>
   </data>
   <data name="generate" xml:space="preserve">
-    <value>Сгенерировать</value>
+    <value>Generate</value>
   </data>
   <data name="giveKnife" xml:space="preserve">
-    <value>Дать игроку нож в начале игры</value>
+    <value>Give the player a knife at the beginning of the game</value>
   </data>
   <data name="increaseRespawn" xml:space="preserve">
-    <value>Увеличить частоту респавна НПС</value>
+    <value>Increase the respawn frequency of NPCs</value>
   </data>
   <data name="deadNpcItems" xml:space="preserve">
-    <value>Предметы в рюкзкае убитого НПС: </value>
+    <value>Items in the dead NPC's backpack: </value>
   </data>
   <data name="itemsList" xml:space="preserve">
-    <value>Список предметов</value>
+    <value>List of items</value>
   </data>
   <data name="itemsTab" xml:space="preserve">
-    <value>Предметы</value>
+    <value>Items</value>
   </data>
   <data name="keepDeathItems" xml:space="preserve">
-    <value>Предметы, которые нужно оставлять при убийстве НПС</value>
+    <value>Items to leave behind when killing NPCs</value>
   </data>
   <data name="level" xml:space="preserve">
-    <value>Локация</value>
+    <value>Location</value>
   </data>
   <data name="mainFormName" xml:space="preserve">
-    <value>Простой рандомайзер для S.T.A.L.K.E.R. Тень Чернобыля</value>
+    <value>Simple randomizer for S.T.A.L.K.E.R. Shadow of Chernobyl</value>
   </data>
   <data name="maxCount" xml:space="preserve">
-    <value>Макс. количество</value>
+    <value>Max. quantity</value>
   </data>
   <data name="maxMultiplier" xml:space="preserve">
-    <value>Макс. множитель</value>
+    <value>Max. multiplier</value>
   </data>
   <data name="maxProbability0to1" xml:space="preserve">
-    <value>Макс. вероятность (от 0 до 1)</value>
+    <value>Max. probability (from 0 to 1)</value>
   </data>
   <data name="maxWeaponToSpawnAmmo" xml:space="preserve">
-    <value>Макс. количество оружия для появления патронов у убитого НПС</value>
+    <value>Max. number of weapons for a dead NPC to have ammunition</value>
   </data>
   <data name="minCount" xml:space="preserve">
-    <value>Мин. количество</value>
+    <value>Min. quantity</value>
   </data>
   <data name="minMultiplier" xml:space="preserve">
-    <value>Мин. множитель</value>
+    <value>Min. multiplier</value>
   </data>
   <data name="minProbability0to1" xml:space="preserve">
-    <value>Мин. вероятность (от 0 до 1)</value>
+    <value>Min. probability (from 0 to 1)</value>
   </data>
   <data name="multiplierByLevel" xml:space="preserve">
-    <value>Множитель в зависимости от локации</value>
+    <value>Multiplier depending on location</value>
   </data>
   <data name="npcTab" xml:space="preserve">
-    <value>НПС</value>
+    <value>NPCs</value>
   </data>
   <data name="onePointFourLink" xml:space="preserve">
-    <value>Версия игры 1.0004 при манипуляциях с группировкой и частотой респавна НПС работает стабильнне, чем 1.0006. Но почему?</value>
+    <value>The 1.0004 version of the game is more stable than 1.0006 when manipulating the communities and respawn frequency of NPCs. But why?</value>
   </data>
   <data name="probabilityByCommunity" xml:space="preserve">
-    <value>Вероятность в зависимости от группировки</value>
+    <value>Probability depending on the community</value>
   </data>
   <data name="shuffleText" xml:space="preserve">
-    <value>Перемешать весь игровой текст</value>
+    <value>Shuffle the entire game text</value>
   </data>
   <data name="shuffleTextProbability" xml:space="preserve">
-    <value>Вероятность перемешивания каждого текстового блока</value>
+    <value>The probability of shuffling each text block</value>
   </data>
   <data name="soundsTexturesTab" xml:space="preserve">
-    <value>Звуки/текстуры</value>
+    <value>Sounds/Textures</value>
   </data>
   <data name="stashesTab" xml:space="preserve">
-    <value>Тайники</value>
+    <value>Stashes</value>
   </data>
   <data name="tradersTab" xml:space="preserve">
-    <value>Ассортимент торговцев</value>
+    <value>The range of merchants</value>
   </data>
   <data name="unlockTraderDoor" xml:space="preserve">
-    <value>Разблокировать дверь у Сидоровича</value>
+    <value>Unlock Sidorovich's door</value>
   </data>
   <data name="weapons" xml:space="preserve">
-    <value>Оружие</value>
+    <value>Weapons</value>
   </data>
   <data name="weatherTab" xml:space="preserve">
-    <value>Погода</value>
+    <value>Weather</value>
   </data>
   <data name="armor" xml:space="preserve">
-    <value>Броня</value>
+    <value>Armor</value>
   </data>
   <data name="artefacts" xml:space="preserve">
-    <value>Артефакты</value>
+    <value>Artifacts</value>
   </data>
   <data name="ammo" xml:space="preserve">
-    <value>Патроны</value>
+    <value>Cartridges</value>
   </data>
   <data name="consumables" xml:space="preserve">
-    <value>Расходники</value>
+    <value>Consumables</value>
   </data>
   <data name="other" xml:space="preserve">
-    <value>Прочее</value>
+    <value>Other</value>
   </data>
   <data name="dialogActionExceptions" xml:space="preserve">
-    <value>Исключенные действия</value>
+    <value>Excluded actions</value>
   </data>
   <data name="dialogInfoExceptions" xml:space="preserve">
-    <value>Исключенные события</value>
+    <value>Excluded infos</value>
   </data>
   <data name="dialogPreconditionExceptions" xml:space="preserve">
-    <value>Исключенные условия</value>
+    <value>Excluded preconditions</value>
   </data>
   <data name="dialogProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого диалога</value>
+    <value>The probability of generating each dialog</value>
   </data>
   <data name="dialogsTitle" xml:space="preserve">
-    <value>Настройки генерации диалогов</value>
+    <value>Dialog generation settings</value>
   </data>
   <data name="itemsTitle" xml:space="preserve">
-    <value>Настройка генерации параметров предметов</value>
+    <value>Configuring the generation of item parameters</value>
   </data>
   <data name="artefactsGenerateSection" xml:space="preserve">
-    <value>Секции для генерации параметров артефактов</value>
+    <value>Sections for generating artifact parameters</value>
   </data>
   <data name="artefactsStandardParams" xml:space="preserve">
-    <value>Стандартные генерируемые параметры артефактов</value>
+    <value>Standard generated artifact parameters</value>
   </data>
   <data name="artefactsParams0" xml:space="preserve">
-    <value>Параметры с базовым значением 0.0</value>
+    <value>Parameters with a base value of 0.0</value>
   </data>
   <data name="artefactsParams1" xml:space="preserve">
-    <value>Параметры с базовым значением 1.0</value>
+    <value>Parameters with a base value of 1.0</value>
   </data>
   <data name="minArtefactStats" xml:space="preserve">
-    <value>Минимальное количество статов артефактов</value>
+    <value>Minimum number of artifact stats</value>
   </data>
   <data name="maxArtefactStats" xml:space="preserve">
-    <value>Максимальное количество статов артефактов</value>
+    <value>Maximum number of artifact stats</value>
   </data>
   <data name="armorGenerateSections" xml:space="preserve">
-    <value>Секции для генерации параметров брони</value>
+    <value>Sections for generating armor parameters</value>
   </data>
   <data name="armorImmunitySections" xml:space="preserve">
-    <value>Секции для генерации параметров износа брони</value>
+    <value>Sections for generating armor wear parameters</value>
   </data>
   <data name="armorMainParams" xml:space="preserve">
-    <value>Генерируемые параметры брони</value>
+    <value>Generated armor parameters</value>
   </data>
   <data name="armorImmunityParams" xml:space="preserve">
-    <value>Генерируемые параметры износа брони</value>
+    <value>Generated armor wear parameters</value>
   </data>
   <data name="artefcatsStats" xml:space="preserve">
-    <value>Генерируемые параметры характеристик артефактов</value>
+    <value>Generated parameters of artifact characteristics</value>
   </data>
   <data name="consumablesGenerateSections" xml:space="preserve">
-    <value>Секции для генерации параметров расходников</value>
+    <value>Sections for generating consumables parameters</value>
   </data>
   <data name="consumablesParams" xml:space="preserve">
-    <value>Генерируемые параметры расходников</value>
+    <value>Generated parameters of consumables</value>
   </data>
   <data name="artefactsProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра артефакта</value>
+    <value>The probability of generating each artifact parameter</value>
   </data>
   <data name="armorProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра брони</value>
+    <value>The probability of generating each armor parameter</value>
   </data>
   <data name="consumablesProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра расходников</value>
+    <value>The probability of generating each parameter of consumables</value>
   </data>
   <data name="artefactsSections" xml:space="preserve">
-    <value>Секции артефактов</value>
+    <value>Artifact sections</value>
   </data>
   <data name="artefactsStandardParamsShort" xml:space="preserve">
-    <value>Стандартные параметры артефактов</value>
+    <value>Standard artifact parameters</value>
   </data>
   <data name="artefactsParams0Full" xml:space="preserve">
-    <value>Параметры характеристик артефактов с базовым значением 0.0</value>
+    <value>Parameters of artifact characteristics with a base value of 0.0</value>
   </data>
   <data name="artefactsParams1Full" xml:space="preserve">
-    <value>Параметры характеристик артефактов, с базовым значением 1.0</value>
+    <value>Parameters of artifact characteristics with a base value of 1.0</value>
   </data>
   <data name="armorSections" xml:space="preserve">
-    <value>Секции брони</value>
+    <value>Armor sections</value>
   </data>
   <data name="armorParams" xml:space="preserve">
-    <value>Параметры брони</value>
+    <value>Armor parameters</value>
   </data>
   <data name="armorImmunityParamsShort" xml:space="preserve">
-    <value>Параметры износа брони</value>
+    <value>Armor wear parameters</value>
   </data>
   <data name="consumablesSections" xml:space="preserve">
-    <value>Секции расходников</value>
+    <value>Consumables sections</value>
   </data>
   <data name="consumablesParamsShort" xml:space="preserve">
-    <value>Параметры расходников</value>
+    <value>Consumables parameters</value>
   </data>
   <data name="armorImmunitySectionsShort" xml:space="preserve">
-    <value>Секции износа брони</value>
+    <value>Armor wear sections</value>
   </data>
   <data name="npcTitle" xml:space="preserve">
-    <value>Настройка генерации НПС</value>
+    <value>Configuring NPC generation</value>
   </data>
   <data name="npcModels" xml:space="preserve">
-    <value>Модели</value>
+    <value>Models</value>
   </data>
   <data name="npcSounds" xml:space="preserve">
-    <value>Озвучка</value>
+    <value>Voice acting</value>
   </data>
   <data name="npcIcons" xml:space="preserve">
-    <value>Миниатюры</value>
+    <value>Thumbnails</value>
   </data>
   <data name="npcGenNames" xml:space="preserve">
-    <value>Генерируемые имена</value>
+    <value>Generated names</value>
   </data>
   <data name="npcUniqueNames" xml:space="preserve">
-    <value>Уникальные имена</value>
+    <value>Unique names</value>
   </data>
   <data name="npcCommunities" xml:space="preserve">
-    <value>Группировки</value>
+    <value>Communities</value>
   </data>
   <data name="npcExceptions" xml:space="preserve">
-    <value>Исключения</value>
+    <value>Exceptions</value>
   </data>
   <data name="npcMainWeapons" xml:space="preserve">
-    <value>Основное оружие</value>
+    <value>Main weapon</value>
   </data>
   <data name="npcAdditionalWeapons" xml:space="preserve">
-    <value>Дополнительное оружие</value>
+    <value>Additional weapons</value>
   </data>
   <data name="npcSingleWeapon" xml:space="preserve">
-    <value>Использовать одно случайное оружие из обоих списков</value>
+    <value>Use one random weapon from both lists</value>
   </data>
   <data name="npcKeepSupplies" xml:space="preserve">
-    <value>Предметы, которые не нужно
-убирать у НПС при генерации</value>
+    <value>Items that do not need
+to be removed from NPCs when generating</value>
   </data>
   <data name="npcExtendCamp" xml:space="preserve">
-    <value>Расширить присоединение НПС к лагерям (ломает некоторые скрипты)</value>
+    <value>Expand NPC joining camps (breaks some scripts)</value>
   </data>
   <data name="npcRank" xml:space="preserve">
-    <value>Ранг</value>
+    <value>Rank</value>
   </data>
   <data name="minValue" xml:space="preserve">
-    <value>Мин. значение</value>
+    <value>Min. value</value>
   </data>
   <data name="maxValue" xml:space="preserve">
-    <value>Макс. значение</value>
+    <value>Max. value</value>
   </data>
   <data name="npcMoney" xml:space="preserve">
-    <value>Деньги</value>
+    <value>Money</value>
   </data>
   <data name="npcProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра НПС</value>
+    <value>The probability of generating each NPC parameter</value>
   </data>
   <data name="warning" xml:space="preserve">
-    <value>Внимание</value>
+    <value>Warning</value>
   </data>
   <data name="useAmmo" xml:space="preserve">
-    <value>Используемые патроны</value>
+    <value>Used cartridges</value>
   </data>
   <data name="weaponAmmoValidation" xml:space="preserve">
-    <value>Для всех строк обязательно наличие названия оружия и как минимум одного типа патронов</value>
+    <value>All lines must have the name of the weapon and at least one type of ammunition</value>
   </data>
   <data name="npcKeepSuppliesSingleLine" xml:space="preserve">
-    <value>Предметы, которые не нужно убирать у НПС при генерации</value>
+    <value>Items that do not need to be removed from NPCs when generating</value>
   </data>
   <data name="soundsTexturesTitle" xml:space="preserve">
-    <value>Настройка перемешивания звуков и текстур</value>
+    <value>Setting up mixing of sounds and textures</value>
   </data>
   <data name="soudnsPath" xml:space="preserve">
-    <value>Путь к папке sounds</value>
+    <value>The path to the sounds folder</value>
   </data>
   <data name="soundsRound" xml:space="preserve">
-    <value>Шаг округления длительности звуковых файлов (сек.)</value>
+    <value>The step of rounding the duration of audio files (sec.)</value>
   </data>
   <data name="soundsProbability" xml:space="preserve">
-    <value>Вероятность перемешивания каждого звука</value>
+    <value>The probability of mixing each sound</value>
   </data>
   <data name="soundsStepRainReplace" xml:space="preserve">
-    <value>Заменять звуки шагов и дождя</value>
+    <value>Replace the sounds of footsteps and rain</value>
   </data>
   <data name="texturesPath" xml:space="preserve">
-    <value>Путь к папке textures</value>
+    <value>The path to the textures folder</value>
   </data>
   <data name="texturesProbability" xml:space="preserve">
-    <value>Вероятность перемешивания каждой текстуры</value>
+    <value>The probability of mixing each texture</value>
   </data>
   <data name="texturesUiReplace" xml:space="preserve">
-    <value>Заменять элементы интерфейса</value>
+    <value>Replace interface elements</value>
   </data>
   <data name="threadsCount" xml:space="preserve">
-    <value>Количество потоков для обработки</value>
+    <value>Number of threads to process</value>
   </data>
   <data name="select" xml:space="preserve">
-    <value>Выбрать</value>
+    <value>Select</value>
   </data>
   <data name="stashesTitle" xml:space="preserve">
-    <value>Настройка заполнения тайников</value>
+    <value>Configuring cache filling</value>
   </data>
   <data name="stashesProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра тайника</value>
+    <value>The probability of generating each cache parameter</value>
   </data>
   <data name="ammoBoxCount" xml:space="preserve">
-    <value>Количество в пачке</value>
+    <value>Quantity per pack</value>
   </data>
   <data name="tradeCount" xml:space="preserve">
-    <value>Количество в продаже</value>
+    <value>Quantity on sale</value>
   </data>
   <data name="traderItemProbability" xml:space="preserve">
-    <value>Вероятность появления в продаже</value>
+    <value>The probability of being on sale</value>
   </data>
   <data name="sellMultiplier" xml:space="preserve">
-    <value>Множитель цены продажи игроку</value>
+    <value>The multiplier of the sale price to the player</value>
   </data>
   <data name="buyMultiplier" xml:space="preserve">
-    <value>Множитель цены покупки у игрока</value>
+    <value>The multiplier of the player's purchase price</value>
   </data>
   <data name="traderItemList" xml:space="preserve">
-    <value>Список предметов в ассортименте торговца: </value>
+    <value>List of items in the merchant's assortment: </value>
   </data>
   <data name="tradersTitle" xml:space="preserve">
-    <value>Настройки генерации ассортимента торговцев</value>
+    <value>Merchant assortment generation settings</value>
   </data>
   <data name="countProbabilitySections" xml:space="preserve">
-    <value>Секции количества и вероятности появления</value>
+    <value>Sections on the number and probability of occurrence</value>
   </data>
   <data name="sellMultiplierSections" xml:space="preserve">
-    <value>Секции множителей цен продажи игроку</value>
+    <value>Multiplier sections for selling prices to the player</value>
   </data>
   <data name="buyMultiplierSections" xml:space="preserve">
-    <value>Секции множителей цен покупки у игрока</value>
+    <value>Player's purchase price multiplier sections</value>
   </data>
   <data name="tradersProbability" xml:space="preserve">
-    <value>Вероятность генерации наличия каждого предмета</value>
+    <value>The probability of generating the presence of each item</value>
   </data>
   <data name="weaponsTitle" xml:space="preserve">
-    <value>Настройка генерации параметров оружия и патронов</value>
+    <value>Configuring the generation of weapon and ammo parameters</value>
   </data>
   <data name="weaponsSections" xml:space="preserve">
-    <value>Секции для генерации параметров оружия</value>
+    <value>Sections for generating weapon parameters</value>
   </data>
   <data name="weaponsParams" xml:space="preserve">
-    <value>Генерируемые параметры оружия</value>
+    <value>Generated weapon parameters</value>
   </data>
   <data name="ammoSections" xml:space="preserve">
-    <value>Секции для генерации параметров патронов</value>
+    <value>Sections for generating cartridge parameters</value>
   </data>
   <data name="ammoParams" xml:space="preserve">
-    <value>Генерируемые параметры патронов</value>
+    <value>Generated cartridge parameters</value>
   </data>
   <data name="weaponsProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра оружия</value>
+    <value>The probability of generating each parameter of the weapon</value>
   </data>
   <data name="ammoProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра патронов</value>
+    <value>The probability of generating each parameter of cartridges</value>
   </data>
   <data name="weaponsSectionsShort" xml:space="preserve">
-    <value>Секции оружия</value>
+    <value>Weapon sections</value>
   </data>
   <data name="weaponsParamsShort" xml:space="preserve">
-    <value>Параметры оружия</value>
+    <value>Weapon parameters</value>
   </data>
   <data name="ammoSectionsShort" xml:space="preserve">
-    <value>Секции патронов</value>
+    <value>Cartridge sections</value>
   </data>
   <data name="ammoParamsShort" xml:space="preserve">
-    <value>Параметры патронов</value>
+    <value>Cartridge parameters</value>
   </data>
   <data name="weatherSectionsShort" xml:space="preserve">
-    <value>Секции погоды</value>
+    <value>Weather sections</value>
   </data>
   <data name="weatherParamsFull" xml:space="preserve">
-    <value>Параметры для генерации погоды</value>
+    <value>Parameters for weather generation</value>
   </data>
   <data name="weatherTitle" xml:space="preserve">
-    <value>Настройка генерации параметров погоды</value>
+    <value>Configuring the generation of weather parameters</value>
   </data>
   <data name="weatherSections" xml:space="preserve">
-    <value>Секции для генерации параметров</value>
+    <value>Sections for generating parameters</value>
   </data>
   <data name="weatherParams" xml:space="preserve">
-    <value>Генерируемые параметры</value>
+    <value>Generated parameters</value>
   </data>
   <data name="rainProbability" xml:space="preserve">
-    <value>Вероятность дождя для каждой секции погоды</value>
+    <value>The probability of rain for each weather section</value>
   </data>
   <data name="thunderProbability" xml:space="preserve">
-    <value>Вероятность грозы для каждой секции погоды</value>
+    <value>The probability of thunderstorms for each weather section</value>
   </data>
   <data name="weatherProbability" xml:space="preserve">
-    <value>Вероятность генерации каждого параметра погоды</value>
+    <value>The probability of generating each weather parameter</value>
   </data>
   <data name="programClosing" xml:space="preserve">
-    <value>Завершение работы...</value>
+    <value>Shutdown...</value>
   </data>
   <data name="forceCloseButton" xml:space="preserve">
-    <value>Закрыть принудительно</value>
+    <value>Forced closure</value>
   </data>
   <data name="addParameterDialog" xml:space="preserve">
-    <value>Добавить параметр</value>
+    <value>Add the parameter</value>
   </data>
   <data name="valueType" xml:space="preserve">
-    <value>Тип значения</value>
+    <value>Value type</value>
   </data>
   <data name="numberInOrder" xml:space="preserve">
-    <value>Номер по порядку</value>
+    <value>Number in order</value>
   </data>
   <data name="cancel" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Cancellation</value>
   </data>
   <data name="add" xml:space="preserve">
-    <value>Добавить</value>
+    <value>Add</value>
   </data>
   <data name="parameterName" xml:space="preserve">
-    <value>Название параметра</value>
+    <value>Parameter name</value>
   </data>
   <data name="valueCount" xml:space="preserve">
-    <value>Количество значений</value>
+    <value>Number of values</value>
   </data>
   <data name="textures" xml:space="preserve">
-    <value>Текстуры</value>
+    <value>Textures</value>
   </data>
   <data name="sounds" xml:space="preserve">
-    <value>Звуки</value>
+    <value>Sounds</value>
   </data>
   <data name="generateDialog" xml:space="preserve">
-    <value>Генерация gamedata</value>
+    <value>Gamedata generation</value>
   </data>
   <data name="randomProbability" xml:space="preserve">
-    <value>Случайная вероятность каждой генерации</value>
+    <value>Random probability of each generation</value>
   </data>
   <data name="saveIn" xml:space="preserve">
-    <value>Сохранить gamedata в:</value>
+    <value>Save gamedata to:</value>
   </data>
   <data name="startGenerate" xml:space="preserve">
-    <value>Начать генерацию</value>
+    <value>Start generating</value>
   </data>
   <data name="value" xml:space="preserve">
-    <value>Значение</value>
+    <value>Value</value>
   </data>
   <data name="save" xml:space="preserve">
-    <value>Сохранить</value>
+    <value>Save</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>Название</value>
+    <value>Name</value>
   </data>
   <data name="valueList" xml:space="preserve">
-    <value>Список значений</value>
+    <value>List of values</value>
   </data>
   <data name="precision" xml:space="preserve">
-    <value>Точность</value>
+    <value>Accuracy</value>
   </data>
   <data name="fromListParams" xml:space="preserve">
-    <value>Параметры, выбираемые из списка</value>
+    <value>Parameters to select from the list</value>
   </data>
   <data name="intRangeParams" xml:space="preserve">
-    <value>Целочисленные параметры</value>
+    <value>Integer parameters</value>
   </data>
   <data name="floatRangeParams" xml:space="preserve">
-    <value>Параметры с плавающей точкой</value>
+    <value>Floating point parameters</value>
   </data>
   <data name="orderListParams" xml:space="preserve">
-    <value>Параметры с несколькими разными типами значений</value>
+    <value>Parameters with several different types of values</value>
   </data>
   <data name="shuffleParams" xml:space="preserve">
-    <value>Параметры, которые будут перемешаны между секциями</value>
+    <value>Parameters to be shuffled between sections</value>
   </data>
   <data name="copyParams" xml:space="preserve">
-    <value>Параметры, которые будут скопированы</value>
+    <value>Parameters to be copied</value>
   </data>
   <data name="copyFromName" xml:space="preserve">
-    <value>Параметр, значение которого будет скопировано</value>
+    <value>The parameter whose value will be copied</value>
   </data>
   <data name="parameterDialog" xml:space="preserve">
-    <value>Правила генерации параметров</value>
+    <value>Rules for generating parameters</value>
   </data>
   <data name="fromListValuesEdit" xml:space="preserve">
-    <value>Настройка списка элементов параметра:</value>
+    <value>Setting up the list of parameter elements:</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Удалить</value>
+    <value>Delete</value>
   </data>
   <data name="edit" xml:space="preserve">
-    <value>Редактировать</value>
+    <value>Edit</value>
   </data>
   <data name="paramEdit" xml:space="preserve">
-    <value>Редкатирование параметра:</value>
+    <value>Parameter reduction:</value>
   </data>
   <data name="intRangeValidationError" xml:space="preserve">
-    <value>Не все поля целочисленных параметров заполнены корректно</value>
+    <value>Not all fields of integer parameters are filled in correctly</value>
   </data>
   <data name="floatRangeValidationError" xml:space="preserve">
-    <value>Не все поля параметров с плавающей точкой заполнены корректно</value>
+    <value>Not all floating-point parameter fields are filled in correctly</value>
   </data>
   <data name="fromListValidationError" xml:space="preserve">
-    <value>Не все поля параметров, выбираемых из списка, заполнены корректно</value>
+    <value>Not all fields of the parameters selected from the list are filled in correctly</value>
   </data>
   <data name="shuffleValidationError" xml:space="preserve">
-    <value>Не все поля параметров для перемешивания заполнены корректно</value>
+    <value>Not all fields of the mixing parameters are filled in correctly</value>
   </data>
   <data name="copyValidationError" xml:space="preserve">
-    <value>Не все поля параметров для копирования заполнены корректно</value>
+    <value>Not all fields of the parameters for copying are filled in correctly</value>
   </data>
   <data name="order" xml:space="preserve">
-    <value>Порядок</value>
+    <value>Order</value>
   </data>
   <data name="notAllFieldsComplete" xml:space="preserve">
-    <value>Не все поля заполнены</value>
+    <value>Not all fields are filled in</value>
   </data>
   <data name="orderAlreadyExists" xml:space="preserve">
-    <value>Указанный номер по порядку уже существует</value>
+    <value>The specified number already exists in the order</value>
   </data>
   <data name="success" xml:space="preserve">
-    <value>Успех</value>
+    <value>Success</value>
   </data>
   <data name="savedIn" xml:space="preserve">
-    <value>Сохранено в</value>
+    <value>Saved in </value>
   </data>
   <data name="countCantBeLessThen0" xml:space="preserve">
-    <value>Количество значений параметра не может быть меньше 0</value>
+    <value>The number of parameter values cannot be less than 0</value>
   </data>
   <data name="minValueCantBeMoreThenMaxValue" xml:space="preserve">
-    <value>Минимальное значение параметра не может быть больше максимального</value>
+    <value>The minimum value of the parameter cannot be greater than the maximum</value>
   </data>
   <data name="precisionCantBeLessThen0" xml:space="preserve">
-    <value>Точность значения параметра не может быть меньше 0</value>
+    <value>The accuracy of the parameter value cannot be less than 0</value>
   </data>
   <data name="stringHasWrongFormat" xml:space="preserve">
-    <value>Строка имеет неверный формат</value>
+    <value>The string has an incorrect format</value>
   </data>
   <data name="dataLoadError" xml:space="preserve">
-    <value>Ошибка загрузки данных</value>
+    <value>Data loading error</value>
   </data>
   <data name="pathDoesNotContainsSounds" xml:space="preserve">
-    <value>Указанный к игровым звукам путь не содержит папку 'sounds'</value>
+    <value>The path specified for the game sounds does not contain the 'sounds' folder</value>
   </data>
   <data name="pathDoesNotContainsTextures" xml:space="preserve">
-    <value>Указанный к игровым текстурам путь не содержит папку 'textures'</value>
+    <value>The path specified for the game textures does not contain the folder 'textures'</value>
   </data>
   <data name="armorReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными о броне</value>
+    <value>Error reading the armor data file</value>
   </data>
   <data name="artefactsReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными об артефактах</value>
+    <value>Error reading the artifact data file</value>
   </data>
   <data name="consumablesReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными о расходниках</value>
+    <value>Error reading the file with data on consumables</value>
   </data>
   <data name="notAllSoundThreadsCompleted" xml:space="preserve">
-    <value>Не все потоки обработки звуковых файлов были завершены</value>
+    <value>Not all audio file processing streams have been completed</value>
   </data>
   <data name="notAllTextureThreadsCompleted" xml:space="preserve">
-    <value>Не все потоки обработки текстур были завершены</value>
+    <value>Not all texture processing streams have been completed</value>
   </data>
   <data name="stashesReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными о тайниках</value>
+    <value>Error reading the cache data file</value>
   </data>
   <data name="collectionsMustHaveSameSize" xml:space="preserve">
-    <value>Коллекции должны иметь одинаковый размер</value>
+    <value>Collections must have the same size</value>
   </data>
   <data name="tradersReadError" xml:space="preserve">
-    <value>Не удалось загрузить файл с настройкой торговца:</value>
+    <value>Failed to upload merchant's configuration file:</value>
   </data>
   <data name="weaponsReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными об оружии:</value>
+    <value>Error reading the weapon data file:</value>
   </data>
   <data name="weatherReadError" xml:space="preserve">
-    <value>Ошибка чтения файла с данными о погоде:</value>
+    <value>Error reading the weather data file:</value>
   </data>
   <data name="sectionStringNotCorrect" xml:space="preserve">
-    <value>Строка секции содержит больше одного символа ':'</value>
+    <value>The section string contains more than one character ':'</value>
   </data>
   <data name="artefact" xml:space="preserve">
-    <value>Артефакт</value>
+    <value>Artifact</value>
   </data>
   <data name="statSection" xml:space="preserve">
-    <value>Секция характеристик</value>
+    <value>Characteristics section</value>
   </data>
   <data name="twoWords" xml:space="preserve">
-    <value>В двух словах: я не знаю, но...</value>
+    <value>In a nutshell: I do not know, but...</value>
   </data>
   <data name="onePointFourAdvertise" xml:space="preserve">
-    <value>Если верить парням с Metacognix, то "в игровом движке версии 1.0006 внесены изменения в код, которые приводят к сбоям, когда оружие, боеприпасы или другие предметы уничтожаются во время их использования..."
-Также ошибка "может возникать в модах, которые изменяют боеприпасы и/или оружие"
+    <value>The guys from Metacognix write: "The 1.0006 game engine has code changes that cause crashes when weapons, ammo or other items are destroyed while they are still being used..."
+And "This error can also happen in mods that change ammo and/or weapons"
 
 https://www.metacognix.com/stlkrsoc/CrashesStillInTheGame.html
 
-Сама ошибка выглядит так:
+The error itself looks like this:
 
 sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[36660][bolt: bolt][137703]
 sv reject.id_parent[21043][mil_freedom_respawn_3: mil_freedom_respawn_321043] id_entity[21049][wpn_svu: wpn_svu21049][137703]
@@ -779,17 +779,17 @@ FATAL ERROR
 stack trace:
 Scheduler tried to update object mil_freedom_respawn_321043
 
-Так как ошибка на уровне движка, исправить я ее не смогу (да и в случае исправления, этот рандомайзер было бы сложнее запустить с модами).
-Я пытался найти в *.script файлах что-то связанное со словами parent, ownership, assert. Но все, что я находил в итоге ссылалось на нативный C++ код или выполняло другие функции.
-Но возникает вопрос, а правка циферок в файлах оружия считается достаточным изменением для вызова данной ошибки? Не знаю, но подозреваю, что нет.
-Скорее всего, проблема связана с генерацией НПС. И тут есть как несколько вариантов:
-1. Генерация оружия НПС. НПС в результате выдачи им случайного оружия гораздо чаще начинают подбирать оружие с земли. И в результате неудачного подбора другого оружия в офлайне, игра крашится при приближении игрока к этому неудачному НПС
-2. Увеличение частоты респавна НПС. Больше НПС - больше действий с оружием. Когда НПС становится слишком много, один из них решает все сломать
-3. Расширение присоединения НПС к лагерям. Данная опция также увеличивает частоту респавна (хоть и не так сильно), что вкупе с заселением неподходящих НПС в любые лагеря приводит к... К чему-то там, в общем, что чье-то оружие теряет id своего владельца (лол)
-4. Все вышеперечисленное
+Since the error is at the engine level, I can't fix it (and in case of correction, this randomizer would be more difficult to run with mods).
+I tried to find in *.script files something related to the words "parent", "ownership", "assert". But everything I found eventually referred to native C++ code or performed other functions.
+But the question arises, is editing the numbers in the weapon files considered a sufficient change to cause this error? I suspect not.
+Most likely, the problem is related to the generation of NPCs. And there are several options here:
+1. Generation of NPC weapons. NPCs, as a result of giving them random weapons, much more often begin to pick up weapons from the ground. And as a result of an unsuccessful selection of other weapons offline, the game crashes when the player approaches this unsuccessful NPC
+2. Increase in the frequency of respawn of NPCs. More NPCs - more action with weapons. When there are too many NPCs, one of them decides to break everything
+3. Expansion of the NPC's joining to the camps. This option also increases the respawn frequency (though not so much), which, coupled with the settlement of unsuitable NPCs in any camps, leads to.. To something there. As a result, someone's weapon loses its owner's id (lol)
+4. All of the above
 
-Если у кого есть идеи, как это можно исправить, я открыт к предложениям
+If anyone has any ideas on how to fix this, I'm open to suggestions
 
-А так рекомендую пользоваться версией игры 1.0004</value>
+And so I recommend using the 1.0004 version of the game</value>
   </data>
 </root>

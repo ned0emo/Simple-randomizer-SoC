@@ -1,5 +1,6 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,9 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             shuffleProbabilityInput.Value = config.ShuffleProbability;
             shuffleProbabilityInput.Enabled = config.ShuffleText;
             crashFixCheckBox.Checked = config.CrashFix;
+
+            shuffleProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            translateProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private void onePointFourLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

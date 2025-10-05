@@ -47,7 +47,7 @@ namespace Simple_randomizer_SoC.Generators
                 if (f.Extension.ToLower() != ".ltx") continue;
 
                 LtxData ltx = await LtxData.Load(f.FullName)
-                   ?? throw new CustomException("Ошибка чтения файла с данными о погоде: " + f.FullName);
+                   ?? throw new CustomException(Localization.Get("weatherReadError") + " " + f.FullName);
                 files.Add(ltx);
 
                 foreach (var sec in _config.Sections)

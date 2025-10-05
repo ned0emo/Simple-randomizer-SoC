@@ -159,7 +159,7 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                new InfoForm("Ошибка загрузки данных", ex).ShowDialog();
+                new InfoForm(Localization.Get("dataLoadError"), ex).ShowDialog();
             }
             Enabled = true;
         }
@@ -184,7 +184,7 @@ namespace RandomizerSoC
             }
             catch (Exception ex)
             {
-                if (!IsForceClosed) new InfoForm("Ошибка", ex).ShowDialog();
+                if (!IsForceClosed) new InfoForm(Localization.Get("error"), ex).ShowDialog();
             }
             finally
             {

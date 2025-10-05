@@ -26,7 +26,7 @@ namespace Simple_randomizer_SoC.Generators
         {
             var outPath = base.outPath + "\\config\\misc\\outfit.ltx";
             var ltx = await LtxData.Load($"{MyEnvironment.configPath}\\misc\\outfit.ltx")
-                ?? throw new CustomException("Ошибка чтения файла с данными о броне");
+                ?? throw new CustomException(Localization.Get("armorReadError"));
 
             var mainSectionsByShuffleParam = new Dictionary<string, List<LtxSection>>();
             var mainParamValuesByShuffleParam = new Dictionary<string, List<List<string>>>();

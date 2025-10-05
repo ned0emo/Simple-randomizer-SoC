@@ -55,7 +55,7 @@ namespace Simple_randomizer_SoC.Generators
                 if (f.Extension.ToLower() != ".ltx") continue;
 
                 LtxData ltx = await LtxData.Load(f.FullName)
-                    ?? throw new CustomException("Ошибка чтения файла с данными об оружии: " + f.FullName);
+                    ?? throw new CustomException(Localization.Get("weaponsReadError") + " " + f.FullName);
                 files.Add(ltx);
 
                 //каждый LTX

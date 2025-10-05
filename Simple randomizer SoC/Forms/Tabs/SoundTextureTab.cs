@@ -1,6 +1,7 @@
 ﻿using RandomizerSoC;
 using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Support;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -39,6 +40,11 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
             threadCountInput.Maximum = Math.Max(1, pc);
             threadCountInput.Value = Math.Min(config.ThreadCount, pc);
+
+            soundsStepInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            soundsProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            texturesProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            threadCountInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private void soundsDirTextBox_TextChanged(object sender, EventArgs e)
@@ -58,7 +64,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 var index = fbd.SelectedPath.IndexOf("\\sounds");
                 if (index < 0)
                 {
-                    MessageBox.Show("Внимание", "Указанный к игровым звукам путь не содержит папку \"sounds\"", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Localization.Get("warning"), Localization.Get("pathDoesNotContainsSounds"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -71,7 +77,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm("Ошибка", ex);
+                    new InfoForm(Localization.Get("error"), ex);
                 }
             }
         }
@@ -98,7 +104,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 var index = fbd.SelectedPath.IndexOf("\\textures");
                 if (index < 0)
                 {
-                    MessageBox.Show("Внимание", "Указанный к игровым текстурам путь не содержит папку \"textures\"", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Localization.Get("warning"), Localization.Get("pathDoesNotContainsTextures"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -111,7 +117,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm("Ошибка", ex);
+                    new InfoForm(Localization.Get("error"), ex);
                 }
             }
         }

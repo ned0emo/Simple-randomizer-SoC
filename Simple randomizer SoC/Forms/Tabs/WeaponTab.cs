@@ -1,5 +1,6 @@
 ﻿using Simple_randomizer_SoC.Forms.Dialogs;
 using Simple_randomizer_SoC.Forms.Support;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -29,6 +30,9 @@ namespace Simple_randomizer_SoC.Forms.Tabs
 
             weaponProbabilityInput.Value = weaponConfig.WeaponStatProbability;
             ammoProbabilityInput.Value = weaponConfig.AmmoStatProbability;
+
+            weaponProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            ammoProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void editWeaponSectionsButton_Click(object sender, EventArgs e)

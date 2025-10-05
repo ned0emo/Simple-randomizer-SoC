@@ -22,7 +22,7 @@ namespace Simple_randomizer_SoC.Models.Parameters
             if (ValuesCount == 0) return new List<string>();
 
             if (ValuesCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(ValuesCount), "Количество значений параметра не может быть меньше 0");
+                throw new ArgumentOutOfRangeException(nameof(ValuesCount), Localization.Get("countCantBeLessThen0"));
 
             if (ValuesCount >= Values.Count)
             {

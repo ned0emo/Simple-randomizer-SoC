@@ -1,4 +1,5 @@
 ﻿using Simple_randomizer_SoC.Forms.Dialogs;
+using Simple_randomizer_SoC.Forms.Templates;
 using Simple_randomizer_SoC.Models.AppConfig;
 using Simple_randomizer_SoC.Tools;
 using System;
@@ -26,6 +27,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             _config = config;
 
             probabilityInput.Value = config.ReplaceProbability;
+            probabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private void probabilityInput_ValueChanged(object sender, EventArgs e)

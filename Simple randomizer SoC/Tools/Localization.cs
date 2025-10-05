@@ -18,7 +18,7 @@ namespace Simple_randomizer_SoC
         {
             if (langStr != null && langStr != "ru")
             {
-                _rm = new ResourceManager("Simple_randomizer_SoC.Language.en_local", Assembly.GetExecutingAssembly());
+                _rm = new ResourceManager("Simple_randomizer_SoC.Language.en_local2", Assembly.GetExecutingAssembly());
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             }
             else

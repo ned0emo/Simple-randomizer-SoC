@@ -20,7 +20,9 @@ namespace Simple_randomizer_SoC.Models.Parameters
         public override List<string> GenerateValues(Random rnd)
         {
             if (MinValue > MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(MinValue), "Минимальное значение параметра не может быть больше максимального");
+                throw new ArgumentOutOfRangeException(nameof(MinValue), Localization.Get("minValueCantBeMoreThenMaxValue"));
+            if (ValuesCount < 0)
+                throw new ArgumentOutOfRangeException(nameof(ValuesCount), Localization.Get("countCantBeLessThen0"));
 
             var result = new List<string>();
             for (int i = 0; i < ValuesCount; i++)

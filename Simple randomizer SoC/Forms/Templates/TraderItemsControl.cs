@@ -41,6 +41,15 @@ namespace Simple_randomizer_SoC.Forms.Templates
 
             minBuyPriceInput.Value = (decimal)_parameters.BuyPrice.MinValue;
             maxBuyPriceInput.Value = (decimal)_parameters.BuyPrice.MaxValue;
+
+            minCountInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxCountInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            minProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxProbabilityInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            minSellPriceInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxSellPriceInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            minBuyPriceInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
+            maxBuyPriceInput.MouseWheel += NonScrollNumeric.NonScrollEvent;
         }
 
         private async void editListButton_Click(object sender, EventArgs e)
