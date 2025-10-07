@@ -822,4 +822,10 @@ And so I recommend using the 1.0004 version of the game</value>
   <data name="copying" xml:space="preserve">
     <value>Copying</value>
   </data>
+  <data name="noGenerateCheckBoxSelected" xml:space="preserve">
+    <value>No parameters are selected for generation.</value>
+  </data>
+  <data name="epilepsy" xml:space="preserve">
+    <value>It is not recommended to use texture mixing if you have ever had epileptic seizures.</value>
+  </data>
 </root>

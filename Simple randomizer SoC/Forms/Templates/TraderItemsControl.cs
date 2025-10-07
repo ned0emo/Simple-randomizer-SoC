@@ -54,7 +54,7 @@ namespace Simple_randomizer_SoC.Forms.Templates
 
         private async void editListButton_Click(object sender, EventArgs e)
         {
-            await _dataListEditor.OpenEditThenSave(new SimpleListDialog("traderItemList" + titleLabel.Text, _parameters.Items), _config);
+            await _dataListEditor.OpenEditThenSave(new SimpleListDialog(Localization.Get("traderItemList") + " " + titleLabel.Text, _parameters.Items), _config);
         }
 
         private void minCountInput_ValueChanged(object sender, EventArgs e)

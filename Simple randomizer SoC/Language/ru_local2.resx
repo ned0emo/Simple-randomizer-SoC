@@ -822,4 +822,10 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="copying" xml:space="preserve">
     <value>Копирование</value>
   </data>
+  <data name="noGenerateCheckBoxSelected" xml:space="preserve">
+    <value>Не выбрано ни одного параметра для генерации</value>
+  </data>
+  <data name="epilepsy" xml:space="preserve">
+    <value>Не рекомендуется использовать перемешивание текстур, если у вас когда-либо были эпилептические приступы</value>
+  </data>
 </root>

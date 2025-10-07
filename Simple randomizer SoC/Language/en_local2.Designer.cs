@@ -781,6 +781,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на It is not recommended to use texture mixing if you have ever had epileptic seizures..
+        /// </summary>
+        internal static string epilepsy {
+            get {
+                return ResourceManager.GetString("epilepsy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error.
         /// </summary>
         internal static string error {
@@ -1110,6 +1119,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string name {
             get {
                 return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на No parameters are selected for generation..
+        /// </summary>
+        internal static string noGenerateCheckBoxSelected {
+            get {
+                return ResourceManager.GetString("noGenerateCheckBoxSelected", resourceCulture);
             }
         }
         

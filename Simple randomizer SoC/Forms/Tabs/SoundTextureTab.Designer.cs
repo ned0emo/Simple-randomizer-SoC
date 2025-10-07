@@ -53,6 +53,7 @@
             this.soundsDirTextBox = new System.Windows.Forms.TextBox();
             this.soundsDirButton = new System.Windows.Forms.Button();
             this.soundsStepCheckBox = new System.Windows.Forms.CheckBox();
+            this.epilepsyLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -79,7 +80,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(710, 282);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(710, 368);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // titleLabel
@@ -102,18 +103,19 @@
             this.contentPanel.ColumnCount = 2;
             this.contentPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.contentPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.contentPanel.Controls.Add(this.tableLayoutPanel7, 0, 6);
+            this.contentPanel.Controls.Add(this.tableLayoutPanel7, 0, 7);
             this.contentPanel.Controls.Add(this.tableLayoutPanel6, 0, 2);
-            this.contentPanel.Controls.Add(this.texturesUICheckBox, 0, 7);
-            this.contentPanel.Controls.Add(this.tableLayoutPanel5, 0, 5);
-            this.contentPanel.Controls.Add(this.tableLayoutPanel4, 0, 9);
+            this.contentPanel.Controls.Add(this.texturesUICheckBox, 0, 8);
+            this.contentPanel.Controls.Add(this.tableLayoutPanel5, 0, 6);
+            this.contentPanel.Controls.Add(this.tableLayoutPanel4, 0, 10);
             this.contentPanel.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.contentPanel.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.contentPanel.Controls.Add(this.soundsStepCheckBox, 0, 3);
+            this.contentPanel.Controls.Add(this.epilepsyLabel, 0, 5);
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(3, 29);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.RowCount = 11;
+            this.contentPanel.RowCount = 12;
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -122,10 +124,11 @@
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.contentPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.contentPanel.Size = new System.Drawing.Size(704, 250);
+            this.contentPanel.Size = new System.Drawing.Size(704, 336);
             this.contentPanel.TabIndex = 4;
             // 
             // tableLayoutPanel7
@@ -138,7 +141,7 @@
             this.tableLayoutPanel7.Controls.Add(this.texturesProbabilityInput, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.texturesProbabilityLabel, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 153);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 185);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
@@ -231,7 +234,7 @@
             // 
             this.texturesUICheckBox.AutoSize = true;
             this.contentPanel.SetColumnSpan(this.texturesUICheckBox, 2);
-            this.texturesUICheckBox.Location = new System.Drawing.Point(3, 182);
+            this.texturesUICheckBox.Location = new System.Drawing.Point(3, 214);
             this.texturesUICheckBox.Name = "texturesUICheckBox";
             this.texturesUICheckBox.Size = new System.Drawing.Size(194, 17);
             this.texturesUICheckBox.TabIndex = 21;
@@ -251,7 +254,7 @@
             this.tableLayoutPanel5.Controls.Add(this.texturesDirTextBox, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.texturesDirButton, 2, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 124);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 156);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
@@ -300,7 +303,7 @@
             this.tableLayoutPanel4.Controls.Add(this.threadCountInput, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.threadsCountLabel, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 222);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 254);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -461,13 +464,27 @@
             this.soundsStepCheckBox.UseVisualStyleBackColor = true;
             this.soundsStepCheckBox.CheckedChanged += new System.EventHandler(this.soundsStepCheckBox_CheckedChanged);
             // 
+            // epilepsyLabel
+            // 
+            this.epilepsyLabel.AutoSize = true;
+            this.contentPanel.SetColumnSpan(this.epilepsyLabel, 2);
+            this.epilepsyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.epilepsyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.epilepsyLabel.Location = new System.Drawing.Point(3, 124);
+            this.epilepsyLabel.Name = "epilepsyLabel";
+            this.epilepsyLabel.Size = new System.Drawing.Size(698, 32);
+            this.epilepsyLabel.TabIndex = 24;
+            this.epilepsyLabel.Text = "Не рекомендуется использовать перемешивание текстур, если у вас когда-либо были э" +
+    "пилептические приступы";
+            // 
             // SoundTextureTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SoundTextureTab";
-            this.Size = new System.Drawing.Size(710, 282);
+            this.Size = new System.Drawing.Size(710, 368);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.contentPanel.ResumeLayout(false);
@@ -519,5 +536,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.NumericUpDown soundsProbabilityInput;
         private System.Windows.Forms.Label soundsProbabilityLabel;
+        private System.Windows.Forms.Label epilepsyLabel;
     }
 }

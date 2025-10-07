@@ -158,6 +158,7 @@ namespace Simple_randomizer_SoC.Forms.Tabs
             texturesProbabilityLabel.Text = Localization.Get("texturesProbability");
             texturesUICheckBox.Text = Localization.Get("texturesUiReplace");
             threadsCountLabel.Text = Localization.Get("threadsCount");
+            epilepsyLabel.Text = Localization.Get("epilepsy");
 
             texturesDirButton.Text = Localization.Get("select");
             soundsDirButton.Text = Localization.Get("select");

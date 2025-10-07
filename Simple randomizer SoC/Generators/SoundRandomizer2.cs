@@ -131,9 +131,10 @@ namespace Simple_randomizer_SoC.Generators
                 foreach (var file in sndList)
                 {
                     if (Stop) return;
+                    var substrFile = file.Substring(file.IndexOf("\\sounds"));
 
                     //дождь и шаги
-                    if (!_config.ReplaceStepsAndRain && (file.Contains("step") || file.Contains("rain")) || file.Contains("$no_sound.ogg"))
+                    if (!_config.ReplaceStepsAndRain && (substrFile.Contains("step") || substrFile.Contains("rain")) || substrFile.Contains("$no_sound.ogg"))
                     {
                         continue;
                     }

@@ -46,7 +46,7 @@ namespace Simple_randomizer_SoC.Generators
 
                 pc.DoOrSkip(rnd, () =>
                 {
-                    var c = CollectionUtils.GetRandomElements(stashConfig.Communities, rnd.Next(5) + 1, rnd);
+                    var c = CollectionUtils.GetRandomElements(stashConfig.Communities, rnd.Next(stashConfig.CommunitiesMaxCount) + 1, rnd);
                     if (c.Count == 0) return;
 
                     section.SetParam("community", c);
@@ -166,7 +166,13 @@ namespace Simple_randomizer_SoC.Generators
             int count = rnd.Next(maxItemCount) + 1;
             var item = CollectionUtils.GetRandomElement(itemList, rnd);
 
-            return new List<string>() { item.Name, (item.Count * count).ToString() };
+            var minus = 0;
+            if (item.Count > 1)
+            {
+                minus = rnd.Next(item.Count);
+            }
+
+            return new List<string>() { item.Name, (item.Count * count - minus).ToString() };
         }
 
         public string StatusText()

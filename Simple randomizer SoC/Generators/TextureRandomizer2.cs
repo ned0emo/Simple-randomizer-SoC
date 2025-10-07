@@ -130,8 +130,9 @@ namespace Simple_randomizer_SoC.Generators
                 foreach (var file in txtrList)
                 {
                     if (Stop) return;
+                    var substrFile = file.Substring(file.IndexOf("\\textures"));
 
-                    if (!_config.ReplaceUI && file.Contains("\\ui") || file.Contains("ui_icon_equipment.dds"))
+                    if (!_config.ReplaceUI && substrFile.Contains("\\ui") || substrFile.Contains("ui_icon_equipment.dds"))
                     {
                         continue;
                     }
@@ -139,7 +140,7 @@ namespace Simple_randomizer_SoC.Generators
                     if (file.EndsWith(".dds"))
                     {
                         //шрифты и bump всегда пропускаем
-                        if (file.Contains(_bump) || file.Contains("font")) continue;
+                        if (substrFile.Contains(_bump) || substrFile.Contains("font")) continue;
 
                         //вероятность перемешивания
                         if (_probabilityChecker.Skip(rnd))

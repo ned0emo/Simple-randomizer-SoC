@@ -118,6 +118,7 @@ namespace Simple_randomizer_SoC.Forms.Dialogs
 
                 var setListButton = new Button();
                 setListButton.Text = Localization.Get("editList");
+                setListButton.AutoSize = true;
                 setListButton.Click += (s, e) =>
                 {
                     listEditComponent.OpenEdit<SimpleListDialog, string>(new SimpleListDialog(Localization.Get("fromListValuesEdit") + " " + parameter.Name, parameter.Values));
