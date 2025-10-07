@@ -44,7 +44,17 @@ namespace Simple_randomizer_SoC.Generators
             throw new NotImplementedException();
         }
 
+        public void UpdateConfig(SingleFileGeneratorConfig config)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateData(SingleFileGeneratorConfig config, string baseOutPath, bool randomProbability)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
             throw new NotImplementedException();
         }

@@ -22,10 +22,9 @@ namespace Simple_randomizer_SoC.Generators
         private WeaponConfig weaponConfig = null;
         private string _outPath = null;
 
-        public void UpdateData(WeaponConfig weaponConfig, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            this._outPath = baseOutPath;
-            this.weaponConfig = weaponConfig;
+            _outPath = baseOutPath;
             weaponProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.WeaponStatProbability);
             ammoProbabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : weaponConfig.AmmoStatProbability);
         }
@@ -204,7 +203,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("weaponsGen");
+            return Localization.Get("weapons");
+        }
+
+        public void UpdateConfig(WeaponConfig config)
+        {
+            weaponConfig = config;
         }
     }
 }

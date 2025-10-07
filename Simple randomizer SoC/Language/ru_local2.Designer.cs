@@ -520,6 +520,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, которые будут скопированы.
+        /// </summary>
+        internal static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Параметр, значение которого будет скопировано.
         /// </summary>
         internal static string copyFromName {
@@ -579,6 +588,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string crashFix {
             get {
                 return ResourceManager.GetString("crashFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с несколькими разными типами значений.
+        /// </summary>
+        internal static string CustomList {
+            get {
+                return ResourceManager.GetString("CustomList", resourceCulture);
             }
         }
         
@@ -754,6 +772,24 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры с плавающей точкой.
+        /// </summary>
+        internal static string FloatRange {
+            get {
+                return ResourceManager.GetString("FloatRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Параметры с плавающей точкой.
         /// </summary>
         internal static string floatRangeParams {
@@ -777,6 +813,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string forceCloseButton {
             get {
                 return ResourceManager.GetString("forceCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, выбираемые из списка.
+        /// </summary>
+        internal static string FromList {
+            get {
+                return ResourceManager.GetString("FromList", resourceCulture);
             }
         }
         
@@ -846,6 +891,15 @@ namespace Simple_randomizer_SoC.Language {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Целочисленные параметры.
         /// </summary>
+        internal static string IntRange {
+            get {
+                return ResourceManager.GetString("IntRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Целочисленные параметры.
+        /// </summary>
         internal static string intRangeParams {
             get {
                 return ResourceManager.GetString("intRangeParams", resourceCulture);
@@ -903,6 +957,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string level {
             get {
                 return ResourceManager.GetString("level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка.
+        /// </summary>
+        internal static string loading {
+            get {
+                return ResourceManager.GetString("loading", resourceCulture);
             }
         }
         
@@ -1467,6 +1530,15 @@ namespace Simple_randomizer_SoC.Language {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Параметры, которые будут перемешаны между секциями.
         /// </summary>
+        internal static string Shuffle {
+            get {
+                return ResourceManager.GetString("Shuffle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Параметры, которые будут перемешаны между секциями.
+        /// </summary>
         internal static string shuffleParams {
             get {
                 return ResourceManager.GetString("shuffleParams", resourceCulture);
@@ -1632,6 +1704,15 @@ namespace Simple_randomizer_SoC.Language {
         internal static string success {
             get {
                 return ResourceManager.GetString("success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Игровой текст.
+        /// </summary>
+        internal static string textGen {
+            get {
+                return ResourceManager.GetString("textGen", resourceCulture);
             }
         }
         

@@ -69,16 +69,15 @@ namespace Simple_randomizer_SoC.Generators
             }
         }
 
-        public void UpdateData(SoundTextureConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
             if (IsProcessing())
             {
                 throw new ThreadStateException(Localization.Get("notAllSoundThreadsCompleted"));
             }
 
-            _config = config;
             _outPath = baseOutPath;
-            _probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.SoundProbability);
+            _probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : _config.SoundProbability);
         }
 
         public bool IsProcessing()
@@ -249,7 +248,17 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("soundsGen");
+            return Localization.Get("sounds");
+        }
+
+        public void UpdateConfig(SoundTextureConfig config)
+        {
+            if (IsProcessing())
+            {
+                throw new ThreadStateException(Localization.Get("notAllSoundThreadsCompleted"));
+            }
+
+            _config = config;
         }
     }
 }

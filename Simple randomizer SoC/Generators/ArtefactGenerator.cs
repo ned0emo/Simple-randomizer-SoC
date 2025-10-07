@@ -219,12 +219,11 @@ namespace Simple_randomizer_SoC.Generators
 
         public override string StatusText()
         {
-            return Localization.Get("artefactsGen");
+            return Localization.Get("artefacts");
         }
 
-        public override void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
+        public override void UpdateData(string newConfigPath, bool randomProbability)
         {
-            this.config = config;
             this.outPath = newConfigPath;
 
             probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArtefactProbability);

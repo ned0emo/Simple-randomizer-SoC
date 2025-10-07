@@ -24,9 +24,8 @@ namespace Simple_randomizer_SoC.Generators
         private NpcConfig _config = null;
         private string _baseOutPath = null;
 
-        public void UpdateData(NpcConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            _config = config;
             _baseOutPath = baseOutPath;
             probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : _config.Probability);
         }
@@ -287,7 +286,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("npcGen");
+            return Localization.Get("npcTab");
+        }
+
+        public void UpdateConfig(NpcConfig config)
+        {
+            _config = config;
         }
     }
 }

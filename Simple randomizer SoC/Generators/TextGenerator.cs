@@ -21,12 +21,11 @@ namespace Simple_randomizer_SoC.Generators
         private AdditionalConfig _config;
         private string _outPath;
 
-        public void UpdateData(AdditionalConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            _config = config;
             _outPath = baseOutPath;
-            _translateProbabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : config.BrokenTranslateProbability);
-            _shuffleProbabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : config.ShuffleProbability);
+            _translateProbabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : _config.BrokenTranslateProbability);
+            _shuffleProbabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : _config.ShuffleProbability);
         }
 
         public async Task Generate()
@@ -227,6 +226,11 @@ namespace Simple_randomizer_SoC.Generators
         public string StatusText()
         {
             return Localization.Get("textGen");
+        }
+
+        public void UpdateConfig(AdditionalConfig config)
+        {
+            _config = config;
         }
     }
 }

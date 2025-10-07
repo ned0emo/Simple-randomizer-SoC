@@ -23,9 +23,8 @@ namespace Simple_randomizer_SoC.Generators
         private StashConfig stashConfig;
         private string _outPath;
 
-        public void UpdateData(StashConfig stashConfig, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            this.stashConfig = stashConfig;
             this._outPath = baseOutPath;
             pc.SetProbability(randomProbability ? rnd.Next(100) + 1 : stashConfig.Probability);
         }
@@ -172,7 +171,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("stashesGen");
+            return Localization.Get("stashesTab");
+        }
+
+        public void UpdateConfig(StashConfig config)
+        {
+            this.stashConfig = config;
         }
     }
 }

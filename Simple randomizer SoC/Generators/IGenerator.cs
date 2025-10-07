@@ -9,12 +9,13 @@ namespace Simple_randomizer_SoC.Generators
 {
     public interface IGenerator<TConfig> : IGenerator where TConfig : IConfig
     {
-        void UpdateData(TConfig config, string baseOutPath, bool randomProbability);
+        void UpdateConfig(TConfig config);
     }
 
     public interface IGenerator
     {
         string StatusText();
         Task Generate();
+        void UpdateData(string baseOutPath, bool randomProbability);
     }
 }

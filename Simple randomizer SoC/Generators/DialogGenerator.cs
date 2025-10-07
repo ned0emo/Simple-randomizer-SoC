@@ -324,14 +324,18 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("dialogsGen");
+            return Localization.Get("dialogsTab");
         }
 
-        public void UpdateData(DialogConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateConfig(DialogConfig config)
         {
             _config = config;
+        }
+
+        public void UpdateData(string baseOutPath, bool randomProbability)
+        {
             _outPath = baseOutPath;
-            _probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ReplaceProbability);
+            _probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : _config.ReplaceProbability);
         }
     }
 }

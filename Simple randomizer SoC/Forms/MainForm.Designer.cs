@@ -53,12 +53,15 @@ namespace RandomizerSoC
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.loadingPanel = new System.Windows.Forms.Panel();
+            this.loadingLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.aboutTab.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.loadingPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -335,12 +338,33 @@ namespace RandomizerSoC
             this.progressBar.Size = new System.Drawing.Size(336, 29);
             this.progressBar.TabIndex = 0;
             // 
+            // loadingPanel
+            // 
+            this.loadingPanel.Controls.Add(this.loadingLabel);
+            this.loadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loadingPanel.Location = new System.Drawing.Point(3, 3);
+            this.loadingPanel.Name = "loadingPanel";
+            this.loadingPanel.Padding = new System.Windows.Forms.Padding(20);
+            this.loadingPanel.Size = new System.Drawing.Size(698, 435);
+            this.loadingPanel.TabIndex = 8;
+            // 
+            // loadingLabel
+            // 
+            this.loadingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loadingLabel.Location = new System.Drawing.Point(20, 20);
+            this.loadingLabel.Name = "loadingLabel";
+            this.loadingLabel.Size = new System.Drawing.Size(658, 395);
+            this.loadingLabel.TabIndex = 0;
+            this.loadingLabel.Text = "Загрузка";
+            this.loadingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 441);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.loadingPanel);
             this.MinimumSize = new System.Drawing.Size(720, 480);
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(3);
@@ -357,6 +381,7 @@ namespace RandomizerSoC
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.loadingPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -385,6 +410,8 @@ namespace RandomizerSoC
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Panel loadingPanel;
+        private System.Windows.Forms.Label loadingLabel;
     }
 }
 

@@ -104,14 +104,18 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("tradersGen");
+            return Localization.Get("tradersTab");
         }
 
-        public void UpdateData(TraderItemsConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateConfig(TraderItemsConfig config)
         {
             _config = config;
+        }
+
+        public void UpdateData(string baseOutPath, bool randomProbability)
+        {
             _outPath = baseOutPath;
-            _probabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : config.Probability);
+            _probabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) + 1 : _config.Probability);
         }
 
         private double GenerateDoubleValue(FloatRangeParameter parameter)

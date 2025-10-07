@@ -22,12 +22,11 @@ namespace Simple_randomizer_SoC.Generators
         private WeatherConfig _config = null;
         private string _outPath = null;
 
-        public void UpdateData(WeatherConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            _config = config;
             _outPath = baseOutPath;
 
-            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.StatProbability);
+            probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : _config.StatProbability);
         }
 
         public async Task Generate()
@@ -138,7 +137,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("weatherGen");
+            return Localization.Get("weatherTab");
+        }
+
+        public void UpdateConfig(WeatherConfig config)
+        {
+            _config = config;
         }
     }
 }

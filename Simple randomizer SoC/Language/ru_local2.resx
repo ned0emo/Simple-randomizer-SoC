@@ -792,4 +792,31 @@ Scheduler tried to update object mil_freedom_respawn_321043
 
 А так рекомендую пользоваться версией игры 1.0004</value>
   </data>
+  <data name="loading" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="textGen" xml:space="preserve">
+    <value>Игровой текст</value>
+  </data>
+  <data name="FromList" xml:space="preserve">
+    <value>Параметры, выбираемые из списка</value>
+  </data>
+  <data name="IntRange" xml:space="preserve">
+    <value>Целочисленные параметры</value>
+  </data>
+  <data name="FloatRange" xml:space="preserve">
+    <value>Параметры с плавающей точкой</value>
+  </data>
+  <data name="Shuffle" xml:space="preserve">
+    <value>Параметры, которые будут перемешаны между секциями</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Параметры, которые будут скопированы</value>
+  </data>
+  <data name="CustomList" xml:space="preserve">
+    <value>Параметры с несколькими разными типами значений</value>
+  </data>
 </root>

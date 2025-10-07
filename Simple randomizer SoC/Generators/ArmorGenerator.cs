@@ -14,11 +14,9 @@ namespace Simple_randomizer_SoC.Generators
 {
     public class ArmorGenerator : ItemGenerator
     {
-        public override void UpdateData(ItemConfig config, string newConfigPath, bool randomProbability)
+        public override void UpdateData(string newConfigPath, bool randomProbability)
         {
-            this.config = config;
             this.outPath = newConfigPath;
-
             probabilityChecker.SetProbability(randomProbability ? rnd.Next(100) + 1 : config.ArmorProbability);
         }
 
@@ -81,7 +79,7 @@ namespace Simple_randomizer_SoC.Generators
 
         public override string StatusText()
         {
-            return Localization.Get("armorGen");
+            return Localization.Get("armor");
         }
 
         private void HandleParameters(ParameterContainer parameterContainer, LtxSection section,

@@ -61,6 +61,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        internal static string additionalParamsGen {
+            get {
+                return ResourceManager.GetString("additionalParamsGen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка применения дополнительных параметров.
         /// </summary>
         internal static string advancedParamsError {
@@ -502,8 +511,7 @@ namespace Simple_randomizer_SoC.Language {
         ///Количество предметов от 1 до 7 (Каждый предмет выбирается случайно и может повторяться)
         ///Вероятность генерации предмета по типам:
         ///Броня - 5%, 1 шт.
-        ///Оружие - 10%, 1 шт.
-        /// [остаток строки не уместился]&quot;;.
+        ///Оружие - 10%, 1 шт.        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ItemsGuide {
             get {

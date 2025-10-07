@@ -13,9 +13,8 @@ namespace Simple_randomizer_SoC.Generators
         private AdditionalConfig _config;
         private string _outPath;
 
-        public void UpdateData(AdditionalConfig config, string baseOutPath, bool _)
+        public void UpdateData(string baseOutPath, bool _)
         {
-            _config = config;
             _outPath = baseOutPath;
         }
 
@@ -72,7 +71,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("additionalParamsGen");
+            return Localization.Get("additionalTitle");
+        }
+
+        public void UpdateConfig(AdditionalConfig config)
+        {
+            _config = config;
         }
     }
 }

@@ -23,11 +23,10 @@ namespace Simple_randomizer_SoC.Generators
         private DeathItemsConfig _config = null;
         private string _outPath = null;
 
-        public void UpdateData(DeathItemsConfig config, string baseOutPath, bool randomProbability)
+        public void UpdateData(string baseOutPath, bool randomProbability)
         {
-            _config = config;
             _outPath = baseOutPath;
-            _probabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) : config.Probability);
+            _probabilityChecker.SetProbability(randomProbability ? _rnd.Next(100) : _config.Probability);
         }
         public async Task Generate()
         {
@@ -232,7 +231,12 @@ namespace Simple_randomizer_SoC.Generators
 
         public string StatusText()
         {
-            return Localization.Get("deathItemsGen");
+            return Localization.Get("deathItemsTab");
+        }
+
+        public void UpdateConfig(DeathItemsConfig config)
+        {
+            _config = config;
         }
     }
 }

@@ -65,6 +65,7 @@ namespace RandomizerSoC
         public MainForm()
         {
             InitializeComponent();
+            loadingPanel.BringToFront();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -95,6 +96,21 @@ namespace RandomizerSoC
                 _configs.Add(deathItemsConfig);
                 _configs.Add(additionalConfig);
                 _configs.Add(appConfig);
+
+                stashGenerator.UpdateConfig(stashConfig);
+                weaponGenerator.UpdateConfig(weaponConfig);
+                artefactGenerator.UpdateConfig(itemConfig);
+                armorGenerator.UpdateConfig(itemConfig);
+                consumableGenerator.UpdateConfig(itemConfig);
+                weatherGenerator.UpdateConfig(weatherConfig);
+                npcGenerator.UpdateConfig(npcConfig);
+                dialogGenerator.UpdateConfig(dialogConfig);
+                textureRandomizer.UpdateConfig(soundTextureConfig);
+                soundRandomizer.UpdateConfig(soundTextureConfig);
+                tradeGenerator.UpdateConfig(traderItemsConfig);
+                textGenerator.UpdateConfig(additionalConfig);
+                deathItemsGenerator.UpdateConfig(deathItemsConfig);
+                additionalParameters.UpdateConfig(additionalConfig);
 
                 var additTab = new AdditionalTab(additionalConfig);
                 var deathTabControl = new DeathTab(deathItemsConfig);
@@ -215,6 +231,8 @@ namespace RandomizerSoC
 
         public void Localize()
         {
+            loadingLabel.Text = Localization.Get("loading");
+            loadingPanel.BringToFront();
             Enabled = false;
             SuspendLayout();
 
@@ -239,6 +257,7 @@ namespace RandomizerSoC
 
             ResumeLayout();
             Enabled = true;
+            loadingPanel.SendToBack();
         }
 
         private async void langComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -304,61 +323,51 @@ namespace RandomizerSoC
                 //тайники
                 if (appConfig.GenerateStashes)
                 {
-                    stashGenerator.UpdateData(stashConfig, outPath, randomProbability);
                     usedGenerators.Add(stashGenerator);
                 }
                 //артефакты
                 if (appConfig.GenerateArtefacts)
                 {
-                    artefactGenerator.UpdateData(itemConfig, outPath, randomProbability);
                     usedGenerators.Add(artefactGenerator);
                 }
                 //оружие
                 if (appConfig.GenerateWeapons)
                 {
-                    weaponGenerator.UpdateData(weaponConfig, outPath, randomProbability);
                     usedGenerators.Add(weaponGenerator);
                 }
                 //бронь
                 if (appConfig.GenerateArmors)
                 {
-                    armorGenerator.UpdateData(itemConfig, outPath, randomProbability);
                     usedGenerators.Add(armorGenerator);
                 }
                 //нпс
                 if (appConfig.GenerateNpc)
                 {
-                    npcGenerator.UpdateData(npcConfig, outPath, randomProbability);
                     usedGenerators.Add(npcGenerator);
                 }
                 //погода
                 if (appConfig.GenerateWeather)
                 {
-                    weatherGenerator.UpdateData(weatherConfig, outPath, randomProbability);
                     usedGenerators.Add(weatherGenerator);
                 }
                 //трупы
                 if (appConfig.GenerateDeathItems)
                 {
-                    deathItemsGenerator.UpdateData(deathItemsConfig, outPath, randomProbability);
                     usedGenerators.Add(deathItemsGenerator);
                 }
                 //торговцы
                 if (appConfig.GenerateTraderItems)
                 {
-                    tradeGenerator.UpdateData(traderItemsConfig, outPath, randomProbability);
                     usedGenerators.Add(tradeGenerator);
                 }
                 //расходники
                 if (appConfig.GenerateConsumables)
                 {
-                    consumableGenerator.UpdateData(itemConfig, outPath, randomProbability);
                     usedGenerators.Add(consumableGenerator);
                 }
                 //диалоги
                 if (appConfig.GenerateDialogs)
                 {
-                    dialogGenerator.UpdateData(dialogConfig, outPath, randomProbability);
                     usedGenerators.Add(dialogGenerator);
                 }
 
@@ -367,13 +376,11 @@ namespace RandomizerSoC
                 {
                     if (additionalConfig.UseBrokenTranslate || additionalConfig.ShuffleText)
                     {
-                        textGenerator.UpdateData(additionalConfig, outPath, randomProbability);
                         usedGenerators.Add(textGenerator);
                     }
 
                     if (additionalConfig.AnyCopyEnabled())
                     {
-                        additionalParameters.UpdateData(additionalConfig, outPath, randomProbability);
                         usedGenerators.Add(additionalParameters);
                     }
                 }
@@ -388,6 +395,7 @@ namespace RandomizerSoC
                 var status = true;
                 foreach (var g in usedGenerators)
                 {
+                    g.UpdateData(outPath, randomProbability);
                     statusLabel.Text = g.StatusText();
                     status = await HandleGenerator(g);
                     if (!status) break;
@@ -403,7 +411,7 @@ namespace RandomizerSoC
                 //звуки
                 if (appConfig.GenerateSounds)
                 {
-                    soundRandomizer.UpdateData(soundTextureConfig, outPath, randomProbability);
+                    soundRandomizer.UpdateData(outPath, randomProbability);
                     statusLabel.Text = soundRandomizer.StatusText();
                     try
                     {
@@ -430,7 +438,7 @@ namespace RandomizerSoC
                 //текстуры
                 if (appConfig.GenerateTextures)
                 {
-                    textureRandomizer.UpdateData(soundTextureConfig, outPath, randomProbability);
+                    textureRandomizer.UpdateData(outPath, randomProbability);
                     statusLabel.Text = textureRandomizer.StatusText();
                     try
                     {

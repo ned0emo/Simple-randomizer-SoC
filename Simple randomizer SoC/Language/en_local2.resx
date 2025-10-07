@@ -578,7 +578,7 @@ to be removed from NPCs when generating</value>
     <value>Number in order</value>
   </data>
   <data name="cancel" xml:space="preserve">
-    <value>Cancellation</value>
+    <value>Cancel</value>
   </data>
   <data name="add" xml:space="preserve">
     <value>Add</value>
@@ -791,5 +791,32 @@ Most likely, the problem is related to the generation of NPCs. And there are sev
 If anyone has any ideas on how to fix this, I'm open to suggestions
 
 And so I recommend using the 1.0004 version of the game</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="textGen" xml:space="preserve">
+    <value>Game text</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Parameters to be copied</value>
+  </data>
+  <data name="CustomList" xml:space="preserve">
+    <value>Parameters with several different types of values</value>
+  </data>
+  <data name="FloatRange" xml:space="preserve">
+    <value>Floating point parameters</value>
+  </data>
+  <data name="FromList" xml:space="preserve">
+    <value>Parameters to select from the list</value>
+  </data>
+  <data name="IntRange" xml:space="preserve">
+    <value>Integer parameters</value>
+  </data>
+  <data name="Shuffle" xml:space="preserve">
+    <value>Parameters to be shuffled between sections</value>
   </data>
 </root>
