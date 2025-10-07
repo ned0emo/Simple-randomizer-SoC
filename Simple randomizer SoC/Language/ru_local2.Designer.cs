@@ -538,6 +538,15 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Копирование.
+        /// </summary>
+        internal static string copying {
+            get {
+                return ResourceManager.GetString("copying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Параметры, которые будут скопированы.
         /// </summary>
         internal static string copyParams {

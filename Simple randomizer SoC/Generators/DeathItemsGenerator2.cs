@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class DeathItemsGenerator2 : IGenerator<DeathItemsConfig>
+    public class DeathItemsGenerator2 : IGenerator, IGenerator<DeathItemsConfig>
     {
         private const string deathItemsCountName = "death_items_count.ltx";
         private const string deathItemsByLevelsName = "death_items_by_levels.ltx";

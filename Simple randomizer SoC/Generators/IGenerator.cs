@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public interface IGenerator<TConfig> : IGenerator where TConfig : IConfig
+    public interface IGenerator<TConfig> where TConfig : IConfig
     {
         void UpdateConfig(TConfig config);
     }

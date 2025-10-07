@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class AdditionalParameters : IGenerator<AdditionalConfig>
+    public class AdditionalParameters : IGenerator, IGenerator<AdditionalConfig>
     {
         private AdditionalConfig _config;
         private string _outPath;

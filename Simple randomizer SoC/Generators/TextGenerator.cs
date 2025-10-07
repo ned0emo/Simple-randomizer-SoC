@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class TextGenerator : IGenerator<AdditionalConfig>
+    public class TextGenerator : IGenerator, IGenerator<AdditionalConfig>
     {
         private readonly ProbabilityChecker _translateProbabilityChecker = new ProbabilityChecker();
         private readonly ProbabilityChecker _shuffleProbabilityChecker = new ProbabilityChecker();

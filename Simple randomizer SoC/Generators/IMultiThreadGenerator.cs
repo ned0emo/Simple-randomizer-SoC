@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    internal interface IMultiThreadGenerator<TConfig> : IGenerator<TConfig> where TConfig : IConfig
+    internal interface IMultiThreadGenerator : IGenerator
     {
         bool Stop { get; set; }
         Exception Error { get; }

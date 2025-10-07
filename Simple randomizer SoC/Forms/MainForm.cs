@@ -20,6 +20,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RandomizerSoC
 {
@@ -302,7 +303,7 @@ namespace RandomizerSoC
                 }
                 catch (Exception ex)
                 {
-                    new InfoForm("", ex).ShowDialog();
+                    new InfoForm(Localization.Get("error"), ex).ShowDialog();
                     return;
                 }
 
@@ -370,7 +371,6 @@ namespace RandomizerSoC
                 {
                     usedGenerators.Add(dialogGenerator);
                 }
-
                 //доп функции
                 if (appConfig.GenerateAdditional)
                 {
@@ -384,88 +384,33 @@ namespace RandomizerSoC
                         usedGenerators.Add(additionalParameters);
                     }
                 }
-
-                var maxProgress = usedGenerators.Count;
-                if (appConfig.GenerateSounds) maxProgress++;
-                if (appConfig.GenerateTextures) maxProgress++;
-
-                progressBar.Value = 0;
-                progressBar.Maximum = maxProgress;
-
-                var status = true;
-                foreach (var g in usedGenerators)
-                {
-                    g.UpdateData(outPath, randomProbability);
-                    statusLabel.Text = g.StatusText();
-                    status = await HandleGenerator(g);
-                    if (!status) break;
-                    progressBar.Value++;
-                }
-
-                if (!status)
-                {
-                    changeElementsStatus(true);
-                    return;
-                }
-
-                //звуки
-                if (appConfig.GenerateSounds)
-                {
-                    soundRandomizer.UpdateData(outPath, randomProbability);
-                    statusLabel.Text = soundRandomizer.StatusText();
-                    try
-                    {
-                        await soundRandomizer.Generate();
-                        if (soundRandomizer.Error != null)
-                        {
-                            new InfoForm(Localization.Get("soundsError"), soundRandomizer.Error).ShowDialog();
-                            status = false;
-                        }
-                        else
-                        {
-                            progressBar.Value++;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        soundRandomizer.Stop = true;
-                        new InfoForm(Localization.Get("soundsError"), ex).ShowDialog();
-                        status = false;
-                    }
-                }
-                if (isClosing) return;
-
                 //текстуры
                 if (appConfig.GenerateTextures)
                 {
-                    textureRandomizer.UpdateData(outPath, randomProbability);
-                    statusLabel.Text = textureRandomizer.StatusText();
-                    try
-                    {
-                        await textureRandomizer.Generate();
-                        if (textureRandomizer.Error != null)
-                        {
-                            new InfoForm(Localization.Get("texturesError"), textureRandomizer.Error).ShowDialog();
-                            status = false;
-                        }
-                        else
-                        {
-                            progressBar.Value++;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        textureRandomizer.Stop = true;
-                        new InfoForm(Localization.Get("texturesError"), ex).ShowDialog();
-                        status = false;
-                    }
+                    usedGenerators.Add(textureRandomizer);
                 }
-                if (isClosing) return;
-
-                if (!status)
+                //звуки
+                if (appConfig.GenerateSounds)
                 {
-                    changeElementsStatus(true);
-                    return;
+                    usedGenerators.Add(soundRandomizer);
+                }
+
+                progressBar.Value = 0;
+                progressBar.Maximum = usedGenerators.Count;
+
+                foreach (var g in usedGenerators)
+                {
+                    if (isClosing) return;
+                    g.UpdateData(outPath, randomProbability);
+                    statusLabel.Text = g.StatusText();
+
+                    if (!await HandleGenerator(g))
+                    {
+                        changeElementsStatus(true);
+                        return;
+                    }
+
+                    progressBar.Value++;
                 }
 
                 MessageBox.Show(Localization.Get("savedIn") + " " + outPath, Localization.Get("success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -477,15 +422,38 @@ namespace RandomizerSoC
 
         private async Task<bool> HandleGenerator(IGenerator generator)
         {
-            try
+            if (generator is IMultiThreadGenerator mtGen)
             {
-                await generator.Generate();
-                return true;
+                try
+                {
+                    await mtGen.Generate();
+                    if (mtGen.Error != null)
+                    {
+                        new InfoForm(Localization.Get("error"), mtGen.Error).ShowDialog();
+                        return false;
+                    }
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    mtGen.Stop = true;
+                    new InfoForm(Localization.Get("error"), ex).ShowDialog();
+                    return false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                new InfoForm("", ex).ShowDialog();
-                return false;
+                try
+                {
+                    await generator.Generate();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    new InfoForm(Localization.Get("error"), ex).ShowDialog();
+                    return false;
+                }
             }
         }
     }

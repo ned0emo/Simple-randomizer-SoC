@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class SoundRandomizer2 : IMultiThreadGenerator<SoundTextureConfig>
+    public class SoundRandomizer2 : IMultiThreadGenerator, IGenerator<SoundTextureConfig>
     {
         private readonly SortedDictionary<int, List<string>> _classifiedFiles = new SortedDictionary<int, List<string>>();
         private readonly List<Thread> _threads = new List<Thread>();

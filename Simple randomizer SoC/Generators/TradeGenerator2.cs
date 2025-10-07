@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class TradeGenerator2 : IGenerator<TraderItemsConfig>
+    public class TradeGenerator2 : IGenerator, IGenerator<TraderItemsConfig>
     {
         private readonly Random _rnd = new Random();
         private readonly ProbabilityChecker _probabilityChecker = new ProbabilityChecker();

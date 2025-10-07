@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class DialogGenerator : IGenerator<DialogConfig>
+    public class DialogGenerator : IGenerator, IGenerator<DialogConfig>
     {
         const string exitDialogId = "1917";
         const string npcPhraseIdPrefix = "228";

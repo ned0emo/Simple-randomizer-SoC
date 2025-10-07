@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class NpcGenerator2 : IGenerator<NpcConfig>
+    public class NpcGenerator2 : IGenerator, IGenerator<NpcConfig>
     {
         private readonly ProbabilityChecker probabilityChecker = new ProbabilityChecker();
 

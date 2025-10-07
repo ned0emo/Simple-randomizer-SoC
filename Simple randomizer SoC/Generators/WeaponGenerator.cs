@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class WeaponGenerator : IGenerator<WeaponConfig>
+    public class WeaponGenerator : IGenerator, IGenerator<WeaponConfig>
     {
         private readonly ProbabilityChecker weaponProbabilityChecker = new ProbabilityChecker();
         private readonly ProbabilityChecker ammoProbabilityChecker = new ProbabilityChecker();

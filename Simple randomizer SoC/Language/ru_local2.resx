@@ -819,4 +819,7 @@ Scheduler tried to update object mil_freedom_respawn_321043
   <data name="CustomList" xml:space="preserve">
     <value>Параметры с несколькими разными типами значений</value>
   </data>
+  <data name="copying" xml:space="preserve">
+    <value>Копирование</value>
+  </data>
 </root>

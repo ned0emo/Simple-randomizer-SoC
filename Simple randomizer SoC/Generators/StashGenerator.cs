@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Simple_randomizer_SoC.Generators
 {
-    public class StashGenerator : IGenerator<StashConfig>
+    public class StashGenerator : IGenerator, IGenerator<StashConfig>
     {
         private static readonly List<string> defaultItems = new List<string>() { "bandage", "1" };
 
