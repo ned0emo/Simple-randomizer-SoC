@@ -266,10 +266,12 @@ namespace RandomizerSoC
             if (langComboBox.SelectedIndex == 0)
             {
                 appConfig.Language = "ru";
+                additionalConfig.Language = "ru";
             }
             else
             {
                 appConfig.Language = "en";
+                additionalConfig.Language = "en";
             }
 
             Localization.ChangeLanguage(appConfig.Language);

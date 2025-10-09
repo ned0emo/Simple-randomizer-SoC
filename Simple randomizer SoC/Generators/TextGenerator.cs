@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -11,6 +12,8 @@ namespace Simple_randomizer_SoC.Generators
 {
     public class TextGenerator : IGenerator, IGenerator<AdditionalConfig>
     {
+        private static readonly Regex ampersandCleaner = new Regex("&(?=\\s)");
+
         private readonly ProbabilityChecker _translateProbabilityChecker = new ProbabilityChecker();
         private readonly ProbabilityChecker _shuffleProbabilityChecker = new ProbabilityChecker();
         private readonly Random _rnd = new Random();
@@ -47,13 +50,16 @@ namespace Simple_randomizer_SoC.Generators
                 foreach (var file in dir.GetFiles())
                 {
                     var text = await MyFile.Read(file.FullName);
+                    text = ampersandCleaner.Replace(text, "_");
+
                     var mainDoc = new XmlDocument();
                     try
                     {
                         mainDoc.LoadXml(text);
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Console.Error.WriteLine(file.Name + " - " + ex.Message);
                         mainDoc.LoadXml(_prefix + text + _postfix);
                     }
 
@@ -66,7 +72,7 @@ namespace Simple_randomizer_SoC.Generators
             if (docs != null && docs.Count > 0)
             {
                 if (isRussian) outPath += "rus\\";
-                else outPath += "eng";
+                else outPath += "eng\\";
                 Directory.CreateDirectory(outPath);
 
                 var settings = new XmlWriterSettings
@@ -119,6 +125,8 @@ namespace Simple_randomizer_SoC.Generators
                     continue;
                 }
                 var brokenText = await MyFile.Read(file.FullName);
+
+                mainText = ampersandCleaner.Replace(mainText, "_");
 
                 var mainDoc = new XmlDocument();
                 try
