@@ -1672,7 +1672,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на The probability of generating each cache parameter.
+        ///   Ищет локализованную строку, похожую на The probability of generating each stash parameter.
         /// </summary>
         internal static string stashesProbability {
             get {
@@ -1681,7 +1681,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Error reading the cache data file.
+        ///   Ищет локализованную строку, похожую на Error reading the stash data file.
         /// </summary>
         internal static string stashesReadError {
             get {
@@ -1699,7 +1699,7 @@ namespace Simple_randomizer_SoC.Language {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Configuring cache filling.
+        ///   Ищет локализованную строку, похожую на Configuring stash filling.
         /// </summary>
         internal static string stashesTitle {
             get {

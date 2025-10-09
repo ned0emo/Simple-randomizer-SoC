@@ -467,10 +467,10 @@ to be removed from NPCs when generating</value>
     <value>Select</value>
   </data>
   <data name="stashesTitle" xml:space="preserve">
-    <value>Configuring cache filling</value>
+    <value>Configuring stash filling</value>
   </data>
   <data name="stashesProbability" xml:space="preserve">
-    <value>The probability of generating each cache parameter</value>
+    <value>The probability of generating each stash parameter</value>
   </data>
   <data name="ammoBoxCount" xml:space="preserve">
     <value>Quantity per pack</value>
@@ -725,7 +725,7 @@ to be removed from NPCs when generating</value>
     <value>Not all texture processing streams have been completed</value>
   </data>
   <data name="stashesReadError" xml:space="preserve">
-    <value>Error reading the cache data file</value>
+    <value>Error reading the stash data file</value>
   </data>
   <data name="collectionsMustHaveSameSize" xml:space="preserve">
     <value>Collections must have the same size</value>
