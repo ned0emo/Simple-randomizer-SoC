@@ -233,7 +233,7 @@ namespace RandomizerSoC
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(150, 75);
             this.label8.TabIndex = 22;
-            this.label8.Text = "©ned0emo, ver 2.0 beta\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPrettyBin by A" +
+            this.label8.Text = "©ned0emo, ver 2.0-beta\r\n\r\nUsed libraries:\r\nNVorbis by Andrew Ward\r\nPrettyBin by A" +
     "ndrey Ershov";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
