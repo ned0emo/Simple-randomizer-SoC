@@ -6,22 +6,22 @@
 
 # Как пользоваться
 
-1. выбрать необходимые пункты галочками;
-2. нажать кнопку "Сгенерировать";
-3. скопировать появившуюся рядом с данной программой папку "gamedata [дата] [время]" в директорию с игрой;
-4. стереть дату и время (и лишние пробелы) в названии скопированной папки;
-5. запустить игру.
+1. Настроить параметры генерации или использовать стандартные
+2. Выбрать галочками дополнительные параметры или оставить как есть
+3. Нажать кнопку «Сгенерировать»
+4. Выбрать галочками, что будет сгенерировано, и куда сохранять сгенерированную папку модифицированных игровых файлов
+5. Нажать «Начать генерацию»
+6. Скопировать сгенерированную папку «gamedata дата время» в папку с игрой и переименовать ее просто в «gamedata»
+7. Запустить игру
 
 # Скриншоты
 
-![1weapon](https://github.com/user-attachments/assets/58759d36-ba84-485b-bbfa-c626dca12397)
-![2items](https://github.com/user-attachments/assets/5b781720-8ae0-4b24-8132-7835ea3610fe)
-![3dialogs](https://github.com/user-attachments/assets/f9c9c5a2-59e6-42e6-8a64-94b20a21b12e)
-![4npc](https://github.com/user-attachments/assets/cdf14e3e-e669-47d5-81b5-6e32f6b8cd69)
-![5weather](https://github.com/user-attachments/assets/32287502-e8fc-4047-9a2d-2cc99df9d1ae)
-![6additional](https://github.com/user-attachments/assets/dfa49bc0-b946-49e9-840d-592c2bf8f94f)
-![7additional2](https://github.com/user-attachments/assets/a9819b3d-15e7-42ec-ab34-ed5f5d9c4925)
-
+<img width="706" height="473" alt="01ru" src="https://github.com/user-attachments/assets/79974659-c063-4adb-bfae-6368d0821d40" />
+<img width="706" height="473" alt="02ru" src="https://github.com/user-attachments/assets/65c8f1f2-1458-4193-97b1-9f678dafebe3" />
+<img width="706" height="473" alt="03ru" src="https://github.com/user-attachments/assets/67f74e0f-479f-432a-b434-c66feb0fbc74" />
+<img width="706" height="473" alt="04ru" src="https://github.com/user-attachments/assets/b418d102-de2e-4006-aa2b-4bbe1c32c1ea" />
+<img width="706" height="473" alt="05ru" src="https://github.com/user-attachments/assets/0327e551-fa86-4a38-9aee-9208148482ed" />
+<img width="706" height="473" alt="06ru" src="https://github.com/user-attachments/assets/0d052cdd-05e9-478e-9506-db9e8072368d" />
 
 # Результаты работы программы
 
